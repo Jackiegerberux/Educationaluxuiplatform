@@ -1,7 +1,6 @@
-
 import React from 'react';
 import { useLanguage } from './LanguageContext';
-import { Layers, BookOpen, Brain, Menu, X, Wrench, Map } from 'lucide-react';
+import { Layers, BookOpen, Brain, Menu, X, Wrench, Map, CheckSquare, Code2 } from 'lucide-react';
 import { Button } from '../ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '../ui/sheet';
 import { motion } from 'motion/react';
@@ -17,7 +16,9 @@ export function Header({ onNavigate, currentSection }: HeaderProps) {
   const navItems = [
     { id: 'home', label: { en: 'Home', es: 'Inicio' }, icon: Layers },
     { id: 'paths', label: { en: 'Learning Paths', es: 'Rutas' }, icon: BookOpen },
-    { id: 'synthesis', label: { en: 'Overview', es: 'Síntesis' }, icon: Map },
+    { id: 'design-system', label: { en: 'Design System', es: 'Design System' }, icon: Code2 },
+    { id: 'synthesis', label: { en: 'Knowledge Map', es: 'Mapa de Conocimiento' }, icon: Map },
+    { id: 'validation', label: { en: 'Validation', es: 'Validación' }, icon: CheckSquare },
     { id: 'tooling', label: { en: 'Tooling', es: 'Herramientas' }, icon: Wrench },
     { id: 'heuristics', label: { en: 'Heuristics', es: 'Heurísticas' }, icon: Brain },
   ];

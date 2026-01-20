@@ -1,9 +1,8 @@
-
-import React from 'react';
+import React, { useState } from 'react';
 import { Topic } from '../../data/content';
 import { useLanguage } from '../layout/LanguageContext';
 import { motion, AnimatePresence } from 'motion/react';
-import { X, Check, AlertTriangle, Lightbulb, BookOpen, ExternalLink, ListChecks, Sparkles, Bot, ArrowRight } from 'lucide-react';
+import { X, Check, AlertTriangle, Lightbulb, BookOpen, ExternalLink, ListChecks, Sparkles, Bot, ArrowRight, CheckCircle2, Wrench, FileCheck, Code, HelpCircle, Image as ImageIcon } from 'lucide-react';
 import { Button } from '../ui/button';
 import { ScrollArea } from '../ui/scroll-area';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs';
@@ -17,6 +16,80 @@ import { MethodologiesDeepDive } from './examples/MethodologiesDeepDive';
 interface TopicDetailProps {
   topic: Topic | null;
   onClose: () => void;
+}
+
+function QuizSection({ quiz, language }: { quiz: any[], language: any }) {
+  const [selectedAnswers, setSelectedAnswers] = useState<{[key: number]: number}>({});
+  const [showResults, setShowResults] = useState<{[key: number]: boolean}>({});
+
+  const handleAnswer = (quizIndex: number, optionIndex: number) => {
+    setSelectedAnswers({...selectedAnswers, [quizIndex]: optionIndex});
+  };
+
+  const checkAnswer = (quizIndex: number) => {
+    setShowResults({...showResults, [quizIndex]: true});
+  };
+
+  return (
+    <section className="bg-gradient-to-br from-orange-950/30 to-red-950/30 border border-orange-500/20 rounded-2xl p-6 md:p-8">
+       <h3 className="text-xl font-semibold text-white mb-6 flex items-center gap-2">
+          <HelpCircle className="size-5 text-orange-400" />
+          {language({ en: 'Knowledge Check', es: 'Verificación de Conocimiento' })}
+       </h3>
+       <div className="space-y-6">
+          {quiz.map((q: any, qIdx: number) => (
+            <div key={qIdx} className="bg-black/40 rounded-xl p-4 border border-orange-500/20">
+               <p className="text-white font-medium mb-4">{language(q.question)}</p>
+               <div className="space-y-2 mb-4">
+                  {language(q.options).map((option: string, oIdx: number) => {
+                    const isSelected = selectedAnswers[qIdx] === oIdx;
+                    const isCorrect = q.correctIndex === oIdx;
+                    const showFeedback = showResults[qIdx];
+                    
+                    return (
+                      <button
+                        key={oIdx}
+                        onClick={() => !showFeedback && handleAnswer(qIdx, oIdx)}
+                        disabled={showFeedback}
+                        className={`w-full text-left p-3 rounded-lg border transition-all ${
+                          showFeedback
+                            ? isCorrect
+                              ? 'bg-green-950/50 border-green-500/50 text-green-200'
+                              : isSelected
+                              ? 'bg-red-950/50 border-red-500/50 text-red-200'
+                              : 'bg-zinc-900/50 border-zinc-700 text-zinc-400'
+                            : isSelected
+                            ? 'bg-orange-950/50 border-orange-500/50 text-orange-200'
+                            : 'bg-zinc-900/50 border-zinc-700 text-zinc-300 hover:border-orange-500/30'
+                        }`}
+                      >
+                        <span className="flex items-center gap-2">
+                          {showFeedback && isCorrect && <Check className="size-4 text-green-400" />}
+                          {showFeedback && isSelected && !isCorrect && <X className="size-4 text-red-400" />}
+                          {option}
+                        </span>
+                      </button>
+                    );
+                  })}
+               </div>
+               {!showResults[qIdx] && selectedAnswers[qIdx] !== undefined && (
+                 <button
+                   onClick={() => checkAnswer(qIdx)}
+                   className="px-4 py-2 bg-orange-600 hover:bg-orange-700 text-white rounded-lg text-sm font-medium transition-colors"
+                 >
+                   {language({ en: 'Check Answer', es: 'Verificar Respuesta' })}
+                 </button>
+               )}
+               {showResults[qIdx] && (
+                 <div className="mt-4 p-3 rounded-lg bg-zinc-900/80 border border-zinc-700">
+                    <p className="text-sm text-zinc-300">{language(q.explanation)}</p>
+                 </div>
+               )}
+            </div>
+          ))}
+       </div>
+    </section>
+  );
 }
 
 export function TopicDetail({ topic, onClose }: TopicDetailProps) {
@@ -222,6 +295,171 @@ export function TopicDetail({ topic, onClose }: TopicDetailProps) {
                       ))}
                    </div>
                 </section>
+                )}
+
+                {/* 8. How to Validate This (New) */}
+                {topic.content?.howToValidate && (
+                <section className="bg-gradient-to-br from-green-950/30 to-emerald-950/30 border border-green-500/20 rounded-2xl p-6 md:p-8">
+                   <div className="flex items-center gap-3 mb-6">
+                      <div className="size-10 rounded-lg bg-green-500/20 flex items-center justify-center">
+                         <CheckCircle2 className="size-5 text-green-300" />
+                      </div>
+                      <div>
+                         <h3 className="text-xl font-semibold text-white">
+                            {t({ en: 'How to Validate This', es: 'Cómo Validar Esto' })}
+                         </h3>
+                         <p className="text-sm text-green-200/70">{t({en: 'Make your work evidence-based', es: 'Haz tu trabajo basado en evidencia'})}</p>
+                      </div>
+                   </div>
+                   
+                   <div className="space-y-6">
+                      <div>
+                         <h4 className="text-sm font-semibold text-green-400 mb-2 flex items-center gap-2">
+                            {t({ en: 'What to Validate', es: 'Qué Validar' })}
+                         </h4>
+                         <p className="text-zinc-300 leading-relaxed">
+                           {t(topic.content.howToValidate.what)}
+                         </p>
+                      </div>
+
+                      <div>
+                         <h4 className="text-sm font-semibold text-green-400 mb-3 flex items-center gap-2">
+                            {t({ en: 'Validation Methods', es: 'Métodos de Validación' })}
+                         </h4>
+                         <div className="space-y-2">
+                            {t(topic.content.howToValidate.methods).map((method: string, idx: number) => (
+                              <div key={idx} className="flex items-start gap-2 text-sm text-zinc-300">
+                                <CheckCircle2 className="size-4 text-green-400 mt-0.5 shrink-0" />
+                                <span>{method}</span>
+                              </div>
+                            ))}
+                         </div>
+                      </div>
+
+                      <div>
+                         <h4 className="text-sm font-semibold text-green-400 mb-3 flex items-center gap-2">
+                            <Wrench className="size-4" />
+                            {t({ en: 'Recommended Tools', es: 'Herramientas Recomendadas' })}
+                         </h4>
+                         <div className="flex flex-wrap gap-2">
+                            {t(topic.content.howToValidate.tools).map((tool: string, idx: number) => (
+                              <span key={idx} className="px-3 py-1.5 bg-green-950/50 border border-green-500/30 rounded-lg text-xs text-green-200">
+                                {tool}
+                              </span>
+                            ))}
+                         </div>
+                      </div>
+
+                      <div className="bg-black/40 rounded-xl p-4 border border-green-500/20">
+                         <h4 className="text-sm font-semibold text-green-400 mb-2">
+                            {t({ en: 'What Evidence Looks Like', es: 'Cómo se Ve la Evidencia' })}
+                         </h4>
+                         <p className="text-sm text-zinc-300 italic">
+                           {t(topic.content.howToValidate.evidenceExample)}
+                         </p>
+                      </div>
+                   </div>
+                </section>
+                )}
+
+                {/* 9. Deliverables / Outputs (New) */}
+                {topic.content?.deliverables && (
+                <section>
+                   <h3 className="text-xl font-semibold text-white mb-6 flex items-center gap-2">
+                      <FileCheck className="size-5 text-yellow-400" />
+                      {t({ en: 'Deliverables & Outputs', es: 'Entregables y Outputs' })}
+                   </h3>
+                   <p className="text-zinc-400 mb-4">{t(topic.content.deliverables.description)}</p>
+                   <div className="grid gap-3">
+                     {t(topic.content.deliverables.items).map((item: string, i: number) => (
+                       <div key={i} className="flex items-start gap-3 p-3 rounded-lg bg-yellow-950/20 border border-yellow-500/20">
+                          <FileCheck className="size-5 text-yellow-400 mt-0.5 shrink-0" />
+                          <span className="text-zinc-300">{item}</span>
+                       </div>
+                     ))}
+                   </div>
+                </section>
+                )}
+
+                {/* 10. Practical Tools (New) */}
+                {topic.content?.practicalTools && (
+                <section>
+                   <h3 className="text-xl font-semibold text-white mb-6 flex items-center gap-2">
+                      <Wrench className="size-5 text-blue-400" />
+                      {t({ en: 'Tools Ecosystem', es: 'Ecosistema de Herramientas' })}
+                   </h3>
+                   <div className="space-y-4">
+                      <div>
+                         <h4 className="text-sm font-semibold text-blue-400 mb-3">
+                            {t({ en: 'Design Tools', es: 'Herramientas de Diseño' })}
+                         </h4>
+                         <div className="flex flex-wrap gap-2">
+                            {t(topic.content.practicalTools.design).map((tool: string, idx: number) => (
+                              <span key={idx} className="px-3 py-1.5 bg-blue-950/50 border border-blue-500/30 rounded-lg text-sm text-blue-200">
+                                {tool}
+                              </span>
+                            ))}
+                         </div>
+                      </div>
+                      {t(topic.content.practicalTools.research).length > 0 && (
+                      <div>
+                         <h4 className="text-sm font-semibold text-purple-400 mb-3">
+                            {t({ en: 'Research Tools', es: 'Herramientas de Investigación' })}
+                         </h4>
+                         <div className="flex flex-wrap gap-2">
+                            {t(topic.content.practicalTools.research).map((tool: string, idx: number) => (
+                              <span key={idx} className="px-3 py-1.5 bg-purple-950/50 border border-purple-500/30 rounded-lg text-sm text-purple-200">
+                                {tool}
+                              </span>
+                            ))}
+                         </div>
+                      </div>
+                      )}
+                      {t(topic.content.practicalTools.handoff).length > 0 && (
+                      <div>
+                         <h4 className="text-sm font-semibold text-green-400 mb-3">
+                            {t({ en: 'Handoff & Collaboration', es: 'Handoff y Colaboración' })}
+                         </h4>
+                         <div className="flex flex-wrap gap-2">
+                            {t(topic.content.practicalTools.handoff).map((tool: string, idx: number) => (
+                              <span key={idx} className="px-3 py-1.5 bg-green-950/50 border border-green-500/30 rounded-lg text-sm text-green-200">
+                                {tool}
+                              </span>
+                            ))}
+                         </div>
+                      </div>
+                      )}
+                   </div>
+                </section>
+                )}
+
+                {/* 11. Real Example (New) */}
+                {topic.content?.realExample && (
+                <section className="bg-gradient-to-br from-zinc-900/50 to-zinc-800/50 border border-zinc-700 rounded-2xl p-6 md:p-8">
+                   <h3 className="text-xl font-semibold text-white mb-6 flex items-center gap-2">
+                      <ImageIcon className="size-5 text-indigo-400" />
+                      {t({ en: 'Real-World Example', es: 'Ejemplo del Mundo Real' })}
+                   </h3>
+                   <div className="space-y-4">
+                      <div>
+                         <h4 className="text-lg font-medium text-white mb-2">{t(topic.content.realExample.title)}</h4>
+                         {topic.content.realExample.company && (
+                            <span className="text-sm text-zinc-500">Company: {topic.content.realExample.company}</span>
+                         )}
+                      </div>
+                      {topic.content.realExample.imageUrl && (
+                         <div className="rounded-lg overflow-hidden border border-zinc-700">
+                            <img src={topic.content.realExample.imageUrl} alt={t(topic.content.realExample.title)} className="w-full" />
+                         </div>
+                      )}
+                      <p className="text-zinc-300 leading-relaxed">{t(topic.content.realExample.description)}</p>
+                   </div>
+                </section>
+                )}
+
+                {/* 12. Mini Quiz (New) */}
+                {topic.content?.quiz && topic.content.quiz.length > 0 && (
+                <QuizSection quiz={topic.content.quiz} language={t} />
                 )}
 
               </div>

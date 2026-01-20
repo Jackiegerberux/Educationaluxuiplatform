@@ -4,7 +4,7 @@ import { tracks } from '../../data/content';
 import { motion, AnimatePresence } from 'motion/react';
 import { Button } from '../ui/button';
 import { Card } from '../ui/card';
-import { Layers, Brain, Wrench, ArrowRight, X, ZoomIn } from 'lucide-react';
+import { Layers, Brain, Wrench, ArrowRight, X, ZoomIn, CheckSquare } from 'lucide-react';
 
 interface ContentSynthesisMapProps {
   onNavigate: (section: string) => void;
@@ -59,6 +59,17 @@ export function ContentSynthesisMap({ onNavigate }: ContentSynthesisMapProps) {
       color: 'bg-emerald-500/20 text-emerald-400',
       borderColor: 'border-emerald-500/50',
       delay: 0.3
+    },
+    {
+      id: 'validation',
+      type: 'section',
+      title: { en: 'Validation Framework', es: 'Marco de Validación' },
+      description: { en: 'Evidence-based validation methods for every artifact.', es: 'Métodos de validación basados en evidencia para cada artefacto.' },
+      icon: CheckSquare,
+      targetSection: 'validation',
+      color: 'bg-green-500/20 text-green-400',
+      borderColor: 'border-green-500/50',
+      delay: 0.35
     },
     {
       id: 'heuristics',

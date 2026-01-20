@@ -1,0 +1,197 @@
+/**
+ * Design Tokens - AditiDesign
+ * Global and semantic tokens for consistent UI
+ */
+
+@layer tokens {
+  :root {
+    /* ================================
+       GLOBAL TOKENS - Primitives
+       ================================ */
+    
+    /* Colors - Gray Scale */
+    --color-gray-50: #fafafa;
+    --color-gray-100: #f4f4f5;
+    --color-gray-200: #e4e4e7;
+    --color-gray-300: #d4d4d8;
+    --color-gray-400: #a1a1aa;
+    --color-gray-500: #71717a;
+    --color-gray-600: #52525b;
+    --color-gray-700: #3f3f46;
+    --color-gray-800: #27272a;
+    --color-gray-900: #18181b;
+    --color-gray-950: #09090b;
+    
+    /* Colors - Brand */
+    --color-indigo-400: #818cf8;
+    --color-indigo-500: #6366f1;
+    --color-indigo-600: #4f46e5;
+    --color-indigo-700: #4338ca;
+    --color-purple-500: #a855f7;
+    --color-purple-600: #9333ea;
+    
+    /* Colors - Semantic Primitives */
+    --color-success-400: #4ade80;
+    --color-success-500: #22c55e;
+    --color-success-600: #16a34a;
+    --color-warning-400: #facc15;
+    --color-warning-500: #eab308;
+    --color-warning-600: #ca8a04;
+    --color-error-400: #f87171;
+    --color-error-500: #ef4444;
+    --color-error-600: #dc2626;
+    --color-info-400: #60a5fa;
+    --color-info-500: #3b82f6;
+    --color-info-600: #2563eb;
+    
+    /* Spacing - 8pt Grid */
+    --space-0: 0;
+    --space-1: 0.25rem;   /* 4px */
+    --space-2: 0.5rem;    /* 8px */
+    --space-3: 0.75rem;   /* 12px */
+    --space-4: 1rem;      /* 16px */
+    --space-5: 1.25rem;   /* 20px */
+    --space-6: 1.5rem;    /* 24px */
+    --space-8: 2rem;      /* 32px */
+    --space-10: 2.5rem;   /* 40px */
+    --space-12: 3rem;     /* 48px */
+    --space-16: 4rem;     /* 64px */
+    --space-20: 5rem;     /* 80px */
+    --space-24: 6rem;     /* 96px */
+    
+    /* Border Radius */
+    --radius-none: 0;
+    --radius-sm: 0.25rem;    /* 4px */
+    --radius-base: 0.5rem;   /* 8px */
+    --radius-md: 0.75rem;    /* 12px */
+    --radius-lg: 1rem;       /* 16px */
+    --radius-xl: 1.5rem;     /* 24px */
+    --radius-2xl: 2rem;      /* 32px */
+    --radius-full: 9999px;
+    
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-base: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+    
+    /* Typography - Font Families */
+    --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    
+    /* Typography - Font Sizes */
+    --text-xs: 0.75rem;      /* 12px */
+    --text-sm: 0.875rem;     /* 14px */
+    --text-base: 1rem;       /* 16px */
+    --text-lg: 1.125rem;     /* 18px */
+    --text-xl: 1.25rem;      /* 20px */
+    --text-2xl: 1.5rem;      /* 24px */
+    --text-3xl: 1.875rem;    /* 30px */
+    --text-4xl: 2.25rem;     /* 36px */
+    --text-5xl: 3rem;        /* 48px */
+    
+    /* Typography - Line Heights */
+    --leading-none: 1;
+    --leading-tight: 1.25;
+    --leading-snug: 1.375;
+    --leading-normal: 1.5;
+    --leading-relaxed: 1.625;
+    --leading-loose: 2;
+    
+    /* Typography - Font Weights */
+    --font-normal: 400;
+    --font-medium: 500;
+    --font-semibold: 600;
+    --font-bold: 700;
+    
+    /* Z-Index Scale */
+    --z-base: 0;
+    --z-dropdown: 10;
+    --z-sticky: 20;
+    --z-overlay: 30;
+    --z-modal: 40;
+    --z-toast: 50;
+    
+    /* Transitions */
+    --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-base: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* Layout */
+    --container-xs: 480px;
+    --container-sm: 640px;
+    --container-md: 768px;
+    --container-lg: 1024px;
+    --container-xl: 1280px;
+    --container-2xl: 1536px;
+    
+    
+    /* ================================
+       SEMANTIC TOKENS - Dark Mode
+       ================================ */
+    
+    /* Background Colors */
+    --color-bg-primary: var(--color-gray-950);
+    --color-bg-secondary: var(--color-gray-900);
+    --color-bg-tertiary: var(--color-gray-800);
+    --color-bg-surface: rgb(24 24 27 / 0.5);     /* zinc-900/50 */
+    --color-bg-overlay: rgb(0 0 0 / 0.6);
+    --color-bg-hover: rgb(39 39 42 / 0.5);       /* zinc-800/50 */
+    
+    /* Text Colors */
+    --color-text-primary: var(--color-gray-50);
+    --color-text-secondary: var(--color-gray-300);
+    --color-text-tertiary: var(--color-gray-400);
+    --color-text-muted: var(--color-gray-500);
+    --color-text-inverse: var(--color-gray-950);
+    --color-text-brand: var(--color-indigo-400);
+    
+    /* Border Colors */
+    --color-border-primary: var(--color-gray-800);
+    --color-border-secondary: var(--color-gray-700);
+    --color-border-focus: var(--color-indigo-500);
+    --color-border-error: var(--color-error-500);
+    --color-border-subtle: rgb(255 255 255 / 0.05);
+    --color-border-strong: rgb(255 255 255 / 0.1);
+    
+    /* State Colors - Success */
+    --color-success-bg: rgb(22 101 52 / 0.1);        /* green-700/10 */
+    --color-success-border: rgb(34 197 94 / 0.2);    /* green-500/20 */
+    --color-success-text: var(--color-success-400);
+    --color-success-hover: var(--color-success-500);
+    
+    /* State Colors - Warning */
+    --color-warning-bg: rgb(161 98 7 / 0.1);         /* yellow-700/10 */
+    --color-warning-border: rgb(234 179 8 / 0.2);    /* yellow-500/20 */
+    --color-warning-text: var(--color-warning-400);
+    --color-warning-hover: var(--color-warning-500);
+    
+    /* State Colors - Error */
+    --color-error-bg: rgb(127 29 29 / 0.1);          /* red-900/10 */
+    --color-error-border: rgb(239 68 68 / 0.2);      /* red-500/20 */
+    --color-error-text: var(--color-error-400);
+    --color-error-hover: var(--color-error-500);
+    
+    /* State Colors - Info */
+    --color-info-bg: rgb(30 58 138 / 0.1);           /* blue-900/10 */
+    --color-info-border: rgb(59 130 246 / 0.2);      /* blue-500/20 */
+    --color-info-text: var(--color-info-400);
+    --color-info-hover: var(--color-info-500);
+    
+    /* Brand Gradients */
+    --gradient-brand: linear-gradient(to bottom right, var(--color-indigo-500), var(--color-purple-600));
+    --gradient-surface: linear-gradient(to bottom right, rgb(63 63 70 / 0.5), rgb(39 39 42 / 0.5));
+    
+    /* Interactive States */
+    --color-interactive-default: var(--color-indigo-600);
+    --color-interactive-hover: var(--color-indigo-700);
+    --color-interactive-active: var(--color-indigo-500);
+    --color-interactive-disabled: var(--color-gray-700);
+    
+    /* Focus Ring */
+    --focus-ring: 0 0 0 3px rgb(99 102 241 / 0.5);
+    --focus-ring-offset: 2px;
+  }
+}

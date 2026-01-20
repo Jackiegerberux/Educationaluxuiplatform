@@ -1,0 +1,212 @@
+// NEW LESSON: Double Diamond & Human-Centered Design
+// INSERT THIS AFTER design-methodologies lesson
+
+{
+  id: 'double-diamond-hcd',
+  title: { en: 'Double Diamond & Human-Centered Design', es: 'Doble Diamante y Diseño Centrado en Humanos' },
+  description: { en: 'The design process framework that ensures we solve the right problem in the right way.', es: 'El marco de proceso de diseño que asegura que resolvamos el problema correcto de la manera correcta.' },
+  status: 'beginner',
+  timeEstimate: '1h 45m',
+  reference: { en: 'Design Council UK & IDEO Design Thinking', es: 'Design Council UK e IDEO Design Thinking' },
+  referenceLink: 'https://www.designcouncil.org.uk/our-resources/the-double-diamond/',
+  content: {
+    definition: {
+      en: 'The Double Diamond is a design process model divided into four phases: Discover (research the problem), Define (synthesize insights), Develop (ideate solutions), Deliver (test and implement). Human-Centered Design (HCD) is the philosophy that puts people at the center of every phase.',
+      es: 'El Doble Diamante es un modelo de proceso de diseño dividido en cuatro fases: Descubrir (investigar el problema), Definir (sintetizar insights), Desarrollar (idear soluciones), Entregar (probar e implementar). El Diseño Centrado en Humanos (HCD) es la filosofía que pone a las personas en el centro de cada fase.'
+    },
+    why: {
+      en: 'User Impact: Ensures solutions address real user needs, not assumptions. Business Impact: Reduces rework by validating the problem before building solutions, saving time and budget. Team Impact: Creates a shared framework for cross-functional collaboration between design, product, and engineering.',
+      es: 'Impacto en Usuario: Asegura que las soluciones aborden necesidades reales del usuario, no suposiciones. Impacto en Negocio: Reduce retrabajo al validar el problema antes de construir soluciones, ahorrando tiempo y presupuesto. Impacto en Equipos: Crea un marco compartido para colaboración interfuncional entre diseño, producto e ingeniería.'
+    },
+    keyPrinciples: {
+      en: [
+        'Diverge then converge: Explore broadly (diamond widens) then focus (diamond narrows)',
+        'Discover: Research to understand the problem space (user needs, pain points, context)',
+        'Define: Synthesize research into insights and a clear problem statement',
+        'Develop: Generate multiple solution concepts, prototype cheaply',
+        'Deliver: Test, refine, and implement the validated solution'
+      ],
+      es: [
+        'Divergir luego converger: Explorar ampliamente (diamante se ensancha) luego enfocar (diamante se estrecha)',
+        'Descubrir: Investigar para entender el espacio del problema (necesidades del usuario, puntos de dolor, contexto)',
+        'Definir: Sintetizar investigación en insights y una declaración de problema clara',
+        'Desarrollar: Generar múltiples conceptos de solución, prototipar económicamente',
+        'Entregar: Probar, refinar e implementar la solución validada'
+      ]
+    },
+    commonMistakes: {
+      en: [
+        'Skipping Discover phase and jumping to solutions (solving the wrong problem)',
+        'Not diverging enough in Discover/Develop (limiting creative exploration)',
+        'Failing to converge in Define/Deliver (analysis paralysis, no decisions)',
+        'Treating it as a linear waterfall process instead of iterative cycles',
+        'Excluding users until the Deliver phase (not truly human-centered)'
+      ],
+      es: [
+        'Saltarse la fase Descubrir y saltar a soluciones (resolver el problema equivocado)',
+        'No divergir suficiente en Descubrir/Desarrollar (limitar exploración creativa)',
+        'No converger en Definir/Entregar (parálisis de análisis, sin decisiones)',
+        'Tratarlo como un proceso waterfall lineal en lugar de ciclos iterativos',
+        'Excluir usuarios hasta la fase Entregar (no verdaderamente centrado en humanos)'
+      ]
+    },
+    howToApply: {
+      steps: [
+        {
+          name: { en: 'Discover (Diverge)', es: 'Descubrir (Divergir)' },
+          description: { en: 'Conduct user interviews, observations, surveys. Goal: Understand the problem space broadly. Deliverables: Research notes, empathy maps, journey maps.', es: 'Realizar entrevistas de usuario, observaciones, encuestas. Objetivo: Entender el espacio del problema ampliamente. Entregables: Notas de investigación, mapas de empatía, mapas de viaje.' }
+        },
+        {
+          name: { en: 'Define (Converge)', es: 'Definir (Converger)' },
+          description: { en: 'Synthesize findings into insights. Create personas, identify patterns. Write a clear problem statement: "How might we...?". Deliverables: Personas, problem statement, opportunity areas.', es: 'Sintetizar hallazgos en insights. Crear personas, identificar patrones. Escribir una declaración de problema clara: "¿Cómo podríamos...?". Entregables: Personas, declaración de problema, áreas de oportunidad.' }
+        },
+        {
+          name: { en: 'Develop (Diverge)', es: 'Desarrollar (Divergir)' },
+          description: { en: 'Brainstorm multiple solutions. Sketch, wireframe, prototype cheaply. Explore "what if" scenarios. Deliverables: Sketches, user flows, lo-fi prototypes.', es: 'Lluvia de ideas de múltiples soluciones. Boceto, wireframe, prototipo económico. Explorar escenarios "qué pasaría si". Entregables: Bocetos, flujos de usuario, prototipos lo-fi.' }
+        },
+        {
+          name: { en: 'Deliver (Converge)', es: 'Entregar (Converger)' },
+          description: { en: 'Test prototypes with users. Refine based on feedback. Build and launch MVP. Measure success. Deliverables: Hi-fi prototype, usability test report, launched product.', es: 'Probar prototipos con usuarios. Refinar basado en retroalimentación. Construir y lanzar MVP. Medir éxito. Entregables: Prototipo hi-fi, informe de prueba de usabilidad, producto lanzado.' }
+        }
+      ]
+    },
+    deliverables: {
+      description: { 
+        en: 'Phase-specific artifacts that demonstrate mastery of the Double Diamond process.',
+        es: 'Artefactos específicos de fase que demuestran dominio del proceso Doble Diamante.'
+      },
+      items: {
+        en: [
+          'Discover: Research plan, interview transcripts, empathy maps, journey maps',
+          'Define: Affinity map, personas (2-3), problem statement ("How Might We"), opportunity prioritization matrix',
+          'Develop: Sketches (Crazy 8s), user flows, lo-fi wireframes, clickable prototype',
+          'Deliver: Hi-fi prototype, usability test report (5+ participants), design QA checklist, handoff documentation'
+        ],
+        es: [
+          'Descubrir: Plan de investigación, transcripciones de entrevistas, mapas de empatía, mapas de viaje',
+          'Definir: Mapa de afinidad, personas (2-3), declaración de problema ("Cómo Podríamos"), matriz de priorización de oportunidades',
+          'Desarrollar: Bocetos (Crazy 8s), flujos de usuario, wireframes lo-fi, prototipo clicable',
+          'Entregar: Prototipo hi-fi, informe de prueba de usabilidad (5+ participantes), checklist de QA de diseño, documentación de handoff'
+        ]
+      }
+    },
+    practicalTools: {
+      design: { 
+        en: ['Figma', 'FigJam', 'Miro', 'Whimsical', 'Paper + Sharpies (Discover/Develop)'], 
+        es: ['Figma', 'FigJam', 'Miro', 'Whimsical', 'Papel + Marcadores (Descubrir/Desarrollar)'] 
+      },
+      research: { 
+        en: ['Zoom/Meet', 'Dovetail', 'Otter.ai', 'UserTesting', 'Maze'], 
+        es: ['Zoom/Meet', 'Dovetail', 'Otter.ai', 'UserTesting', 'Maze'] 
+      },
+      handoff: { 
+        en: ['Figma Dev Mode', 'Zeplin', 'Notion'], 
+        es: ['Figma Dev Mode', 'Zeplin', 'Notion'] 
+      }
+    },
+    aiInPractice: {
+      description: { 
+        en: 'AI can accelerate each phase of the Double Diamond: synthesizing research, generating ideas, and validating concepts.',
+        es: 'La IA puede acelerar cada fase del Doble Diamante: sintetizando investigación, generando ideas y validando conceptos.'
+      },
+      prompts: [
+        {
+          tool: 'Claude',
+          context: { en: 'Define phase: Synthesizing research', es: 'Fase Definir: Sintetizando investigación' },
+          prompt: { en: 'I interviewed 8 users [paste transcripts]. Extract the top 5 recurring pain points. For each, provide: the pain point, frequency (how many mentioned it), and 1 supporting quote.', es: 'Entrevisté a 8 usuarios [pegar transcripciones]. Extrae los 5 principales puntos de dolor recurrentes. Para cada uno, proporciona: el punto de dolor, frecuencia (cuántos lo mencionaron) y 1 cita de apoyo.' }
+        },
+        {
+          tool: 'ChatGPT',
+          context: { en: 'Define phase: Problem statement', es: 'Fase Definir: Declaración de problema' },
+          prompt: { en: 'Based on these user needs [paste], generate 5 "How Might We" problem statements that are specific, actionable, and human-centered.', es: 'Basado en estas necesidades de usuario [pegar], genera 5 declaraciones de problema "Cómo Podríamos" que sean específicas, accionables y centradas en humanos.' }
+        },
+        {
+          tool: 'ChatGPT',
+          context: { en: 'Develop phase: Ideation', es: 'Fase Desarrollar: Ideación' },
+          prompt: { en: 'Our problem: [paste HMW statement]. Generate 10 wildly different solution concepts. Include 3 "blue sky" ideas that ignore technical constraints.', es: 'Nuestro problema: [pegar declaración HMW]. Genera 10 conceptos de solución muy diferentes. Incluye 3 ideas "blue sky" que ignoren restricciones técnicas.' }
+        }
+      ]
+    },
+    howToValidate: {
+      what: { 
+        en: 'Validate that we\'re solving the right problem (Define) and that our solution works for users (Deliver).',
+        es: 'Validar que estamos resolviendo el problema correcto (Definir) y que nuestra solución funciona para usuarios (Entregar).'
+      },
+      methods: { 
+        en: [
+          'Discover: Conduct 5-8 user interviews, observe users in context',
+          'Define: Share problem statement with stakeholders + 3 users for feedback',
+          'Develop: Paper prototype testing with 5 users (rapid iterations)',
+          'Deliver: Usability testing with hi-fi prototype (8-10 users), measure task success rate'
+        ],
+        es: [
+          'Descubrir: Realizar 5-8 entrevistas de usuario, observar usuarios en contexto',
+          'Definir: Compartir declaración de problema con stakeholders + 3 usuarios para retroalimentación',
+          'Desarrollar: Pruebas de prototipo en papel con 5 usuarios (iteraciones rápidas)',
+          'Entregar: Pruebas de usabilidad con prototipo hi-fi (8-10 usuarios), medir tasa de éxito de tareas'
+        ]
+      },
+      tools: { 
+        en: ['UserTesting', 'Maze', 'Lookback', 'Google Forms', 'Dovetail'], 
+        es: ['UserTesting', 'Maze', 'Lookback', 'Google Forms', 'Dovetail'] 
+      },
+      evidenceExample: { 
+        en: 'Define: 7/8 interviewees confirm "finding past orders" is a top-3 pain point. Deliver: Usability test shows 90% task success on new "Order History" flow (up from 45%).',
+        es: 'Definir: 7/8 entrevistados confirman que "encontrar pedidos anteriores" es un dolor top-3. Entregar: Prueba de usabilidad muestra 90% de éxito de tarea en nuevo flujo "Historial de Pedidos" (subió de 45%).'
+      }
+    },
+    quiz: [
+      {
+        question: { 
+          en: 'In which phase of the Double Diamond do we create a problem statement?', 
+          es: '¿En qué fase del Doble Diamante creamos una declaración de problema?' 
+        },
+        options: {
+          en: ['Discover', 'Define', 'Develop', 'Deliver'],
+          es: ['Descubrir', 'Definir', 'Desarrollar', 'Entregar']
+        },
+        correctIndex: 1,
+        explanation: {
+          en: 'The Define phase is where we synthesize research insights and converge on a clear problem statement. We must understand the problem (Discover) before we can define it.',
+          es: 'La fase Definir es donde sintetizamos insights de investigación y convergemos en una declaración de problema clara. Debemos entender el problema (Descubrir) antes de poder definirlo.'
+        }
+      },
+      {
+        question: { 
+          en: 'What does "diverge" mean in the Double Diamond?', 
+          es: '¿Qué significa "divergir" en el Doble Diamante?' 
+        },
+        options: {
+          en: [
+            'Focus on one solution',
+            'Explore broadly without filtering ideas',
+            'Test with users',
+            'Document decisions'
+          ],
+          es: [
+            'Enfocarse en una solución',
+            'Explorar ampliamente sin filtrar ideas',
+            'Probar con usuarios',
+            'Documentar decisiones'
+          ]
+        },
+        correctIndex: 1,
+        explanation: {
+          en: 'Diverge means exploring broadly and generating many possibilities without judgment. This happens in Discover (understanding many problems) and Develop (exploring many solutions).',
+          es: 'Divergir significa explorar ampliamente y generar muchas posibilidades sin juicio. Esto sucede en Descubrir (entender muchos problemas) y Desarrollar (explorar muchas soluciones).'
+        }
+      }
+    ],
+    realExample: {
+      title: { 
+        en: 'Airbnb\'s 11-Star Experience Exercise', 
+        es: 'Ejercicio de Experiencia de 11 Estrellas de Airbnb' 
+      },
+      description: {
+        en: 'Airbnb uses the Double Diamond rigorously. In the Develop phase, they run an "11-Star Experience" exercise: What would a 5-star experience be? (good hotel). What about 10-star? (celebrity welcome). 11-star? (Elon Musk picks you up). This divergent thinking helps them explore beyond obvious solutions, then they converge to feasible innovations like "local host guidebooks".',
+        es: 'Airbnb usa el Doble Diamante rigurosamente. En la fase Desarrollar, ejecutan un ejercicio de "Experiencia de 11 Estrellas": ¿Qué sería una experiencia de 5 estrellas? (buen hotel). ¿Qué tal 10 estrellas? (bienvenida de celebridad). ¿11 estrellas? (Elon Musk te recoge). Este pensamiento divergente les ayuda a explorar más allá de soluciones obvias, luego convergen a innovaciones factibles como "guías de anfitriones locales".'
+      },
+      company: 'Airbnb'
+    }
+  }
+},

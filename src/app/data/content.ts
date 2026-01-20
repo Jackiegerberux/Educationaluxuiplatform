@@ -1,4 +1,6 @@
 
+import { advancedResearchLessons } from './advanced-research-lessons';
+
 export type Language = 'en' | 'es';
 
 export interface Topic {
@@ -20,6 +22,15 @@ export interface Topic {
         description: { en: string; es: string };
       }[];
     };
+    deliverables?: {
+      description: { en: string; es: string };
+      items: { en: string[]; es: string[] };
+    };
+    practicalTools?: {
+      design: { en: string[]; es: string[] };
+      research: { en: string[]; es: string[] };
+      handoff: { en: string[]; es: string[] };
+    };
     aiInPractice?: {
       description: { en: string; es: string };
       prompts: {
@@ -27,6 +38,24 @@ export interface Topic {
         context: { en: string; es: string };
         prompt: { en: string; es: string };
       }[];
+    };
+    howToValidate?: {
+      what: { en: string; es: string };
+      methods: { en: string[]; es: string[] };
+      tools: { en: string[]; es: string[] };
+      evidenceExample: { en: string; es: string };
+    };
+    quiz?: {
+      question: { en: string; es: string };
+      options: { en: string[]; es: string[] };
+      correctIndex: number;
+      explanation: { en: string; es: string };
+    }[];
+    realExample?: {
+      title: { en: string; es: string };
+      description: { en: string; es: string };
+      imageUrl?: string;
+      company?: string;
     };
   };
 }
@@ -47,6 +76,171 @@ export const tracks: Track[] = [
       es: 'Domina los principios básicos del diseño centrado en el usuario, la investigación y la jerarquía visual.' 
     },
     topics: [
+      ...advancedResearchLessons,
+      {
+        id: 'ux-ui-product-design-intro',
+        title: { en: 'UX vs UI vs Product Design', es: 'UX vs UI vs Diseño de Producto' },
+        description: { en: 'Understanding the differences and overlaps between UX, UI, and Product Design roles.', es: 'Entendiendo las diferencias y superposiciones entre roles de UX, UI y Diseño de Producto.' },
+        status: 'beginner',
+        timeEstimate: '45min',
+        reference: { en: 'The Disciplines of UX Design - NN/g', es: 'Las Disciplinas del Diseño UX - NN/g' },
+        referenceLink: 'https://www.nngroup.com/articles/ux-expert-reviews/',
+        content: {
+          definition: {
+            en: 'UX (User Experience) Design focuses on the overall feel and journey, UI (User Interface) Design focuses on visual and interactive elements, and Product Design combines both with business strategy and technical feasibility.',
+            es: 'El Diseño UX (Experiencia de Usuario) se enfoca en la sensación general y el viaje, el Diseño UI (Interfaz de Usuario) se enfoca en elementos visuales e interactivos, y el Diseño de Producto combina ambos con estrategia de negocio y viabilidad técnica.'
+          },
+          why: {
+            en: 'Understanding these distinctions helps you know what skills to develop, how to collaborate with team members, and which deliverables to create at each stage of the design process.',
+            es: 'Entender estas distinciones te ayuda a saber qué habilidades desarrollar, cómo colaborar con miembros del equipo y qué entregables crear en cada etapa del proceso de diseño.'
+          },
+          keyPrinciples: {
+            en: [
+              'UX Design: Research, user flows, information architecture, wireframes, usability testing',
+              'UI Design: Visual hierarchy, typography, color systems, component design, micro-interactions',
+              'Product Design: Business goals, technical constraints, end-to-end ownership, metrics and KPIs',
+              'Overlap: All three roles require empathy, problem-solving, and iterative thinking'
+            ],
+            es: [
+              'Diseño UX: Investigación, flujos de usuario, arquitectura de información, wireframes, pruebas de usabilidad',
+              'Diseño UI: Jerarquía visual, tipografía, sistemas de color, diseño de componentes, micro-interacciones',
+              'Diseño de Producto: Objetivos de negocio, restricciones técnicas, responsabilidad end-to-end, métricas y KPIs',
+              'Superposición: Los tres roles requieren empatía, resolución de problemas y pensamiento iterativo'
+            ]
+          },
+          commonMistakes: {
+            en: [
+              'Thinking UX is just wireframes and UI is just "making it pretty"',
+              'Believing Product Designers don\'t need visual skills',
+              'Separating UX and UI as completely distinct phases',
+              'Ignoring business and technical constraints in design decisions'
+            ],
+            es: [
+              'Pensar que UX son solo wireframes y UI es solo "hacerlo bonito"',
+              'Creer que los Diseñadores de Producto no necesitan habilidades visuales',
+              'Separar UX y UI como fases completamente distintas',
+              'Ignorar restricciones de negocio y técnicas en decisiones de diseño'
+            ]
+          },
+          howToApply: {
+            steps: [
+              {
+                name: { en: 'Identify the Problem Space', es: 'Identificar el Espacio del Problema' },
+                description: { en: 'Start with UX: What user problem are we solving? Conduct research and define user needs.', es: 'Comienza con UX: ¿Qué problema del usuario estamos resolviendo? Realiza investigación y define necesidades del usuario.' }
+              },
+              {
+                name: { en: 'Structure the Solution', es: 'Estructurar la Solución' },
+                description: { en: 'Create information architecture, user flows, and wireframes. This is core UX work.', es: 'Crea arquitectura de información, flujos de usuario y wireframes. Este es trabajo central de UX.' }
+              },
+              {
+                name: { en: 'Design the Interface', es: 'Diseñar la Interfaz' },
+                description: { en: 'Apply UI design: visual hierarchy, typography, color, spacing. Make it beautiful and accessible.', es: 'Aplica diseño UI: jerarquía visual, tipografía, color, espaciado. Hazlo hermoso y accesible.' }
+              },
+              {
+                name: { en: 'Consider Product Viability', es: 'Considerar Viabilidad del Producto' },
+                description: { en: 'Think like a Product Designer: Is this technically feasible? Does it align with business goals? What are the metrics?', es: 'Piensa como Diseñador de Producto: ¿Es técnicamente viable? ¿Se alinea con objetivos de negocio? ¿Cuáles son las métricas?' }
+              }
+            ]
+          },
+          deliverables: {
+            description: { en: 'Artifacts created at each design discipline level.', es: 'Artefactos creados en cada nivel de disciplina de diseño.' },
+            items: {
+              en: [
+                'UX Deliverables: User research reports, personas, journey maps, wireframes, usability test reports',
+                'UI Deliverables: Style guides, component libraries, high-fidelity mockups, design systems, icon sets',
+                'Product Deliverables: Product roadmaps, feature prioritization matrices, PRDs, success metrics dashboards'
+              ],
+              es: [
+                'Entregables UX: Informes de investigación de usuario, personas, mapas de viaje, wireframes, informes de pruebas de usabilidad',
+                'Entregables UI: Guías de estilo, bibliotecas de componentes, mockups de alta fidelidad, sistemas de diseño, conjuntos de iconos',
+                'Entregables de Producto: Hojas de ruta de producto, matrices de priorización de características, PRDs, dashboards de métricas de éxito'
+              ]
+            }
+          },
+          practicalTools: {
+            design: { en: ['Figma (UX/UI)', 'FigJam (UX)', 'Sketch (UI)', 'Adobe XD (UI)'], es: ['Figma (UX/UI)', 'FigJam (UX)', 'Sketch (UI)', 'Adobe XD (UI)'] },
+            research: { en: ['UserTesting', 'Maze', 'Lookback', 'Hotjar'], es: ['UserTesting', 'Maze', 'Lookback', 'Hotjar'] },
+            handoff: { en: ['Zeplin', 'Anima', 'Storybook'], es: ['Zeplin', 'Anima', 'Storybook'] }
+          },
+          aiInPractice: {
+            description: { en: 'Use AI to understand role differences and generate role-specific deliverables.', es: 'Usa IA para entender diferencias de roles y generar entregables específicos del rol.' },
+            prompts: [
+              {
+                tool: 'ChatGPT',
+                context: { en: 'Understanding responsibilities', es: 'Entendiendo responsabilidades' },
+                prompt: { en: 'I\'m working on [feature description]. What are the UX Designer\'s responsibilities vs the UI Designer\'s responsibilities for this feature?', es: 'Estoy trabajando en [descripción de característica]. ¿Cuáles son las responsabilidades del Diseñador UX vs las del Diseñador UI para esta característica?' }
+              },
+              {
+                tool: 'Claude',
+                context: { en: 'Role comparison', es: 'Comparación de roles' },
+                prompt: { en: 'Create a table comparing UX Designer, UI Designer, and Product Designer: Skills, Tools, Deliverables, and Daily Activities.', es: 'Crea una tabla comparando Diseñador UX, Diseñador UI y Diseñador de Producto: Habilidades, Herramientas, Entregables y Actividades Diarias.' }
+              }
+            ]
+          },
+          howToValidate: {
+            what: { 
+              en: 'Validate that you understand the distinctions between UX, UI, and Product Design roles, and can identify which skills and deliverables belong to each discipline.',
+              es: 'Validar que entiendes las distinciones entre roles de UX, UI y Diseño de Producto, y puedes identificar qué habilidades y entregables pertenecen a cada disciplina.'
+            },
+            methods: { 
+              en: [
+                'Role-play exercise: Given a feature, list what a UX Designer, UI Designer, and Product Designer would each contribute',
+                'Portfolio audit: Review your own work and label each artifact by discipline (UX/UI/Product)',
+                'Job description analysis: Read 10 job postings and identify overlapping vs unique requirements',
+                'Peer review: Have someone from each role review your understanding and provide feedback'
+              ],
+              es: [
+                'Ejercicio de rol: Dada una característica, lista qué contribuiría un Diseñador UX, UI y de Producto',
+                'Auditoría de portafolio: Revisa tu propio trabajo y etiqueta cada artefacto por disciplina (UX/UI/Producto)',
+                'Análisis de descripciones de trabajo: Lee 10 publicaciones de empleo e identifica requisitos superpuestos vs únicos',
+                'Revisión de pares: Que alguien de cada rol revise tu comprensión y proporcione retroalimentación'
+              ]
+            },
+            tools: { 
+              en: ['LinkedIn job search filters', 'Figma (portfolio review)', 'Notion (role comparison table)', 'Miro (skills mapping)'],
+              es: ['Filtros de búsqueda de empleo de LinkedIn', 'Figma (revisión de portafolio)', 'Notion (tabla de comparación de roles)', 'Miro (mapeo de habilidades)']
+            },
+            evidenceExample: { 
+              en: 'You can confidently explain to a recruiter: "I conducted the user research (UX), designed the visual interface (UI), and aligned it with business KPIs (Product Design)" for a specific project.',
+              es: 'Puedes explicar con confianza a un reclutador: "Realicé la investigación de usuarios (UX), diseñé la interfaz visual (UI) y la alineé con KPIs de negocio (Diseño de Producto)" para un proyecto específico.'
+            }
+          },
+          quiz: [
+            {
+              question: { en: 'Which role is primarily responsible for conducting user interviews?', es: '¿Qué rol es principalmente responsable de realizar entrevistas de usuario?' },
+              options: {
+                en: ['UI Designer', 'UX Designer', 'Product Designer', 'All of the above'],
+                es: ['Diseñador UI', 'Diseñador UX', 'Diseñador de Producto', 'Todos los anteriores']
+              },
+              correctIndex: 1,
+              explanation: {
+                en: 'UX Designers are primarily responsible for user research, including interviews, surveys, and usability testing.',
+                es: 'Los Diseñadores UX son principalmente responsables de la investigación de usuarios, incluyendo entrevistas, encuestas y pruebas de usabilidad.'
+              }
+            },
+            {
+              question: { en: 'What is the main focus of UI Design?', es: '¿Cuál es el enfoque principal del Diseño UI?' },
+              options: {
+                en: ['Business strategy', 'Visual and interactive elements', 'User research', 'Technical implementation'],
+                es: ['Estrategia de negocio', 'Elementos visuales e interactivos', 'Investigación de usuarios', 'Implementación técnica']
+              },
+              correctIndex: 1,
+              explanation: {
+                en: 'UI Design focuses on the visual and interactive elements of a product: typography, color, layout, and micro-interactions.',
+                es: 'El Diseño UI se enfoca en los elementos visuales e interactivos de un producto: tipografía, color, diseño y micro-interacciones.'
+              }
+            }
+          ],
+          realExample: {
+            title: { en: 'Airbnb\'s Design Roles', es: 'Roles de Diseño en Airbnb' },
+            description: {
+              en: 'Airbnb has Product Designers who handle both UX and UI, plus conduct user research. They work end-to-end on features, from problem definition to final implementation. This holistic approach is common in tech companies, where "Product Designer" encompasses UX, UI, and strategic thinking.',
+              es: 'Airbnb tiene Diseñadores de Producto que manejan tanto UX como UI, además de realizar investigación de usuarios. Trabajan de principio a fin en características, desde la definición del problema hasta la implementación final. Este enfoque holístico es común en empresas tech, donde "Diseñador de Producto" abarca UX, UI y pensamiento estratégico.'
+            },
+            company: 'Airbnb'
+          }
+        }
+      },
       {
         id: 'usability-basics',
         title: { en: 'Usability Basics', es: 'Conceptos Básicos de Usabilidad' },
@@ -65,12 +259,38 @@ export const tracks: Track[] = [
             es: 'Sin una buena usabilidad, los usuarios se frustran y abandonan los productos. Cierra la brecha entre el sistema y el modelo mental del usuario.'
           },
           keyPrinciples: {
-            en: ['Affordances: Properties that determine just how the thing could possibly be used.', 'Signifiers: Clues that tell you where the action should take place.', 'Feedback: Sending back information about what action has been done.'],
-            es: ['Affordances: Propiedades que determinan cómo se puede usar algo.', 'Significantes: Pistas que te dicen dónde debe tener lugar la acción.', 'Retroalimentación: Enviar información sobre qué acción se ha realizado.']
+            en: [
+              'Affordances: Properties that determine just how the thing could possibly be used. A button affords pressing, a slider affords dragging.',
+              'Signifiers: Clues that tell you where the action should take place. Labels, icons, and visual cues that communicate "click here".',
+              'Feedback: Sending back information about what action has been done. Loading spinners, success messages, color changes.',
+              'Mapping: The relationship between controls and their effects. Good mapping is intuitive (turn wheel right = car goes right).',
+              'Conceptual Model: The user\'s mental model of how the system works. Design should match expectations (trash icon = delete).'
+            ],
+            es: [
+              'Affordances: Propiedades que determinan cómo se puede usar algo. Un botón permite presionar, un slider permite arrastrar.',
+              'Significantes: Pistas que te dicen dónde debe tener lugar la acción. Etiquetas, iconos y señales visuales que comunican "haz clic aquí".',
+              'Retroalimentación: Enviar información sobre qué acción se ha realizado. Spinners de carga, mensajes de éxito, cambios de color.',
+              'Mapeo: La relación entre controles y sus efectos. Buen mapeo es intuitivo (girar volante a derecha = auto va a derecha).',
+              'Modelo Conceptual: El modelo mental del usuario de cómo funciona el sistema. El diseño debe coincidir con expectativas (ícono de basura = eliminar).'
+            ]
           },
           commonMistakes: {
-            en: ['Hiding critical controls for aesthetics (poor signifiers).', 'Providing no feedback after an interaction.', 'Designing based on how the code works, not how people think.'],
-            es: ['Ocultar controles críticos por estética (malos significantes).', 'No proporcionar retroalimentación después de una interacción.', 'Diseñar basándose en cómo funciona el código, no en cómo piensan las personas.']
+            en: [
+              'Hiding critical controls for aesthetics (poor signifiers) - Example: Hamburger menu hiding primary navigation',
+              'Providing no feedback after an interaction - Users click repeatedly because they don\'t know if action registered',
+              'Designing based on how the code works, not how people think - Technical language instead of user-friendly labels',
+              'Inconsistent affordances - Button looks different on every screen, confusing users about what\'s clickable',
+              'False affordances - Elements that look clickable but aren\'t (e.g., underlined text that\'s not a link)',
+              'Delayed feedback - Taking >1 second to show loading state makes users think the app is frozen'
+            ],
+            es: [
+              'Ocultar controles críticos por estética (malos significantes) - Ejemplo: Menú hamburguesa ocultando navegación principal',
+              'No proporcionar retroalimentación después de una interacción - Los usuarios hacen clic repetidamente porque no saben si la acción se registró',
+              'Diseñar basándose en cómo funciona el código, no en cómo piensan las personas - Lenguaje técnico en lugar de etiquetas amigables',
+              'Affordances inconsistentes - Botón se ve diferente en cada pantalla, confundiendo usuarios sobre qué es clicable',
+              'Affordances falsos - Elementos que parecen clicables pero no lo son (ej. texto subrayado que no es enlace)',
+              'Retroalimentación retrasada - Tomar >1 segundo para mostrar estado de carga hace que usuarios piensen que la app está congelada'
+            ]
           },
           howToApply: {
             steps: [
@@ -99,8 +319,133 @@ export const tracks: Track[] = [
                 tool: 'ChatGPT',
                 context: { en: 'Simulating a non-tech savvy user', es: 'Simulando un usuario no técnico' },
                 prompt: { en: 'Act as a 60-year-old user who is not tech-savvy. Walk through the process of [Action] on a mobile interface. What confuses you?', es: 'Actúa como un usuario de 60 años que no es experto en tecnología. Recorre el proceso de [Acción] en una interfaz móvil. ¿Qué te confunde?' }
+              },
+              {
+                tool: 'Claude',
+                context: { en: 'Heuristic evaluation', es: 'Evaluación heurística' },
+                prompt: { en: 'Analyze this screen description [paste details]. Identify usability issues related to affordances, signifiers, and feedback. Rate severity 1-5.', es: 'Analiza esta descripción de pantalla [pegar detalles]. Identifica problemas de usabilidad relacionados con affordances, significantes y retroalimentación. Califica severidad 1-5.' }
+              },
+              {
+                tool: 'ChatGPT',
+                context: { en: 'Redesign suggestions', es: 'Sugerencias de rediseño' },
+                prompt: { en: 'This button gets ignored by users [describe issue]. Suggest 3 ways to improve its signifiers (color, size, label, icon, placement) to make it more discoverable.', es: 'Este botón es ignorado por los usuarios [describir problema]. Sugiere 3 formas de mejorar sus significantes (color, tamaño, etiqueta, ícono, ubicación) para hacerlo más descubrible.' }
               }
             ]
+          },
+          howToValidate: {
+            what: { 
+              en: 'Validate that your interface has clear affordances, signifiers, and feedback mechanisms that users can understand without instructions.',
+              es: 'Valida que tu interfaz tiene affordances, significantes y mecanismos de retroalimentación claros que los usuarios puedan entender sin instrucciones.'
+            },
+            methods: { 
+              en: [
+                'Usability testing: Watch 5 users complete key tasks. Do they hesitate or click wrong elements?',
+                'First-click test: Where do users click first to achieve a goal? (Use Maze or Optimal Workshop)',
+                'Think-aloud protocol: Ask users to narrate their thought process while using the interface',
+                '5-second test: Show screen for 5 seconds, then ask what actions are possible (tests signifiers)'
+              ],
+              es: [
+                'Pruebas de usabilidad: Observa a 5 usuarios completar tareas clave. ¿Dudan o hacen clic en elementos incorrectos?',
+                'Prueba de primer clic: ¿Dónde hacen clic primero los usuarios para lograr un objetivo? (Usa Maze u Optimal Workshop)',
+                'Protocolo think-aloud: Pide a los usuarios narrar su proceso de pensamiento mientras usan la interfaz',
+                'Prueba de 5 segundos: Muestra pantalla por 5 segundos, luego pregunta qué acciones son posibles (prueba significantes)'
+              ]
+            },
+            tools: { 
+              en: ['Maze (first-click testing)', 'UserTesting.com', 'Lookback (moderated testing)', 'Figma prototype with click tracking'], 
+              es: ['Maze (prueba de primer clic)', 'UserTesting.com', 'Lookback (pruebas moderadas)', 'Prototipo Figma con seguimiento de clics'] 
+            },
+            evidenceExample: { 
+              en: 'In usability testing, 4/5 users tried to click a disabled "Next" button because it looked clickable (poor signifier). After adding a tooltip "Complete all fields to continue", task success went from 60% to 95%.',
+              es: 'En pruebas de usabilidad, 4/5 usuarios intentaron hacer clic en un botón "Siguiente" deshabilitado porque parecía clicable (mal significante). Después de agregar un tooltip "Completa todos los campos para continuar", el éxito de tarea pasó de 60% a 95%.'
+            }
+          },
+          deliverables: {
+            description: { en: 'Concrete artifacts that demonstrate mastery of usability principles.', es: 'Artefactos concretos que demuestran dominio de los principios de usabilidad.' },
+            items: {
+              en: [
+                'Usability audit document: List of affordances, signifiers, and feedback gaps with screenshots',
+                'Before/after redesign: Show improved signifiers with annotations',
+                'Usability test report: 5-8 participants, task success rates, key friction points',
+                'Annotated wireframes: Label each interactive element with its affordance + signifier',
+                'Feedback implementation guide: Spec for loading states, success/error messages'
+              ],
+              es: [
+                'Documento de auditoría de usabilidad: Lista de brechas de affordances, significantes y retroalimentación con capturas',
+                'Rediseño antes/después: Muestra significantes mejorados con anotaciones',
+                'Informe de prueba de usabilidad: 5-8 participantes, tasas de éxito de tareas, puntos de fricción clave',
+                'Wireframes anotados: Etiqueta cada elemento interactivo con su affordance + significante',
+                'Guía de implementación de retroalimentación: Especificaciones para estados de carga, mensajes de éxito/error'
+              ]
+            }
+          },
+          practicalTools: {
+            design: { 
+              en: ['Figma (prototyping)', 'FigJam (usability audits)', 'Sketch', 'Adobe XD'], 
+              es: ['Figma (prototipado)', 'FigJam (auditorías de usabilidad)', 'Sketch', 'Adobe XD'] 
+            },
+            research: { 
+              en: ['Lookback (moderated testing)', 'UserTesting.com (unmoderated)', 'Maze (first-click tests)', 'Optimal Workshop'], 
+              es: ['Lookback (pruebas moderadas)', 'UserTesting.com (no moderadas)', 'Maze (pruebas de primer clic)', 'Optimal Workshop'] 
+            },
+            handoff: { 
+              en: ['Figma Dev Mode', 'Zeplin', 'Notion (usability specs)'], 
+              es: ['Figma Dev Mode', 'Zeplin', 'Notion (especificaciones de usabilidad)'] 
+            }
+          },
+          quiz: [
+            {
+              question: { en: 'What is an affordance?', es: '¿Qué es un affordance?' },
+              options: {
+                en: [
+                  'A visual clue that tells you how to use something',
+                  'The properties of an object that determine how it could be used',
+                  'The feedback you get after an action',
+                  'A design pattern for navigation'
+                ],
+                es: [
+                  'Una pista visual que te dice cómo usar algo',
+                  'Las propiedades de un objeto que determinan cómo puede usarse',
+                  'La retroalimentación que obtienes después de una acción',
+                  'Un patrón de diseño para navegación'
+                ]
+              },
+              correctIndex: 1,
+              explanation: {
+                en: 'Affordances are the properties of an object that determine just how the thing could possibly be used. For example, a button affords pressing.',
+                es: 'Los affordances son las propiedades de un objeto que determinan cómo se puede usar. Por ejemplo, un botón permite presionar.'
+              }
+            },
+            {
+              question: { en: 'Why is feedback important in UI design?', es: '¿Por qué es importante la retroalimentación en el diseño de UI?' },
+              options: {
+                en: [
+                  'It makes the interface look better',
+                  'It confirms to users that their action was registered',
+                  'It reduces development time',
+                  'It improves SEO'
+                ],
+                es: [
+                  'Hace que la interfaz se vea mejor',
+                  'Confirma a los usuarios que su acción fue registrada',
+                  'Reduce el tiempo de desarrollo',
+                  'Mejora el SEO'
+                ]
+              },
+              correctIndex: 1,
+              explanation: {
+                en: 'Feedback is crucial because it confirms to users that their action was registered and shows what happened as a result, reducing uncertainty.',
+                es: 'La retroalimentación es crucial porque confirma a los usuarios que su acción fue registrada y muestra qué sucedió como resultado, reduciendo la incertidumbre.'
+              }
+            }
+          ],
+          realExample: {
+            title: { en: 'Door Handles: Affordances in Everyday Life', es: 'Manijas de Puerta: Affordances en la Vida Cotidiana' },
+            description: {
+              en: 'A classic example from Don Norman\'s book: A flat plate on a door affords pushing, while a handle affords pulling. When a door has a handle but requires pushing, it creates confusion (a "Norman Door"). Good design makes the correct action obvious.',
+              es: 'Un ejemplo clásico del libro de Don Norman: Una placa plana en una puerta permite empujar, mientras que una manija permite jalar. Cuando una puerta tiene manija pero requiere empujar, crea confusión (una "Puerta Norman"). El buen diseño hace obvia la acción correcta.'
+            },
+            company: 'Everyday Design Principles'
           }
         }
       },
@@ -156,8 +501,143 @@ export const tracks: Track[] = [
                 tool: 'Claude',
                 context: { en: 'Organizing a help center', es: 'Organizando un centro de ayuda' },
                 prompt: { en: 'Here is a list of 30 help articles [Paste List]. Group them into 4-6 logical categories and suggest clear, simple labels for each category.', es: 'Aquí hay una lista de 30 artículos de ayuda [Pegar lista]. Agrúpalos en 4-6 categorías lógicas y sugiere etiquetas claras y simples para cada categoría.' }
+              },
+              {
+                tool: 'ChatGPT',
+                context: { en: 'Simplifying navigation labels', es: 'Simplificando etiquetas de navegación' },
+                prompt: { en: 'I have these section names: [paste list]. Rewrite them to be maximum 2 words each, clear for non-technical users, and scannable.', es: 'Tengo estos nombres de sección: [pegar lista]. Reescríbelos para que tengan máximo 2 palabras cada uno, claros para usuarios no técnicos y escaneables.' }
+              },
+              {
+                tool: 'ChatGPT',
+                context: { en: 'Testing navigation clarity', es: 'Probando claridad de navegación' },
+                prompt: { en: 'Act as a first-time user. I need to find [specific task]. Looking at this navigation structure [paste], where would you click first? Why?', es: 'Actúa como un usuario primerizo. Necesito encontrar [tarea específica]. Mirando esta estructura de navegación [pegar], ¿dónde harías clic primero? ¿Por qué?' }
               }
             ]
+          },
+          howToValidate: {
+            what: { 
+              en: 'Validate that users can find and navigate content intuitively using their mental models, not yours.',
+              es: 'Valida que los usuarios puedan encontrar y navegar el contenido intuitivamente usando sus modelos mentales, no los tuyos.'
+            },
+            methods: { 
+              en: [
+                'Card sorting (open/closed) to understand how users group content',
+                'Tree testing to validate navigation findability',
+                'First-click testing on key user tasks'
+              ],
+              es: [
+                'Card sorting (abierto/cerrado) para entender cómo los usuarios agrupan el contenido',
+                'Tree testing para validar la encontrabilidad de navegación',
+                'Pruebas de primer clic en tareas clave del usuario'
+              ]
+            },
+            tools: { 
+              en: ['Optimal Workshop', 'Maze', 'UserZoom', 'Miro (manual card sorting)'],
+              es: ['Optimal Workshop', 'Maze', 'UserZoom', 'Miro (card sorting manual)']
+            },
+            evidenceExample: { 
+              en: 'Tree testing shows 80%+ success rate on "Find where to cancel subscription" task, with average time under 15 seconds.',
+              es: 'Tree testing muestra una tasa de éxito del 80%+ en la tarea "Encuentra dónde cancelar la suscripción", con tiempo promedio menor a 15 segundos.'
+            }
+          },
+          deliverables: {
+            description: { 
+              en: 'Concrete artifacts trainees must produce to demonstrate IA mastery.',
+              es: 'Artefactos concretos que los aprendices deben producir para demostrar dominio de AI.'
+            },
+            items: {
+              en: [
+                'Content inventory spreadsheet with categorization',
+                'Sitemap showing hierarchy and navigation structure (3 levels max)',
+                'Card sorting report with user grouping results',
+                'Tree testing results with success rates per task',
+                'Navigation wireframes with labels tested'
+              ],
+              es: [
+                'Hoja de cálculo de inventario de contenido con categorización',
+                'Mapa del sitio mostrando jerarquía y estructura de navegación (3 niveles máx)',
+                'Informe de card sorting con resultados de agrupación de usuarios',
+                'Resultados de tree testing con tasas de éxito por tarea',
+                'Wireframes de navegación con etiquetas probadas'
+              ]
+            }
+          },
+          practicalTools: {
+            design: { 
+              en: ['Figma', 'FigJam', 'Miro', 'Whimsical'], 
+              es: ['Figma', 'FigJam', 'Miro', 'Whimsical'] 
+            },
+            research: { 
+              en: ['Optimal Workshop (Card sorting + Tree testing)', 'Maze', 'UserZoom', 'UsabilityHub'], 
+              es: ['Optimal Workshop (Card sorting + Tree testing)', 'Maze', 'UserZoom', 'UsabilityHub'] 
+            },
+            handoff: { 
+              en: ['Notion', 'Confluence'], 
+              es: ['Notion', 'Confluence'] 
+            }
+          },
+          quiz: [
+            {
+              question: { 
+                en: 'What is the primary purpose of Card Sorting?', 
+                es: '¿Cuál es el propósito principal del Card Sorting?' 
+              },
+              options: {
+                en: [
+                  'To test visual design preferences',
+                  'To understand how users mentally group content',
+                  'To validate wireframe layouts',
+                  'To measure task completion time'
+                ],
+                es: [
+                  'Probar preferencias de diseño visual',
+                  'Entender cómo los usuarios agrupan mentalmente el contenido',
+                  'Validar diseños de wireframes',
+                  'Medir tiempo de completación de tareas'
+                ]
+              },
+              correctIndex: 1,
+              explanation: {
+                en: 'Card sorting reveals users\' mental models by asking them to group content items into categories that make sense to them, not to the company.',
+                es: 'El card sorting revela los modelos mentales de los usuarios pidiéndoles que agrupen elementos de contenido en categorías que tengan sentido para ellos, no para la empresa.'
+              }
+            },
+            {
+              question: { 
+                en: 'When should you conduct Tree Testing?', 
+                es: '¿Cuándo debes realizar Tree Testing?' 
+              },
+              options: {
+                en: [
+                  'Before creating the sitemap',
+                  'After the sitemap is defined but before visual design',
+                  'After the website is launched',
+                  'Only if users complain'
+                ],
+                es: [
+                  'Antes de crear el mapa del sitio',
+                  'Después de que el mapa del sitio está definido pero antes del diseño visual',
+                  'Después de que el sitio web está lanzado',
+                  'Solo si los usuarios se quejan'
+                ]
+              },
+              correctIndex: 1,
+              explanation: {
+                en: 'Tree testing validates your IA structure after it\'s defined but before investing in visual design. It catches navigation problems early.',
+                es: 'El tree testing valida tu estructura de AI después de que está definida pero antes de invertir en diseño visual. Atrapa problemas de navegación temprano.'
+              }
+            }
+          ],
+          realExample: {
+            title: { 
+              en: 'Spotify\'s Navigation Restructure', 
+              es: 'Reestructuración de Navegación de Spotify' 
+            },
+            description: {
+              en: 'Spotify initially buried "Liked Songs" under "Your Library" > "Songs", requiring 3 taps. After card sorting with users, they discovered people think of liked songs as a primary destination, not a sub-category. They promoted it to the main navigation, reducing cognitive load. Tree testing validated 92% findability vs 58% before.',
+              es: 'Spotify inicialmente enterró "Canciones que te gustan" bajo "Tu Biblioteca" > "Canciones", requiriendo 3 toques. Después de card sorting con usuarios, descubrieron que la gente piensa en canciones que les gustan como un destino primario, no una sub-categoría. Lo promovieron a la navegación principal, reduciendo la carga cognitiva. Tree testing validó 92% de encontrabilidad vs 58% antes.'
+            },
+            company: 'Spotify'
           }
         }
       },
@@ -211,6 +691,32 @@ export const tracks: Track[] = [
                 prompt: { en: 'I am designing a "Password Reset" flow. What are 5 edge cases or error states I need to account for beyond the happy path?', es: 'Estoy diseñando un flujo de "Restablecimiento de Contraseña". ¿Cuáles son 5 casos extremos o estados de error que debo tener en cuenta más allá del camino feliz?' }
               }
             ]
+          },
+          howToValidate: {
+            what: { 
+              en: 'Validate that users can complete core tasks without friction, dead ends, or confusion.',
+              es: 'Valida que los usuarios puedan completar tareas clave sin fricción, callejones sin salida o confusión.'
+            },
+            methods: { 
+              en: [
+                'Task-based usability testing with 5-8 users',
+                'Cognitive walkthrough with UX team',
+                'Analytics on drop-off points (post-launch)'
+              ],
+              es: [
+                'Pruebas de usabilidad basadas en tareas con 5-8 usuarios',
+                'Cognitive walkthrough con equipo UX',
+                'Analítica de puntos de abandono (post-lanzamiento)'
+              ]
+            },
+            tools: { 
+              en: ['Maze', 'UserTesting', 'Lookback', 'Figma prototype + Zoom'],
+              es: ['Maze', 'UserTesting', 'Lookback', 'Prototipo Figma + Zoom']
+            },
+            evidenceExample: { 
+              en: '90% of users complete checkout in under 2 minutes with zero critical errors. Drop-off occurs at payment screen (26%) due to missing "guest checkout" option.',
+              es: 'El 90% de los usuarios completa el checkout en menos de 2 minutos sin errores críticos. El abandono ocurre en la pantalla de pago (26%) debido a la falta de opción de "checkout como invitado".'
+            }
           }
         }
       },
@@ -264,6 +770,32 @@ export const tracks: Track[] = [
                 prompt: { en: 'Generate 3 variations of a "Welcome" screen headline and subheadline for a meditation app targeting stressed students.', es: 'Genera 3 variaciones de un título y subtítulo para una pantalla de "Bienvenida" de una app de meditación dirigida a estudiantes estresados.' }
               }
             ]
+          },
+          howToValidate: {
+            what: { 
+              en: 'Validate that the layout and information hierarchy support user goals and are free of critical usability issues.',
+              es: 'Valida que el diseño y la jerarquía de información respalden los objetivos del usuario y estén libres de problemas críticos de usabilidad.'
+            },
+            methods: { 
+              en: [
+                'Usability testing with 5-8 users on key flows',
+                'Heuristic evaluation using Nielsen\'s 10 principles',
+                'A/B testing (for iterative improvements)'
+              ],
+              es: [
+                'Pruebas de usabilidad con 5-8 usuarios en flujos clave',
+                'Evaluación heurística usando los 10 principios de Nielsen',
+                'Pruebas A/B (para mejoras iterativas)'
+              ]
+            },
+            tools: { 
+              en: ['Figma/Sketch prototypes', 'Maze', 'Lookback', 'Nielsen Heuristics checklist'],
+              es: ['Prototipos Figma/Sketch', 'Maze', 'Lookback', 'Checklist de Heurísticas de Nielsen']
+            },
+            evidenceExample: { 
+              en: 'Iteration 2 of dashboard wireframe scores 8/10 on heuristic evaluation (up from 5/10). Users complete "add new task" in average 8 seconds with 100% success rate.',
+              es: 'La iteración 2 del wireframe del dashboard puntúa 8/10 en evaluación heurística (subió de 5/10). Los usuarios completan "agregar nueva tarea" en promedio 8 segundos con 100% de tasa de éxito.'
+            }
           }
         }
       },
@@ -1351,5 +1883,555 @@ export const heuristics: Heuristic[] = [
       en: 'Adding alt text to images for screen readers.',
       es: 'Agregar texto alternativo a las imágenes para lectores de pantalla.'
     }
+  }
+];
+
+// Validation Framework
+export interface ValidationItem {
+  id: string;
+  artifact: { en: string; es: string };
+  stage: 'discover' | 'define' | 'develop' | 'deliver';
+  hypothesis: { en: string; es: string };
+  validationMethod: { en: string; es: string };
+  evidenceType: 'qualitative' | 'quantitative' | 'mixed';
+  tools: { en: string[]; es: string[] };
+  outputArtifact: { en: string; es: string };
+  successCriteria: { en: string; es: string };
+  decisionImpact: { en: string; es: string };
+  exampleScenario: { en: string; es: string };
+  commonMistakes: { en: string[]; es: string[] };
+  aiPrompts: {
+    tool: string;
+    context: { en: string; es: string };
+    prompt: { en: string; es: string };
+  }[];
+}
+
+export const validationMatrix: ValidationItem[] = [
+  {
+    id: 'mvp',
+    artifact: { en: 'MVP Definition', es: 'Definición de MVP' },
+    stage: 'discover',
+    hypothesis: { 
+      en: 'This product/feature solves a real user problem worth paying for',
+      es: 'Este producto/característica resuelve un problema real del usuario por el que vale la pena pagar'
+    },
+    validationMethod: { 
+      en: 'UX Research: Problem interviews, surveys, market analysis',
+      es: 'Investigación UX: Entrevistas de problema, encuestas, análisis de mercado'
+    },
+    evidenceType: 'qualitative',
+    tools: { 
+      en: ['User Interviews', 'Google Forms', 'Typeform', 'Dovetail', 'Miro'],
+      es: ['Entrevistas de usuario', 'Google Forms', 'Typeform', 'Dovetail', 'Miro']
+    },
+    outputArtifact: { 
+      en: 'Research report with problem validation, user quotes, pain point prioritization',
+      es: 'Informe de investigación con validación del problema, citas de usuarios, priorización de puntos de dolor'
+    },
+    successCriteria: { 
+      en: '70%+ of interviewees confirm the problem exists and current solutions are unsatisfactory',
+      es: 'El 70%+ de los entrevistados confirman que el problema existe y las soluciones actuales son insatisfactorias'
+    },
+    decisionImpact: { 
+      en: 'GO/NO-GO decision on product development. Defines problem-solution fit.',
+      es: 'Decisión GO/NO-GO sobre el desarrollo del producto. Define el ajuste problema-solución.'
+    },
+    exampleScenario: { 
+      en: 'A fintech startup believes freelancers struggle with invoice tracking. They interview 20 freelancers and discover 85% use manual spreadsheets and lose an average of 2 hours/week. This validates the problem.',
+      es: 'Una startup fintech cree que los freelancers tienen problemas con el seguimiento de facturas. Entrevistan a 20 freelancers y descubren que el 85% usa hojas de cálculo manuales y pierde un promedio de 2 horas/semana. Esto valida el problema.'
+    },
+    commonMistakes: { 
+      en: [
+        'Asking leading questions that confirm your bias',
+        'Only talking to friendly users who will say yes',
+        'Confusing interest ("that sounds cool") with intent to pay',
+        'Skipping competitive analysis'
+      ],
+      es: [
+        'Hacer preguntas sesgadas que confirman tu sesgo',
+        'Solo hablar con usuarios amigables que dirán que sí',
+        'Confundir interés ("suena genial") con intención de pagar',
+        'Saltarse el análisis competitivo'
+      ]
+    },
+    aiPrompts: [
+      {
+        tool: 'ChatGPT',
+        context: { 
+          en: 'Creating interview scripts for problem validation',
+          es: 'Creando guiones de entrevista para validación de problemas'
+        },
+        prompt: { 
+          en: 'I\'m validating a problem: [describe problem]. Generate 10 open-ended interview questions that avoid leading language and help me understand if this is a real pain point for [target audience].',
+          es: 'Estoy validando un problema: [describir problema]. Genera 10 preguntas de entrevista abiertas que eviten lenguaje sesgado y me ayuden a entender si este es un punto de dolor real para [audiencia objetivo].'
+        }
+      },
+      {
+        tool: 'Claude',
+        context: { 
+          en: 'Analyzing interview transcripts',
+          es: 'Analizando transcripciones de entrevistas'
+        },
+        prompt: { 
+          en: 'Here are 5 user interview transcripts [paste]. Extract recurring pain points, quote the most compelling evidence, and assess if the problem is validated (yes/no/maybe) with reasoning.',
+          es: 'Aquí hay 5 transcripciones de entrevistas de usuario [pegar]. Extrae puntos de dolor recurrentes, cita la evidencia más convincente y evalúa si el problema está validado (sí/no/tal vez) con razonamiento.'
+        }
+      },
+      {
+        tool: 'Perplexity',
+        context: { 
+          en: 'Market & competitive research',
+          es: 'Investigación de mercado y competencia'
+        },
+        prompt: { 
+          en: 'What are the top 5 competitors solving [problem] for [audience]? For each, summarize their approach, pricing, and key user complaints from reviews.',
+          es: '¿Cuáles son los 5 principales competidores que resuelven [problema] para [audiencia]? Para cada uno, resume su enfoque, precios y quejas clave de usuarios en reseñas.'
+        }
+      }
+    ]
+  },
+  {
+    id: 'personas',
+    artifact: { en: 'User Personas', es: 'Personas de Usuario' },
+    stage: 'define',
+    hypothesis: { 
+      en: 'We understand who our users are, their goals, behaviors, and contexts',
+      es: 'Entendemos quiénes son nuestros usuarios, sus objetivos, comportamientos y contextos'
+    },
+    validationMethod: { 
+      en: 'Qualitative contextual interviews + Empathy mapping',
+      es: 'Entrevistas contextuales cualitativas + Mapeo de empatía'
+    },
+    evidenceType: 'qualitative',
+    tools: { 
+      en: ['Zoom/Meet', 'Dovetail', 'Miro', 'Otter.ai', 'User Testing platforms'],
+      es: ['Zoom/Meet', 'Dovetail', 'Miro', 'Otter.ai', 'Plataformas de User Testing']
+    },
+    outputArtifact: { 
+      en: '2-4 persona documents with demographics, goals, frustrations, scenarios, empathy map',
+      es: '2-4 documentos de persona con demografía, objetivos, frustraciones, escenarios, mapa de empatía'
+    },
+    successCriteria: { 
+      en: 'Personas are based on real data from 10+ interviews, team can identify which persona a feature serves',
+      es: 'Las personas se basan en datos reales de 10+ entrevistas, el equipo puede identificar a qué persona sirve una característica'
+    },
+    decisionImpact: { 
+      en: 'Guides feature prioritization, tone of voice, and design decisions',
+      es: 'Guía la priorización de características, el tono de voz y las decisiones de diseño'
+    },
+    exampleScenario: { 
+      en: 'An e-learning platform interviews teachers and discovers two distinct personas: "Tech-savvy Sarah" who wants automation and "Traditional Tom" who needs hand-holding. This shapes onboarding flows.',
+      es: 'Una plataforma de e-learning entrevista a profesores y descubre dos personas distintas: "Sarah experta en tecnología" que quiere automatización y "Tom tradicional" que necesita guía paso a paso. Esto moldea los flujos de onboarding.'
+    },
+    commonMistakes: { 
+      en: [
+        'Creating personas from assumptions, not research',
+        'Making too many personas (stick to 3-4 primary)',
+        'Including irrelevant details (favorite color)',
+        'Not validating with real users after creation'
+      ],
+      es: [
+        'Crear personas a partir de suposiciones, no investigación',
+        'Hacer demasiadas personas (mantener 3-4 primarias)',
+        'Incluir detalles irrelevantes (color favorito)',
+        'No validar con usuarios reales después de la creación'
+      ]
+    },
+    aiPrompts: [
+      {
+        tool: 'ChatGPT',
+        context: { 
+          en: 'Building persona templates',
+          es: 'Construyendo plantillas de persona'
+        },
+        prompt: { 
+          en: 'Based on these interview notes [paste 3-5 summaries], create a user persona template with: Name, Demographics, Goals, Frustrations, Tech Comfort, and a Day-in-the-Life scenario.',
+          es: 'Basado en estas notas de entrevista [pegar 3-5 resúmenes], crea una plantilla de persona de usuario con: Nombre, Demografía, Objetivos, Frustraciones, Comodidad Tecnológica y un escenario de Un Día en la Vida.'
+        }
+      },
+      {
+        tool: 'Claude',
+        context: { 
+          en: 'Empathy map creation',
+          es: 'Creación de mapa de empatía'
+        },
+        prompt: { 
+          en: 'I interviewed [persona name] who is [role]. Here\'s the transcript [paste]. Create an empathy map with sections: What they SAY, THINK, DO, and FEEL about [product context].',
+          es: 'Entrevisté a [nombre de persona] que es [rol]. Aquí está la transcripción [pegar]. Crea un mapa de empatía con secciones: Qué DICEN, PIENSAN, HACEN y SIENTEN sobre [contexto del producto].'
+        }
+      }
+    ]
+  },
+  {
+    id: 'competitors',
+    artifact: { en: 'Competitive Analysis', es: 'Análisis Competitivo' },
+    stage: 'discover',
+    hypothesis: { 
+      en: 'We understand what competitors do well and where opportunities exist',
+      es: 'Entendemos qué hacen bien los competidores y dónde existen oportunidades'
+    },
+    validationMethod: { 
+      en: 'Benchmarking, heuristic evaluation of competitors, user reviews analysis',
+      es: 'Benchmarking, evaluación heurística de competidores, análisis de reseñas de usuarios'
+    },
+    evidenceType: 'mixed',
+    tools: { 
+      en: ['Excel/Notion matrix', 'UXCam', 'SimilarWeb', 'App Store reviews', 'G2/Capterra'],
+      es: ['Matriz Excel/Notion', 'UXCam', 'SimilarWeb', 'Reseñas de App Store', 'G2/Capterra']
+    },
+    outputArtifact: { 
+      en: 'Competitive matrix with feature comparison, UX strengths/weaknesses, pricing, user sentiment',
+      es: 'Matriz competitiva con comparación de características, fortalezas/debilidades UX, precios, sentimiento del usuario'
+    },
+    successCriteria: { 
+      en: 'Analysis covers 5-10 competitors, identifies 3+ gaps/opportunities, includes user feedback data',
+      es: 'El análisis cubre 5-10 competidores, identifica 3+ brechas/oportunidades, incluye datos de retroalimentación de usuarios'
+    },
+    decisionImpact: { 
+      en: 'Defines differentiation strategy and prevents building redundant features',
+      es: 'Define la estrategia de diferenciación y evita construir características redundantes'
+    },
+    exampleScenario: { 
+      en: 'A project management tool benchmarks Asana, Monday, Trello. They discover all lack native time-tracking, which becomes their differentiator.',
+      es: 'Una herramienta de gestión de proyectos compara Asana, Monday, Trello. Descubren que todos carecen de seguimiento de tiempo nativo, que se convierte en su diferenciador.'
+    },
+    commonMistakes: { 
+      en: [
+        'Only looking at direct competitors, ignoring adjacent solutions',
+        'Copying features without understanding why they exist',
+        'Not testing competitor products hands-on',
+        'Ignoring user reviews and complaints'
+      ],
+      es: [
+        'Solo mirar competidores directos, ignorando soluciones adyacentes',
+        'Copiar características sin entender por qué existen',
+        'No probar productos de la competencia de primera mano',
+        'Ignorar reseñas y quejas de usuarios'
+      ]
+    },
+    aiPrompts: [
+      {
+        tool: 'Perplexity',
+        context: { 
+          en: 'Finding competitors',
+          es: 'Encontrando competidores'
+        },
+        prompt: { 
+          en: 'List 10 direct and indirect competitors for [product description]. For each, provide: URL, target audience, key differentiator, and pricing model.',
+          es: 'Lista 10 competidores directos e indirectos para [descripción del producto]. Para cada uno, proporciona: URL, audiencia objetivo, diferenciador clave y modelo de precios.'
+        }
+      },
+      {
+        tool: 'ChatGPT',
+        context: { 
+          en: 'Analyzing user reviews',
+          es: 'Analizando reseñas de usuarios'
+        },
+        prompt: { 
+          en: 'Here are 20 App Store reviews for [competitor name] [paste reviews]. Categorize complaints and praise into themes. What do users consistently wish existed?',
+          es: 'Aquí hay 20 reseñas de App Store para [nombre del competidor] [pegar reseñas]. Categoriza quejas y elogios en temas. ¿Qué desean consistentemente los usuarios que existiera?'
+        }
+      }
+    ]
+  },
+  {
+    id: 'information-architecture',
+    artifact: { en: 'Information Architecture', es: 'Arquitectura de Información' },
+    stage: 'define',
+    hypothesis: { 
+      en: 'Users can find and navigate content intuitively',
+      es: 'Los usuarios pueden encontrar y navegar el contenido intuitivamente'
+    },
+    validationMethod: { 
+      en: 'Card sorting (open/closed) + Tree testing',
+      es: 'Card sorting (abierto/cerrado) + Tree testing'
+    },
+    evidenceType: 'quantitative',
+    tools: { 
+      en: ['Optimal Workshop', 'Maze', 'UserZoom', 'Miro (for manual card sorting)'],
+      es: ['Optimal Workshop', 'Maze', 'UserZoom', 'Miro (para card sorting manual)']
+    },
+    outputArtifact: { 
+      en: 'Sitemap with validated hierarchy, navigation labels tested with real users',
+      es: 'Mapa del sitio con jerarquía validada, etiquetas de navegación probadas con usuarios reales'
+    },
+    successCriteria: { 
+      en: '80%+ success rate on tree testing tasks (e.g., "Find where to cancel subscription")',
+      es: '80%+ tasa de éxito en tareas de tree testing (ej. "Encuentra dónde cancelar la suscripción")'
+    },
+    decisionImpact: { 
+      en: 'Prevents navigation redesigns post-launch, reduces support tickets',
+      es: 'Previene rediseños de navegación post-lanzamiento, reduce tickets de soporte'
+    },
+    exampleScenario: { 
+      en: 'An e-commerce site runs card sorting with 30 users. They discover users expect "Returns" under "Help", not "Account". Tree testing confirms this with 92% findability.',
+      es: 'Un sitio de e-commerce ejecuta card sorting con 30 usuarios. Descubren que los usuarios esperan "Devoluciones" bajo "Ayuda", no "Cuenta". Tree testing confirma esto con 92% de encontrabilidad.'
+    },
+    commonMistakes: { 
+      en: [
+        'Doing IA based on company org chart, not user mental models',
+        'Using jargon in navigation labels',
+        'Not testing IA before building wireframes',
+        'Ignoring mobile navigation constraints'
+      ],
+      es: [
+        'Hacer IA basada en el organigrama de la empresa, no en modelos mentales del usuario',
+        'Usar jerga en etiquetas de navegación',
+        'No probar IA antes de construir wireframes',
+        'Ignorar restricciones de navegación móvil'
+      ]
+    },
+    aiPrompts: [
+      {
+        tool: 'ChatGPT',
+        context: { 
+          en: 'Generating card sorting items',
+          es: 'Generando elementos de card sorting'
+        },
+        prompt: { 
+          en: 'I\'m designing [product type]. Generate 40 content items (features, pages, sections) that users would need to organize in a card sorting exercise.',
+          es: 'Estoy diseñando [tipo de producto]. Genera 40 elementos de contenido (características, páginas, secciones) que los usuarios necesitarían organizar en un ejercicio de card sorting.'
+        }
+      },
+      {
+        tool: 'Claude',
+        context: { 
+          en: 'Analyzing card sorting results',
+          es: 'Analizando resultados de card sorting'
+        },
+        prompt: { 
+          en: 'Here are card sorting results from 15 users [paste data]. Identify the top 5 most agreed-upon categories and suggest clear labels for each.',
+          es: 'Aquí están los resultados de card sorting de 15 usuarios [pegar datos]. Identifica las 5 categorías más consensuadas y sugiere etiquetas claras para cada una.'
+        }
+      }
+    ]
+  },
+  {
+    id: 'user-flows',
+    artifact: { en: 'User Flows', es: 'Flujos de Usuario' },
+    stage: 'develop',
+    hypothesis: { 
+      en: 'Users can complete core tasks without friction or dead ends',
+      es: 'Los usuarios pueden completar tareas clave sin fricción o callejones sin salida'
+    },
+    validationMethod: { 
+      en: 'Usability testing (task-based) + Cognitive walkthrough',
+      es: 'Pruebas de usabilidad (basadas en tareas) + Cognitive walkthrough'
+    },
+    evidenceType: 'qualitative',
+    tools: { 
+      en: ['Maze', 'UserTesting', 'Lookback', 'Figma prototype + Zoom'],
+      es: ['Maze', 'UserTesting', 'Lookback', 'Prototipo Figma + Zoom']
+    },
+    outputArtifact: { 
+      en: 'Annotated flow diagrams with success rates, drop-off points, user quotes',
+      es: 'Diagramas de flujo anotados con tasas de éxito, puntos de abandono, citas de usuarios'
+    },
+    successCriteria: { 
+      en: '90%+ task completion rate, average time-on-task within expected range',
+      es: '90%+ tasa de completación de tareas, tiempo promedio en tarea dentro del rango esperado'
+    },
+    decisionImpact: { 
+      en: 'Identifies flow bottlenecks before development, prioritizes flow improvements',
+      es: 'Identifica cuellos de botella del flujo antes del desarrollo, prioriza mejoras del flujo'
+    },
+    exampleScenario: { 
+      en: 'A checkout flow is tested with 10 users. 40% fail because the "Apply Coupon" field is hidden in a collapsed section. This triggers a design iteration.',
+      es: 'Un flujo de checkout es probado con 10 usuarios. El 40% falla porque el campo "Aplicar Cupón" está oculto en una sección colapsada. Esto dispara una iteración de diseño.'
+    },
+    commonMistakes: { 
+      en: [
+        'Testing flows with internal team members (too biased)',
+        'Not defining success metrics before testing',
+        'Asking users "Do you like this?" instead of giving tasks',
+        'Testing too late (after development starts)'
+      ],
+      es: [
+        'Probar flujos con miembros internos del equipo (demasiado sesgados)',
+        'No definir métricas de éxito antes de probar',
+        'Preguntar a usuarios "¿Te gusta esto?" en lugar de dar tareas',
+        'Probar demasiado tarde (después de que el desarrollo comienza)'
+      ]
+    },
+    aiPrompts: [
+      {
+        tool: 'ChatGPT',
+        context: { 
+          en: 'Creating test tasks',
+          es: 'Creando tareas de prueba'
+        },
+        prompt: { 
+          en: 'I need to test a [flow name, e.g., "sign-up flow"]. Generate 5 realistic task scenarios for usability testing that avoid leading language.',
+          es: 'Necesito probar un [nombre de flujo, ej. "flujo de registro"]. Genera 5 escenarios de tareas realistas para pruebas de usabilidad que eviten lenguaje sesgado.'
+        }
+      },
+      {
+        tool: 'Claude',
+        context: { 
+          en: 'Edge case generation',
+          es: 'Generación de casos extremos'
+        },
+        prompt: { 
+          en: 'What are 10 edge cases or error states I should account for in a [flow name] flow? For each, suggest user-friendly error messaging.',
+          es: '¿Cuáles son 10 casos extremos o estados de error que debo tener en cuenta en un flujo de [nombre de flujo]? Para cada uno, sugiere mensajes de error amigables para el usuario.'
+        }
+      }
+    ]
+  },
+  {
+    id: 'wireframes',
+    artifact: { en: 'Wireframes (iterations)', es: 'Wireframes (iteraciones)' },
+    stage: 'develop',
+    hypothesis: { 
+      en: 'The layout and information hierarchy support user goals',
+      es: 'El diseño y la jerarquía de información respaldan los objetivos del usuario'
+    },
+    validationMethod: { 
+      en: 'Usability testing (5-8 users) + Heuristic evaluation',
+      es: 'Pruebas de usabilidad (5-8 usuarios) + Evaluación heurística'
+    },
+    evidenceType: 'qualitative',
+    tools: { 
+      en: ['Figma/Sketch', 'Maze', 'Lookback', 'Nielsen Heuristics checklist'],
+      es: ['Figma/Sketch', 'Maze', 'Lookback', 'Checklist de Heurísticas de Nielsen']
+    },
+    outputArtifact: { 
+      en: 'Iteration log with before/after wireframes, usability findings, heuristic scores',
+      es: 'Registro de iteraciones con wireframes antes/después, hallazgos de usabilidad, puntuaciones heurísticas'
+    },
+    successCriteria: { 
+      en: 'No critical usability issues remain, heuristic evaluation scores 7+/10 on key screens',
+      es: 'No quedan problemas críticos de usabilidad, evaluación heurística puntúa 7+/10 en pantallas clave'
+    },
+    decisionImpact: { 
+      en: 'Prevents costly UI rework, ensures alignment before visual design phase',
+      es: 'Previene retrabajo costoso de UI, asegura alineación antes de la fase de diseño visual'
+    },
+    exampleScenario: { 
+      en: 'A dashboard wireframe is tested. Users can\'t distinguish primary actions from secondary. Heuristic evaluation flags poor "recognition rather than recall". Designer adds color-coded buttons in iteration 2.',
+      es: 'Un wireframe de dashboard es probado. Los usuarios no pueden distinguir acciones primarias de secundarias. La evaluación heurística señala pobre "reconocimiento en lugar de recuerdo". El diseñador agrega botones codificados por color en la iteración 2.'
+    },
+    commonMistakes: { 
+      en: [
+        'Adding visual design too early (distracts from structure)',
+        'Testing only the happy path, ignoring error states',
+        'Not documenting why changes were made',
+        'Doing only 1 iteration (plan for 2-3)'
+      ],
+      es: [
+        'Agregar diseño visual demasiado pronto (distrae de la estructura)',
+        'Probar solo el camino feliz, ignorando estados de error',
+        'No documentar por qué se hicieron cambios',
+        'Hacer solo 1 iteración (planear 2-3)'
+      ]
+    },
+    aiPrompts: [
+      {
+        tool: 'ChatGPT',
+        context: { 
+          en: 'Heuristic evaluation',
+          es: 'Evaluación heurística'
+        },
+        prompt: { 
+          en: 'Act as a UX evaluator. Here\'s a screenshot of [screen name] [attach]. Evaluate it against Nielsen\'s 10 heuristics and assign a severity rating (0-4) for each issue found.',
+          es: 'Actúa como evaluador UX. Aquí hay una captura de pantalla de [nombre de pantalla] [adjuntar]. Evalúala contra las 10 heurísticas de Nielsen y asigna una calificación de severidad (0-4) para cada problema encontrado.'
+        }
+      },
+      {
+        tool: 'Claude',
+        context: { 
+          en: 'Iteration suggestions',
+          es: 'Sugerencias de iteración'
+        },
+        prompt: { 
+          en: 'Based on this usability test feedback [paste 5 user quotes], suggest 3 concrete design changes for the next wireframe iteration.',
+          es: 'Basado en esta retroalimentación de prueba de usabilidad [pegar 5 citas de usuarios], sugiere 3 cambios de diseño concretos para la próxima iteración de wireframe.'
+        }
+      }
+    ]
+  },
+  {
+    id: 'ui-design',
+    artifact: { en: 'UI Design (High-Fidelity)', es: 'Diseño UI (Alta Fidelidad)' },
+    stage: 'deliver',
+    hypothesis: { 
+      en: 'Visual design is accessible, on-brand, and production-ready',
+      es: 'El diseño visual es accesible, alineado con la marca y listo para producción'
+    },
+    validationMethod: { 
+      en: 'Functional prototype testing + Accessibility checks (WCAG) + Design QA',
+      es: 'Pruebas de prototipo funcional + Verificaciones de accesibilidad (WCAG) + QA de diseño'
+    },
+    evidenceType: 'mixed',
+    tools: { 
+      en: ['Figma prototype', 'Stark (accessibility)', 'Contrast checker', 'Dev handoff tools (Zeplin)'],
+      es: ['Prototipo Figma', 'Stark (accesibilidad)', 'Verificador de contraste', 'Herramientas de handoff dev (Zeplin)']
+    },
+    outputArtifact: { 
+      en: 'Annotated design files, accessibility report (WCAG AA compliance), component library',
+      es: 'Archivos de diseño anotados, informe de accesibilidad (cumplimiento WCAG AA), biblioteca de componentes'
+    },
+    successCriteria: { 
+      en: 'WCAG AA pass on color contrast, keyboard navigation, screen reader testing; 0 critical design bugs',
+      es: 'Aprobación WCAG AA en contraste de color, navegación por teclado, prueba de lector de pantalla; 0 bugs críticos de diseño'
+    },
+    decisionImpact: { 
+      en: 'Final GO for development handoff, legal compliance (accessibility laws)',
+      es: 'GO final para handoff de desarrollo, cumplimiento legal (leyes de accesibilidad)'
+    },
+    exampleScenario: { 
+      en: 'A SaaS dashboard is tested with keyboard-only navigation. Designers discover modal dialogs can\'t be closed with Escape key. Stark plugin flags 4 color contrast failures. Both are fixed before dev handoff.',
+      es: 'Un dashboard SaaS es probado con navegación solo por teclado. Los diseñadores descubren que los diálogos modales no se pueden cerrar con la tecla Escape. El plugin Stark señala 4 fallas de contraste de color. Ambos se corrigen antes del handoff de desarrollo.'
+    },
+    commonMistakes: { 
+      en: [
+        'Skipping accessibility testing until QA (too late)',
+        'Not testing with actual assistive technologies',
+        'Using auto-layout in Figma but not annotating responsive behavior',
+        'Not creating a component library for developers'
+      ],
+      es: [
+        'Saltarse pruebas de accesibilidad hasta QA (demasiado tarde)',
+        'No probar con tecnologías asistivas reales',
+        'Usar auto-layout en Figma pero no anotar comportamiento responsivo',
+        'No crear una biblioteca de componentes para desarrolladores'
+      ]
+    },
+    aiPrompts: [
+      {
+        tool: 'ChatGPT',
+        context: { 
+          en: 'Accessibility checklist',
+          es: 'Checklist de accesibilidad'
+        },
+        prompt: { 
+          en: 'Generate a QA checklist for [screen name] covering WCAG 2.1 AA criteria: color contrast, keyboard navigation, ARIA labels, and focus states.',
+          es: 'Genera un checklist de QA para [nombre de pantalla] cubriendo criterios WCAG 2.1 AA: contraste de color, navegación por teclado, etiquetas ARIA y estados de foco.'
+        }
+      },
+      {
+        tool: 'Claude',
+        context: { 
+          en: 'Design annotation',
+          es: 'Anotación de diseño'
+        },
+        prompt: { 
+          en: 'I\'m handing off this design to developers [describe component]. Write clear annotations for: responsive breakpoints, interaction states (hover/active/disabled), and edge cases.',
+          es: 'Estoy entregando este diseño a desarrolladores [describir componente]. Escribe anotaciones claras para: breakpoints responsivos, estados de interacción (hover/active/disabled) y casos extremos.'
+        }
+      },
+      {
+        tool: 'Perplexity',
+        context: { 
+          en: 'Accessibility standards research',
+          es: 'Investigación de estándares de accesibilidad'
+        },
+        prompt: { 
+          en: 'What are the WCAG 2.1 AA requirements for [specific component, e.g., "dropdown menus"]? Provide code examples if available.',
+          es: '¿Cuáles son los requisitos WCAG 2.1 AA para [componente específico, ej. "menús desplegables"]? Proporciona ejemplos de código si están disponibles.'
+        }
+      }
+    ]
   }
 ];
