@@ -1,18 +1,18 @@
 import React from 'react';
+import { useNavigate } from 'react-router';
 import { useLanguage } from '../layout/LanguageContext';
 import { ArrowLeft, CheckCircle2, ArrowRight, ChevronRight } from 'lucide-react';
 
 export function WireframeListDetail() {
   const { t } = useLanguage();
+  const navigate = useNavigate();
 
   const handleBack = () => {
-    const event = new CustomEvent('navigate', { detail: 'design-system' });
-    window.dispatchEvent(event);
+    navigate('/design-system');
   };
 
   const handleUpgrade = () => {
-    const event = new CustomEvent('navigate', { detail: 'design-system' });
-    window.dispatchEvent(event);
+    navigate('/design-system');
   };
 
   return (

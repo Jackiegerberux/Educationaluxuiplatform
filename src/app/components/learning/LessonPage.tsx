@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useParams, useNavigate } from 'react-router';
 import { Topic, tracks } from '../../data/content';
 import { useLanguage } from '../layout/LanguageContext';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion } from 'motion/react';
 import { 
   ArrowLeft, 
   Check, 
@@ -17,20 +17,19 @@ import {
   CheckCircle2, 
   Wrench, 
   FileCheck, 
-  Code, 
   HelpCircle,
   X,
-  ChevronRight,
-  Menu,
-  Eye
+  ChevronRight
 } from 'lucide-react';
 import { Button } from '../ui/button';
-import { ComparisonView } from './ComparisonView';
 import { UserPersonaCard } from './examples/UserPersonaCard';
 import { RetroModernComparison } from './examples/RetroModernComparison';
 import { MentalModelExample } from './examples/MentalModelExample';
 import { SitemapExample } from './examples/SitemapExample';
 import { MethodologiesDeepDive } from './examples/MethodologiesDeepDive';
+import { InteractiveJourneyMap } from '../lessons/InteractiveJourneyMap';
+import { BlueprintSimulator } from '../lessons/BlueprintSimulator';
+import { LessonLayout } from './LessonLayout';
 
 function QuizSection({ quiz, language }: { quiz: any[], language: any }) {
   const [selectedAnswers, setSelectedAnswers] = useState<{[key: number]: number}>({});
@@ -106,128 +105,11 @@ function QuizSection({ quiz, language }: { quiz: any[], language: any }) {
   );
 }
 
-interface TableOfContentsProps {
-  sections: { id: string; label: string; icon: any; }[];
-  activeSection: string;
-  isMobileOpen: boolean;
-  onMobileToggle: () => void;
-}
-
-function TableOfContents({ sections, activeSection, isMobileOpen, onMobileToggle }: TableOfContentsProps) {
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-    // Close mobile menu after clicking
-    if (isMobileOpen) {
-      onMobileToggle();
-    }
-  };
-
-  return (
-    <>
-      {/* Mobile TOC Toggle Button */}
-      <button
-        onClick={onMobileToggle}
-        className="lg:hidden fixed bottom-6 right-6 z-40 size-14 bg-indigo-600 hover:bg-indigo-700 rounded-full shadow-lg flex items-center justify-center transition-colors"
-      >
-        {isMobileOpen ? (
-          <X className="size-6 text-white" />
-        ) : (
-          <Menu className="size-6 text-white" />
-        )}
-      </button>
-
-      {/* Mobile TOC Overlay */}
-      <AnimatePresence>
-        {isMobileOpen && (
-          <>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={onMobileToggle}
-              className="lg:hidden fixed inset-0 z-30 bg-black/60 backdrop-blur-sm"
-            />
-            <motion.div
-              initial={{ x: '100%' }}
-              animate={{ x: 0 }}
-              exit={{ x: '100%' }}
-              transition={{ type: 'spring', damping: 30, stiffness: 300 }}
-              className="lg:hidden fixed right-0 top-0 bottom-0 z-40 w-80 bg-zinc-950 border-l border-zinc-800 overflow-y-auto"
-            >
-              <div className="p-6">
-                <div className="flex items-center justify-between mb-6">
-                  <p className="text-xs uppercase tracking-wider text-zinc-500 font-semibold">
-                    On this page
-                  </p>
-                  <button
-                    onClick={onMobileToggle}
-                    className="p-2 hover:bg-zinc-900 rounded-lg transition-colors"
-                  >
-                    <X className="size-4 text-zinc-400" />
-                  </button>
-                </div>
-                <nav className="space-y-1">
-                  {sections.map((section) => {
-                    const Icon = section.icon;
-                    return (
-                      <button
-                        key={section.id}
-                        onClick={() => scrollToSection(section.id)}
-                        className={`flex items-center gap-3 w-full text-left px-3 py-2.5 rounded-lg text-sm transition-all ${
-                          activeSection === section.id
-                            ? 'bg-indigo-500/10 text-indigo-400 border-l-2 border-indigo-500 pl-2.5'
-                            : 'text-zinc-400 hover:text-zinc-200 hover:bg-zinc-900/50'
-                        }`}
-                      >
-                        <Icon className="size-4 shrink-0" />
-                        <span>{section.label}</span>
-                      </button>
-                    );
-                  })}
-                </nav>
-              </div>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
-
-      {/* Desktop Sticky Sidebar */}
-      <nav className="hidden lg:block sticky top-24 space-y-1">
-        <p className="text-xs uppercase tracking-wider text-zinc-500 font-semibold mb-3">
-          On this page
-        </p>
-        {sections.map((section) => {
-          const Icon = section.icon;
-          return (
-            <button
-              key={section.id}
-              onClick={() => scrollToSection(section.id)}
-              className={`flex items-center gap-3 w-full text-left px-3 py-2.5 rounded-lg text-sm transition-all ${
-                activeSection === section.id
-                  ? 'bg-indigo-500/10 text-indigo-400 border-l-2 border-indigo-500 pl-2.5'
-                  : 'text-zinc-400 hover:text-zinc-200 hover:bg-zinc-900/50'
-              }`}
-            >
-              <Icon className="size-4 shrink-0" />
-              <span>{section.label}</span>
-            </button>
-          );
-        })}
-      </nav>
-    </>
-  );
-}
-
 export function LessonPage() {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
   const { t } = useLanguage();
-  const [activeSection, setActiveSection] = useState('overview');
   const [isCompleted, setIsCompleted] = useState(false);
-  const [isMobileOpen, setIsMobileOpen] = useState(false);
 
   // Find the current topic
   const allTopics: Topic[] = [];
@@ -240,25 +122,6 @@ export function LessonPage() {
   const currentIndex = allTopics.findIndex(t => t.id === slug);
   const previousLesson = currentIndex > 0 ? allTopics[currentIndex - 1] : null;
   const nextLesson = currentIndex < allTopics.length - 1 ? allTopics[currentIndex + 1] : null;
-
-  // Set up intersection observer for active section tracking
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
-          }
-        });
-      },
-      { threshold: 0.5, rootMargin: '-100px 0px -50% 0px' }
-    );
-
-    const sections = document.querySelectorAll('section[id]');
-    sections.forEach((section) => observer.observe(section));
-
-    return () => observer.disconnect();
-  }, []);
 
   if (!topic) {
     return (
@@ -295,7 +158,7 @@ export function LessonPage() {
   };
 
   return (
-    <div className="min-h-screen bg-black">
+    <div className="min-h-screen bg-black overflow-x-hidden">
       {/* Header */}
       <div className="sticky top-0 z-50 bg-black/80 backdrop-blur-xl border-b border-white/5">
         <div className="max-w-[1480px] mx-auto px-6 py-4 flex items-center justify-between">
@@ -323,378 +186,371 @@ export function LessonPage() {
         </div>
       </div>
 
-      {/* Main Content */}
-      <div className="max-w-[1480px] mx-auto px-6 py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-12">
-          {/* Sidebar - Desktop only, mobile uses floating button */}
-          <TableOfContents sections={sections} activeSection={activeSection} isMobileOpen={isMobileOpen} onMobileToggle={() => setIsMobileOpen(!isMobileOpen)} />
+      {/* Main Content with Reusable LessonLayout */}
+      <LessonLayout sections={sections}>
+        {/* Hero Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="mb-12"
+        >
+          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+            {t(topic.title)}
+          </h1>
+          <p className="text-xl text-zinc-400 mb-6">
+            {t(topic.description)}
+          </p>
+        </motion.div>
 
-          {/* Main Content */}
-          <main className="max-w-[800px]">
-            {/* Hero Section */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="mb-12"
-            >
-              <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
-                {t(topic.title)}
-              </h1>
-              <p className="text-xl text-zinc-400 mb-6">
-                {t(topic.description)}
-              </p>
-            </motion.div>
+        {/* Overview/Definition */}
+        <section id="overview" className="mb-12 scroll-mt-24">
+          <h2 className="text-2xl font-semibold text-white mb-4 flex items-center gap-2">
+            <BookOpen className="size-6 text-indigo-400" />
+            {t({ en: 'What is this?', es: '¿Qué es esto?' })}
+          </h2>
+          <div className="bg-zinc-900/50 border border-zinc-800 rounded-2xl p-6">
+            <p className="text-zinc-300 leading-relaxed">
+              {t(topic.content.definition)}
+            </p>
+          </div>
+        </section>
 
-            {/* Overview/Definition */}
-            <section id="overview" className="mb-12 scroll-mt-24">
-              <h2 className="text-2xl font-semibold text-white mb-4 flex items-center gap-2">
-                <BookOpen className="size-6 text-indigo-400" />
-                {t({ en: 'What is this?', es: '¿Qué es esto?' })}
-              </h2>
-              <div className="bg-zinc-900/50 border border-zinc-800 rounded-2xl p-6">
-                <p className="text-zinc-300 leading-relaxed">
-                  {t(topic.content.definition)}
-                </p>
+        {/* Why it matters */}
+        <section id="why-it-matters" className="mb-12 scroll-mt-24">
+          <h2 className="text-2xl font-semibold text-white mb-4 flex items-center gap-2">
+            <Lightbulb className="size-6 text-yellow-400" />
+            {t({ en: 'Why it matters', es: 'Por qué importa' })}
+          </h2>
+          <div className="bg-gradient-to-br from-yellow-950/20 to-orange-950/20 border border-yellow-500/20 rounded-2xl p-6">
+            <p className="text-zinc-300 leading-relaxed">
+              {t(topic.content.why)}
+            </p>
+          </div>
+        </section>
+
+        {/* Key Principles */}
+        <section id="key-principles" className="mb-12 scroll-mt-24">
+          <h2 className="text-2xl font-semibold text-white mb-4 flex items-center gap-2">
+            <ListChecks className="size-6 text-blue-400" />
+            {t({ en: 'Key Principles', es: 'Principios Clave' })}
+          </h2>
+          <div className="bg-zinc-900/50 border border-zinc-800 rounded-2xl p-6">
+            <ul className="space-y-4">
+              {t(topic.content.keyPrinciples).map((principle: string, idx: number) => (
+                <li key={idx} className="flex gap-3 text-zinc-300">
+                  <CheckCircle2 className="size-5 text-indigo-400 mt-0.5 shrink-0" />
+                  <span className="leading-relaxed">{principle}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
+        {/* How to Apply */}
+        {topic.content.howToApply && (
+          <section id="how-to-apply" className="mb-12 scroll-mt-24">
+            <h2 className="text-2xl font-semibold text-white mb-4 flex items-center gap-2">
+              <ArrowRight className="size-6 text-green-400" />
+              {t({ en: 'How to Apply', es: 'Cómo Aplicar' })}
+            </h2>
+            <div className="space-y-4">
+              {topic.content.howToApply.steps.map((step: any, idx: number) => (
+                <div key={idx} className="bg-zinc-900/50 border border-zinc-800 rounded-2xl p-6">
+                  <div className="flex items-start gap-4">
+                    <div className="size-8 rounded-full bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center shrink-0">
+                      <span className="text-sm font-bold text-indigo-400">{idx + 1}</span>
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="font-semibold text-white mb-2">{t(step.name)}</h3>
+                      <p className="text-zinc-400 text-sm leading-relaxed">{t(step.description)}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* Common Mistakes */}
+        {topic.content.commonMistakes && (
+          <section id="common-mistakes" className="mb-12 scroll-mt-24">
+            <h2 className="text-2xl font-semibold text-white mb-4 flex items-center gap-2">
+              <AlertTriangle className="size-6 text-red-400" />
+              {t({ en: 'Common Mistakes', es: 'Errores Comunes' })}
+            </h2>
+            <div className="bg-gradient-to-br from-red-950/20 to-orange-950/20 border border-red-500/20 rounded-2xl p-6">
+              <ul className="space-y-3">
+                {t(topic.content.commonMistakes).map((mistake: string, idx: number) => (
+                  <li key={idx} className="flex gap-3 text-zinc-300">
+                    <X className="size-5 text-red-400 mt-0.5 shrink-0" />
+                    <span className="leading-relaxed">{mistake}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </section>
+        )}
+
+        {/* Deliverables */}
+        {topic.content.deliverables && (
+          <section id="deliverables" className="mb-12 scroll-mt-24">
+            <h2 className="text-2xl font-semibold text-white mb-4 flex items-center gap-2">
+              <FileCheck className="size-6 text-purple-400" />
+              {t({ en: 'Deliverables', es: 'Entregables' })}
+            </h2>
+            <div className="bg-gradient-to-br from-purple-950/20 to-indigo-950/20 border border-purple-500/20 rounded-2xl p-6">
+              <p className="text-zinc-400 mb-4 text-sm">{t(topic.content.deliverables.description)}</p>
+              <ul className="space-y-3">
+                {t(topic.content.deliverables.items).map((item: string, idx: number) => (
+                  <li key={idx} className="flex gap-3 text-zinc-300">
+                    <CheckCircle2 className="size-5 text-purple-400 mt-0.5 shrink-0" />
+                    <span className="leading-relaxed">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </section>
+        )}
+
+        {/* Tools */}
+        {topic.content.practicalTools && (
+          <section id="tools" className="mb-12 scroll-mt-24">
+            <h2 className="text-2xl font-semibold text-white mb-4 flex items-center gap-2">
+              <Wrench className="size-6 text-cyan-400" />
+              {t({ en: 'Recommended Tools', es: 'Herramientas Recomendadas' })}
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="bg-zinc-900/50 border border-zinc-800 rounded-xl p-4">
+                <h3 className="text-sm font-semibold text-zinc-400 mb-3 uppercase tracking-wide">
+                  {t({ en: 'Design', es: 'Diseño' })}
+                </h3>
+                <ul className="space-y-2">
+                  {t(topic.content.practicalTools.design).map((tool: string, idx: number) => (
+                    <li key={idx} className="text-sm text-zinc-300">{tool}</li>
+                  ))}
+                </ul>
               </div>
-            </section>
+              {topic.content.practicalTools.research && (
+                <div className="bg-zinc-900/50 border border-zinc-800 rounded-xl p-4">
+                  <h3 className="text-sm font-semibold text-zinc-400 mb-3 uppercase tracking-wide">
+                    {t({ en: 'Research', es: 'Investigación' })}
+                  </h3>
+                  <ul className="space-y-2">
+                    {t(topic.content.practicalTools.research).map((tool: string, idx: number) => (
+                      <li key={idx} className="text-sm text-zinc-300">{tool}</li>
+                    ))}</ul>
+                </div>
+              )}
+              {topic.content.practicalTools.handoff && (
+                <div className="bg-zinc-900/50 border border-zinc-800 rounded-xl p-4">
+                  <h3 className="text-sm font-semibold text-zinc-400 mb-3 uppercase tracking-wide">
+                    {t({ en: 'Handoff', es: 'Entrega' })}
+                  </h3>
+                  <ul className="space-y-2">
+                    {t(topic.content.practicalTools.handoff).map((tool: string, idx: number) => (
+                      <li key={idx} className="text-sm text-zinc-300">{tool}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+          </section>
+        )}
 
-            {/* Why it matters */}
-            <section id="why-it-matters" className="mb-12 scroll-mt-24">
-              <h2 className="text-2xl font-semibold text-white mb-4 flex items-center gap-2">
-                <Lightbulb className="size-6 text-yellow-400" />
-                {t({ en: 'Why it matters', es: 'Por qué importa' })}
-              </h2>
-              <div className="bg-gradient-to-br from-yellow-950/20 to-orange-950/20 border border-yellow-500/20 rounded-2xl p-6">
-                <p className="text-zinc-300 leading-relaxed">
-                  {t(topic.content.why)}
-                </p>
+        {/* AI in Practice */}
+        {topic.content.aiInPractice && (
+          <section id="ai-practice" className="mb-12 scroll-mt-24">
+            <h2 className="text-2xl font-semibold text-white mb-4 flex items-center gap-2">
+              <Sparkles className="size-6 text-pink-400" />
+              {t({ en: 'AI in Practice', es: 'IA en Práctica' })}
+            </h2>
+            <div className="bg-gradient-to-br from-pink-950/20 to-purple-950/20 border border-pink-500/20 rounded-2xl p-6">
+              <p className="text-zinc-400 mb-6 text-sm">{t(topic.content.aiInPractice.description)}</p>
+              <div className="space-y-4">
+                {topic.content.aiInPractice.prompts.map((p: any, idx: number) => (
+                  <div key={idx} className="bg-black/40 rounded-xl p-4 border border-pink-500/20">
+                    <div className="flex items-center gap-2 mb-2">
+                      <Bot className="size-4 text-pink-400" />
+                      <span className="text-xs font-semibold text-pink-400 uppercase tracking-wide">
+                        {p.tool}
+                      </span>
+                      <span className="text-xs text-zinc-500">•</span>
+                      <span className="text-xs text-zinc-500">{t(p.context)}</span>
+                    </div>
+                    <p className="text-sm text-zinc-300 font-mono bg-zinc-950/50 rounded p-3 border border-zinc-800">
+                      {t(p.prompt)}
+                    </p>
+                  </div>
+                ))}
               </div>
-            </section>
+            </div>
+          </section>
+        )}
 
-            {/* Key Principles */}
-            <section id="key-principles" className="mb-12 scroll-mt-24">
-              <h2 className="text-2xl font-semibold text-white mb-4 flex items-center gap-2">
-                <ListChecks className="size-6 text-blue-400" />
-                {t({ en: 'Key Principles', es: 'Principios Clave' })}
-              </h2>
-              <div className="bg-zinc-900/50 border border-zinc-800 rounded-2xl p-6">
-                <ul className="space-y-4">
-                  {t(topic.content.keyPrinciples).map((principle: string, idx: number) => (
-                    <li key={idx} className="flex gap-3 text-zinc-300">
-                      <CheckCircle2 className="size-5 text-indigo-400 mt-0.5 shrink-0" />
-                      <span className="leading-relaxed">{principle}</span>
+        {/* Validation */}
+        {topic.content.howToValidate && (
+          <section id="validation" className="mb-12 scroll-mt-24">
+            <h2 className="text-2xl font-semibold text-white mb-4 flex items-center gap-2">
+              <CheckCircle2 className="size-6 text-green-400" />
+              {t({ en: 'How to Validate', es: 'Cómo Validar' })}
+            </h2>
+            <div className="bg-gradient-to-br from-green-950/20 to-emerald-950/20 border border-green-500/20 rounded-2xl p-6 space-y-6">
+              <div>
+                <h3 className="text-sm font-semibold text-green-400 mb-2 uppercase tracking-wide">
+                  {t({ en: 'What to validate', es: 'Qué validar' })}
+                </h3>
+                <p className="text-zinc-300 text-sm leading-relaxed">{t(topic.content.howToValidate.what)}</p>
+              </div>
+              <div>
+                <h3 className="text-sm font-semibold text-green-400 mb-2 uppercase tracking-wide">
+                  {t({ en: 'Methods', es: 'Métodos' })}
+                </h3>
+                <ul className="space-y-2">
+                  {t(topic.content.howToValidate.methods).map((method: string, idx: number) => (
+                    <li key={idx} className="flex gap-2 text-sm text-zinc-300">
+                      <CheckCircle2 className="size-4 text-green-400 mt-0.5 shrink-0" />
+                      <span>{method}</span>
                     </li>
                   ))}
                 </ul>
               </div>
-            </section>
-
-            {/* How to Apply */}
-            {topic.content.howToApply && (
-              <section id="how-to-apply" className="mb-12 scroll-mt-24">
-                <h2 className="text-2xl font-semibold text-white mb-4 flex items-center gap-2">
-                  <ArrowRight className="size-6 text-green-400" />
-                  {t({ en: 'How to Apply', es: 'Cómo Aplicar' })}
-                </h2>
-                <div className="space-y-4">
-                  {topic.content.howToApply.steps.map((step: any, idx: number) => (
-                    <div key={idx} className="bg-zinc-900/50 border border-zinc-800 rounded-2xl p-6">
-                      <div className="flex items-start gap-4">
-                        <div className="size-8 rounded-full bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center shrink-0">
-                          <span className="text-sm font-bold text-indigo-400">{idx + 1}</span>
-                        </div>
-                        <div className="flex-1">
-                          <h3 className="font-semibold text-white mb-2">{t(step.name)}</h3>
-                          <p className="text-zinc-400 text-sm leading-relaxed">{t(step.description)}</p>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </section>
-            )}
-
-            {/* Common Mistakes */}
-            {topic.content.commonMistakes && (
-              <section id="common-mistakes" className="mb-12 scroll-mt-24">
-                <h2 className="text-2xl font-semibold text-white mb-4 flex items-center gap-2">
-                  <AlertTriangle className="size-6 text-red-400" />
-                  {t({ en: 'Common Mistakes', es: 'Errores Comunes' })}
-                </h2>
-                <div className="bg-gradient-to-br from-red-950/20 to-orange-950/20 border border-red-500/20 rounded-2xl p-6">
-                  <ul className="space-y-3">
-                    {t(topic.content.commonMistakes).map((mistake: string, idx: number) => (
-                      <li key={idx} className="flex gap-3 text-zinc-300">
-                        <X className="size-5 text-red-400 mt-0.5 shrink-0" />
-                        <span className="leading-relaxed">{mistake}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </section>
-            )}
-
-            {/* Deliverables */}
-            {topic.content.deliverables && (
-              <section id="deliverables" className="mb-12 scroll-mt-24">
-                <h2 className="text-2xl font-semibold text-white mb-4 flex items-center gap-2">
-                  <FileCheck className="size-6 text-purple-400" />
-                  {t({ en: 'Deliverables', es: 'Entregables' })}
-                </h2>
-                <div className="bg-gradient-to-br from-purple-950/20 to-indigo-950/20 border border-purple-500/20 rounded-2xl p-6">
-                  <p className="text-zinc-400 mb-4 text-sm">{t(topic.content.deliverables.description)}</p>
-                  <ul className="space-y-3">
-                    {t(topic.content.deliverables.items).map((item: string, idx: number) => (
-                      <li key={idx} className="flex gap-3 text-zinc-300">
-                        <CheckCircle2 className="size-5 text-purple-400 mt-0.5 shrink-0" />
-                        <span className="leading-relaxed">{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </section>
-            )}
-
-            {/* Tools */}
-            {topic.content.practicalTools && (
-              <section id="tools" className="mb-12 scroll-mt-24">
-                <h2 className="text-2xl font-semibold text-white mb-4 flex items-center gap-2">
-                  <Wrench className="size-6 text-cyan-400" />
-                  {t({ en: 'Recommended Tools', es: 'Herramientas Recomendadas' })}
-                </h2>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  <div className="bg-zinc-900/50 border border-zinc-800 rounded-xl p-4">
-                    <h3 className="text-sm font-semibold text-zinc-400 mb-3 uppercase tracking-wide">
-                      {t({ en: 'Design', es: 'Diseño' })}
-                    </h3>
-                    <ul className="space-y-2">
-                      {t(topic.content.practicalTools.design).map((tool: string, idx: number) => (
-                        <li key={idx} className="text-sm text-zinc-300">{tool}</li>
-                      ))}
-                    </ul>
-                  </div>
-                  {topic.content.practicalTools.research && (
-                    <div className="bg-zinc-900/50 border border-zinc-800 rounded-xl p-4">
-                      <h3 className="text-sm font-semibold text-zinc-400 mb-3 uppercase tracking-wide">
-                        {t({ en: 'Research', es: 'Investigación' })}
-                      </h3>
-                      <ul className="space-y-2">
-                        {t(topic.content.practicalTools.research).map((tool: string, idx: number) => (
-                          <li key={idx} className="text-sm text-zinc-300">{tool}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
-                  {topic.content.practicalTools.handoff && (
-                    <div className="bg-zinc-900/50 border border-zinc-800 rounded-xl p-4">
-                      <h3 className="text-sm font-semibold text-zinc-400 mb-3 uppercase tracking-wide">
-                        {t({ en: 'Handoff', es: 'Entrega' })}
-                      </h3>
-                      <ul className="space-y-2">
-                        {t(topic.content.practicalTools.handoff).map((tool: string, idx: number) => (
-                          <li key={idx} className="text-sm text-zinc-300">{tool}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
-                </div>
-              </section>
-            )}
-
-            {/* AI in Practice */}
-            {topic.content.aiInPractice && (
-              <section id="ai-practice" className="mb-12 scroll-mt-24">
-                <h2 className="text-2xl font-semibold text-white mb-4 flex items-center gap-2">
-                  <Sparkles className="size-6 text-pink-400" />
-                  {t({ en: 'AI in Practice', es: 'IA en Práctica' })}
-                </h2>
-                <div className="bg-gradient-to-br from-pink-950/20 to-purple-950/20 border border-pink-500/20 rounded-2xl p-6">
-                  <p className="text-zinc-400 mb-6 text-sm">{t(topic.content.aiInPractice.description)}</p>
-                  <div className="space-y-4">
-                    {topic.content.aiInPractice.prompts.map((p: any, idx: number) => (
-                      <div key={idx} className="bg-black/40 rounded-xl p-4 border border-pink-500/20">
-                        <div className="flex items-center gap-2 mb-2">
-                          <Bot className="size-4 text-pink-400" />
-                          <span className="text-xs font-semibold text-pink-400 uppercase tracking-wide">
-                            {p.tool}
-                          </span>
-                          <span className="text-xs text-zinc-500">•</span>
-                          <span className="text-xs text-zinc-500">{t(p.context)}</span>
-                        </div>
-                        <p className="text-sm text-zinc-300 font-mono bg-zinc-950/50 rounded p-3 border border-zinc-800">
-                          {t(p.prompt)}
-                        </p>
-                      </div>
+              {topic.content.howToValidate.tools && (
+                <div>
+                  <h3 className="text-sm font-semibold text-green-400 mb-2 uppercase tracking-wide">
+                    {t({ en: 'Tools', es: 'Herramientas' })}
+                  </h3>
+                  <div className="flex flex-wrap gap-2">
+                    {t(topic.content.howToValidate.tools).map((tool: string, idx: number) => (
+                      <span key={idx} className="px-3 py-1 bg-green-950/30 border border-green-500/30 rounded-full text-xs text-green-300">
+                        {tool}
+                      </span>
                     ))}
                   </div>
-                </div>
-              </section>
-            )}
-
-            {/* Validation */}
-            {topic.content.howToValidate && (
-              <section id="validation" className="mb-12 scroll-mt-24">
-                <h2 className="text-2xl font-semibold text-white mb-4 flex items-center gap-2">
-                  <CheckCircle2 className="size-6 text-green-400" />
-                  {t({ en: 'How to Validate', es: 'Cómo Validar' })}
-                </h2>
-                <div className="bg-gradient-to-br from-green-950/20 to-emerald-950/20 border border-green-500/20 rounded-2xl p-6 space-y-6">
-                  <div>
-                    <h3 className="text-sm font-semibold text-green-400 mb-2 uppercase tracking-wide">
-                      {t({ en: 'What to validate', es: 'Qué validar' })}
-                    </h3>
-                    <p className="text-zinc-300 text-sm leading-relaxed">{t(topic.content.howToValidate.what)}</p>
-                  </div>
-                  <div>
-                    <h3 className="text-sm font-semibold text-green-400 mb-2 uppercase tracking-wide">
-                      {t({ en: 'Methods', es: 'Métodos' })}
-                    </h3>
-                    <ul className="space-y-2">
-                      {t(topic.content.howToValidate.methods).map((method: string, idx: number) => (
-                        <li key={idx} className="flex gap-2 text-sm text-zinc-300">
-                          <CheckCircle2 className="size-4 text-green-400 mt-0.5 shrink-0" />
-                          <span>{method}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  {topic.content.howToValidate.tools && (
-                    <div>
-                      <h3 className="text-sm font-semibold text-green-400 mb-2 uppercase tracking-wide">
-                        {t({ en: 'Tools', es: 'Herramientas' })}
-                      </h3>
-                      <div className="flex flex-wrap gap-2">
-                        {t(topic.content.howToValidate.tools).map((tool: string, idx: number) => (
-                          <span key={idx} className="px-3 py-1 bg-green-950/30 border border-green-500/30 rounded-full text-xs text-green-300">
-                            {tool}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                  {topic.content.howToValidate.evidenceExample && (
-                    <div className="bg-black/40 rounded-lg p-4 border border-green-500/20">
-                      <h3 className="text-xs font-semibold text-green-400 mb-2 uppercase tracking-wide">
-                        {t({ en: 'Evidence Example', es: 'Ejemplo de Evidencia' })}
-                      </h3>
-                      <p className="text-sm text-zinc-400">{t(topic.content.howToValidate.evidenceExample)}</p>
-                    </div>
-                  )}
-                </div>
-              </section>
-            )}
-
-            {/* Quiz */}
-            {topic.content.quiz && topic.content.quiz.length > 0 && (
-              <QuizSection quiz={topic.content.quiz} language={t} />
-            )}
-
-            {/* Real Example */}
-            {topic.content.realExample && (
-              <section id="real-example" className="mb-12 scroll-mt-24">
-                <h2 className="text-2xl font-semibold text-white mb-4 flex items-center gap-2">
-                  <Lightbulb className="size-6 text-amber-400" />
-                  {t({ en: 'Real World Example', es: 'Ejemplo del Mundo Real' })}
-                </h2>
-                <div className="bg-gradient-to-br from-amber-950/20 to-yellow-950/20 border border-amber-500/20 rounded-2xl p-6">
-                  <h3 className="font-semibold text-white mb-2">{t(topic.content.realExample.title)}</h3>
-                  {topic.content.realExample.company && (
-                    <p className="text-xs text-amber-400 mb-4">{topic.content.realExample.company}</p>
-                  )}
-                  <p className="text-zinc-300 leading-relaxed">{t(topic.content.realExample.description)}</p>
-                </div>
-
-                {/* Special Examples */}
-                {topic.id === 'user-personas' && <UserPersonaCard />}
-                {topic.id === 'visual-hierarchy' && <RetroModernComparison />}
-                {topic.id === 'ux-psychology' && <MentalModelExample />}
-                {topic.id === 'information-architecture' && <SitemapExample />}
-                {topic.id === 'design-methodologies' && <MethodologiesDeepDive />}
-              </section>
-            )}
-
-            {/* References */}
-            <section id="references" className="mb-12 scroll-mt-24">
-              <h2 className="text-2xl font-semibold text-white mb-4 flex items-center gap-2">
-                <BookOpen className="size-6 text-indigo-400" />
-                {t({ en: 'References & Resources', es: 'Referencias y Recursos' })}
-              </h2>
-              <div className="bg-zinc-900/50 border border-zinc-800 rounded-2xl p-6">
-                {topic.reference && (
-                  <a
-                    href={topic.referenceLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-indigo-400 hover:text-indigo-300 transition-colors"
-                  >
-                    <ExternalLink className="size-4" />
-                    <span>{t(topic.reference)}</span>
-                  </a>
-                )}
-              </div>
-            </section>
-
-            {/* Completion CTA */}
-            <div className="border-t border-zinc-800 pt-8 space-y-6">
-              {!isCompleted ? (
-                <Button
-                  onClick={handleComplete}
-                  className="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-6 text-lg"
-                >
-                  <CheckCircle2 className="size-5 mr-2" />
-                  {t({ en: 'Mark as Complete', es: 'Marcar como Completado' })}
-                </Button>
-              ) : (
-                <div className="bg-green-950/20 border border-green-500/20 rounded-2xl p-6 text-center">
-                  <CheckCircle2 className="size-12 text-green-400 mx-auto mb-3" />
-                  <p className="text-green-400 font-semibold mb-2">
-                    {t({ en: 'Lesson Completed!', es: '¡Lección Completada!' })}
-                  </p>
-                  <p className="text-sm text-zinc-400">
-                    {t({ en: 'Great job! Ready for the next one?', es: '¡Buen trabajo! ¿Listo para la siguiente?' })}
-                  </p>
                 </div>
               )}
-
-              {/* Navigation */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {previousLesson && (
-                  <button
-                    onClick={() => navigate(`/lesson/${previousLesson.id}`)}
-                    className="flex items-center gap-3 p-4 bg-zinc-900/50 border border-zinc-800 rounded-xl hover:border-indigo-500/30 transition-all group"
-                  >
-                    <ArrowLeft className="size-5 text-zinc-500 group-hover:text-indigo-400 transition-colors" />
-                    <div className="text-left">
-                      <p className="text-xs text-zinc-500 mb-1">
-                        {t({ en: 'Previous', es: 'Anterior' })}
-                      </p>
-                      <p className="text-sm text-white group-hover:text-indigo-400 transition-colors">
-                        {t(previousLesson.title)}
-                      </p>
-                    </div>
-                  </button>
-                )}
-                {nextLesson && (
-                  <button
-                    onClick={() => navigate(`/lesson/${nextLesson.id}`)}
-                    className="flex items-center gap-3 p-4 bg-zinc-900/50 border border-zinc-800 rounded-xl hover:border-indigo-500/30 transition-all group md:ml-auto"
-                  >
-                    <div className="text-right">
-                      <p className="text-xs text-zinc-500 mb-1">
-                        {t({ en: 'Next', es: 'Siguiente' })}
-                      </p>
-                      <p className="text-sm text-white group-hover:text-indigo-400 transition-colors">
-                        {t(nextLesson.title)}
-                      </p>
-                    </div>
-                    <ChevronRight className="size-5 text-zinc-500 group-hover:text-indigo-400 transition-colors" />
-                  </button>
-                )}
-              </div>
+              {topic.content.howToValidate.evidenceExample && (
+                <div className="bg-black/40 rounded-lg p-4 border border-green-500/20">
+                  <h3 className="text-xs font-semibold text-green-400 mb-2 uppercase tracking-wide">
+                    {t({ en: 'Evidence Example', es: 'Ejemplo de Evidencia' })}
+                  </h3>
+                  <p className="text-sm text-zinc-400">{t(topic.content.howToValidate.evidenceExample)}</p>
+                </div>
+              )}
             </div>
-          </main>
+          </section>
+        )}
+
+        {/* Quiz */}
+        {topic.content.quiz && topic.content.quiz.length > 0 && (
+          <QuizSection quiz={topic.content.quiz} language={t} />
+        )}
+
+        {/* Real Example */}
+        {topic.content.realExample && (
+          <section id="real-example" className="mb-12 scroll-mt-24">
+            <h2 className="text-2xl font-semibold text-white mb-4 flex items-center gap-2">
+              <Lightbulb className="size-6 text-amber-400" />
+              {t({ en: 'Real World Example', es: 'Ejemplo del Mundo Real' })}
+            </h2>
+            <div className="bg-gradient-to-br from-amber-950/20 to-yellow-950/20 border border-amber-500/20 rounded-2xl p-6">
+              <h3 className="font-semibold text-white mb-2">{t(topic.content.realExample.title)}</h3>
+              {topic.content.realExample.company && (
+                <p className="text-xs text-amber-400 mb-4">{topic.content.realExample.company}</p>
+              )}
+              <p className="text-zinc-300 leading-relaxed">{t(topic.content.realExample.description)}</p>
+            </div>
+
+            {/* Special Examples */}
+            {topic.id === 'user-personas' && <UserPersonaCard />}
+            {topic.id === 'visual-hierarchy' && <RetroModernComparison />}
+            {topic.id === 'ux-psychology' && <MentalModelExample />}
+            {topic.id === 'information-architecture' && <SitemapExample />}
+            {topic.id === 'design-methodologies' && <MethodologiesDeepDive />}
+            {topic.id === 'customer-journey-map' && <InteractiveJourneyMap />}
+            {topic.id === 'service-blueprint' && <BlueprintSimulator />}
+          </section>
+        )}
+
+        {/* References */}
+        <section id="references" className="mb-12 scroll-mt-24">
+          <h2 className="text-2xl font-semibold text-white mb-4 flex items-center gap-2">
+            <BookOpen className="size-6 text-indigo-400" />
+            {t({ en: 'References & Resources', es: 'Referencias y Recursos' })}
+          </h2>
+          <div className="bg-zinc-900/50 border border-zinc-800 rounded-2xl p-6">
+            {topic.reference && (
+              <a
+                href={topic.referenceLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-indigo-400 hover:text-indigo-300 transition-colors"
+              >
+                <ExternalLink className="size-4" />
+                <span>{t(topic.reference)}</span>
+              </a>
+            )}
+          </div>
+        </section>
+
+        {/* Completion CTA */}
+        <div className="border-t border-zinc-800 pt-8 space-y-6">
+          {!isCompleted ? (
+            <Button
+              onClick={handleComplete}
+              className="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-6 text-lg"
+            >
+              <CheckCircle2 className="size-5 mr-2" />
+              {t({ en: 'Mark as Complete', es: 'Marcar como Completado' })}
+            </Button>
+          ) : (
+            <div className="bg-green-950/20 border border-green-500/20 rounded-2xl p-6 text-center">
+              <CheckCircle2 className="size-12 text-green-400 mx-auto mb-3" />
+              <p className="text-green-400 font-semibold mb-2">
+                {t({ en: 'Lesson Completed!', es: '¡Lección Completada!' })}
+              </p>
+              <p className="text-sm text-zinc-400">
+                {t({ en: 'Great job! Ready for the next one?', es: '¡Buen trabajo! ¿Listo para la siguiente?' })}
+              </p>
+            </div>
+          )}
+
+          {/* Navigation */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {previousLesson && (
+              <button
+                onClick={() => navigate(`/lesson/${previousLesson.id}`)}
+                className="flex items-center gap-3 p-4 bg-zinc-900/50 border border-zinc-800 rounded-xl hover:border-indigo-500/30 transition-all group"
+              >
+                <ArrowLeft className="size-5 text-zinc-500 group-hover:text-indigo-400 transition-colors" />
+                <div className="text-left">
+                  <p className="text-xs text-zinc-500 mb-1">
+                    {t({ en: 'Previous', es: 'Anterior' })}
+                  </p>
+                  <p className="text-sm text-white group-hover:text-indigo-400 transition-colors">
+                    {t(previousLesson.title)}
+                  </p>
+                </div>
+              </button>
+            )}
+            {nextLesson && (
+              <button
+                onClick={() => navigate(`/lesson/${nextLesson.id}`)}
+                className="flex items-center gap-3 p-4 bg-zinc-900/50 border border-zinc-800 rounded-xl hover:border-indigo-500/30 transition-all group md:ml-auto"
+              >
+                <div className="text-right">
+                  <p className="text-xs text-zinc-500 mb-1">
+                    {t({ en: 'Next', es: 'Siguiente' })}
+                  </p>
+                  <p className="text-sm text-white group-hover:text-indigo-400 transition-colors">
+                    {t(nextLesson.title)}
+                  </p>
+                </div>
+                <ChevronRight className="size-5 text-zinc-500 group-hover:text-indigo-400 transition-colors" />
+              </button>
+            )}
+          </div>
         </div>
-      </div>
+      </LessonLayout>
     </div>
   );
 }

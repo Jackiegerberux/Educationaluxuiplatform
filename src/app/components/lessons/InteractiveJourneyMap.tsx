@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useLanguage } from '../layout/LanguageContext';
+import { useNavigate, useLocation } from 'react-router';
 import { motion, AnimatePresence } from 'motion/react';
-import { X, Smile, Meh, Frown } from 'lucide-react';
+import { X, Smile, Meh, Frown, ExternalLink, ArrowUp, ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface JourneyStage {
   id: string;
@@ -99,8 +100,11 @@ const airbnbJourneyData: JourneyStage[] = [
 
 export function InteractiveJourneyMap() {
   const { t } = useLanguage();
+  const navigate = useNavigate();
+  const location = useLocation();
   const [selectedStage, setSelectedStage] = useState<string | null>(null);
   const [isMobile, setIsMobile] = useState(false);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
@@ -110,6 +114,44 @@ export function InteractiveJourneyMap() {
   }, []);
 
   const selectedStageData = airbnbJourneyData.find(s => s.id === selectedStage);
+
+  // Check if we're currently on the customer-journey-map lesson page
+  const isOnLessonPage = location.pathname === '/lesson/customer-journey-map';
+
+  const handleOpenLesson = () => {
+    setSelectedStage(null); // Close the panel
+    
+    if (isOnLessonPage) {
+      // Scroll to "How to Apply" section if on the lesson page
+      const howToApplySection = document.getElementById('how-to-apply');
+      if (howToApplySection) {
+        const headerOffset = 96;
+        const elementPosition = howToApplySection.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.scrollY - headerOffset;
+        window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+      } else {
+        // Fallback: scroll to top
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    } else {
+      // Navigate to the lesson page if not already there
+      navigate('/lesson/customer-journey-map');
+    }
+  };
+
+  const scrollStages = (direction: 'left' | 'right') => {
+    if (scrollContainerRef.current) {
+      const scrollAmount = 300; // Scroll by 300px
+      const newScrollLeft = direction === 'left' 
+        ? scrollContainerRef.current.scrollLeft - scrollAmount
+        : scrollContainerRef.current.scrollLeft + scrollAmount;
+      
+      scrollContainerRef.current.scrollTo({
+        left: newScrollLeft,
+        behavior: 'smooth'
+      });
+    }
+  };
 
   const getEmotionIcon = (emotion: number) => {
     if (emotion >= 4) return <Smile className="size-4 text-green-400" />;
@@ -124,7 +166,7 @@ export function InteractiveJourneyMap() {
   };
 
   return (
-    <div className="my-8 bg-zinc-950 border border-zinc-800 rounded-xl p-6">
+    <div className="my-8 bg-zinc-950 border border-zinc-800 rounded-xl p-4 md:p-6 max-w-full overflow-x-hidden">
       <h3 className="text-xl font-bold text-white mb-4">
         {t({ en: 'Interactive Journey Map: Airbnb Guest Booking', es: 'Mapa de Viaje Interactivo: Reserva de Huésped Airbnb' })}
       </h3>
@@ -132,15 +174,48 @@ export function InteractiveJourneyMap() {
         {t({ en: 'Click on any stage to explore user goals, pain points, and opportunities', es: 'Haz clic en cualquier etapa para explorar objetivos, puntos de dolor y oportunidades' })}
       </p>
 
-      {/* Stages Timeline */}
-      <div className="flex flex-col md:flex-row items-start md:items-center gap-4 mb-6 overflow-x-auto pb-4">
-        {airbnbJourneyData.map((stage, index) => (
-          <React.Fragment key={stage.id}>
+      {/* Stages Timeline - Responsive */}
+      <div className="mb-6">
+        {/* Chevron Navigation for Mobile - Shows only on small screens */}
+        <div className="relative lg:hidden">
+          {/* Left Chevron */}
+          <button
+            onClick={() => scrollStages('left')}
+            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 size-10 bg-zinc-900/90 backdrop-blur-sm border border-zinc-700 rounded-full flex items-center justify-center hover:bg-zinc-800 transition-colors shadow-lg"
+            aria-label="Scroll left"
+          >
+            <ChevronLeft className="size-5 text-zinc-400" />
+          </button>
+          
+          {/* Right Chevron */}
+          <button
+            onClick={() => scrollStages('right')}
+            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 size-10 bg-zinc-900/90 backdrop-blur-sm border border-zinc-700 rounded-full flex items-center justify-center hover:bg-zinc-800 transition-colors shadow-lg"
+            aria-label="Scroll right"
+          >
+            <ChevronRight className="size-5 text-zinc-400" />
+          </button>
+        </div>
+
+        {/* Stages Container */}
+        <div 
+          ref={scrollContainerRef}
+          className="flex lg:grid lg:grid-cols-5 gap-3 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-4 lg:pb-0 lg:overflow-visible"
+        >
+          {airbnbJourneyData.map((stage, index) => (
             <motion.button
+              key={stage.id}
               onClick={() => setSelectedStage(stage.id)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  setSelectedStage(stage.id);
+                }
+              }}
+              tabIndex={0}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className={`relative flex-shrink-0 w-full md:w-40 p-4 rounded-lg border-2 transition-all ${
+              className={`relative flex-shrink-0 w-[280px] lg:w-full snap-center p-4 rounded-lg border-2 transition-all focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2 focus:ring-offset-black ${
                 selectedStage === stage.id
                   ? 'border-indigo-500 bg-indigo-500/10'
                   : 'border-zinc-700 bg-zinc-900 hover:border-zinc-600'
@@ -163,21 +238,16 @@ export function InteractiveJourneyMap() {
                 />
               </div>
             </motion.button>
-            {index < airbnbJourneyData.length - 1 && (
-              <div className="hidden md:block flex-shrink-0 w-8 h-px bg-zinc-700 relative">
-                <div className="absolute right-0 top-1/2 -translate-y-1/2 w-2 h-2 border-t-2 border-r-2 border-zinc-700 rotate-45" />
-              </div>
-            )}
-          </React.Fragment>
-        ))}
+          ))}
+        </div>
       </div>
 
       {/* Emotion Line Chart */}
-      <div className="mb-6 p-4 bg-zinc-900/50 rounded-lg">
+      <div className="mb-6 p-4 bg-zinc-900/50 rounded-lg max-w-full overflow-hidden">
         <h4 className="text-sm font-semibold text-white mb-3">
           {t({ en: 'Emotional Journey', es: 'Viaje Emocional' })}
         </h4>
-        <div className="relative h-24">
+        <div className="relative h-24 w-full">
           <svg className="w-full h-full" viewBox="0 0 500 100" preserveAspectRatio="none">
             <polyline
               points={airbnbJourneyData.map((stage, i) => 
@@ -187,6 +257,24 @@ export function InteractiveJourneyMap() {
               stroke="url(#emotionGradient)"
               strokeWidth="3"
             />
+            {/* Highlight selected stage */}
+            {airbnbJourneyData.map((stage, i) => {
+              const x = (i / (airbnbJourneyData.length - 1)) * 500;
+              const y = 100 - (stage.emotion * 20);
+              const isSelected = selectedStage === stage.id;
+              return (
+                <circle
+                  key={stage.id}
+                  cx={x}
+                  cy={y}
+                  r={isSelected ? "8" : "4"}
+                  fill={isSelected ? "#6366f1" : "#3f3f46"}
+                  stroke={isSelected ? "#a5b4fc" : "none"}
+                  strokeWidth={isSelected ? "2" : "0"}
+                  className="transition-all"
+                />
+              );
+            })}
             <defs>
               <linearGradient id="emotionGradient" x1="0%" y1="0%" x2="100%" y2="0%">
                 <stop offset="0%" stopColor="#ef4444" />
@@ -231,7 +319,7 @@ export function InteractiveJourneyMap() {
                         <X className="size-6" />
                       </button>
                     </div>
-                    <StageDetails stage={selectedStageData} />
+                    <StageDetails stage={selectedStageData} onOpenLesson={handleOpenLesson} />
                   </div>
                 </motion.div>
               </>
@@ -252,7 +340,7 @@ export function InteractiveJourneyMap() {
                     <X className="size-5" />
                   </button>
                 </div>
-                <StageDetails stage={selectedStageData} />
+                <StageDetails stage={selectedStageData} onOpenLesson={handleOpenLesson} />
               </motion.div>
             )}
           </>
@@ -262,8 +350,10 @@ export function InteractiveJourneyMap() {
   );
 }
 
-function StageDetails({ stage }: { stage: JourneyStage }) {
+function StageDetails({ stage, onOpenLesson }: { stage: JourneyStage; onOpenLesson: () => void }) {
   const { t } = useLanguage();
+  const location = useLocation();
+  const isOnLessonPage = location.pathname === '/lesson/customer-journey-map';
 
   return (
     <div className="space-y-6">
@@ -337,6 +427,26 @@ function StageDetails({ stage }: { stage: JourneyStage }) {
           </div>
           <span className="text-sm text-zinc-400">{stage.emotion}/5</span>
         </div>
+      </div>
+
+      {/* Open Full Lesson CTA */}
+      <div className="pt-4 border-t border-zinc-800">
+        <button
+          onClick={onOpenLesson}
+          className="w-full px-4 py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-medium transition-colors flex items-center justify-center gap-2"
+        >
+          {isOnLessonPage ? (
+            <>
+              {t({ en: 'Go to How to Apply', es: 'Ir a Cómo Aplicar' })}
+              <ArrowUp className="size-4" />
+            </>
+          ) : (
+            <>
+              {t({ en: 'Open Full Lesson', es: 'Abrir Lección Completa' })}
+              <ExternalLink className="size-4" />
+            </>
+          )}
+        </button>
       </div>
     </div>
   );

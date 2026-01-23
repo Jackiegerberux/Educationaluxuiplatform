@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router';
 import { useLanguage } from '../../layout/LanguageContext';
-import { useNavigate } from 'react-router-dom';
 import { 
   Frame,
   Lightbulb,
@@ -69,6 +69,7 @@ function WireframeComponent({
 export function DesignSystemWireframeKit() {
   const { t } = useLanguage();
   const [currentView, setCurrentView] = useState<TemplateView>('list');
+  const navigate = useNavigate();
 
   const handleUpgradeToUIKit = () => {
     // This would be handled by parent component to switch to Components tab
@@ -548,8 +549,7 @@ export function DesignSystemWireframeKit() {
             <button 
               key={template.name}
               onClick={() => {
-                const event = new CustomEvent('navigate', { detail: template.route });
-                window.dispatchEvent(event);
+                navigate(`/${template.route}`);
               }}
               className="bg-zinc-900/50 border border-zinc-800 rounded-xl p-6 hover:border-indigo-500/50 hover:bg-zinc-900 transition-all group text-left"
             >

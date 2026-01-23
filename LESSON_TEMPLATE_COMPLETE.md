@@ -9,36 +9,42 @@ Esta lección ahora tiene **TODAS las 12 secciones** completas y es el ejemplo p
 ## 📋 Template de 12 Secciones Estándar
 
 ### 1. **Title + Meta** (Header)
+
 - **Title:** `{ en: string, es: string }`
 - **Description:** `{ en: string, es: string }`
 - **Status:** `beginner | intermediate | advanced`
 - **Time Estimate:** `string` (e.g., "45min", "1h 30min")
 
 ### 2. **Definition** (`content.definition`)
+
 ```typescript
 definition: {
   en: 'What is this concept? Core explanation.',
   es: 'Explicación central del concepto.'
 }
 ```
+
 **Icon:** `BookOpen` (indigo)  
 **Purpose:** Quick understanding of the topic
 
 ---
 
 ### 3. **Why it Matters** (`content.why`)
+
 ```typescript
 why: {
   en: 'Why should you care? Business + user value.',
   es: 'Valor para el negocio y el usuario.'
 }
 ```
+
 **Icon:** `Lightbulb` (yellow/orange gradient)  
 **Purpose:** Motivation and context
 
 ---
 
 ### 4. **Key Principles** (`content.keyPrinciples`)
+
 ```typescript
 keyPrinciples: {
   en: [
@@ -50,6 +56,7 @@ keyPrinciples: {
   es: [...]
 }
 ```
+
 **Icon:** `ListChecks` (blue)  
 **Purpose:** Core concepts to remember  
 **Preview:** Max 4 bullets, shows "+X more" if > 4
@@ -57,17 +64,22 @@ keyPrinciples: {
 ---
 
 ### 5. **How to Apply** (`content.howToApply`)
+
 ```typescript
 howToApply: {
   steps: [
     {
-      name: { en: 'Step 1', es: 'Paso 1' },
-      description: { en: 'How to execute this step', es: 'Cómo ejecutar' }
+      name: { en: "Step 1", es: "Paso 1" },
+      description: {
+        en: "How to execute this step",
+        es: "Cómo ejecutar",
+      },
     },
     // ... more steps
-  ]
+  ];
 }
 ```
+
 **Icon:** `ArrowRight` (green)  
 **Purpose:** Actionable process  
 **Visual:** Numbered cards (1, 2, 3, 4...)
@@ -75,6 +87,7 @@ howToApply: {
 ---
 
 ### 6. **Common Mistakes** (`content.commonMistakes`)
+
 ```typescript
 commonMistakes: {
   en: [
@@ -85,6 +98,7 @@ commonMistakes: {
   es: [...]
 }
 ```
+
 **Icon:** `AlertTriangle` (red/orange gradient)  
 **Purpose:** Learn what to avoid  
 **Visual:** X icons with red accent
@@ -92,6 +106,7 @@ commonMistakes: {
 ---
 
 ### 7. **Deliverables** (`content.deliverables`)
+
 ```typescript
 deliverables: {
   description: { en: 'Context about outputs', es: 'Contexto' },
@@ -105,6 +120,7 @@ deliverables: {
   }
 }
 ```
+
 **Icon:** `FileCheck` (purple)  
 **Purpose:** What you should produce  
 **Visual:** CheckCircle2 icons with purple gradient
@@ -112,6 +128,7 @@ deliverables: {
 ---
 
 ### 8. **Practical Tools** (`content.practicalTools`)
+
 ```typescript
 practicalTools: {
   design: { en: ['Figma', 'Sketch', ...], es: [...] },
@@ -119,6 +136,7 @@ practicalTools: {
   handoff: { en: ['Zeplin', 'Anima', ...], es: [...] }
 }
 ```
+
 **Icon:** `Wrench` (cyan)  
 **Purpose:** Recommended software/tools  
 **Visual:** 3-column grid (Design | Research | Handoff)
@@ -126,6 +144,7 @@ practicalTools: {
 ---
 
 ### 9. **AI in Practice** (`content.aiInPractice`)
+
 ```typescript
 aiInPractice: {
   description: { en: 'How AI helps with this topic', es: 'Cómo ayuda IA' },
@@ -139,6 +158,7 @@ aiInPractice: {
   ]
 }
 ```
+
 **Icon:** `Sparkles` (pink)  
 **Purpose:** AI-powered workflows  
 **Visual:** Cards with tool name + prompt (monospaced font)
@@ -146,6 +166,7 @@ aiInPractice: {
 ---
 
 ### 10. **How to Validate** (`content.howToValidate`)
+
 ```typescript
 howToValidate: {
   what: { en: 'What to validate', es: 'Qué validar' },
@@ -161,6 +182,7 @@ howToValidate: {
   evidenceExample: { en: 'Example of success proof', es: 'Ejemplo' }
 }
 ```
+
 **Icon:** `CheckCircle2` (green)  
 **Purpose:** Verify your understanding/output  
 **Visual:** Green gradient with sections (What | Methods | Tools | Evidence)
@@ -168,20 +190,25 @@ howToValidate: {
 ---
 
 ### 11. **Knowledge Check** (`content.quiz`)
+
 ```typescript
 quiz: [
   {
-    question: { en: 'Question text?', es: 'Pregunta?' },
+    question: { en: "Question text?", es: "Pregunta?" },
     options: {
-      en: ['Option A', 'Option B', 'Option C', 'Option D'],
-      es: ['Opción A', 'Opción B', 'Opción C', 'Opción D']
+      en: ["Option A", "Option B", "Option C", "Option D"],
+      es: ["Opción A", "Opción B", "Opción C", "Opción D"],
     },
     correctIndex: 1, // 0-based index
-    explanation: { en: 'Why this is correct', es: 'Por qué es correcta' }
+    explanation: {
+      en: "Why this is correct",
+      es: "Por qué es correcta",
+    },
   },
   // ... more questions
-]
+];
 ```
+
 **Icon:** `HelpCircle` (orange)  
 **Purpose:** Test comprehension  
 **Visual:** Interactive quiz with feedback (green = correct, red = wrong)
@@ -189,6 +216,7 @@ quiz: [
 ---
 
 ### 12. **Real Example** (`content.realExample`)
+
 ```typescript
 realExample: {
   title: { en: 'Example Title', es: 'Título del Ejemplo' },
@@ -197,6 +225,7 @@ realExample: {
   imageUrl: 'https://...' // Optional
 }
 ```
+
 **Icon:** `Lightbulb` (amber)  
 **Purpose:** Concrete case study  
 **Visual:** Amber gradient card with company badge
@@ -206,7 +235,9 @@ realExample: {
 ## 🎯 Preview Modal vs Full Lesson
 
 ### **Preview Modal (Quick Preview)**
+
 Shows **ONLY** these 5 elements:
+
 1. ✅ Title + Level + Time
 2. ✅ Definition
 3. ✅ Why it Matters (truncated 4 lines)
@@ -215,6 +246,7 @@ Shows **ONLY** these 5 elements:
 6. ✅ CTA: "Open Full Lesson →"
 
 **NOT in preview:**
+
 - ❌ How to Apply
 - ❌ Common Mistakes
 - ❌ Deliverables
@@ -224,7 +256,9 @@ Shows **ONLY** these 5 elements:
 - ❌ Quiz
 
 ### **Full Lesson Page**
+
 Shows **ALL 12 sections** with:
+
 - ✅ Sidebar TOC (sticky desktop, drawer mobile)
 - ✅ IntersectionObserver active section tracking
 - ✅ Smooth scroll navigation
@@ -265,6 +299,7 @@ Shows **ALL 12 sections** with:
 ## ✅ Lesson Completeness Checklist
 
 ### Required (all lessons MUST have):
+
 - [x] Title + Description
 - [x] Status + Time Estimate
 - [x] Definition
@@ -273,6 +308,7 @@ Shows **ALL 12 sections** with:
 - [x] Common Mistakes (min 3)
 
 ### Highly Recommended:
+
 - [x] How to Apply (steps)
 - [x] Deliverables
 - [x] Tools
@@ -282,6 +318,7 @@ Shows **ALL 12 sections** with:
 - [x] Real Example
 
 ### Optional:
+
 - [ ] Reference link
 - [ ] Example image URL
 - [ ] Special interactive component (ComparisonView, etc.)
@@ -293,6 +330,7 @@ Shows **ALL 12 sections** with:
 ### Status: ✅ COMPLETE (All 12 sections)
 
 #### Structure in content.ts:
+
 ```typescript
 {
   id: 'ux-ui-product-design-intro',
@@ -323,6 +361,7 @@ Shows **ALL 12 sections** with:
 ## 🧪 Testing Checklist
 
 ### Test Preview Modal:
+
 1. [ ] Open modal from lesson card
 2. [ ] Check width (560px desktop, 100vw mobile)
 3. [ ] Verify backdrop blur works
@@ -334,6 +373,7 @@ Shows **ALL 12 sections** with:
 9. [ ] Verify "+X more" appears if > 4 principles
 
 ### Test Full Lesson Page:
+
 1. [ ] Navigate to /lesson/ux-ui-product-design-intro
 2. [ ] Verify all 12 sections render
 3. [ ] Check sidebar TOC (sticky on desktop)
@@ -350,28 +390,31 @@ Shows **ALL 12 sections** with:
 ## 📏 Visual Consistency
 
 ### Spacing (8pt grid):
+
 - Section margin-bottom: `mb-12` (48px)
 - Card padding: `p-6` (24px)
 - Section gap: `space-y-6` (24px)
 - Bullet gap: `space-y-3` (12px)
 
 ### Icon System:
-| Section | Icon | Color |
-|---------|------|-------|
-| Overview/Definition | BookOpen | Indigo |
-| Why it Matters | Lightbulb | Yellow/Orange |
-| Key Principles | ListChecks | Blue |
-| How to Apply | ArrowRight | Green |
-| Common Mistakes | AlertTriangle | Red |
-| Deliverables | FileCheck | Purple |
-| Tools | Wrench | Cyan |
-| AI in Practice | Sparkles | Pink |
-| Validation | CheckCircle2 | Green |
-| Quiz | HelpCircle | Orange |
-| Real Example | Lightbulb | Amber |
-| References | BookOpen | Indigo |
+
+| Section             | Icon          | Color         |
+| ------------------- | ------------- | ------------- |
+| Overview/Definition | BookOpen      | Indigo        |
+| Why it Matters      | Lightbulb     | Yellow/Orange |
+| Key Principles      | ListChecks    | Blue          |
+| How to Apply        | ArrowRight    | Green         |
+| Common Mistakes     | AlertTriangle | Red           |
+| Deliverables        | FileCheck     | Purple        |
+| Tools               | Wrench        | Cyan          |
+| AI in Practice      | Sparkles      | Pink          |
+| Validation          | CheckCircle2  | Green         |
+| Quiz                | HelpCircle    | Orange        |
+| Real Example        | Lightbulb     | Amber         |
+| References          | BookOpen      | Indigo        |
 
 ### Typography:
+
 - Page title: `text-4xl md:text-5xl font-bold`
 - Section title: `text-2xl font-semibold`
 - Subsection: `text-sm font-semibold uppercase`
@@ -383,6 +426,7 @@ Shows **ALL 12 sections** with:
 ## 🚀 Next Steps
 
 ### Phase 1: Complete Core Lessons
+
 - [x] UX vs UI vs Product Design (DONE - all 12 sections)
 - [ ] Usability Basics (missing: howToValidate)
 - [ ] Visual Hierarchy (missing: deliverables, aiInPractice, howToValidate)
@@ -390,6 +434,7 @@ Shows **ALL 12 sections** with:
 - [ ] Design Methodologies (missing: howToValidate)
 
 ### Phase 2: Add Interactive Components
+
 - [x] UserPersonaCard
 - [x] RetroModernComparison
 - [x] MentalModelExample
@@ -398,6 +443,7 @@ Shows **ALL 12 sections** with:
 - [ ] More interactive examples for other lessons
 
 ### Phase 3: Polish
+
 - [ ] Add progress tracking (localStorage)
 - [ ] Add bookmarking
 - [ ] Add estimated read time
@@ -439,7 +485,7 @@ export interface Topic {
   id: string;
   title: { en: string; es: string };
   description: { en: string; es: string };
-  status: 'beginner' | 'intermediate' | 'advanced';
+  status: "beginner" | "intermediate" | "advanced";
   timeEstimate: string;
   reference?: { en: string; es: string };
   referenceLink?: string;
@@ -449,7 +495,7 @@ export interface Topic {
     why: { en: string; es: string };
     keyPrinciples: { en: string[]; es: string[] };
     commonMistakes: { en: string[]; es: string[] };
-    
+
     // RECOMMENDED
     howToApply?: {
       steps: {
@@ -486,7 +532,7 @@ export interface Topic {
       correctIndex: number;
       explanation: { en: string; es: string };
     }[];
-    
+
     // OPTIONAL
     realExample?: {
       title: { en: string; es: string };
@@ -503,18 +549,21 @@ export interface Topic {
 ## ✅ Success Metrics
 
 ### Content Quality:
+
 - **Completeness:** All 12 sections present
 - **Clarity:** Definitions simple, examples concrete
 - **Actionability:** Steps clear, tools specific
 - **Validation:** Methods testable, evidence measurable
 
 ### UX Quality:
+
 - **Preview time:** < 20 seconds to scan
 - **Decision clarity:** User knows if relevant
 - **CTR:** 60%+ open full lesson
 - **Completion rate:** 80%+ mark as complete
 
 ### Technical Quality:
+
 - **Load time:** < 500ms (content.ts is static)
 - **Scroll performance:** 60fps smooth
 - **Animation quality:** Spring physics feels natural

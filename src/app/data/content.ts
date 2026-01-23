@@ -1,5 +1,10 @@
 
 import { advancedResearchLessons } from './advanced-research-lessons';
+import { researchLessons } from './research-lessons';
+import { iaLessons } from './ia-lessons';
+import { uiLessons } from './ui-lessons';
+import { prototypingLessons } from './prototyping-lessons';
+import { productStrategyLessons } from './product-strategy-lessons';
 
 export type Language = 'en' | 'es';
 
@@ -76,7 +81,6 @@ export const tracks: Track[] = [
       es: 'Domina los principios básicos del diseño centrado en el usuario, la investigación y la jerarquía visual.' 
     },
     topics: [
-      ...advancedResearchLessons,
       {
         id: 'ux-ui-product-design-intro',
         title: { en: 'UX vs UI vs Product Design', es: 'UX vs UI vs Diseño de Producto' },
@@ -1084,7 +1088,19 @@ export const tracks: Track[] = [
             ]
           }
         }
-      }
+      },
+      // Beginner: UI fundamentals - wireframes first
+      ...uiLessons.filter(lesson => lesson.id === 'wireframes'),
+      // Beginner: Research basics
+      ...researchLessons,
+      // Beginner: IA fundamentals
+      ...iaLessons,
+      // Beginner/Intermediate: More UI lessons (typography, color)
+      ...uiLessons.filter(lesson => lesson.id !== 'wireframes' && lesson.id !== 'visual-hierarchy'),
+      // Intermediate: Prototyping
+      ...prototypingLessons,
+      // Intermediate: Advanced research (Customer Journey Map only, not Service Blueprint)
+      ...advancedResearchLessons.filter(lesson => lesson.id === 'customer-journey-map')
     ]
   },
   {
@@ -1095,9 +1111,15 @@ export const tracks: Track[] = [
       es: 'Profundiza en sistemas, psicología, estrategia y escalabilidad.' 
     },
     topics: [
-       {
-        id: 'visual-hierarchy',
-        title: { en: 'Visual Hierarchy', es: 'Jerarquía Visual' },
+      // Start with problem definition (Intermediate bridge)
+      ...productStrategyLessons.filter(lesson => lesson.id === 'problem-statements'),
+      // Advanced research: Service Blueprint
+      ...advancedResearchLessons.filter(lesson => lesson.id === 'service-blueprint'),
+      // Advanced: Visual design systems
+      ...uiLessons.filter(lesson => lesson.id === 'visual-hierarchy'),
+      {
+        id: 'atomic-design',
+        title: { en: 'Atomic Design', es: 'Diseño Atómico' },
         description: { en: 'Guiding the user\'s eye through design principles.', es: 'Guiando el ojo del usuario a través de principios de diseño.' },
         status: 'advanced',
         timeEstimate: '2h',

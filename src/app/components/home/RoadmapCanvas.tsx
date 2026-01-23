@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 import { useLanguage } from '../layout/LanguageContext';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
@@ -21,7 +21,7 @@ import {
 } from 'lucide-react';
 import { roadmapData, getContinueLessonId, type RoadmapNode, type NodeStatus, type NodeLevel, type NodeTag } from '../../data/roadmap-data';
 
-export function RoadmapCanvas({ onNavigate }: { onNavigate: (section: string) => void }) {
+export function RoadmapCanvas() {
   const { t } = useLanguage();
   const navigate = useNavigate();
   const [comingSoonNode, setComingSoonNode] = useState<RoadmapNode | null>(null);

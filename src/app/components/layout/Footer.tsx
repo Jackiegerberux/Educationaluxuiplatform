@@ -1,7 +1,6 @@
-
 import React from 'react';
 import { useLanguage } from './LanguageContext';
-import { Linkedin } from 'lucide-react';
+import { Linkedin, BookOpen, GraduationCap } from 'lucide-react';
 
 export function Footer() {
   const { t } = useLanguage();
@@ -9,13 +8,13 @@ export function Footer() {
   return (
     <footer className="border-t border-white/10 bg-black py-12 text-zinc-400">
       <div className="mx-auto max-w-7xl px-4 md:px-6">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           <div>
             <div className="flex items-center gap-2 font-bold text-xl mb-4 text-white">
               <div className="size-6 rounded bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-xs">
                 UX
               </div>
-              DesignMastery
+              AditiDesign
             </div>
             <p className="text-sm leading-relaxed max-w-xs">
               {t({
@@ -23,6 +22,26 @@ export function Footer() {
                 es: 'Una plataforma educativa dedicada a enseñar los principios del diseño de Experiencia de Usuario e Interfaz de Usuario.'
               })}
             </p>
+          </div>
+          
+          <div>
+            <h3 className="font-semibold text-white mb-4">
+              {t({ en: 'Platform', es: 'Plataforma' })}
+            </h3>
+            <ul className="space-y-2 text-sm">
+              <li>
+                <a href="/#paths" className="hover:text-indigo-400 transition-colors flex items-center gap-2">
+                  <BookOpen className="size-3" />
+                  {t({ en: 'Learning Paths', es: 'Rutas de Aprendizaje' })}
+                </a>
+              </li>
+              <li>
+                <a href="/#pedagogy" className="hover:text-indigo-400 transition-colors flex items-center gap-2">
+                  <GraduationCap className="size-3" />
+                  {t({ en: 'Pedagogical Framework', es: 'Marco Pedagógico' })}
+                </a>
+              </li>
+            </ul>
           </div>
           
           <div>

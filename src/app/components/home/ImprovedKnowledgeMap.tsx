@@ -1,5 +1,4 @@
 import React, { useState, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useLanguage } from '../layout/LanguageContext';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
@@ -362,7 +361,6 @@ interface KnowledgeMapProps {
 
 export function ImprovedKnowledgeMap({ onNavigate }: KnowledgeMapProps) {
   const { t } = useLanguage();
-  const navigate = useNavigate();
   const [selectedCluster, setSelectedCluster] = useState<string | null>(null);
   const [hoveredCluster, setHoveredCluster] = useState<string | null>(null);
   const [zoom, setZoom] = useState(1);
@@ -423,13 +421,13 @@ export function ImprovedKnowledgeMap({ onNavigate }: KnowledgeMapProps) {
   };
 
   const handleLessonClick = (slug: string) => {
-    navigate(`/lesson/${slug}`);
+    onNavigate(`/lesson/${slug}`);
     setSelectedCluster(null);
   };
 
   const handleOpenMainLesson = () => {
     if (selectedClusterData?.mainLessonSlug) {
-      navigate(`/lesson/${selectedClusterData.mainLessonSlug}`);
+      onNavigate(`/lesson/${selectedClusterData.mainLessonSlug}`);
       setSelectedCluster(null);
     }
   };
