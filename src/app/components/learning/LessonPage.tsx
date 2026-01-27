@@ -29,6 +29,8 @@ import { SitemapExample } from './examples/SitemapExample';
 import { MethodologiesDeepDive } from './examples/MethodologiesDeepDive';
 import { InteractiveJourneyMap } from '../lessons/InteractiveJourneyMap';
 import { BlueprintSimulator } from '../lessons/BlueprintSimulator';
+import { AtomicVisualGuideSection } from './examples/AtomicVisualGuideSection';
+import { VisualHierarchyExamples } from '../lessons/visual-hierarchy/VisualHierarchyExamples';
 import { LessonLayout } from './LessonLayout';
 
 function QuizSection({ quiz, language }: { quiz: any[], language: any }) {
@@ -141,6 +143,7 @@ export function LessonPage() {
     { id: 'overview', label: t({ en: 'Overview', es: 'Resumen' }), icon: BookOpen },
     { id: 'why-it-matters', label: t({ en: 'Why it matters', es: 'Por qué importa' }), icon: Lightbulb },
     { id: 'key-principles', label: t({ en: 'Key Principles', es: 'Principios Clave' }), icon: ListChecks },
+    ...(topic.id === 'atomic-design' ? [{ id: 'visual-guide', label: t({ en: 'Visual Guide', es: 'Guía Visual' }), icon: Sparkles }] : []),
     { id: 'how-to-apply', label: t({ en: 'How to Apply', es: 'Cómo Aplicar' }), icon: ArrowRight },
     { id: 'common-mistakes', label: t({ en: 'Common Mistakes', es: 'Errores Comunes' }), icon: AlertTriangle },
     ...(topic.content.deliverables ? [{ id: 'deliverables', label: t({ en: 'Deliverables', es: 'Entregables' }), icon: FileCheck }] : []),
@@ -245,6 +248,13 @@ export function LessonPage() {
             </ul>
           </div>
         </section>
+
+        {/* Atomic Design Visual Guide - Special Interactive Section */}
+        {topic.id === 'atomic-design' && (
+          <div className="mb-12">
+            <AtomicVisualGuideSection />
+          </div>
+        )}
 
         {/* How to Apply */}
         {topic.content.howToApply && (
@@ -462,12 +472,13 @@ export function LessonPage() {
 
             {/* Special Examples */}
             {topic.id === 'user-personas' && <UserPersonaCard />}
-            {topic.id === 'visual-hierarchy' && <RetroModernComparison />}
+            {topic.id === 'visual-hierarchy' && <VisualHierarchyExamples />}
             {topic.id === 'ux-psychology' && <MentalModelExample />}
             {topic.id === 'information-architecture' && <SitemapExample />}
             {topic.id === 'design-methodologies' && <MethodologiesDeepDive />}
             {topic.id === 'customer-journey-map' && <InteractiveJourneyMap />}
             {topic.id === 'service-blueprint' && <BlueprintSimulator />}
+            {topic.id === 'atomic-visual-guide' && <AtomicVisualGuideSection />}
           </section>
         )}
 

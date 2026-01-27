@@ -1120,59 +1120,6 @@ export const tracks: Track[] = [
       {
         id: 'atomic-design',
         title: { en: 'Atomic Design', es: 'Diseño Atómico' },
-        description: { en: 'Guiding the user\'s eye through design principles.', es: 'Guiando el ojo del usuario a través de principios de diseño.' },
-        status: 'advanced',
-        timeEstimate: '2h',
-        reference: { en: 'Universal Principles of Design - William Lidwell', es: 'Universal Principles of Design - William Lidwell' },
-        referenceLink: 'https://www.interaction-design.org/literature/topics/visual-hierarchy',
-        content: {
-          definition: {
-            en: 'Visual hierarchy controls the delivery of information. It arranges elements to show their order of importance.',
-            es: 'La jerarquía visual controla la entrega de información. Organiza los elementos para mostrar su orden de importancia.'
-          },
-          why: {
-            en: 'It reduces cognitive load and helps users process information efficiently.',
-            es: 'Reduce la carga cognitiva y ayuda a los usuarios a procesar la información de manera eficiente.'
-          },
-          keyPrinciples: {
-            en: ['Size and Scale.', 'Color and Contrast.', 'Typographic Hierarchy.', 'Whitespace and Proximity.'],
-            es: ['Tamaño y Escala.', 'Color y Contraste.', 'Jerarquía Tipográfica.', 'Espacio en blanco y Proximidad.']
-          },
-          commonMistakes: {
-            en: ['Making everything bold or large ("shouting").', 'Lack of breathing room (whitespace).', 'Inconsistent alignment.'],
-            es: ['Hacer todo en negrita o grande ("gritar").', 'Falta de espacio para respirar (espacio en blanco).', 'Alineación inconsistente.']
-          },
-          howToApply: {
-            steps: [
-              {
-                name: { en: 'Rank Information', es: 'Clasificar Información' },
-                description: { en: 'List elements by importance (1. Title, 2. CTA, 3. Image...).', es: 'Lista elementos por importancia (1. Título, 2. CTA, 3. Imagen...).' }
-              },
-              {
-                name: { en: 'Establish Grid', es: 'Establecer Cuadrícula' },
-                description: { en: 'Use a grid to align elements and create structure.', es: 'Usa una cuadrícula para alinear elementos y crear estructura.' }
-              },
-              {
-                name: { en: 'Squint Test', es: 'Prueba de Entrecerrar los Ojos' },
-                description: { en: 'Squint at your screen. The most important elements should still be visible.', es: 'Entrecierra los ojos ante tu pantalla. Los elementos más importantes aún deberían ser visibles.' }
-              }
-            ]
-          },
-          aiInPractice: {
-            description: { en: 'Use vision-enabled AI to analyze screenshots of your design and objectively predict what users will see first.', es: 'Usa IA con capacidad de visión para analizar capturas de pantalla de tu diseño y predecir objetivamente qué verán primero los usuarios.' },
-            prompts: [
-              {
-                tool: 'ChatGPT (Vision)',
-                context: { en: 'Analyzing a screenshot', es: 'Analizando una captura de pantalla' },
-                prompt: { en: 'Look at this UI screenshot. List the top 3 elements that draw your attention immediately. Does this align with the goal of "Signing Up"?', es: 'Mira esta captura de pantalla de UI. Enumera los 3 elementos principales que llaman tu atención de inmediato. ¿Se alinea esto con el objetivo de "Registrarse"?' }
-              }
-            ]
-          }
-        }
-      },
-      {
-        id: 'atomic-design',
-        title: { en: 'Atomic Design', es: 'Diseño Atómico' },
         description: { en: 'Methodology for creating scalable design systems.', es: 'Metodología para crear sistemas de diseño escalables.' },
         status: 'advanced',
         timeEstimate: '2h 15m',
