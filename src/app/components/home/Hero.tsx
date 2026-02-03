@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useLanguage } from '../layout/LanguageContext';
 import { Button } from '../ui/button';
@@ -65,7 +64,7 @@ export function Hero({ onStart }: HeroProps) {
             <Button 
               size="lg" 
               variant="outline" 
-              className="border-zinc-700 hover:bg-zinc-800 text-white hover:text-white text-base h-12 px-8"
+              className="border-zinc-600 bg-zinc-900/50 hover:bg-zinc-800 hover:border-zinc-500 text-white hover:text-white text-base h-12 px-8"
               onClick={() => document.getElementById('preview')?.scrollIntoView({ behavior: 'smooth' })}
             >
               <Layers className="mr-2 size-5" />

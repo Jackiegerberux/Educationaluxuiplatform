@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router';
 import { Topic, tracks } from '../../data/content';
 import { useLanguage } from '../layout/LanguageContext';
+import { useProgress } from '@/app/contexts/ProgressContext';
 import { motion } from 'motion/react';
 import { 
   ArrowLeft, 
@@ -111,7 +112,15 @@ export function LessonPage() {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
   const { t } = useLanguage();
+  const { markAsComplete, isLessonComplete } = useProgress();
   const [isCompleted, setIsCompleted] = useState(false);
+
+  // Reset completion state when lesson changes and check if already completed
+  useEffect(() => {
+    const alreadyCompleted = isLessonComplete(slug || '');
+    setIsCompleted(alreadyCompleted);
+    window.scrollTo(0, 0);
+  }, [slug, isLessonComplete]);
 
   // Find the current topic
   const allTopics: Topic[] = [];
@@ -157,6 +166,7 @@ export function LessonPage() {
 
   const handleComplete = () => {
     setIsCompleted(true);
+    markAsComplete(slug);
     // In a real app, this would save to localStorage or a backend
   };
 
