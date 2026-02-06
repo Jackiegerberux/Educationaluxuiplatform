@@ -20,19 +20,32 @@ import {
   FileCheck, 
   HelpCircle,
   X,
-  ChevronRight
+  ChevronRight,
+  Image,
+  Code
 } from 'lucide-react';
 import { Button } from '../ui/button';
 import { UserPersonaCard } from './examples/UserPersonaCard';
+import { EmpathyMapExample } from './examples/EmpathyMapExample';
+import { RoleComparisonInteractive } from './examples/RoleComparisonInteractive';
 import { RetroModernComparison } from './examples/RetroModernComparison';
+import { ModalEvolutionComparison } from './examples/ModalEvolutionComparison';
 import { MentalModelExample } from './examples/MentalModelExample';
 import { SitemapExample } from './examples/SitemapExample';
+import { UserFlowInteractive } from './examples/UserFlowInteractive';
 import { MethodologiesDeepDive } from './examples/MethodologiesDeepDive';
+import { WireframeFidelityComparison } from './examples/WireframeFidelityComparison';
+import { UXResearchDataExample } from './examples/UXResearchDataExample';
+import { CompetitiveBenchmarkExample } from './examples/CompetitiveBenchmarkExample';
 import { InteractiveJourneyMap } from '../lessons/InteractiveJourneyMap';
 import { BlueprintSimulator } from '../lessons/BlueprintSimulator';
 import { AtomicVisualGuideSection } from './examples/AtomicVisualGuideSection';
 import { VisualHierarchyExamples } from '../lessons/visual-hierarchy/VisualHierarchyExamples';
 import { LessonLayout } from './LessonLayout';
+import { VisualExamplesSection, CodeExamplesSection, ToolsSection } from './AccessibilityExtensions';
+import { AccessibilityInteractiveExamples } from '../lessons/accessibility/AccessibilityInteractiveExamples';
+import LeanUXHypothesisBuilder from '../lessons/LeanUXHypothesisBuilder';
+import MVPScopeSlider from '../lessons/MVPScopeSlider';
 
 function QuizSection({ quiz, language }: { quiz: any[], language: any }) {
   const [selectedAnswers, setSelectedAnswers] = useState<{[key: number]: number}>({});
@@ -154,6 +167,9 @@ export function LessonPage() {
     { id: 'key-principles', label: t({ en: 'Key Principles', es: 'Principios Clave' }), icon: ListChecks },
     ...(topic.id === 'atomic-design' ? [{ id: 'visual-guide', label: t({ en: 'Visual Guide', es: 'Guía Visual' }), icon: Sparkles }] : []),
     { id: 'how-to-apply', label: t({ en: 'How to Apply', es: 'Cómo Aplicar' }), icon: ArrowRight },
+    ...(topic.content.visualExamples ? [{ id: 'visual-examples', label: t({ en: 'Visual Examples', es: 'Ejemplos Visuales' }), icon: Image }] : []),
+    ...(topic.content.codeExamples ? [{ id: 'code-examples', label: t({ en: 'Code Examples', es: 'Ejemplos de Código' }), icon: Code }] : []),
+    ...(topic.content.tools ? [{ id: 'accessibility-tools', label: t({ en: 'A11y Tools', es: 'Herramientas A11y' }), icon: Wrench }] : []),
     { id: 'common-mistakes', label: t({ en: 'Common Mistakes', es: 'Errores Comunes' }), icon: AlertTriangle },
     ...(topic.content.deliverables ? [{ id: 'deliverables', label: t({ en: 'Deliverables', es: 'Entregables' }), icon: FileCheck }] : []),
     ...(topic.content.practicalTools ? [{ id: 'tools', label: t({ en: 'Tools', es: 'Herramientas' }), icon: Wrench }] : []),
@@ -290,6 +306,24 @@ export function LessonPage() {
             </div>
           </section>
         )}
+
+        {/* Interactive Accessibility Examples (only for accessibility lesson) */}
+        {topic.id === 'accessibility' && topic.content.visualExamples && (
+          <section id="visual-examples" className="mb-12 scroll-mt-24">
+            <AccessibilityInteractiveExamples />
+          </section>
+        )}
+
+        {/* Visual Examples (for other lessons) */}
+        {topic.id !== 'accessibility' && topic.content.visualExamples && (
+          <VisualExamplesSection visualExamples={topic.content.visualExamples} t={t} />
+        )}
+
+        {/* Code Examples (Accessibility) */}
+        <CodeExamplesSection codeExamples={topic.content.codeExamples} t={t} />
+
+        {/* Tools (Accessibility) */}
+        <ToolsSection tools={topic.content.tools} t={t} />
 
         {/* Common Mistakes */}
         {topic.content.commonMistakes && (
@@ -481,14 +515,33 @@ export function LessonPage() {
             </div>
 
             {/* Special Examples */}
-            {topic.id === 'user-personas' && <UserPersonaCard />}
+            {topic.id === 'user-personas' && (
+              <>
+                <UserPersonaCard />
+                <EmpathyMapExample />
+              </>
+            )}
+            {topic.id === 'ux-ui-product-design-intro' && <RoleComparisonInteractive />}
+            {topic.id === 'usability-basics' && <ModalEvolutionComparison />}
             {topic.id === 'visual-hierarchy' && <VisualHierarchyExamples />}
             {topic.id === 'ux-psychology' && <MentalModelExample />}
             {topic.id === 'information-architecture' && <SitemapExample />}
+            {topic.id === 'ia-fundamentals' && <SitemapExample />}
             {topic.id === 'design-methodologies' && <MethodologiesDeepDive />}
             {topic.id === 'customer-journey-map' && <InteractiveJourneyMap />}
             {topic.id === 'service-blueprint' && <BlueprintSimulator />}
             {topic.id === 'atomic-visual-guide' && <AtomicVisualGuideSection />}
+            {topic.id === 'user-flows' && <UserFlowInteractive />}
+            {topic.id === 'wireframing-prototyping' && <WireframeFidelityComparison />}
+            {topic.id === 'ux-research' && <UXResearchDataExample />}
+            {topic.id === 'competitive-analysis' && <CompetitiveBenchmarkExample />}
+            {topic.id === 'lean-ux' && <LeanUXHypothesisBuilder />}
+            {topic.id === 'mvp-scope' && <MVPScopeSlider />}
+            {topic.id === 'lean-ux' && (
+              <div className="mt-12">
+                <MVPScopeSlider />
+              </div>
+            )}
           </section>
         )}
 

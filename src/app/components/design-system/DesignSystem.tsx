@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLanguage } from '../layout/LanguageContext';
+import { useLocation } from 'react-router';
 import { 
   Palette, 
   Type, 
@@ -28,6 +29,20 @@ type Section = 'overview' | 'guidelines' | 'index' | 'wireframe-kit' | 'tokens' 
 export function DesignSystem() {
   const { t } = useLanguage();
   const [activeSection, setActiveSection] = useState<Section>('overview');
+  const location = useLocation();
+
+  useEffect(() => {
+    const hash = location.hash.replace('#', '');
+    if (hash && sections.some(section => section.id === hash)) {
+      setActiveSection(hash as Section);
+    }
+    
+    // Check for state-based navigation
+    const state = location.state as { scrollTo?: string } | null;
+    if (state?.scrollTo && sections.some(section => section.id === state.scrollTo)) {
+      setActiveSection(state.scrollTo as Section);
+    }
+  }, [location]);
 
   const sections = [
     {

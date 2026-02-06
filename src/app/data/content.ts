@@ -721,6 +721,17 @@ export const tracks: Track[] = [
               en: '90% of users complete checkout in under 2 minutes with zero critical errors. Drop-off occurs at payment screen (26%) due to missing "guest checkout" option.',
               es: 'El 90% de los usuarios completa el checkout en menos de 2 minutos sin errores críticos. El abandono ocurre en la pantalla de pago (26%) debido a la falta de opción de "checkout como invitado".'
             }
+          },
+          realExample: {
+            title: { 
+              en: 'Understanding Flow Types and Symbols', 
+              es: 'Entendiendo Tipos de Flujo y Símbolos' 
+            },
+            description: {
+              en: 'User flows use standard symbols: ovals for start/end points, rectangles for screens, diamonds for decisions, and hexagons for user actions. Task flows show a single linear path (happy path only), while user flows include decision points and multiple branches. Tools like Whimsical, FigJam, and Miro help create professional flowcharts.',
+              es: 'Los flujos de usuario usan símbolos estándar: óvalos para puntos de inicio/fin, rectángulos para pantallas, rombos para decisiones y hexágonos para acciones de usuario. Los task flows muestran un camino lineal único (solo camino feliz), mientras que los user flows incluyen puntos de decisión y múltiples ramificaciones. Herramientas como Whimsical, FigJam y Miro ayudan a crear diagramas de flujo profesionales.'
+            },
+            company: 'Standard UX Practice'
           }
         }
       },
@@ -800,6 +811,17 @@ export const tracks: Track[] = [
               en: 'Iteration 2 of dashboard wireframe scores 8/10 on heuristic evaluation (up from 5/10). Users complete "add new task" in average 8 seconds with 100% success rate.',
               es: 'La iteración 2 del wireframe del dashboard puntúa 8/10 en evaluación heurística (subió de 5/10). Los usuarios completan "agregar nueva tarea" en promedio 8 segundos con 100% de tasa de éxito.'
             }
+          },
+          realExample: {
+            title: { 
+              en: 'Understanding Fidelity Levels', 
+              es: 'Entendiendo Niveles de Fidelidad' 
+            },
+            description: {
+              en: 'Wireframing progresses through three fidelity levels: Paper Sketches (5-10 min, rapid ideation), Digital Wireframes (30-60 min, structure & layout), and Interactive Prototypes (2-4 hours, usability testing). Each level serves a specific purpose and should match your current design phase. Start low-fidelity to explore concepts quickly, then increase fidelity as you validate and refine.',
+              es: 'El wireframing progresa a través de tres niveles de fidelidad: Bocetos en Papel (5-10 min, ideación rápida), Wireframes Digitales (30-60 min, estructura y diseño), y Prototipos Interactivos (2-4 horas, pruebas de usabilidad). Cada nivel sirve un propósito específico y debe coincidir con tu fase actual de diseño. Comienza con baja fidelidad para explorar conceptos rápidamente, luego aumenta la fidelidad a medida que validas y refinas.'
+            },
+            company: 'Design Best Practice'
           }
         }
       },
@@ -857,6 +879,44 @@ export const tracks: Track[] = [
                 prompt: { en: 'Create a user persona for a fitness app. Demographics: Female, 28, Urban. Key goal: Strength training but has limited time. Include: Bio, Frustrations, and 3 specific goals.', es: 'Crea una persona de usuario para una app de fitness. Demografía: Mujer, 28, Urbana. Objetivo clave: Entrenamiento de fuerza pero tiene tiempo limitado. Incluye: Biografía, Frustraciones y 3 objetivos específicos.' }
               }
             ]
+          },
+          howToValidate: {
+            what: { 
+              en: 'Validate that your proto-persona accurately represents real user behaviors, goals, and pain points through research.',
+              es: 'Valida que tu proto-persona represente con precisión comportamientos, objetivos y puntos de dolor de usuarios reales a través de investigación.'
+            },
+            methods: { 
+              en: [
+                'User interviews (5-7 users) to verify assumptions',
+                'Empathy mapping exercises with real user data',
+                'Surveys to quantify how common the persona\'s traits are',
+                'Usability testing to observe if design decisions resonate'
+              ],
+              es: [
+                'Entrevistas con usuarios (5-7 usuarios) para verificar suposiciones',
+                'Ejercicios de mapeo de empatía con datos reales de usuarios',
+                'Encuestas para cuantificar qué tan comunes son los rasgos de la persona',
+                'Pruebas de usabilidad para observar si las decisiones de diseño resuenan'
+              ]
+            },
+            tools: { 
+              en: ['Empathy Map Canvas', 'User interview scripts', 'UserTesting.com', 'Typeform/Google Forms', 'Dovetail (for research synthesis)'],
+              es: ['Canvas de Mapa de Empatía', 'Scripts de entrevistas', 'UserTesting.com', 'Typeform/Google Forms', 'Dovetail (para síntesis de investigación)']
+            },
+            evidenceExample: { 
+              en: 'After 6 user interviews, we confirmed that "Mary Taylor" accurately represents 4 out of 6 users. The empathy map revealed decision paralysis as the #1 barrier (mentioned by 5/6 users), validating our persona\'s key frustration. We pivoted the app to focus on curated recommendations instead of endless browsing.',
+              es: 'Después de 6 entrevistas con usuarios, confirmamos que "Mary Taylor" representa con precisión a 4 de 6 usuarios. El mapa de empatía reveló la parálisis de decisión como la barrera #1 (mencionada por 5/6 usuarios), validando la frustración clave de nuestra persona. Pivoteamos la app para enfocarnos en recomendaciones curadas en lugar de navegación infinita.'
+            }
+          },
+          realExample: {
+            title: { 
+              en: 'User Persona Examples & Empathy Map', 
+              es: 'Ejemplos de User Persona y Mapa de Empatía' 
+            },
+            description: { 
+              en: 'These two personas represent different user types for the same home design platform. The empathy map below helps validate the proto-persona by exploring what Mary thinks, feels, sees, hears, says, and does—revealing insights that guide product decisions.',
+              es: 'Estas dos personas representan diferentes tipos de usuarios para la misma plataforma de diseño de hogar. El mapa de empatía abajo ayuda a validar la proto-persona explorando qué piensa, siente, ve, escucha, dice y hace Mary—revelando insights que guían decisiones de producto.'
+            }
           }
         }
       },
@@ -914,6 +974,160 @@ export const tracks: Track[] = [
                 prompt: { en: 'I have pasted notes from 5 user interviews below. Identify the top 3 shared pain points and support each with a direct quote.', es: 'He pegado notas de 5 entrevistas de usuarios a continuación. Identifica los 3 principales puntos de dolor compartidos y respalda cada uno con una cita directa.' }
               }
             ]
+          },
+          realExample: {
+            title: { 
+              en: 'E-commerce Checkout Optimization Study', 
+              es: 'Estudio de Optimización de Checkout E-commerce' 
+            },
+            description: {
+              en: 'A comprehensive UX research project combining 4 methods to triangulate findings: User Interviews (8 participants, qualitative WHY), Surveys (342 responses, quantitative HOW MANY), Analytics (30 days, behavioral WHAT), and Usability Testing (6 participants, observational HOW). All methods revealed the same core issues: shipping costs appearing too late (64% complaint rate, 43% drop-off), forced account creation creating friction (51% complaint rate), and overly long payment forms (38% complaint rate). The triangulated data provided high confidence to recommend 3 specific changes.',
+              es: 'Un proyecto integral de investigación UX combinando 4 métodos para triangular hallazgos: Entrevistas (8 participantes, POR QUÉ cualitativo), Encuestas (342 respuestas, CUÁNTOS cuantitativo), Analíticas (30 días, QUÉ comportamental), y Pruebas de Usabilidad (6 participantes, CÓMO observacional). Todos los métodos revelaron los mismos problemas centrales: costos de envío apareciendo muy tarde (64% tasa de queja, 43% abandono), creación forzada de cuenta creando fricción (51% tasa de queja), y formularios de pago muy largos (38% tasa de queja). Los datos triangulados proporcionaron alta confianza para recomendar 3 cambios específicos.'
+            },
+            company: 'UX Research Best Practice'
+          }
+        }
+      },
+      {
+        id: 'competitive-analysis',
+        title: { en: 'Competitive Analysis & Benchmarking', es: 'Análisis Competitivo y Benchmarking' },
+        description: { en: 'Understanding the competitive landscape to identify opportunities and differentiation strategies.', es: 'Entendiendo el panorama competitivo para identificar oportunidades y estrategias de diferenciación.' },
+        status: 'intermediate',
+        timeEstimate: '2h',
+        reference: { en: 'Competitive Strategy - Michael Porter', es: 'Competitive Strategy - Michael Porter' },
+        referenceLink: 'https://www.nngroup.com/articles/competitive-analysis/',
+        content: {
+          definition: {
+            en: 'Competitive analysis is the systematic evaluation of competitors\' products, strategies, strengths, and weaknesses to inform your own product decisions and identify market opportunities.',
+            es: 'El análisis competitivo es la evaluación sistemática de los productos, estrategias, fortalezas y debilidades de los competidores para informar tus propias decisiones de producto e identificar oportunidades de mercado.'
+          },
+          why: {
+            en: 'It prevents you from building redundant features, reveals market gaps where you can differentiate, and helps you understand what users expect as table stakes vs. delighters.',
+            es: 'Evita que construyas características redundantes, revela brechas de mercado donde puedes diferenciarte y te ayuda a entender qué esperan los usuarios como requisitos mínimos vs. diferenciadores.'
+          },
+          keyPrinciples: {
+            en: [
+              'Analyze both direct competitors (same solution) and indirect competitors (different solution, same job-to-be-done).',
+              'Focus on user feedback, not just feature lists—understand WHY features exist.',
+              'Benchmark quantitatively: pricing, market share, user ratings, feature coverage.',
+              'Identify patterns in user complaints—these are your opportunities.',
+              'Test competitor products hands-on, don\'t just read marketing materials.'
+            ],
+            es: [
+              'Analiza competidores directos (misma solución) e indirectos (solución diferente, mismo trabajo por hacer).',
+              'Enfócate en feedback de usuario, no solo listas de características—entiende POR QUÉ existen las características.',
+              'Haz benchmarking cuantitativo: precios, cuota de mercado, calificaciones de usuario, cobertura de características.',
+              'Identifica patrones en quejas de usuarios—estas son tus oportunidades.',
+              'Prueba productos de la competencia de primera mano, no solo leas materiales de marketing.'
+            ]
+          },
+          commonMistakes: {
+            en: [
+              'Only looking at direct competitors, ignoring adjacent solutions.',
+              'Copying features without understanding user context or why they exist.',
+              'Not testing competitor products hands-on—relying on screenshots.',
+              'Ignoring user reviews and sentiment analysis.',
+              'Building a "feature parity" product instead of a differentiated one.'
+            ],
+            es: [
+              'Solo mirar competidores directos, ignorando soluciones adyacentes.',
+              'Copiar características sin entender el contexto del usuario o por qué existen.',
+              'No probar productos de la competencia de primera mano—confiando en capturas de pantalla.',
+              'Ignorar reseñas de usuarios y análisis de sentimiento.',
+              'Construir un producto de "paridad de características" en lugar de uno diferenciado.'
+            ]
+          },
+          howToApply: {
+            steps: [
+              {
+                name: { en: 'Identify Competitors', es: 'Identificar Competidores' },
+                description: { en: 'List 5-10 direct and indirect competitors. Include both established players and emerging startups.', es: 'Lista 5-10 competidores directos e indirectos. Incluye tanto jugadores establecidos como startups emergentes.' }
+              },
+              {
+                name: { en: 'Create Comparison Matrix', es: 'Crear Matriz de Comparación' },
+                description: { en: 'Build a spreadsheet comparing: features, pricing, target audience, UX strengths/weaknesses, market positioning.', es: 'Construye una hoja de cálculo comparando: características, precios, audiencia objetivo, fortalezas/debilidades UX, posicionamiento de mercado.' }
+              },
+              {
+                name: { en: 'Hands-on Testing', es: 'Pruebas Prácticas' },
+                description: { en: 'Sign up for free trials. Complete core workflows. Document friction points and delightful moments.', es: 'Regístrate para pruebas gratuitas. Completa flujos de trabajo principales. Documenta puntos de fricción y momentos deliciosos.' }
+              },
+              {
+                name: { en: 'User Sentiment Analysis', es: 'Análisis de Sentimiento de Usuario' },
+                description: { en: 'Read 20-50 user reviews per competitor on G2, Capterra, App Store. Categorize praise and complaints into themes.', es: 'Lee 20-50 reseñas de usuario por competidor en G2, Capterra, App Store. Categoriza elogios y quejas en temas.' }
+              },
+              {
+                name: { en: 'Identify Opportunities', es: 'Identificar Oportunidades' },
+                description: { en: 'Look for patterns: What do all competitors lack? What do users consistently complain about? Where can you differentiate?', es: 'Busca patrones: ¿Qué carecen todos los competidores? ¿De qué se quejan consistentemente los usuarios? ¿Dónde puedes diferenciarte?' }
+              }
+            ]
+          },
+          aiInPractice: {
+            description: { en: 'AI can dramatically speed up competitor research, review analysis, and opportunity identification.', es: 'La IA puede acelerar drásticamente la investigación de competidores, análisis de reseñas e identificación de oportunidades.' },
+            prompts: [
+              {
+                tool: 'Perplexity',
+                context: { en: 'Finding competitors', es: 'Encontrando competidores' },
+                prompt: { en: 'List 10 direct and indirect competitors for [product description]. For each, provide: URL, target audience, key differentiator, and pricing model.', es: 'Lista 10 competidores directos e indirectos para [descripción del producto]. Para cada uno, proporciona: URL, audiencia objetivo, diferenciador clave y modelo de precios.' }
+              },
+              {
+                tool: 'ChatGPT',
+                context: { en: 'Analyzing user reviews', es: 'Analizando reseñas de usuarios' },
+                prompt: { en: 'Here are 20 App Store reviews for [competitor name] [paste reviews]. Categorize complaints and praise into themes. What do users consistently wish existed?', es: 'Aquí hay 20 reseñas de App Store para [nombre del competidor] [pegar reseñas]. Categoriza quejas y elogios en temas. ¿Qué desean consistentemente los usuarios que existiera?' }
+              }
+            ]
+          },
+          howToValidate: {
+            what: { 
+              en: 'Validate that your competitive analysis accurately represents the market and that identified opportunities are real gaps, not just wishful thinking.',
+              es: 'Valida que tu análisis competitivo represente con precisión el mercado y que las oportunidades identificadas sean brechas reales, no solo ilusiones.'
+            },
+            methods: { 
+              en: [
+                'Cross-reference findings with multiple data sources (reviews, pricing pages, hands-on testing)',
+                'Interview 5-10 users who currently use competitor products',
+                'Check if "gaps" are actually intentional design decisions',
+                'Validate market size and willingness-to-pay for your differentiation'
+              ],
+              es: [
+                'Cruza hallazgos con múltiples fuentes de datos (reseñas, páginas de precios, pruebas prácticas)',
+                'Entrevista 5-10 usuarios que actualmente usan productos de la competencia',
+                'Verifica si las "brechas" son en realidad decisiones de diseño intencionales',
+                'Valida el tamaño del mercado y disposición a pagar por tu diferenciación'
+              ]
+            },
+            tools: { 
+              en: ['SimilarWeb', 'G2/Capterra reviews', 'App Store/Play Store', 'User interviews', 'Pricing comparison sheets'],
+              es: ['SimilarWeb', 'Reseñas G2/Capterra', 'App Store/Play Store', 'Entrevistas de usuario', 'Hojas de comparación de precios']
+            },
+            evidenceExample: { 
+              en: 'Competitive analysis of 5 PM tools revealed native time tracking is absent in 60% of market leaders (Notion, Asana, Trello). User review analysis showed 38% of Asana users specifically request this feature. User interviews with 8 agency owners confirmed they use 2 separate tools (PM + time tracking), validating the opportunity.',
+              es: 'El análisis competitivo de 5 herramientas PM reveló que el seguimiento de tiempo nativo está ausente en el 60% de los líderes del mercado (Notion, Asana, Trello). El análisis de reseñas de usuarios mostró que el 38% de los usuarios de Asana solicitan específicamente esta característica. Las entrevistas de usuario con 8 dueños de agencias confirmaron que usan 2 herramientas separadas (PM + seguimiento de tiempo), validando la oportunidad.'
+            }
+          },
+          practicalTools: {
+            design: { 
+              en: ['Figma/Sketch (for UI screenshots)', 'Notion/Excel (comparison matrices)', 'Miro (positioning maps)'],
+              es: ['Figma/Sketch (para capturas de UI)', 'Notion/Excel (matrices de comparación)', 'Miro (mapas de posicionamiento)']
+            },
+            research: { 
+              en: ['G2', 'Capterra', 'TrustRadius', 'App Store/Play Store reviews', 'SimilarWeb', 'Product Hunt'],
+              es: ['G2', 'Capterra', 'TrustRadius', 'Reseñas App Store/Play Store', 'SimilarWeb', 'Product Hunt']
+            },
+            handoff: { 
+              en: [], 
+              es: [] 
+            }
+          },
+          realExample: {
+            title: { 
+              en: 'PM Tools Benchmark: Finding the Time Tracking Gap', 
+              es: 'Benchmark de Herramientas PM: Encontrando la Brecha de Seguimiento de Tiempo' 
+            },
+            description: {
+              en: 'A comprehensive competitive benchmark of 5 leading project management tools (Notion, Asana, Monday, Trello, ClickUp) revealed a significant market opportunity: native time tracking. The analysis showed that 60% of market leaders lack this feature despite 38% of users requesting it in reviews. By analyzing market share, pricing, user sentiment, and feature matrices, a clear differentiation strategy emerged: enter at $8-15/user (below Asana\'s $24.99) with native time tracking as the hero feature, targeting small-medium teams who currently juggle separate PM and time tracking tools.',
+              es: 'Un benchmark competitivo completo de 5 herramientas de gestión de proyectos líderes (Notion, Asana, Monday, Trello, ClickUp) reveló una oportunidad de mercado significativa: seguimiento de tiempo nativo. El análisis mostró que el 60% de los líderes del mercado carecen de esta característica a pesar de que el 38% de los usuarios la solicitan en reseñas. Al analizar cuota de mercado, precios, sentimiento de usuario y matrices de características, surgió una estrategia de diferenciación clara: entrar a $8-15/usuario (por debajo de los $24.99 de Asana) con seguimiento de tiempo nativo como característica héroe, apuntando a equipos pequeños-medianos que actualmente hacen malabarismos con herramientas PM y de seguimiento de tiempo separadas.'
+            },
+            company: 'Product Strategy Best Practice'
           }
         }
       },
@@ -971,6 +1185,61 @@ export const tracks: Track[] = [
                 prompt: { en: 'Our goal is to increase newsletter signups by 20%. Generate 5 Lean UX hypotheses for how we might achieve this on our blog page.', es: 'Nuestro objetivo es aumentar las suscripciones al boletín en un 20%. Genera 5 hipótesis de Lean UX sobre cómo podríamos lograr esto en nuestra página de blog.' }
               }
             ]
+          },
+          howToValidate: {
+            what: { 
+              en: 'Validate that your hypothesis is testable, your MVP is truly minimal, and your metrics accurately measure the desired outcome.',
+              es: 'Valida que tu hipótesis sea comprobable, tu MVP sea verdaderamente mínimo y tus métricas midan con precisión el resultado deseado.'
+            },
+            methods: { 
+              en: [
+                'Define success metrics before building (e.g., "20% increase in signups")',
+                'Test MVP with real users (minimum 30-50 interactions for statistical significance)',
+                'Use A/B testing to compare hypothesis vs. control',
+                'Set a decision threshold: at what point do you pivot vs. persevere?',
+                'Validate that you\'re measuring outcomes, not just outputs (signups, not button clicks)'
+              ],
+              es: [
+                'Define métricas de éxito antes de construir (ej. "20% aumento en registros")',
+                'Prueba MVP con usuarios reales (mínimo 30-50 interacciones para significancia estadística)',
+                'Usa pruebas A/B para comparar hipótesis vs. control',
+                'Establece un umbral de decisión: ¿en qué punto pivotas vs. perseveras?',
+                'Valida que estés midiendo resultados, no solo salidas (registros, no clics en botones)'
+              ]
+            },
+            tools: { 
+              en: ['Google Analytics', 'Mixpanel', 'Hotjar', 'Amplitude', 'Optimizely (A/B testing)', 'User interviews'],
+              es: ['Google Analytics', 'Mixpanel', 'Hotjar', 'Amplitude', 'Optimizely (pruebas A/B)', 'Entrevistas de usuario']
+            },
+            evidenceExample: { 
+              en: 'Hypothesis: "We believe signups will increase by 20% if we add social proof (testimonials) above the fold for first-time visitors." MVP: Added 3 customer testimonials with photos. Metrics: Tracked signup conversion rate for 2 weeks (n=1,247 visitors). Result: 12% increase in signups. Decision: Persevere but iterate—test video testimonials next.',
+              es: 'Hipótesis: "Creemos que los registros aumentarán en un 20% si agregamos prueba social (testimonios) en la parte superior para visitantes primerizos." MVP: Agregamos 3 testimonios de clientes con fotos. Métricas: Rastreamos tasa de conversión de registros durante 2 semanas (n=1,247 visitantes). Resultado: 12% de aumento en registros. Decisión: Perseverar pero iterar—probar testimonios en video a continuación.'
+            }
+          },
+          practicalTools: {
+            design: { 
+              en: ['Figma/Sketch (low-fi prototypes)', 'Miro/FigJam (hypothesis mapping)', 'Notion (experiment tracker)'],
+              es: ['Figma/Sketch (prototipos de baja fidelidad)', 'Miro/FigJam (mapeo de hipótesis)', 'Notion (rastreador de experimentos)']
+            },
+            research: { 
+              en: ['Google Analytics', 'Mixpanel', 'Hotjar', 'Amplitude', 'UserTesting', 'Optimizely'],
+              es: ['Google Analytics', 'Mixpanel', 'Hotjar', 'Amplitude', 'UserTesting', 'Optimizely']
+            },
+            handoff: { 
+              en: ['Hypothesis canvas', 'Experiment tracker (Notion/Airtable)', 'Metrics dashboard'], 
+              es: ['Canvas de hipótesis', 'Rastreador de experimentos (Notion/Airtable)', 'Dashboard de métricas'] 
+            }
+          },
+          realExample: {
+            title: { 
+              en: 'Dropbox MVP: The Power of a 3-Minute Video', 
+              es: 'Dropbox MVP: El Poder de un Video de 3 Minutos' 
+            },
+            description: {
+              en: 'In 2008, Dropbox faced a classic Lean UX challenge: building cloud file sync was technically complex and expensive. Instead of building first, founder Drew Houston created a simple 3-minute demo video showing how Dropbox would work. The hypothesis: "We believe early adopters will sign up for a beta if we clearly demonstrate the file sync problem and solution." The MVP wasn\'t a product—it was a video. Posted on Hacker News, it generated 75,000 overnight signups. This validated massive demand before writing production code, and became one of the most famous Lean UX success stories. The lesson: your MVP should be the smallest thing that tests your riskiest assumption.',
+              es: 'En 2008, Dropbox enfrentó un desafío clásico de Lean UX: construir sincronización de archivos en la nube era técnicamente complejo y costoso. En lugar de construir primero, el fundador Drew Houston creó un simple video demo de 3 minutos mostrando cómo funcionaría Dropbox. La hipótesis: "Creemos que los early adopters se registrarán para una beta si demostramos claramente el problema y solución de sincronización de archivos." El MVP no fue un producto—fue un video. Publicado en Hacker News, generó 75,000 registros de la noche a la mañana. Esto validó una demanda masiva antes de escribir código de producción, y se convirtió en una de las historias de éxito de Lean UX más famosas. La lección: tu MVP debe ser la cosa más pequeña que pruebe tu suposición más riesgosa.'
+            },
+            company: 'Dropbox (2008)'
           }
         }
       },
@@ -1225,7 +1494,7 @@ export const tracks: Track[] = [
       },
        {
         id: 'accessibility',
-        title: { en: 'Accessibility (A11y)', es: 'Accesibilidad (A11y)' },
+        title: { en: 'Accessibility (A11y) & WCAG', es: 'Accesibilidad (A11y) & WCAG' },
         description: { en: 'Designing for everyone, regardless of ability.', es: 'Diseñando para todos, independientemente de su capacidad.' },
         status: 'advanced',
         timeEstimate: '3h',
@@ -1264,6 +1533,284 @@ export const tracks: Track[] = [
               }
             ]
           },
+          visualExamples: {
+            description: { 
+              en: 'Real examples of accessible vs inaccessible web components:', 
+              es: 'Ejemplos reales de componentes web accesibles vs inaccesibles:' 
+            },
+            examples: [
+              {
+                title: { en: '✅ Accessible Search Bar', es: '✅ Barra de Búsqueda Accesible' },
+                image: 'https://images.unsplash.com/photo-1762330467019-f38839ad4b0f?w=800',
+                description: { 
+                  en: 'Has visible label, role="search", proper ARIA labels. Color contrast 7:1 (WCAG AAA). Works with keyboard (Tab + Enter) and screen readers announce "Search products, search box".',
+                  es: 'Tiene etiqueta visible, role="search", labels ARIA apropiados. Contraste de color 7:1 (WCAG AAA). Funciona con teclado (Tab + Enter) y lectores de pantalla anuncian "Buscar productos, cuadro de búsqueda".'
+                }
+              },
+              {
+                title: { en: '❌ Inaccessible Search Bar', es: '❌ Barra de Búsqueda Inaccesible' },
+                description: { 
+                  en: 'No label, no role, placeholder-only text, div instead of button, no keyboard support. Contrast 2.1:1 (fails WCAG). Screen readers say "unlabeled edit field" - users don\'t know what to search for.',
+                  es: 'Sin etiqueta, sin role, solo placeholder, div en lugar de button, sin soporte de teclado. Contraste 2.1:1 (no cumple WCAG). Lectores de pantalla dicen "campo de edición sin etiquetar" - usuarios no saben qué buscar.'
+                }
+              },
+              {
+                title: { en: '✅ Accessible Button', es: '✅ Botón Accesible' },
+                image: 'https://images.unsplash.com/photo-1586418328152-c61f282202c1?w=800',
+                description: { 
+                  en: 'Uses semantic <button>, has clear text, high contrast (8.59:1 WCAG AAA). Keyboard accessible (Tab + Space/Enter). Focus visible with outline. Screen reader: "Add to cart, button".',
+                  es: 'Usa <button> semántico, tiene texto claro, alto contraste (8.59:1 WCAG AAA). Accesible con teclado (Tab + Espacio/Enter). Foco visible con outline. Lector de pantalla: "Agregar al carrito, botón".'
+                }
+              },
+              {
+                title: { en: '❌ Inaccessible Button', es: '❌ Botón Inaccesible' },
+                description: { 
+                  en: 'Uses <div> instead of <button>, low contrast (2.3:1), no keyboard access, no focus indicator. Cannot be activated with keyboard. Screen reader doesn\'t announce it as interactive.',
+                  es: 'Usa <div> en lugar de <button>, bajo contraste (2.3:1), sin acceso de teclado, sin indicador de foco. No se puede activar con teclado. Lector de pantalla no lo anuncia como interactivo.'
+                }
+              },
+              {
+                title: { en: '✅ Accessible Form Input', es: '✅ Campo de Formulario Accesible' },
+                image: 'https://images.unsplash.com/photo-1740818576322-923d300dcb95?w=800',
+                description: { 
+                  en: 'Label properly associated with for/id. ARIA attributes for validation. Help text linked with aria-describedby. Clear focus state. Screen reader: "Email Address, required, edit text, We\'ll never share your email".',
+                  es: 'Label correctamente asociado con for/id. Atributos ARIA para validación. Texto de ayuda vinculado con aria-describedby. Estado de foco claro. Lector de pantalla: "Dirección de email, requerido, editar texto, Nunca compartiremos tu email".'
+                }
+              },
+              {
+                title: { en: '❌ Inaccessible Form Input', es: '❌ Campo de Formulario Inaccesible' },
+                description: { 
+                  en: 'No <label>, uses placeholder as label (disappears when typing). No ARIA. Help text not associated. Screen reader: "Edit text" - user has no context about what to enter.',
+                  es: 'Sin <label>, usa placeholder como etiqueta (desaparece al escribir). Sin ARIA. Texto de ayuda no asociado. Lector de pantalla: "Editar texto" - usuario no tiene contexto sobre qué ingresar.'
+                }
+              }
+            ]
+          },
+          codeExamples: {
+            description: { 
+              en: 'Code snippets showing accessible vs inaccessible patterns:', 
+              es: 'Fragmentos de código mostrando patrones accesibles vs inaccesibles:' 
+            },
+            examples: [
+              {
+                title: { en: '✅ Accessible Button', es: '✅ Botón Accesible' },
+                code: `<!-- Good: Semantic HTML with proper ARIA -->
+<button 
+  type="button" 
+  aria-label="Close dialog"
+  class="btn-close"
+>
+  <span aria-hidden="true">×</span>
+</button>`,
+                explanation: { 
+                  en: 'Uses semantic <button>, has descriptive aria-label, and hides decorative icon from screen readers.',
+                  es: 'Usa <button> semántico, tiene aria-label descriptivo y oculta el ícono decorativo de lectores de pantalla.'
+                }
+              },
+              {
+                title: { en: '❌ Inaccessible Button', es: '❌ Botón Inaccesible' },
+                code: `<!-- Bad: div as button, no labels -->
+<div 
+  class="btn-close" 
+  onclick="closeDialog()"
+>
+  ×
+</div>`,
+                explanation: { 
+                  en: 'Uses <div> instead of <button>, no keyboard support, no screen reader context. Violates WCAG 4.1.2.',
+                  es: 'Usa <div> en lugar de <button>, sin soporte de teclado, sin contexto para lectores de pantalla. Viola WCAG 4.1.2.'
+                }
+              },
+              {
+                title: { en: '✅ Accessible Form', es: '✅ Formulario Accesible' },
+                code: `<!-- Good: Labels, validation, error messages -->
+<label for="email">
+  Email Address
+  <span aria-label="required">*</span>
+</label>
+<input 
+  type="email" 
+  id="email" 
+  name="email"
+  aria-required="true"
+  aria-describedby="email-error"
+  aria-invalid="false"
+/>
+<span id="email-error" role="alert"></span>`,
+                explanation: { 
+                  en: 'Properly associated label, ARIA attributes for validation, error message with role="alert".',
+                  es: 'Etiqueta correctamente asociada, atributos ARIA para validación, mensaje de error con role="alert".'
+                }
+              },
+              {
+                title: { en: '❌ Inaccessible Form', es: '❌ Formulario Inaccesible' },
+                code: `<!-- Bad: No labels, placeholder as label -->
+<input 
+  type="email" 
+  placeholder="Email Address*"
+/>
+<span class="error">Invalid email</span>`,
+                explanation: { 
+                  en: 'No <label>, uses placeholder as label (disappears on input), error not announced to screen readers. Violates WCAG 3.3.2.',
+                  es: 'Sin <label>, usa placeholder como etiqueta (desaparece al escribir), error no anunciado a lectores de pantalla. Viola WCAG 3.3.2.'
+                }
+              },
+              {
+                title: { en: '✅ Accessible Navigation', es: '✅ Navegación Accesible' },
+                code: `<!-- Good: Skip link, semantic nav, ARIA -->
+<a href="#main-content" class="skip-link">
+  Skip to main content
+</a>
+<nav aria-label="Main navigation">
+  <ul>
+    <li><a href="/" aria-current="page">Home</a></li>
+    <li><a href="/about">About</a></li>
+  </ul>
+</nav>
+<main id="main-content" tabindex="-1">`,
+                explanation: { 
+                  en: 'Skip link for keyboard users, semantic <nav>, aria-current for current page, focusable main content.',
+                  es: 'Skip link para usuarios de teclado, <nav> semántico, aria-current para página actual, contenido principal enfocable.'
+                }
+              },
+              {
+                title: { en: '❌ Inaccessible Navigation', es: '❌ Navegación Inaccesible' },
+                code: `<!-- Bad: No skip link, div soup -->
+<div class="nav">
+  <div onclick="go('/')">Home</div>
+  <div onclick="go('/about')">About</div>
+</div>`,
+                explanation: { 
+                  en: 'No skip link, divs instead of semantic HTML, no keyboard support. Screen readers cannot identify navigation.',
+                  es: 'Sin skip link, divs en lugar de HTML semántico, sin soporte de teclado. Lectores de pantalla no pueden identificar la navegación.'
+                }
+              }
+            ]
+          },
+          tools: {
+            description: { 
+              en: 'Essential tools for testing and ensuring accessibility compliance:', 
+              es: 'Herramientas esenciales para probar y asegurar cumplimiento de accesibilidad:' 
+            },
+            categories: [
+              {
+                name: { en: 'Browser Extensions', es: 'Extensiones de Navegador' },
+                tools: [
+                  {
+                    name: 'axe DevTools',
+                    description: { 
+                      en: 'Free browser extension for automated accessibility testing. Detects WCAG violations.',
+                      es: 'Extensión gratuita para pruebas automatizadas de accesibilidad. Detecta violaciones WCAG.'
+                    },
+                    link: 'https://www.deque.com/axe/devtools/'
+                  },
+                  {
+                    name: 'WAVE',
+                    description: { 
+                      en: 'Visual feedback tool that shows accessibility errors directly on the page.',
+                      es: 'Herramienta de retroalimentación visual que muestra errores de accesibilidad directamente en la página.'
+                    },
+                    link: 'https://wave.webaim.org/'
+                  },
+                  {
+                    name: 'Lighthouse',
+                    description: { 
+                      en: 'Built into Chrome DevTools. Provides accessibility audit scores and recommendations.',
+                      es: 'Integrado en Chrome DevTools. Proporciona puntuaciones de auditoría de accesibilidad y recomendaciones.'
+                    },
+                    link: 'https://developers.google.com/web/tools/lighthouse'
+                  }
+                ]
+              },
+              {
+                name: { en: 'Design Tools', es: 'Herramientas de Diseño' },
+                tools: [
+                  {
+                    name: 'Stark (Figma Plugin)',
+                    description: { 
+                      en: 'Contrast checker, color blind simulator, focus order tool. Essential for designers.',
+                      es: 'Verificador de contraste, simulador de daltonismo, herramienta de orden de foco. Esencial para diseñadores.'
+                    },
+                    link: 'https://www.getstark.co/'
+                  },
+                  {
+                    name: 'Contrast Checker',
+                    description: { 
+                      en: 'WebAIM tool to verify color contrast ratios meet WCAG AA/AAA standards.',
+                      es: 'Herramienta de WebAIM para verificar que los ratios de contraste de color cumplan los estándares WCAG AA/AAA.'
+                    },
+                    link: 'https://webaim.org/resources/contrastchecker/'
+                  },
+                  {
+                    name: 'Color Oracle',
+                    description: { 
+                      en: 'Free color blindness simulator for Mac, Windows, and Linux.',
+                      es: 'Simulador gratuito de daltonismo para Mac, Windows y Linux.'
+                    },
+                    link: 'https://colororacle.org/'
+                  }
+                ]
+              },
+              {
+                name: { en: 'Screen Readers', es: 'Lectores de Pantalla' },
+                tools: [
+                  {
+                    name: 'NVDA (Windows)',
+                    description: { 
+                      en: 'Free, open-source screen reader. Essential for testing on Windows.',
+                      es: 'Lector de pantalla gratuito y de código abierto. Esencial para pruebas en Windows.'
+                    },
+                    link: 'https://www.nvaccess.org/'
+                  },
+                  {
+                    name: 'VoiceOver (Mac/iOS)',
+                    description: { 
+                      en: 'Built-in screen reader for Apple devices. Cmd+F5 to activate on Mac.',
+                      es: 'Lector de pantalla integrado para dispositivos Apple. Cmd+F5 para activar en Mac.'
+                    },
+                    link: 'https://www.apple.com/accessibility/voiceover/'
+                  },
+                  {
+                    name: 'JAWS',
+                    description: { 
+                      en: 'Most popular commercial screen reader. Industry standard for enterprise testing.',
+                      es: 'Lector de pantalla comercial más popular. Estándar de la industria para pruebas empresariales.'
+                    },
+                    link: 'https://www.freedomscientific.com/products/software/jaws/'
+                  }
+                ]
+              },
+              {
+                name: { en: 'Automated Testing', es: 'Pruebas Automatizadas' },
+                tools: [
+                  {
+                    name: 'Pa11y',
+                    description: { 
+                      en: 'Command-line tool for automated accessibility testing in CI/CD pipelines.',
+                      es: 'Herramienta de línea de comandos para pruebas automatizadas de accesibilidad en pipelines CI/CD.'
+                    },
+                    link: 'https://pa11y.org/'
+                  },
+                  {
+                    name: 'Axe-core',
+                    description: { 
+                      en: 'JavaScript library for automated WCAG testing. Can be integrated into unit tests.',
+                      es: 'Biblioteca JavaScript para pruebas WCAG automatizadas. Se puede integrar en unit tests.'
+                    },
+                    link: 'https://github.com/dequelabs/axe-core'
+                  },
+                  {
+                    name: 'Accessibility Insights',
+                    description: { 
+                      en: 'Microsoft tool for automated and manual testing with guided assessments.',
+                      es: 'Herramienta de Microsoft para pruebas automatizadas y manuales con evaluaciones guiadas.'
+                    },
+                    link: 'https://accessibilityinsights.io/'
+                  }
+                ]
+              }
+            ]
+          },
           aiInPractice: {
             description: { en: 'AI can help check for compliance and generate alt text for images.', es: 'La IA puede ayudar a verificar el cumplimiento y generar texto alternativo para imágenes.' },
             prompts: [
@@ -1271,6 +1818,11 @@ export const tracks: Track[] = [
                 tool: 'ChatGPT (Vision)',
                 context: { en: 'Generating Alt Text', es: 'Generando Texto Alternativo' },
                 prompt: { en: 'Write concise Alt Text for this image for a screen reader user. Focus on the informational content of the image.', es: 'Escribe un Texto Alternativo conciso para esta imagen para un usuario de lector de pantalla. Enfócate en el contenido informativo de la imagen.' }
+              },
+              {
+                tool: 'Claude',
+                context: { en: 'Accessibility Code Review', es: 'Revisión de Código de Accesibilidad' },
+                prompt: { en: 'Review this HTML code for WCAG 2.1 AA compliance. Identify accessibility issues and suggest fixes with code examples.', es: 'Revisa este código HTML para cumplimiento WCAG 2.1 AA. Identifica problemas de accesibilidad y sugiere correcciones con ejemplos de código.' }
               }
             ]
           }
