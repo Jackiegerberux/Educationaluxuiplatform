@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { useLanguage } from '../../layout/LanguageContext';
 import { Copy, Check, Palette, Type, Maximize2, Moon } from 'lucide-react';
+import { copyToClipboard } from '../../../utils/clipboard';
 
 function TokenRow({ name, value, preview }: { name: string; value: string; preview?: React.ReactNode }) {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(`var(${name})`);
+    copyToClipboard(`var(${name})`);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };

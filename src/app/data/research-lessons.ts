@@ -217,7 +217,7 @@ export const researchLessons: Topic[] = [
     }
   },
   {
-    id: 'competitive-analysis',
+    id: 'competitive-analysis-basics',
     title: { en: 'Competitive Analysis', es: 'Análisis Competitivo' },
     description: { 
       en: 'Analyzing competitor products to identify opportunities and gaps.',

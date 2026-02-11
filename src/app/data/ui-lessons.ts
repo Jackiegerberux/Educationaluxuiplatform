@@ -349,7 +349,146 @@ export const uiLessons: Topic[] = [
           es: 'Apple diseñó SF Pro específicamente para legibilidad en pantallas. Usa tamaños ópticos (diseños diferentes para texto pequeño vs grande) y tipo dinámico que escala con preferencias del usuario.'
         },
         company: 'Apple'
-      }
+      },
+      aiInPractice: {
+        description: {
+          en: 'AI can help you generate type scales, suggest font pairings, and optimize typography for readability.',
+          es: 'La IA puede ayudarte a generar escalas de tipo, sugerir emparejamientos de fuentes y optimizar tipografía para legibilidad.'
+        },
+        prompts: [
+          {
+            tool: 'ChatGPT',
+            context: { en: 'Creating a type scale', es: 'Crear una escala de tipo' },
+            prompt: {
+              en: 'Generate a complete type scale using a 1.25 ratio starting from 16px base. Include H1, H2, H3, Body, Small, and Caption sizes with recommended line heights and font weights for each.',
+              es: 'Genera una escala de tipo completa usando un ratio de 1.25 comenzando desde base de 16px. Incluye tamaños H1, H2, H3, Cuerpo, Pequeño y Leyenda con alturas de línea y pesos de fuente recomendados para cada uno.'
+            }
+          },
+          {
+            tool: 'Claude',
+            context: { en: 'Font pairing recommendations', es: 'Recomendaciones de emparejamiento de fuentes' },
+            prompt: {
+              en: 'Suggest 3 Google Font pairings for a modern SaaS dashboard. For each pair, specify heading font, body font, and explain why they work together. Consider readability and professional appearance.',
+              es: 'Sugiere 3 emparejamientos de Google Fonts para un dashboard SaaS moderno. Para cada par, especifica fuente de encabezado, fuente de cuerpo y explica por qué funcionan juntas. Considera legibilidad y apariencia profesional.'
+            }
+          },
+          {
+            tool: 'Perplexity',
+            context: { en: 'Accessibility research', es: 'Investigación de accesibilidad' },
+            prompt: {
+              en: 'What are the WCAG 2.1 guidelines for typography accessibility? Include minimum font sizes, contrast ratios, and line spacing recommendations for AA and AAA compliance.',
+              es: '¿Cuáles son las pautas WCAG 2.1 para accesibilidad tipográfica? Incluye tamaños mínimos de fuente, ratios de contraste y recomendaciones de espaciado de línea para cumplimiento AA y AAA.'
+            }
+          }
+        ]
+      },
+      howToValidate: {
+        what: {
+          en: 'Validate that your typography system is readable, accessible, and consistent across devices and screen sizes.',
+          es: 'Valida que tu sistema tipográfico sea legible, accesible y consistente entre dispositivos y tamaños de pantalla.'
+        },
+        methods: {
+          en: [
+            'Readability test: Ask 5 users to read a paragraph and check if they can do it comfortably without zooming.',
+            'Contrast check: Use WebAIM Contrast Checker on all text/background combinations (minimum 4.5:1 for body).',
+            'Device testing: View typography on mobile, tablet, desktop — ensure sizes scale appropriately.',
+            'Hierarchy scan: Show page to someone for 5 seconds and ask what the most important text was (should be H1).',
+            'Line length test: Count characters per line — should be 50-75 for optimal reading.'
+          ],
+          es: [
+            'Prueba de legibilidad: Pide a 5 usuarios que lean un párrafo y verifica si pueden hacerlo cómodamente sin hacer zoom.',
+            'Verificación de contraste: Usa WebAIM Contrast Checker en todas las combinaciones texto/fondo (mínimo 4.5:1 para cuerpo).',
+            'Prueba de dispositivos: Ve la tipografía en móvil, tablet, escritorio — asegura que los tamaños escalen apropiadamente.',
+            'Escaneo de jerarquía: Muestra la página a alguien por 5 segundos y pregunta cuál era el texto más importante (debería ser H1).',
+            'Prueba de longitud de línea: Cuenta caracteres por línea — debería ser 50-75 para lectura óptima.'
+          ]
+        },
+        tools: {
+          en: ['WebAIM Contrast Checker', 'Figma Inspect mode', 'Chrome DevTools (font rendering)', 'Stark plugin (accessibility)'],
+          es: ['WebAIM Contrast Checker', 'Modo Inspect de Figma', 'Chrome DevTools (renderizado de fuentes)', 'Plugin Stark (accesibilidad)']
+        },
+        evidenceExample: {
+          en: '"After implementing a 1.25 type scale and increasing body text from 14px to 16px, our readability score improved from 62% to 89%, and time-on-page increased by 23%."',
+          es: '"Después de implementar una escala de tipo 1.25 y aumentar el texto del cuerpo de 14px a 16px, nuestro puntaje de legibilidad mejoró de 62% a 89%, y el tiempo en página aumentó un 23%."'
+        }
+      },
+      quiz: [
+        {
+          question: {
+            en: 'You\'re designing a content-heavy blog. What\'s the optimal body text size and line height?',
+            es: 'Estás diseñando un blog con mucho contenido. ¿Cuál es el tamaño óptimo del texto del cuerpo y altura de línea?'
+          },
+          options: {
+            en: [
+              '12px, line-height 1.2',
+              '14px, line-height 1.3',
+              '16px, line-height 1.5',
+              '20px, line-height 2.0'
+            ],
+            es: [
+              '12px, line-height 1.2',
+              '14px, line-height 1.3',
+              '16px, line-height 1.5',
+              '20px, line-height 2.0'
+            ]
+          },
+          correctAnswer: 2,
+          explanation: {
+            en: '16px with line-height 1.5 is the gold standard for web body text. Anything smaller strains eyes, and tighter line-height reduces readability.',
+            es: '16px con line-height 1.5 es el estándar de oro para texto de cuerpo web. Cualquier cosa más pequeña cansa los ojos, y line-height más apretado reduce la legibilidad.'
+          }
+        },
+        {
+          question: {
+            en: 'A designer uses Playfair Display (serif) for headings, Roboto (sans-serif) for body, and Comic Sans for captions. What\'s wrong?',
+            es: 'Un diseñador usa Playfair Display (serif) para encabezados, Roboto (sans-serif) para cuerpo, y Comic Sans para leyendas. ¿Qué está mal?'
+          },
+          options: {
+            en: [
+              'Nothing, variety is good',
+              'Too many typefaces (limit to 2)',
+              'Serif fonts don\'t work on screens',
+              'Should use only sans-serif fonts'
+            ],
+            es: [
+              'Nada, la variedad es buena',
+              'Demasiadas tipografías (limitar a 2)',
+              'Las fuentes serif no funcionan en pantallas',
+              'Debería usar solo fuentes sans-serif'
+            ]
+          },
+          correctAnswer: 1,
+          explanation: {
+            en: 'Limit to 2 typefaces max. Using 3+ creates visual inconsistency. Also, Comic Sans is unprofessional for most UIs.',
+            es: 'Limita a 2 tipografías máximo. Usar 3+ crea inconsistencia visual. Además, Comic Sans no es profesional para la mayoría de UIs.'
+          }
+        },
+        {
+          question: {
+            en: 'Your contrast checker shows 3.2:1 for body text (16px) on a colored background. What should you do?',
+            es: 'Tu verificador de contraste muestra 3.2:1 para texto de cuerpo (16px) en un fondo de color. ¿Qué deberías hacer?'
+          },
+          options: {
+            en: [
+              'Leave it — 3:1 is enough',
+              'Increase contrast to at least 4.5:1',
+              'Make the text smaller to improve contrast',
+              'Only fix it if users complain'
+            ],
+            es: [
+              'Dejarlo — 3:1 es suficiente',
+              'Aumentar contraste a al menos 4.5:1',
+              'Hacer el texto más pequeño para mejorar contraste',
+              'Solo arreglarlo si los usuarios se quejan'
+            ]
+          },
+          correctAnswer: 1,
+          explanation: {
+            en: 'WCAG AA requires 4.5:1 contrast for body text. 3.2:1 fails accessibility and is hard to read for many users.',
+            es: 'WCAG AA requiere contraste de 4.5:1 para texto de cuerpo. 3.2:1 falla en accesibilidad y es difícil de leer para muchos usuarios.'
+          }
+        }
+      ]
     }
   },
   {
@@ -480,7 +619,146 @@ export const uiLessons: Topic[] = [
           es: 'El verde característico de Spotify (#1DB954) es vibrante y se destaca. Lo usan con moderación para CTAs y momentos de marca, mientras mantienen la interfaz oscura para enfoque en contenido. El verde también evoca energía y creatividad.'
         },
         company: 'Spotify'
-      }
+      },
+      aiInPractice: {
+        description: {
+          en: 'AI can help you generate color palettes, check accessibility compliance, and suggest color combinations based on psychology.',
+          es: 'La IA puede ayudarte a generar paletas de colores, verificar cumplimiento de accesibilidad y sugerir combinaciones de colores basadas en psicología.'
+        },
+        prompts: [
+          {
+            tool: 'ChatGPT',
+            context: { en: 'Generating a color palette', es: 'Generar una paleta de colores' },
+            prompt: {
+              en: 'Create a complete color palette for a healthcare SaaS product. Include: 1) Primary color (calming, trustworthy), 2) Secondary color, 3) Success/Error/Warning semantic colors with hex codes, 4) Light and dark shades (100-900) for the primary color. Explain your color psychology choices.',
+              es: 'Crea una paleta de colores completa para un producto SaaS de salud. Incluye: 1) Color primario (calmante, confiable), 2) Color secundario, 3) Colores semánticos de Éxito/Error/Advertencia con códigos hex, 4) Sombras claras y oscuras (100-900) para el color primario. Explica tus elecciones de psicología del color.'
+            }
+          },
+          {
+            tool: 'Claude',
+            context: { en: 'Checking color accessibility', es: 'Verificar accesibilidad de color' },
+            prompt: {
+              en: 'I have a blue primary color #3B82F6 and a dark background #1F2937. Calculate the contrast ratio and tell me: 1) Does it pass WCAG AA for normal text? 2) Does it pass for large text? 3) Suggest adjusted shades if it fails. Show your calculations.',
+              es: 'Tengo un color primario azul #3B82F6 y un fondo oscuro #1F2937. Calcula el ratio de contraste y dime: 1) ¿Pasa WCAG AA para texto normal? 2) ¿Pasa para texto grande? 3) Sugiere sombras ajustadas si falla. Muestra tus cálculos.'
+            }
+          },
+          {
+            tool: 'Perplexity',
+            context: { en: 'Color psychology research', es: 'Investigación de psicología del color' },
+            prompt: {
+              en: 'What are the latest studies on color psychology in UI design? Focus on: 1) How different colors affect conversion rates, 2) Cultural differences in color perception (Western vs Eastern), 3) Color preferences by age demographic.',
+              es: '¿Cuáles son los últimos estudios sobre psicología del color en diseño UI? Enfócate en: 1) Cómo diferentes colores afectan las tasas de conversión, 2) Diferencias culturales en percepción del color (Occidental vs Oriental), 3) Preferencias de color por demografía de edad.'
+            }
+          }
+        ]
+      },
+      howToValidate: {
+        what: {
+          en: 'Validate that your color system is accessible, consistent, and supports your design goals across all use cases.',
+          es: 'Valida que tu sistema de color sea accesible, consistente y apoye tus objetivos de diseño en todos los casos de uso.'
+        },
+        methods: {
+          en: [
+            'Contrast audit: Check every text/background combination with WebAIM Contrast Checker (minimum 4.5:1 for body text).',
+            'Colorblind test: Use Stark plugin or ColorOracle to simulate deuteranopia, protanopia, and tritanopia.',
+            'Consistency check: Audit 10 screens — same color should always mean the same thing (e.g., red = error everywhere).',
+            'Print test: Print a color screen in grayscale — if you can\'t distinguish elements, neither can colorblind users.',
+            'A/B test CTAs: Test button color variations with real users and measure click-through rates.'
+          ],
+          es: [
+            'Auditoría de contraste: Verifica cada combinación texto/fondo con WebAIM Contrast Checker (mínimo 4.5:1 para texto de cuerpo).',
+            'Prueba de daltonismo: Usa plugin Stark o ColorOracle para simular deuteranopia, protanopia y tritanopia.',
+            'Verificación de consistencia: Audita 10 pantallas — el mismo color siempre debería significar lo mismo (ej: rojo = error en todas partes).',
+            'Prueba de impresión: Imprime una pantalla de color en escala de grises — si no puedes distinguir elementos, los usuarios daltónicos tampoco.',
+            'Prueba A/B de CTAs: Prueba variaciones de color de botón con usuarios reales y mide tasas de clics.'
+          ]
+        },
+        tools: {
+          en: ['WebAIM Contrast Checker', 'Stark (Figma plugin)', 'ColorOracle', 'Coolors.co', 'Chrome DevTools (color picker)'],
+          es: ['WebAIM Contrast Checker', 'Stark (plugin Figma)', 'ColorOracle', 'Coolors.co', 'Chrome DevTools (selector de color)']
+        },
+        evidenceExample: {
+          en: '"After changing our primary CTA button from light blue (#60A5FA, 2.8:1 contrast) to dark blue (#1E40AF, 7.2:1), our click-through rate increased by 18% and accessibility complaints dropped to zero."',
+          es: '"Después de cambiar nuestro botón CTA primario de azul claro (#60A5FA, contraste 2.8:1) a azul oscuro (#1E40AF, 7.2:1), nuestra tasa de clics aumentó un 18% y las quejas de accesibilidad cayeron a cero."'
+        }
+      },
+      quiz: [
+        {
+          question: {
+            en: 'You have a brand blue (#3B82F6) and need to use it for body text on a white background. What should you do?',
+            es: 'Tienes un azul de marca (#3B82F6) y necesitas usarlo para texto de cuerpo sobre fondo blanco. ¿Qué deberías hacer?'
+          },
+          options: {
+            en: [
+              'Use it as-is — brand colors are important',
+              'Test contrast ratio and darken if below 4.5:1',
+              'Only use it for headings, never body text',
+              'Add a subtle shadow to improve readability'
+            ],
+            es: [
+              'Usarlo tal cual — los colores de marca son importantes',
+              'Probar ratio de contraste y oscurecer si está debajo de 4.5:1',
+              'Solo usarlo para encabezados, nunca texto de cuerpo',
+              'Agregar una sombra sutil para mejorar legibilidad'
+            ]
+          },
+          correctAnswer: 1,
+          explanation: {
+            en: 'Always check contrast ratios. If #3B82F6 fails 4.5:1 on white, use a darker shade like blue-700. Brand guidelines should include accessible variants.',
+            es: 'Siempre verifica ratios de contraste. Si #3B82F6 falla 4.5:1 sobre blanco, usa una sombra más oscura como blue-700. Las guías de marca deberían incluir variantes accesibles.'
+          }
+        },
+        {
+          question: {
+            en: 'A designer creates a form where required fields have red borders and optional fields have green borders. What\'s the issue?',
+            es: 'Un diseñador crea un formulario donde campos requeridos tienen bordes rojos y campos opcionales tienen bordes verdes. ¿Cuál es el problema?'
+          },
+          options: {
+            en: [
+              'Red and green are too bright together',
+              'This fails for red-green colorblind users (8% of men)',
+              'Should use blue instead of green',
+              'No issue — colors are clear'
+            ],
+            es: [
+              'Rojo y verde son demasiado brillantes juntos',
+              'Esto falla para usuarios daltónicos rojo-verde (8% de hombres)',
+              'Debería usar azul en lugar de verde',
+              'No hay problema — los colores son claros'
+            ]
+          },
+          correctAnswer: 1,
+          explanation: {
+            en: 'Never rely on color alone. Add icons (*) for required fields or text labels. Red-green colorblindness affects 8% of men and 0.5% of women.',
+            es: 'Nunca confíes solo en el color. Agrega íconos (*) para campos requeridos o etiquetas de texto. El daltonismo rojo-verde afecta al 8% de hombres y 0.5% de mujeres.'
+          }
+        },
+        {
+          question: {
+            en: 'Your design has 8 different colors for different sections. A stakeholder says it looks "too busy." What\'s the best fix?',
+            es: 'Tu diseño tiene 8 colores diferentes para diferentes secciones. Un stakeholder dice que se ve "demasiado ocupado." ¿Cuál es la mejor solución?'
+          },
+          options: {
+            en: [
+              'Make colors more vibrant to stand out',
+              'Reduce to 3 colors max: 1 primary, 1 secondary, 1 accent',
+              'Add more white space between sections',
+              'Use gradients instead of solid colors'
+            ],
+            es: [
+              'Hacer colores más vibrantes para destacar',
+              'Reducir a 3 colores máx: 1 primario, 1 secundario, 1 acento',
+              'Agregar más espacio en blanco entre secciones',
+              'Usar gradientes en lugar de colores sólidos'
+            ]
+          },
+          correctAnswer: 1,
+          explanation: {
+            en: 'Follow the 60-30-10 rule: 60% dominant color, 30% secondary, 10% accent. Too many colors create visual chaos and hurt brand recognition.',
+            es: 'Sigue la regla 60-30-10: 60% color dominante, 30% secundario, 10% acento. Demasiados colores crean caos visual y dañan el reconocimiento de marca.'
+          }
+        }
+      ]
     }
   },
   {

@@ -41,7 +41,7 @@ export function Header() {
             <span className="text-white">UX</span>
           </div>
           <span className="hidden sm:inline-block bg-gradient-to-r from-indigo-200 to-purple-200 bg-clip-text text-transparent">
-            AditiDesign
+            Fusion
           </span>
         </Link>
 

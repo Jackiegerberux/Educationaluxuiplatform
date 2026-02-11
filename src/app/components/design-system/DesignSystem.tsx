@@ -145,7 +145,7 @@ export function DesignSystem() {
               {t({ en: 'Internal UI Kit', es: 'UI Kit Interno' })}
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-white via-zinc-200 to-zinc-400 bg-clip-text text-transparent">
-              {t({ en: 'AditiDesign System', es: 'Sistema de Diseño AditiDesign' })}
+              {t({ en: 'UX Fusion Design System', es: 'Sistema de Diseño UX Fusion' })}
             </h1>
             <p className="text-xl text-zinc-400 max-w-3xl mx-auto">
               {t({ 

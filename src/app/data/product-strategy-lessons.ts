@@ -204,6 +204,31 @@ export const productStrategyLessons: Topic[] = [
             en: 'Option 3 is user-centered, specific, and includes insight into the root cause. It focuses on the problem (slow scheduling, time constraints) rather than a solution (mobile app). Options 1, 2, and 4 are too vague or solution-focused.',
             es: 'La opción 3 está centrada en el usuario, es específica e incluye insight sobre la causa raíz. Se enfoca en el problema (programación lenta, restricciones de tiempo) en lugar de una solución (app móvil). Las opciones 1, 2 y 4 son demasiado vagas o enfocadas en solución.'
           }
+        },
+        {
+          question: { 
+            en: 'What is the main purpose of the "5 Whys" technique in problem framing?',
+            es: '¿Cuál es el propósito principal de la técnica de los "5 Por Qués" en el encuadre de problema?'
+          },
+          options: {
+            en: [
+              'To generate five different problem statements',
+              'To drill down from surface symptoms to the root cause',
+              'To interview five different users about the same problem',
+              'To prioritize five features for the MVP'
+            ],
+            es: [
+              'Generar cinco declaraciones de problema diferentes',
+              'Profundizar desde los síntomas superficiales hasta la causa raíz',
+              'Entrevistar a cinco usuarios diferentes sobre el mismo problema',
+              'Priorizar cinco características para el MVP'
+            ]
+          },
+          correctIndex: 1,
+          explanation: {
+            en: 'The 5 Whys technique involves repeatedly asking "Why?" (typically five times) to peel away surface-level symptoms and discover the underlying root cause. This prevents teams from solving symptoms instead of real problems.',
+            es: 'La técnica de los 5 Por Qués implica preguntar repetidamente "¿Por qué?" (típicamente cinco veces) para quitar los síntomas superficiales y descubrir la causa raíz subyacente. Esto previene que los equipos resuelvan síntomas en lugar de problemas reales.'
+          }
         }
       ],
       realExample: {

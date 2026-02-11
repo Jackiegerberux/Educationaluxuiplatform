@@ -25,7 +25,7 @@ export function ContentSynthesisMap({ onNavigate }: ContentSynthesisMapProps) {
   // Define static nodes for Tooling and Heuristics, plus dynamic nodes from tracks
   const coreNode = {
     id: 'core',
-    title: 'AditiDesign',
+    title: 'UX Fusion',
     icon: Layers,
     description: { en: 'The central hub of your UX journey.', es: 'El núcleo de tu viaje UX.' },
     color: 'bg-white text-black',

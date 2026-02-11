@@ -25,12 +25,12 @@ export function Hero({ onStart }: HeroProps) {
             transition={{ duration: 0.5 }}
           >
             <span className="inline-block py-1 px-3 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 text-sm font-medium mb-6">
-              {t({ en: 'Interactive Learning Platform', es: 'Plataforma de Aprendizaje Interactivo' })}
+              {t({ en: 'Open-Source Learning Platform', es: 'Plataforma de Aprendizaje Open-Source' })}
             </span>
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight bg-gradient-to-b from-white to-white/60 bg-clip-text text-transparent">
               {t({ 
-                en: 'Learn UX/UI Design — From Foundations to Real Product Thinking', 
-                es: 'Aprende Diseño UX/UI — Desde Fundamentos hasta Pensamiento de Producto' 
+                en: 'UX Fusion', 
+                es: 'UX Fusion' 
               })}
             </h1>
           </motion.div>
@@ -42,8 +42,8 @@ export function Hero({ onStart }: HeroProps) {
             className="text-lg md:text-xl text-zinc-400 max-w-2xl"
           >
             {t({
-              en: 'Master the principles of user experience, interface design, and design systems through interactive lessons and real-world examples.',
-              es: 'Domina los principios de la experiencia de usuario, diseño de interfaces y sistemas de diseño a través de lecciones interactivas y ejemplos del mundo real.'
+              en: 'A collaborative UX/UI platform for learning, sharing, and building better experiences together.',
+              es: 'Una plataforma colaborativa de UX/UI para aprender, compartir y construir mejores experiencias juntos.'
             })}
           </motion.p>
 
@@ -59,7 +59,7 @@ export function Hero({ onStart }: HeroProps) {
               onClick={onStart}
             >
               <BookOpen className="mr-2 size-5" />
-              {t({ en: 'Start Learning', es: 'Empezar a Aprender' })}
+              {t({ en: 'Explore Platform', es: 'Explorar Plataforma' })}
             </Button>
             <Button 
               size="lg" 
@@ -68,7 +68,7 @@ export function Hero({ onStart }: HeroProps) {
               onClick={() => document.getElementById('preview')?.scrollIntoView({ behavior: 'smooth' })}
             >
               <Layers className="mr-2 size-5" />
-              {t({ en: 'Explore Roadmap', es: 'Explorar Mapa' })}
+              {t({ en: 'Join Community', es: 'Unirse a la Comunidad' })}
             </Button>
           </motion.div>
         </div>

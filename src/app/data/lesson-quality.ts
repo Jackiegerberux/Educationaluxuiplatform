@@ -129,9 +129,17 @@ export function evaluateLessonQuality(topic: Topic): LessonQualityResult {
     'visual-hierarchy',
     'ux-psychology',
     'information-architecture',
-    'design-methodologies',
-    'customer-journey-map',
-    'service-blueprint'
+    'methodologies-overview',
+    'design-thinking',
+    'design-sprint',
+    'scrum-for-designers',
+    'user-stories-and-requirements',
+    'typography-fundamentals',
+    'color-theory',
+    'problem-statements',
+    'microinteractions',
+    'figma-mastery',
+    'design-ethics',
   ].includes(topic.id);
 
   if (!hasInteractiveExample) {

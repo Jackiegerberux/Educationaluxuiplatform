@@ -1,12 +1,16 @@
 import React from 'react';
 import { Outlet } from 'react-router';
 import { Header } from './Header';
+import { Footer } from './Footer';
 
 export function RootLayout() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white flex flex-col">
       <Header />
-      <Outlet />
+      <main className="flex-1">
+        <Outlet />
+      </main>
+      <Footer />
     </div>
   );
 }

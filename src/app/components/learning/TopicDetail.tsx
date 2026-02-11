@@ -204,7 +204,7 @@ export function TopicDetail({ topic, onClose }: TopicDetailProps) {
                 {/* 4. Real Example (Visual Analysis) */}
                 <section>
                   <h3 className="text-xl font-semibold text-white mb-6">
-                    {topic.id === 'design-methodologies' 
+                    {topic.id === 'methodologies-overview' 
                       ? t({ en: 'Methodologies Deep Dive', es: 'Profundización en Metodologías' })
                       : t({ en: 'Real Example', es: 'Ejemplo Real' })
                     }
@@ -218,7 +218,7 @@ export function TopicDetail({ topic, onClose }: TopicDetailProps) {
                     <MentalModelExample />
                   ) : topic.id === 'information-architecture' ? (
                     <SitemapExample />
-                  ) : topic.id === 'design-methodologies' ? (
+                  ) : topic.id === 'methodologies-overview' ? (
                     <MethodologiesDeepDive />
                   ) : (
                     <ComparisonView />

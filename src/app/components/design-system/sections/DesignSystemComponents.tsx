@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useLanguage } from '../../layout/LanguageContext';
 import { Button } from '../../ui/button';
+import { copyToClipboard } from '../../../utils/clipboard';
 import { 
   Check, 
   X, 
@@ -25,7 +26,7 @@ function CodeBlock({ code, language = 'tsx' }: { code: string; language?: string
   const [copied, setCopied] = useState(false);
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(code);
+    copyToClipboard(code);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -86,8 +87,8 @@ export function DesignSystemComponents() {
       <div className="bg-gradient-to-br from-blue-950/30 to-indigo-950/30 border border-blue-500/20 rounded-xl p-6">
         <p className="text-zinc-300 leading-relaxed">
           {t({
-            en: 'This gallery showcases all UI components used across AditiDesign. Each component includes variants, states, accessibility notes, and code examples for easy reuse.',
-            es: 'Esta galería muestra todos los componentes UI usados en AditiDesign. Cada componente incluye variantes, estados, notas de accesibilidad y ejemplos de código para fácil reutilización.'
+            en: 'This gallery showcases all UI components used across UX Fusion. Each component includes variants, states, accessibility notes, and code examples for easy reuse.',
+            es: 'Esta galería muestra todos los componentes UI usados en UX Fusion. Cada componente incluye variantes, estados, notas de accesibilidad y ejemplos de código para fácil reutilización.'
           })}
         </p>
       </div>

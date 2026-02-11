@@ -5,72 +5,16 @@ import { iaLessons } from './ia-lessons';
 import { uiLessons } from './ui-lessons';
 import { prototypingLessons } from './prototyping-lessons';
 import { productStrategyLessons } from './product-strategy-lessons';
+import { designThinkingLesson } from './design-thinking-lesson';
+import { designSprintLesson } from './design-sprint-lesson';
+import { scrumForDesignersLesson } from './scrum-for-designers-lesson';
+import { userStoriesRequirementsLesson } from './user-stories-requirements-lesson';
+import { leanUxLesson } from './lean-ux-lesson';
+import { uxResearchLesson } from './ux-research-lesson';
+import { userPersonasLesson } from './user-personas-lesson';
+import { figmaMasteryLesson } from './figma-mastery-lesson';
 
-export type Language = 'en' | 'es';
-
-export interface Topic {
-  id: string;
-  title: { en: string; es: string };
-  description: { en: string; es: string };
-  status: 'beginner' | 'intermediate' | 'advanced';
-  timeEstimate: string;
-  reference?: { en: string; es: string };
-  referenceLink?: string;
-  content?: {
-    definition: { en: string; es: string };
-    why: { en: string; es: string };
-    keyPrinciples: { en: string[]; es: string[] };
-    commonMistakes: { en: string[]; es: string[] };
-    howToApply?: {
-      steps: {
-        name: { en: string; es: string };
-        description: { en: string; es: string };
-      }[];
-    };
-    deliverables?: {
-      description: { en: string; es: string };
-      items: { en: string[]; es: string[] };
-    };
-    practicalTools?: {
-      design: { en: string[]; es: string[] };
-      research: { en: string[]; es: string[] };
-      handoff: { en: string[]; es: string[] };
-    };
-    aiInPractice?: {
-      description: { en: string; es: string };
-      prompts: {
-        tool: string;
-        context: { en: string; es: string };
-        prompt: { en: string; es: string };
-      }[];
-    };
-    howToValidate?: {
-      what: { en: string; es: string };
-      methods: { en: string[]; es: string[] };
-      tools: { en: string[]; es: string[] };
-      evidenceExample: { en: string; es: string };
-    };
-    quiz?: {
-      question: { en: string; es: string };
-      options: { en: string[]; es: string[] };
-      correctIndex: number;
-      explanation: { en: string; es: string };
-    }[];
-    realExample?: {
-      title: { en: string; es: string };
-      description: { en: string; es: string };
-      imageUrl?: string;
-      company?: string;
-    };
-  };
-}
-
-export interface Track {
-  id: string;
-  title: { en: string; es: string };
-  description: { en: string; es: string };
-  topics: Topic[];
-}
+export type { Language, Topic, Track } from './types';
 
 export const tracks: Track[] = [
   {
@@ -453,6 +397,11 @@ export const tracks: Track[] = [
           }
         }
       },
+      // === PHASE 2: BEGINNER - Research & Understanding Users ===
+      uxResearchLesson,
+      userPersonasLesson,
+      ...researchLessons,
+      // === PHASE 3: BEGINNER - Structure & Organization ===
       {
         id: 'information-architecture',
         title: { en: 'Information Architecture', es: 'Arquitectura de Información' },
@@ -645,6 +594,7 @@ export const tracks: Track[] = [
           }
         }
       },
+      ...iaLessons,
       {
         id: 'user-flows',
         title: { en: 'User Flows & Journeys', es: 'Flujos de Usuario y Viajes' },
@@ -825,169 +775,11 @@ export const tracks: Track[] = [
           }
         }
       },
-      {
-        id: 'user-personas',
-        title: { en: 'User Personas', es: 'Personas de Usuario' },
-        description: { en: 'Creating archetypes to represent your target users.', es: 'Creando arquetipos para representar a tus usuarios objetivo.' },
-        status: 'intermediate',
-        timeEstimate: '2h',
-        reference: { en: 'About Face - Alan Cooper', es: 'About Face - Alan Cooper' },
-        referenceLink: 'https://www.nngroup.com/articles/persona/',
-        content: {
-          definition: {
-            en: 'Personas are fictional characters created to represent the different user types within your targeted demographic, attitude, and/or behavior set that might use a site, brand, or product in a similar way.',
-            es: 'Las personas son personajes ficticios creados para representar los diferentes tipos de usuarios dentro de tu grupo demográfico, actitud y/o comportamiento objetivo que podrían usar un sitio, marca o producto de manera similar.'
-          },
-          why: {
-            en: 'They help guide decisions about product features, navigation, interactions, and even visual design by focusing on specific user goals.',
-            es: 'Ayudan a guiar las decisiones sobre características del producto, navegación, interacciones e incluso diseño visual al enfocarse en objetivos específicos del usuario.'
-          },
-          keyPrinciples: {
-            en: ['Goal-Directed Design.', 'Based on research, not assumptions.', 'Focus on behaviors, not just demographics.', 'Specific context scenarios.'],
-            es: ['Diseño Dirigido a Objetivos.', 'Basado en investigación, no suposiciones.', 'Enfocarse en comportamientos, no solo demografía.', 'Escenarios de contexto específicos.']
-          },
-          commonMistakes: {
-            en: ['Creating "elastic" personas that change to fit the feature.', 'Too much irrelevant backstory (e.g., dog\'s name).', 'Not using them in design decisions.'],
-            es: ['Crear personas "elásticas" que cambian para ajustarse a la función.', 'Demasiada historia de fondo irrelevante (ej. nombre del perro).', 'No usarlas en decisiones de diseño.']
-          },
-          howToApply: {
-            steps: [
-              {
-                name: { en: 'Research & Interview', es: 'Investigación y Entrevistas' },
-                description: { en: 'Talk to 5-7 real users. Note patterns in behavior.', es: 'Habla con 5-7 usuarios reales. Nota patrones de comportamiento.' }
-              },
-              {
-                name: { en: 'Identify Patterns', es: 'Identificar Patrones' },
-                description: { en: 'Group users by goals and pain points.', es: 'Agrupa usuarios por objetivos y puntos de dolor.' }
-              },
-              {
-                name: { en: 'Draft the Persona', es: 'Borrador de la Persona' },
-                description: { en: 'Give them a name, photo, and specific quote that summarizes their attitude.', es: 'Dales un nombre, foto y una cita específica que resuma su actitud.' }
-              },
-              {
-                name: { en: 'Scenario Mapping', es: 'Mapeo de Escenarios' },
-                description: { en: 'Write a scenario: "Mary needs to [Goal], but [Constraint]..."', es: 'Escribe un escenario: "Mary necesita [Objetivo], pero [Restricción]..."' }
-              }
-            ]
-          },
-          aiInPractice: {
-            description: { en: 'Use AI to flesh out persona details and generate empathy maps based on raw research data.', es: 'Usa IA para desarrollar detalles de personas y generar mapas de empatía basados en datos de investigación sin procesar.' },
-            prompts: [
-              {
-                tool: 'ChatGPT',
-                context: { en: 'Creating a persona from demographics', es: 'Creando una persona desde demografía' },
-                prompt: { en: 'Create a user persona for a fitness app. Demographics: Female, 28, Urban. Key goal: Strength training but has limited time. Include: Bio, Frustrations, and 3 specific goals.', es: 'Crea una persona de usuario para una app de fitness. Demografía: Mujer, 28, Urbana. Objetivo clave: Entrenamiento de fuerza pero tiene tiempo limitado. Incluye: Biografía, Frustraciones y 3 objetivos específicos.' }
-              }
-            ]
-          },
-          howToValidate: {
-            what: { 
-              en: 'Validate that your proto-persona accurately represents real user behaviors, goals, and pain points through research.',
-              es: 'Valida que tu proto-persona represente con precisión comportamientos, objetivos y puntos de dolor de usuarios reales a través de investigación.'
-            },
-            methods: { 
-              en: [
-                'User interviews (5-7 users) to verify assumptions',
-                'Empathy mapping exercises with real user data',
-                'Surveys to quantify how common the persona\'s traits are',
-                'Usability testing to observe if design decisions resonate'
-              ],
-              es: [
-                'Entrevistas con usuarios (5-7 usuarios) para verificar suposiciones',
-                'Ejercicios de mapeo de empatía con datos reales de usuarios',
-                'Encuestas para cuantificar qué tan comunes son los rasgos de la persona',
-                'Pruebas de usabilidad para observar si las decisiones de diseño resuenan'
-              ]
-            },
-            tools: { 
-              en: ['Empathy Map Canvas', 'User interview scripts', 'UserTesting.com', 'Typeform/Google Forms', 'Dovetail (for research synthesis)'],
-              es: ['Canvas de Mapa de Empatía', 'Scripts de entrevistas', 'UserTesting.com', 'Typeform/Google Forms', 'Dovetail (para síntesis de investigación)']
-            },
-            evidenceExample: { 
-              en: 'After 6 user interviews, we confirmed that "Mary Taylor" accurately represents 4 out of 6 users. The empathy map revealed decision paralysis as the #1 barrier (mentioned by 5/6 users), validating our persona\'s key frustration. We pivoted the app to focus on curated recommendations instead of endless browsing.',
-              es: 'Después de 6 entrevistas con usuarios, confirmamos que "Mary Taylor" representa con precisión a 4 de 6 usuarios. El mapa de empatía reveló la parálisis de decisión como la barrera #1 (mencionada por 5/6 usuarios), validando la frustración clave de nuestra persona. Pivoteamos la app para enfocarnos en recomendaciones curadas en lugar de navegación infinita.'
-            }
-          },
-          realExample: {
-            title: { 
-              en: 'User Persona Examples & Empathy Map', 
-              es: 'Ejemplos de User Persona y Mapa de Empatía' 
-            },
-            description: { 
-              en: 'These two personas represent different user types for the same home design platform. The empathy map below helps validate the proto-persona by exploring what Mary thinks, feels, sees, hears, says, and does—revealing insights that guide product decisions.',
-              es: 'Estas dos personas representan diferentes tipos de usuarios para la misma plataforma de diseño de hogar. El mapa de empatía abajo ayuda a validar la proto-persona explorando qué piensa, siente, ve, escucha, dice y hace Mary—revelando insights que guían decisiones de producto.'
-            }
-          }
-        }
-      },
-       {
-        id: 'ux-research',
-        title: { en: 'UX Research', es: 'Investigación UX' },
-        description: { en: 'Gathering insights to inform design decisions.', es: 'Recopilando insights para informar decisiones de diseño.' },
-        status: 'intermediate',
-        timeEstimate: '2h 30m',
-        reference: { en: 'Just Enough Research - Erika Hall', es: 'Just Enough Research - Erika Hall' },
-        referenceLink: 'https://www.nngroup.com/articles/ux-research-cheat-sheet/',
-        content: {
-          definition: {
-            en: 'UX research is the systematic study of target users and their requirements, to add realistic contexts and insights to design processes.',
-            es: 'La investigación UX es el estudio sistemático de los usuarios objetivo y sus requisitos, para agregar contextos realistas e ideas a los procesos de diseño.'
-          },
-          why: {
-            en: 'It saves time and money by preventing you from building the wrong thing.',
-            es: 'Ahorra tiempo y dinero evitando que construyas la cosa equivocada.'
-          },
-          keyPrinciples: {
-            en: ['Triangulate data: Mix qualitative (Why) & quantitative (How many).', 'Define success metrics (HEART, NPS, Retention).', 'Focus on what people do, not what they say.', 'Synthesize findings into actionable insights.'],
-            es: ['Triangular datos: Mezcla cualitativo (Por qué) y cuantitativo (Cuántos).', 'Define métricas de éxito (HEART, NPS, Retención).', 'Enfócate en lo que la gente hace, no en lo que dice.', 'Sintetiza hallazgos en insights accionables.']
-          },
-          commonMistakes: {
-            en: ['Asking leading questions.', 'Confirmation bias (looking for data to support your idea).', 'Researching without a clear question.'],
-            es: ['Hacer preguntas inducidas.', 'Sesgo de confirmación (buscar datos que apoyen tu idea).', 'Investigar sin una pregunta clara.']
-          },
-          howToApply: {
-            steps: [
-              {
-                name: { en: 'Define the Question', es: 'Definir la Pregunta' },
-                description: { en: 'What specifically do we need to learn? (e.g. "Why do users drop off at checkout?")', es: '¿Qué necesitamos aprender específicamente? (ej. "¿Por qué los usuarios abandonan en el pago?")' }
-              },
-              {
-                name: { en: 'Choose Method', es: 'Elegir Método' },
-                description: { en: 'Interviews for "Why", Analytics/Surveys for "How many".', es: 'Entrevistas para "Por qué", Analíticas/Encuestas para "Cuántos".' }
-              },
-              {
-                name: { en: 'Recruit', es: 'Reclutar' },
-                description: { en: 'Find 5 representative users. Do not use your coworkers.', es: 'Encuentra 5 usuarios representativos. No uses a tus compañeros de trabajo.' }
-              },
-              {
-                name: { en: 'Synthesize', es: 'Sintetizar' },
-                description: { en: 'Look for themes and patterns across participants.', es: 'Busca temas y patrones entre los participantes.' }
-              }
-            ]
-          },
-          aiInPractice: {
-            description: { en: 'AI can dramatically speed up the synthesis of qualitative data and help generate interview scripts.', es: 'La IA puede acelerar drásticamente la síntesis de datos cualitativos y ayudar a generar guiones de entrevistas.' },
-            prompts: [
-              {
-                tool: 'Claude',
-                context: { en: 'Synthesizing interview notes', es: 'Sintetizando notas de entrevista' },
-                prompt: { en: 'I have pasted notes from 5 user interviews below. Identify the top 3 shared pain points and support each with a direct quote.', es: 'He pegado notas de 5 entrevistas de usuarios a continuación. Identifica los 3 principales puntos de dolor compartidos y respalda cada uno con una cita directa.' }
-              }
-            ]
-          },
-          realExample: {
-            title: { 
-              en: 'E-commerce Checkout Optimization Study', 
-              es: 'Estudio de Optimización de Checkout E-commerce' 
-            },
-            description: {
-              en: 'A comprehensive UX research project combining 4 methods to triangulate findings: User Interviews (8 participants, qualitative WHY), Surveys (342 responses, quantitative HOW MANY), Analytics (30 days, behavioral WHAT), and Usability Testing (6 participants, observational HOW). All methods revealed the same core issues: shipping costs appearing too late (64% complaint rate, 43% drop-off), forced account creation creating friction (51% complaint rate), and overly long payment forms (38% complaint rate). The triangulated data provided high confidence to recommend 3 specific changes.',
-              es: 'Un proyecto integral de investigación UX combinando 4 métodos para triangular hallazgos: Entrevistas (8 participantes, POR QUÉ cualitativo), Encuestas (342 respuestas, CUÁNTOS cuantitativo), Analíticas (30 días, QUÉ comportamental), y Pruebas de Usabilidad (6 participantes, CÓMO observacional). Todos los métodos revelaron los mismos problemas centrales: costos de envío apareciendo muy tarde (64% tasa de queja, 43% abandono), creación forzada de cuenta creando fricción (51% tasa de queja), y formularios de pago muy largos (38% tasa de queja). Los datos triangulados proporcionaron alta confianza para recomendar 3 cambios específicos.'
-            },
-            company: 'UX Research Best Practice'
-          }
-        }
-      },
+      // === PHASE 4: BEGINNER - Visual Design Fundamentals ===
+      ...uiLessons.filter(lesson => lesson.id === 'wireframes'),
+      ...uiLessons.filter(lesson => lesson.id === 'visual-hierarchy'),
+      ...uiLessons.filter(lesson => lesson.id === 'typography-fundamentals' || lesson.id === 'color-theory'),
+      // === PHASE 5: INTERMEDIATE - Analysis & Competitive Strategy ===
       {
         id: 'competitive-analysis',
         title: { en: 'Competitive Analysis & Benchmarking', es: 'Análisis Competitivo y Benchmarking' },
@@ -1131,118 +923,9 @@ export const tracks: Track[] = [
           }
         }
       },
-      {
-        id: 'lean-ux',
-        title: { en: 'Lean UX', es: 'Lean UX' },
-        description: { en: 'Integrating UX into Agile development cycles.', es: 'Integrando UX en ciclos de desarrollo Agile.' },
-        status: 'intermediate',
-        timeEstimate: '1h 45m',
-        reference: { en: 'Lean UX - Jeff Gothelf & Josh Seiden', es: 'Lean UX - Jeff Gothelf & Josh Seiden' },
-        referenceLink: 'https://www.interaction-design.org/literature/article/a-simple-introduction-to-lean-ux',
-        content: {
-          definition: {
-            en: 'Lean UX focuses on the actual experience being designed rather than deliverables. It emphasizes rapid experimentation, feedback loops, and collaboration.',
-            es: 'Lean UX se centra en la experiencia real que se está diseñando en lugar de los entregables. Enfatiza la experimentación rápida, los bucles de retroalimentación y la colaboración.'
-          },
-          why: {
-            en: 'It moves the focus from "documenting requirements" to "delivering value" and validating hypotheses quickly.',
-            es: 'Mueve el enfoque de "documentar requisitos" a "entregar valor" y validar hipótesis rápidamente.'
-          },
-          keyPrinciples: {
-            en: ['Outcomes over output.', 'Collaborative design.', 'Minimum Viable Product (MVP).', 'Continuous discovery.'],
-            es: ['Resultados sobre producción.', 'Diseño colaborativo.', 'Producto Mínimo Viable (MVP).', 'Descubrimiento continuo.']
-          },
-          commonMistakes: {
-            en: ['Skipping research in the name of speed.', 'Confusing MVP with a half-broken product.', 'Working in silos.'],
-            es: ['Saltar la investigación en nombre de la velocidad.', 'Confundir MVP con un producto medio roto.', 'Trabajar en silos.']
-          },
-          howToApply: {
-            steps: [
-              {
-                name: { en: 'Declare Assumptions', es: 'Declarar Suposiciones' },
-                description: { en: 'What do we believe is true? (e.g. "Users want to share photos")', es: '¿Qué creemos que es verdad? (ej. "Los usuarios quieren compartir fotos")' }
-              },
-              {
-                name: { en: 'Create Hypothesis', es: 'Crear Hipótesis' },
-                description: { en: 'We believe [Outcome] will happen if [Feature] for [Persona].', es: 'Creemos que [Resultado] sucederá si [Función] para [Persona].' }
-              },
-              {
-                name: { en: 'Build MVP', es: 'Construir MVP' },
-                description: { en: 'The smallest thing to validate the hypothesis (even a paper sketch).', es: 'La cosa más pequeña para validar la hipótesis (incluso un boceto en papel).' }
-              },
-              {
-                name: { en: 'Measure & Learn', es: 'Medir y Aprender' },
-                description: { en: 'Did it work? If not, pivot.', es: '¿Funcionó? Si no, pivota.' }
-              }
-            ]
-          },
-          aiInPractice: {
-            description: { en: 'Use AI to generate testable hypotheses from business goals.', es: 'Usa IA para generar hipótesis comprobables a partir de objetivos comerciales.' },
-            prompts: [
-              {
-                tool: 'ChatGPT',
-                context: { en: 'Brainstorming hypotheses', es: 'Lluvia de ideas de hipótesis' },
-                prompt: { en: 'Our goal is to increase newsletter signups by 20%. Generate 5 Lean UX hypotheses for how we might achieve this on our blog page.', es: 'Nuestro objetivo es aumentar las suscripciones al boletín en un 20%. Genera 5 hipótesis de Lean UX sobre cómo podríamos lograr esto en nuestra página de blog.' }
-              }
-            ]
-          },
-          howToValidate: {
-            what: { 
-              en: 'Validate that your hypothesis is testable, your MVP is truly minimal, and your metrics accurately measure the desired outcome.',
-              es: 'Valida que tu hipótesis sea comprobable, tu MVP sea verdaderamente mínimo y tus métricas midan con precisión el resultado deseado.'
-            },
-            methods: { 
-              en: [
-                'Define success metrics before building (e.g., "20% increase in signups")',
-                'Test MVP with real users (minimum 30-50 interactions for statistical significance)',
-                'Use A/B testing to compare hypothesis vs. control',
-                'Set a decision threshold: at what point do you pivot vs. persevere?',
-                'Validate that you\'re measuring outcomes, not just outputs (signups, not button clicks)'
-              ],
-              es: [
-                'Define métricas de éxito antes de construir (ej. "20% aumento en registros")',
-                'Prueba MVP con usuarios reales (mínimo 30-50 interacciones para significancia estadística)',
-                'Usa pruebas A/B para comparar hipótesis vs. control',
-                'Establece un umbral de decisión: ¿en qué punto pivotas vs. perseveras?',
-                'Valida que estés midiendo resultados, no solo salidas (registros, no clics en botones)'
-              ]
-            },
-            tools: { 
-              en: ['Google Analytics', 'Mixpanel', 'Hotjar', 'Amplitude', 'Optimizely (A/B testing)', 'User interviews'],
-              es: ['Google Analytics', 'Mixpanel', 'Hotjar', 'Amplitude', 'Optimizely (pruebas A/B)', 'Entrevistas de usuario']
-            },
-            evidenceExample: { 
-              en: 'Hypothesis: "We believe signups will increase by 20% if we add social proof (testimonials) above the fold for first-time visitors." MVP: Added 3 customer testimonials with photos. Metrics: Tracked signup conversion rate for 2 weeks (n=1,247 visitors). Result: 12% increase in signups. Decision: Persevere but iterate—test video testimonials next.',
-              es: 'Hipótesis: "Creemos que los registros aumentarán en un 20% si agregamos prueba social (testimonios) en la parte superior para visitantes primerizos." MVP: Agregamos 3 testimonios de clientes con fotos. Métricas: Rastreamos tasa de conversión de registros durante 2 semanas (n=1,247 visitantes). Resultado: 12% de aumento en registros. Decisión: Perseverar pero iterar—probar testimonios en video a continuación.'
-            }
-          },
-          practicalTools: {
-            design: { 
-              en: ['Figma/Sketch (low-fi prototypes)', 'Miro/FigJam (hypothesis mapping)', 'Notion (experiment tracker)'],
-              es: ['Figma/Sketch (prototipos de baja fidelidad)', 'Miro/FigJam (mapeo de hipótesis)', 'Notion (rastreador de experimentos)']
-            },
-            research: { 
-              en: ['Google Analytics', 'Mixpanel', 'Hotjar', 'Amplitude', 'UserTesting', 'Optimizely'],
-              es: ['Google Analytics', 'Mixpanel', 'Hotjar', 'Amplitude', 'UserTesting', 'Optimizely']
-            },
-            handoff: { 
-              en: ['Hypothesis canvas', 'Experiment tracker (Notion/Airtable)', 'Metrics dashboard'], 
-              es: ['Canvas de hipótesis', 'Rastreador de experimentos (Notion/Airtable)', 'Dashboard de métricas'] 
-            }
-          },
-          realExample: {
-            title: { 
-              en: 'Dropbox MVP: The Power of a 3-Minute Video', 
-              es: 'Dropbox MVP: El Poder de un Video de 3 Minutos' 
-            },
-            description: {
-              en: 'In 2008, Dropbox faced a classic Lean UX challenge: building cloud file sync was technically complex and expensive. Instead of building first, founder Drew Houston created a simple 3-minute demo video showing how Dropbox would work. The hypothesis: "We believe early adopters will sign up for a beta if we clearly demonstrate the file sync problem and solution." The MVP wasn\'t a product—it was a video. Posted on Hacker News, it generated 75,000 overnight signups. This validated massive demand before writing production code, and became one of the most famous Lean UX success stories. The lesson: your MVP should be the smallest thing that tests your riskiest assumption.',
-              es: 'En 2008, Dropbox enfrentó un desafío clásico de Lean UX: construir sincronización de archivos en la nube era técnicamente complejo y costoso. En lugar de construir primero, el fundador Drew Houston creó un simple video demo de 3 minutos mostrando cómo funcionaría Dropbox. La hipótesis: "Creemos que los early adopters se registrarán para una beta si demostramos claramente el problema y solución de sincronización de archivos." El MVP no fue un producto—fue un video. Publicado en Hacker News, generó 75,000 registros de la noche a la mañana. Esto validó una demanda masiva antes de escribir código de producción, y se convirtió en una de las historias de éxito de Lean UX más famosas. La lección: tu MVP debe ser la cosa más pequeña que pruebe tu suposición más riesgosa.'
-            },
-            company: 'Dropbox (2008)'
-          }
-        }
-      },
+      // === PHASE 6: INTERMEDIATE - Process & Methodologies ===
+      // UX Process (full workflow context) → Methodologies Overview (bird's eye comparison)
+      // → then individual deep-dive method lessons (DT, Lean UX, DS, Scrum, User Stories)
       {
         id: 'ux-process',
         title: { en: 'UX Process & Deliverables', es: 'Proceso UX y Entregables' },
@@ -1297,78 +980,298 @@ export const tracks: Track[] = [
                 prompt: { en: 'Draft a UX Project Brief for a mobile app redesign. Include sections for: Objectives, Scope, Target Audience, and Deliverables.', es: 'Redacta un Resumen de Proyecto UX para el rediseño de una aplicación móvil. Incluye secciones para: Objetivos, Alcance, Público Objetivo y Entregables.' }
               }
             ]
+          },
+          realExample: {
+            title: { 
+              en: 'Complete UX Process Case Study', 
+              es: 'Caso de Estudio Completo de Proceso UX' 
+            },
+            description: {
+              en: 'Interactive walkthrough of a real UX redesign project from discovery to validation, showing all deliverables at each phase.',
+              es: 'Recorrido interactivo de un proyecto real de rediseño UX desde descubrimiento hasta validación, mostrando todos los entregables en cada fase.'
+            },
+            company: 'FitTrack App Redesign (Case Study)'
           }
         }
       },
       {
-        id: 'design-methodologies',
-        title: { en: 'Design Methodologies', es: 'Metodologías de Diseño' },
-        description: { en: 'Agile, Design Thinking, and Research approaches for modern product teams.', es: 'Agile, Design Thinking y enfoques de Investigación para equipos de producto modernos.' },
-        status: 'beginner',
-        timeEstimate: '2h',
-        reference: { en: 'The Scrum Guide & IDEO', es: 'La Guía Scrum e IDEO' },
+        id: 'methodologies-overview',
+        title: { en: 'Methodologies Overview', es: 'Visión General de Metodologías' },
+        description: { en: 'A comprehensive guide to choosing and combining UX/product methodologies based on your project needs.', es: 'Una guía completa para elegir y combinar metodologías UX/producto según las necesidades de tu proyecto.' },
+        status: 'intermediate',
+        timeEstimate: '1h 45m',
+        reference: { en: 'NN/g on Design Thinking, IDEO, The Scrum Guide', es: 'NN/g sobre Design Thinking, IDEO, La Guía Scrum' },
         referenceLink: 'https://www.nngroup.com/articles/design-thinking/',
         content: {
           definition: {
-            en: 'Design methodologies are structured approaches to solving problems and managing product development. They provide a framework for collaboration, risk management, and decision-making.',
-            es: 'Las metodologías de diseño son enfoques estructurados para resolver problemas y gestionar el desarrollo de productos. Proporcionan un marco para la colaboración, la gestión de riesgos y la toma de decisiones.'
+            en: 'Design and product methodologies are structured frameworks that guide how teams discover problems, define solutions, deliver products, and validate outcomes. They help teams align on processes, reduce risk, and move from ambiguity to clarity.',
+            es: 'Las metodologías de diseño y producto son marcos estructurados que guían cómo los equipos descubren problemas, definen soluciones, entregan productos y validan resultados. Ayudan a los equipos a alinearse en procesos, reducir riesgos y pasar de la ambigüedad a la claridad.'
           },
           why: {
-            en: 'Choosing the right methodology ensures that teams are aligned, risks are managed early, and the final product actually meets user needs rather than just following a plan.',
-            es: 'Elegir la metodología correcta asegura que los equipos estén alineados, los riesgos se gestionen temprano y el producto final realmente satisfaga las necesidades del usuario en lugar de solo seguir un plan.'
+            en: 'Without a shared methodology, teams waste time debating process, miss critical discovery steps, and build features based on assumptions instead of evidence. The right methodology creates alignment, speeds up decision-making, and ensures user needs drive the roadmap—not just internal opinions.',
+            es: 'Sin una metodología compartida, los equipos pierden tiempo debatiendo procesos, se saltan pasos críticos de descubrimiento y construyen funcionalidades basadas en suposiciones en lugar de evidencia. La metodología correcta crea alineación, acelera la toma de decisiones y asegura que las necesidades del usuario impulsen la hoja de ruta, no solo las opiniones internas.'
           },
           keyPrinciples: {
-            en: ['Iterative delivery over "Big Bang" launches.', 'User feedback loops at every stage.', 'Cross-functional collaboration (Design + Dev + Business).', 'Adaptability to change.'],
-            es: ['Entrega iterativa sobre lanzamientos "Big Bang".', 'Bucles de retroalimentación de usuarios en cada etapa.', 'Colaboración interfuncional (Diseño + Dev + Negocio).', 'Adaptabilidad al cambio.']
-          },
-          commonMistakes: {
-            en: ['Treating Agile as "no research" or "no documentation".', 'Running Design Sprints without a clear problem.', 'Using Waterfall for complex, uncertain projects.', 'Rigidly following a process instead of the mindset.'],
-            es: ['Tratar Agile como "sin investigación" o "sin documentación".', 'Ejecutar Design Sprints sin un problema claro.', 'Usar Waterfall para proyectos complejos e inciertos.', 'Seguir rígidamente un proceso en lugar de la mentalidad.']
+            en: [
+              'Match methodology to uncertainty level: high uncertainty = Design Thinking/Lean UX; low uncertainty = Scrum/Waterfall.',
+              'Combine methodologies: use Design Sprint for discovery, Scrum for delivery.',
+              'Adapt, don\'t adopt: take what works for your team, skip what doesn\'t.',
+              'Start with the problem, not the process: choose methods that help you learn fast.',
+              'Iterate on your methodology: retrospectives should improve how you work.',
+              'Documentation follows discovery: don\'t create artifacts for their own sake.',
+              'Cross-functional collaboration is non-negotiable: designers, developers, and stakeholders must align early.',
+              'Validate assumptions continuously: methodologies are frameworks for learning, not just shipping.'
+            ],
+            es: [
+              'Ajusta la metodología al nivel de incertidumbre: alta incertidumbre = Design Thinking/Lean UX; baja incertidumbre = Scrum/Waterfall.',
+              'Combina metodologías: usa Design Sprint para descubrimiento, Scrum para entrega.',
+              'Adapta, no adoptes: toma lo que funciona para tu equipo, omite lo que no.',
+              'Comienza con el problema, no con el proceso: elige métodos que te ayuden a aprender rápido.',
+              'Itera en tu metodología: las retrospectivas deben mejorar cómo trabajas.',
+              'La documentación sigue al descubrimiento: no crees artefactos por el simple hecho de crearlos.',
+              'La colaboración interfuncional es innegociable: diseñadores, desarrolladores y stakeholders deben alinearse temprano.',
+              'Valida suposiciones continuamente: las metodologías son marcos para aprender, no solo para entregar.'
+            ]
           },
           howToApply: {
             steps: [
               {
-                name: { en: 'Choose Methodology', es: 'Elegir Metodología' },
-                description: { en: 'Is the problem clear? (Waterfall). Is it ambiguous? (Design Thinking/Agile).', es: '¿El problema está claro? (Waterfall). ¿Es ambiguo? (Design Thinking/Agile).' }
+                name: { en: '1. Assess Uncertainty', es: '1. Evaluar Incertidumbre' },
+                description: { en: 'Ask: Do we know the problem? Do we know the solution? High uncertainty in either = lean toward discovery-focused methods (Design Thinking, Design Sprint).', es: 'Pregunta: ¿Conocemos el problema? ¿Conocemos la solución? Alta incertidumbre en cualquiera = inclínate hacia métodos enfocados en descubrimiento (Design Thinking, Design Sprint).' }
               },
               {
-                name: { en: 'Initial Research', es: 'Investigación Inicial' },
-                description: { en: 'Start with Desk Research. What do we already know? What are competitors doing?', es: 'Comienza con Investigación de Escritorio. ¿Qué sabemos ya? ¿Qué están haciendo los competidores?' }
+                name: { en: '2. Map Project Phase', es: '2. Mapear Fase del Proyecto' },
+                description: { en: 'Discovery = Design Thinking/Design Sprint. Definition = Lean UX. Delivery = Scrum/Agile. Validation = Continuous testing + analytics.', es: 'Descubrimiento = Design Thinking/Design Sprint. Definición = Lean UX. Entrega = Scrum/Agile. Validación = Pruebas continuas + analítica.' }
               },
               {
-                name: { en: 'Define Assumptions', es: 'Definir Suposiciones' },
-                description: { en: 'List what you *think* is true. These are your first hypotheses to test.', es: 'Lista lo que *crees* que es verdad. Estas son tus primeras hipótesis para probar.' }
+                name: { en: '3. Consider Team Size & Timeline', es: '3. Considerar Tamaño de Equipo y Cronograma' },
+                description: { en: 'Solo/small team + tight deadline = Lean UX. Large cross-functional team = Scrum. Time-boxed exploration = Design Sprint (5 days).', es: 'Equipo solo/pequeño + plazo ajustado = Lean UX. Equipo interfuncional grande = Scrum. Exploración con límite de tiempo = Design Sprint (5 días).' }
+              },
+              {
+                name: { en: '4. Choose Core Method + Complement', es: '4. Elegir Método Principal + Complemento' },
+                description: { en: 'Example: Core = Scrum (2-week sprints). Complement = Monthly Design Sprint for new features. Tools = Miro for workshops, Jira for delivery tracking.', es: 'Ejemplo: Principal = Scrum (sprints de 2 semanas). Complemento = Design Sprint mensual para nuevas funcionalidades. Herramientas = Miro para talleres, Jira para seguimiento de entrega.' }
+              },
+              {
+                name: { en: '5. Run & Retrospect', es: '5. Ejecutar y Retrospectiva' },
+                description: { en: 'After each cycle, ask: What slowed us down? What helped us learn faster? Adjust your methodology based on evidence, not dogma.', es: 'Después de cada ciclo, pregunta: ¿Qué nos ralentizó? ¿Qué nos ayudó a aprender más rápido? Ajusta tu metodología basándote en evidencia, no en dogma.' }
               }
             ]
           },
+          commonMistakes: {
+            en: [
+              'Cargo cult methodology: copying a process without understanding why (e.g., daily standups with no decisions).',
+              'Skipping discovery: jumping straight to delivery without validating the problem.',
+              'Methodology tourism: switching methods every sprint without giving one time to work.',
+              'Rigid adherence: treating Scrum/Design Thinking as religion instead of a flexible framework.',
+              'No retrospectives: repeating the same process issues sprint after sprint without improvement.'
+            ],
+            es: [
+              'Metodología de culto cargo: copiar un proceso sin entender el porqué (ej., daily standups sin decisiones).',
+              'Saltarse el descubrimiento: saltar directamente a la entrega sin validar el problema.',
+              'Turismo metodológico: cambiar de métodos cada sprint sin dar tiempo a que uno funcione.',
+              'Adherencia rígida: tratar Scrum/Design Thinking como religión en lugar de un marco flexible.',
+              'Sin retrospectivas: repetir los mismos problemas de proceso sprint tras sprint sin mejora.'
+            ]
+          },
+          deliverables: {
+            description: {
+              en: 'Deliverables vary by methodology but should always serve learning and alignment, not bureaucracy.',
+              es: 'Los entregables varían según la metodología pero siempre deben servir al aprendizaje y la alineación, no a la burocracia.'
+            },
+            items: {
+              en: [
+                'Methodology decision log (why this approach, for this phase)',
+                'Process canvas (e.g., Double Diamond map with chosen methods per phase)',
+                'Workshop artifacts (e.g., sprint prototype, journey map, hypotheses board)',
+                'Retrospective notes (what worked, what to change)',
+                'Delivery artifacts (backlog, sprint goals, definition of done)',
+                'Validation plan (how we\'ll measure if the methodology is working)'
+              ],
+              es: [
+                'Registro de decisiones metodológicas (por qué este enfoque, para esta fase)',
+                'Canvas de proceso (ej., mapa Double Diamond con métodos elegidos por fase)',
+                'Artefactos de taller (ej., prototipo de sprint, mapa de viaje, tablero de hipótesis)',
+                'Notas de retrospectiva (qué funcionó, qué cambiar)',
+                'Artefactos de entrega (backlog, objetivos de sprint, definición de hecho)',
+                'Plan de validación (cómo mediremos si la metodología está funcionando)'
+              ]
+            }
+          },
+          practicalTools: {
+            design: {
+              en: ['Miro (workshops, journey mapping)', 'FigJam (collaborative ideation)', 'Notion (documentation, decision logs)'],
+              es: ['Miro (talleres, mapeo de viajes)', 'FigJam (ideación colaborativa)', 'Notion (documentación, registros de decisiones)']
+            },
+            research: {
+              en: ['Dovetail (research synthesis)', 'Maze (prototype testing)', 'Optimal Workshop (card sorting, tree testing)'],
+              es: ['Dovetail (síntesis de investigación)', 'Maze (pruebas de prototipos)', 'Optimal Workshop (card sorting, tree testing)']
+            },
+            handoff: {
+              en: ['Jira (Scrum delivery)', 'Linear (issue tracking)', 'Confluence (team documentation)', 'Slack (async updates)'],
+              es: ['Jira (entrega Scrum)', 'Linear (seguimiento de issues)', 'Confluence (documentación de equipo)', 'Slack (actualizaciones asíncronas)']
+            }
+          },
           aiInPractice: {
-            description: { en: 'AI can act as a methodology consultant, helping you choose the right approach based on project constraints.', es: 'La IA puede actuar como consultor de metodología, ayudándote a elegir el enfoque correcto basado en las restricciones del proyecto.' },
+            description: {
+              en: 'AI can help you choose the right methodology, plan workshops, and generate sprint structures based on your constraints.',
+              es: 'La IA puede ayudarte a elegir la metodología correcta, planificar talleres y generar estructuras de sprint basadas en tus restricciones.'
+            },
             prompts: [
               {
                 tool: 'ChatGPT',
-                context: { en: 'Selecting a methodology', es: 'Seleccionando una metodología' },
-                prompt: { en: 'We are building a new medical app with strict regulatory requirements but undefined user needs. Compare using Waterfall vs Agile for this specific case. What are the risks of each?', es: 'Estamos construyendo una nueva app médica con requisitos regulatorios estrictos pero necesidades de usuario indefinidas. Compara el uso de Waterfall vs Agile para este caso específico. ¿Cuáles son los riesgos de cada uno?' }
+                context: { en: 'Choosing methodology', es: 'Elegir metodología' },
+                prompt: {
+                  en: 'We\'re a 3-person team building a B2B SaaS dashboard. We have 6 weeks, unclear user needs, and a technical co-founder who wants to ship fast. Should we use Design Sprint, Lean UX, or Scrum? Compare pros/cons for this specific scenario.',
+                  es: 'Somos un equipo de 3 personas construyendo un dashboard B2B SaaS. Tenemos 6 semanas, necesidades de usuario poco claras y un co-fundador técnico que quiere lanzar rápido. ¿Deberíamos usar Design Sprint, Lean UX o Scrum? Compara pros/contras para este escenario específico.'
+                }
               },
               {
-                tool: 'Perplexity / Claude',
-                context: { en: 'Summarizing desk research', es: 'Resumiendo investigación de escritorio' },
-                prompt: { en: 'Summarize the current UX trends for "Fintech Onboarding" in 2024 based on reputable sources. List top 3 patterns.', es: 'Resume las tendencias actuales de UX para "Onboarding Fintech" en 2024 basadas en fuentes confiables. Enumera los 3 patrones principales.' }
+                tool: 'Claude',
+                context: { en: 'Planning a workshop', es: 'Planificar un taller' },
+                prompt: {
+                  en: 'Create a 90-minute remote Design Sprint kickoff workshop agenda. Participants: 1 PM, 2 designers, 3 engineers. Goal: align on problem statement for a checkout flow redesign. Include timing, activities, and Miro board structure.',
+                  es: 'Crea una agenda de taller de lanzamiento de Design Sprint remoto de 90 minutos. Participantes: 1 PM, 2 diseñadores, 3 ingenieros. Objetivo: alinear la declaración del problema para un rediseño de flujo de checkout. Incluye timing, actividades y estructura de tablero Miro.'
+                }
+              },
+              {
+                tool: 'Perplexity',
+                context: { en: 'Generating sprint plan', es: 'Generar plan de sprint' },
+                prompt: {
+                  en: 'Generate a 2-week Scrum sprint plan for implementing user authentication (login, signup, password reset). Break into user stories with acceptance criteria. Team velocity: 20 story points.',
+                  es: 'Genera un plan de sprint Scrum de 2 semanas para implementar autenticación de usuario (login, registro, restablecimiento de contraseña). Divide en historias de usuario con criterios de aceptación. Velocidad del equipo: 20 puntos de historia.'
+                }
               }
             ]
+          },
+          howToValidate: {
+            what: {
+              en: 'Validate whether your methodology is actually helping the team ship better products faster, or just adding process overhead.',
+              es: 'Valida si tu metodología realmente está ayudando al equipo a lanzar mejores productos más rápido, o solo está agregando sobrecarga de procesos.'
+            },
+            methods: {
+              en: [
+                'Track cycle time: time from idea to shipped feature (should decrease over time).',
+                'Measure rework: % of features that need significant changes post-launch (should decrease).',
+                'Team clarity survey: ask "Do you understand WHY we\'re building this?" after each sprint.',
+                'Retrospective themes: recurring blockers = methodology problem.',
+                'User validation rate: % of assumptions validated with real users before build.'
+              ],
+              es: [
+                'Rastrea tiempo de ciclo: tiempo desde idea hasta funcionalidad lanzada (debería disminuir con el tiempo).',
+                'Mide retrabajo: % de funcionalidades que necesitan cambios significativos post-lanzamiento (debería disminuir).',
+                'Encuesta de claridad del equipo: pregunta "¿Entiendes POR QUÉ estamos construyendo esto?" después de cada sprint.',
+                'Temas de retrospectiva: bloqueos recurrentes = problema de metodología.',
+                'Tasa de validación de usuario: % de suposiciones validadas con usuarios reales antes de construir.'
+              ]
+            },
+            tools: {
+              en: ['Jira (cycle time analytics)', 'Retrium (retro themes)', 'Typeform (team pulse surveys)', 'Amplitude (feature adoption tracking)'],
+              es: ['Jira (analítica de tiempo de ciclo)', 'Retrium (temas de retro)', 'Typeform (encuestas de pulso del equipo)', 'Amplitude (seguimiento de adopción de funcionalidades)']
+            },
+            evidenceExample: {
+              en: '"After switching from Waterfall to 2-week Lean UX sprints, our cycle time dropped from 12 weeks to 3 weeks, and post-launch rework decreased by 40% because we validated with users every sprint."',
+              es: '"Después de cambiar de Waterfall a sprints Lean UX de 2 semanas, nuestro tiempo de ciclo bajó de 12 semanas a 3 semanas, y el retrabajo post-lanzamiento disminuyó un 40% porque validamos con usuarios cada sprint."'
+            }
+          },
+          quiz: [
+            {
+              question: {
+                en: 'You\'re starting a project with a clear problem but uncertain solution. Which methodology fits best?',
+                es: 'Estás comenzando un proyecto con un problema claro pero solución incierta. ¿Qué metodología se ajusta mejor?'
+              },
+              options: {
+                en: [
+                  'Waterfall (plan everything upfront)',
+                  'Design Sprint (5-day time-boxed prototype + test)',
+                  'Scrum (2-week delivery sprints)',
+                  'No methodology, just build'
+                ],
+                es: [
+                  'Waterfall (planificar todo por adelantado)',
+                  'Design Sprint (prototipo y prueba en 5 días)',
+                  'Scrum (sprints de entrega de 2 semanas)',
+                  'Sin metodología, solo construir'
+                ]
+              },
+              correctIndex: 1,
+              explanation: {
+                en: 'Design Sprint is ideal when the problem is clear but the solution is uncertain. It forces rapid prototyping and user validation before committing to delivery. Waterfall assumes you know the solution; Scrum is better for delivery, not discovery.',
+                es: 'Design Sprint es ideal cuando el problema es claro pero la solución es incierta. Fuerza el prototipado rápido y la validación de usuario antes de comprometerse con la entrega. Waterfall asume que conoces la solución; Scrum es mejor para entrega, no descubrimiento.'
+              }
+            },
+            {
+              question: {
+                en: 'Your team runs Scrum but never validates with users before building. What\'s the core issue?',
+                es: 'Tu equipo ejecuta Scrum pero nunca valida con usuarios antes de construir. ¿Cuál es el problema central?'
+              },
+              options: {
+                en: [
+                  'Scrum is the wrong methodology',
+                  'Missing discovery phase (needs Design Thinking or Lean UX complement)',
+                  'Team is too small for Scrum',
+                  'Should switch to Waterfall'
+                ],
+                es: [
+                  'Scrum es la metodología incorrecta',
+                  'Falta fase de descubrimiento (necesita complemento de Design Thinking o Lean UX)',
+                  'El equipo es demasiado pequeño para Scrum',
+                  'Deberían cambiar a Waterfall'
+                ]
+              },
+              correctIndex: 1,
+              explanation: {
+                en: 'Scrum alone doesn\'t include discovery. Combining Scrum (delivery) with Lean UX or Design Sprints (discovery) ensures you build the right thing, not just build things right.',
+                es: 'Scrum solo no incluye descubrimiento. Combinar Scrum (entrega) con Lean UX o Design Sprints (descubrimiento) asegura que construyas lo correcto, no solo que construyas cosas correctamente.'
+              }
+            },
+            {
+              question: {
+                en: 'What\'s the best way to know if your methodology is working?',
+                es: '¿Cuál es la mejor manera de saber si tu metodología está funcionando?'
+              },
+              options: {
+                en: [
+                  'Team follows all the ceremonies',
+                  'Cycle time decreases, rework decreases, team clarity increases',
+                  'Everyone likes the process',
+                  'Process matches what top companies do'
+                ],
+                es: [
+                  'El equipo sigue todas las ceremonias',
+                  'El tiempo de ciclo disminuye, el retrabajo disminuye, la claridad del equipo aumenta',
+                  'A todos les gusta el proceso',
+                  'El proceso coincide con lo que hacen las empresas top'
+                ]
+              },
+              correctIndex: 1,
+              explanation: {
+                en: 'Methodology success = measurable outcomes (faster delivery, less rework, clearer alignment), not process compliance or popularity. Track cycle time, rework rate, and team clarity surveys.',
+                es: 'Éxito de metodología = resultados medibles (entrega más rápida, menos retrabajo, alineación más clara), no cumplimiento de procesos o popularidad. Rastrea tiempo de ciclo, tasa de retrabajo y encuestas de claridad del equipo.'
+              }
+            }
+          ],
+          realExample: {
+            title: {
+              en: 'Telecom Admin Platform: New Billing Dashboard',
+              es: 'Plataforma Admin de Telecomunicaciones: Nuevo Dashboard de Facturación'
+            },
+            description: {
+              en: 'Scenario: A telecom company wants to add a billing dashboard for internal admins. Problem is clear (admins need better visibility), but the solution is uncertain (what metrics? what actions?). Timeline: 8 weeks. Team: 1 PM, 2 designers, 4 engineers. Recommended approach: Week 1-2: Design Sprint (prototype 3 dashboard concepts, test with 5 admins). Week 3-8: 3 x 2-week Scrum sprints (build validated design incrementally). Tools: Miro (sprint workshop), Figma (prototypes), Jira (sprint tracking). Outcome: shipped dashboard with 80% adoption in first month because solution was validated before building.',
+              es: 'Escenario: Una compañía de telecomunicaciones quiere agregar un dashboard de facturación para admins internos. El problema es claro (los admins necesitan mejor visibilidad), pero la solución es incierta (¿qué métricas? ¿qué acciones?). Cronograma: 8 semanas. Equipo: 1 PM, 2 diseñadores, 4 ingenieros. Enfoque recomendado: Semana 1-2: Design Sprint (prototipar 3 conceptos de dashboard, probar con 5 admins). Semana 3-8: 3 x sprints Scrum de 2 semanas (construir diseño validado incrementalmente). Herramientas: Miro (taller de sprint), Figma (prototipos), Jira (seguimiento de sprint). Resultado: dashboard lanzado con 80% de adopción en el primer mes porque la solución fue validada antes de construir.'
+            },
+            company: 'TelcoAdmin (Case Study)'
           }
         }
       },
-      // Beginner: UI fundamentals - wireframes first
-      ...uiLessons.filter(lesson => lesson.id === 'wireframes'),
-      // Beginner: Research basics
-      ...researchLessons,
-      // Beginner: IA fundamentals
-      ...iaLessons,
-      // Beginner/Intermediate: More UI lessons (typography, color)
-      ...uiLessons.filter(lesson => lesson.id !== 'wireframes' && lesson.id !== 'visual-hierarchy'),
-      // Intermediate: Prototyping
+      // Individual methodology deep-dives (after Overview gives context)
+      designThinkingLesson,
+      leanUxLesson,
+      designSprintLesson,
+      scrumForDesignersLesson,
+      userStoriesRequirementsLesson,
+      // === PHASE 7: INTERMEDIATE - Testing & Validation ===
+      ...uiLessons.filter(lesson => lesson.id === 'accessibility-wcag'),
       ...prototypingLessons,
-      // Intermediate: Advanced research (Customer Journey Map only, not Service Blueprint)
       ...advancedResearchLessons.filter(lesson => lesson.id === 'customer-journey-map')
     ]
   },
@@ -1384,8 +1287,7 @@ export const tracks: Track[] = [
       ...productStrategyLessons.filter(lesson => lesson.id === 'problem-statements'),
       // Advanced research: Service Blueprint
       ...advancedResearchLessons.filter(lesson => lesson.id === 'service-blueprint'),
-      // Advanced: Visual design systems
-      ...uiLessons.filter(lesson => lesson.id === 'visual-hierarchy'),
+      // Advanced: Design Systems
       {
         id: 'atomic-design',
         title: { en: 'Atomic Design', es: 'Diseño Atómico' },
@@ -1439,35 +1341,63 @@ export const tracks: Track[] = [
           }
         }
       },
+      // Figma Mastery: Components, Variants, Auto Layout, Variables, Tokens
+      figmaMasteryLesson,
       {
         id: 'microinteractions',
         title: { en: 'Microinteractions', es: 'Microinteracciones' },
         description: { en: 'The details that make the product engaging and alive.', es: 'Los detalles que hacen que el producto sea atractivo y vivo.' },
         status: 'advanced',
         timeEstimate: '1h 30m',
-        reference: { en: 'Seductive Interaction Design - Stephen Anderson', es: 'Seductive Interaction Design - Stephen Anderson' },
+        reference: { en: 'Microinteractions - Dan Saffer + NN/g', es: 'Microinteractions - Dan Saffer + NN/g' },
         referenceLink: 'https://www.nngroup.com/articles/microinteractions/',
         content: {
           definition: {
-            en: 'Microinteractions are contained product moments that revolve around a single use case—they have one main task.',
-            es: 'Las microinteracciones son momentos contenidos del producto que giran en torno a un solo caso de uso; tienen una tarea principal.'
+            en: 'Microinteractions are contained product moments that revolve around a single use case—they have one main task. Examples include liking a post, toggling a setting, receiving a notification, or seeing a loading state. They are the "feel" behind the functional elements of a product.',
+            es: 'Las microinteracciones son momentos contenidos del producto que giran en torno a un solo caso de uso; tienen una tarea principal. Ejemplos incluyen dar me gusta a una publicacion, alternar una configuracion, recibir una notificacion o ver un estado de carga. Son la "sensacion" detras de los elementos funcionales de un producto.'
           },
           why: {
-            en: 'They provide feedback, explain function, prevent error, and add a layer of personality and delight.',
-            es: 'Proporcionan retroalimentación, explican funciones, previenen errores y agregan una capa de personalidad y deleite.'
+            en: 'Microinteractions provide feedback, explain function, prevent error, and add a layer of personality and delight. They are the difference between a product that feels alive and one that feels flat. Research shows that perceived performance matters more than actual performance—well-crafted microinteractions make a 2-second wait feel instant.',
+            es: 'Las microinteracciones proporcionan retroalimentacion, explican funciones, previenen errores y agregan una capa de personalidad y deleite. Son la diferencia entre un producto que se siente vivo y uno plano. La investigacion muestra que el rendimiento percibido importa mas que el real—microinteracciones bien elaboradas hacen que una espera de 2 segundos se sienta instantanea.'
           },
           keyPrinciples: {
-            en: ['Trigger (What starts it).', 'Rules (What happens).', 'Feedback (What you see).', 'Loops & Modes (Meta-rules).'],
-            es: ['Disparador (Qué lo inicia).', 'Reglas (Qué sucede).', 'Retroalimentación (Lo que ves).', 'Bucles y Modos (Meta-reglas).']
+            en: [
+              'Trigger: What starts the interaction—user-initiated (tap, click, swipe) or system-initiated (notification, timer).',
+              'Rules: The logic that determines what happens once triggered. Example: a toggle switch has binary ON/OFF rules.',
+              'Feedback: The visual, audio, or haptic response the user receives. The user must always know what happened.',
+              'Loops & Modes: Meta-rules that govern long-term behavior. Does the animation repeat? Does it change over time?',
+              'Duration matters: 100-300ms for most UI transitions, 300-500ms for complex animations, never over 1 second for feedback.',
+              'Easing functions: Use ease-out for enter animations (fast start, gentle stop) and ease-in for exit. Never use linear for UI.'
+            ],
+            es: [
+              'Disparador: Que inicia la interaccion—iniciado por usuario (toque, clic, deslizamiento) o por sistema (notificacion, temporizador).',
+              'Reglas: La logica que determina que sucede una vez activado. Ejemplo: un toggle tiene reglas binarias ON/OFF.',
+              'Retroalimentacion: La respuesta visual, auditiva o haptica que recibe el usuario. Siempre debe saber que paso.',
+              'Bucles y Modos: Meta-reglas que gobiernan el comportamiento a largo plazo. Se repite la animacion? Cambia con el tiempo?',
+              'La duracion importa: 100-300ms para transiciones UI, 300-500ms para animaciones complejas, nunca mas de 1 segundo para feedback.',
+              'Funciones de easing: Usa ease-out para entradas (inicio rapido, parada suave) y ease-in para salidas. Nunca uses linear para UI.'
+            ]
           },
           commonMistakes: {
-            en: ['Annoying or slow animations.', 'Distracting from the main task.', 'Inconsistent behavior.'],
-            es: ['Animaciones molestas o lentas.', 'Distraer de la tarea principal.', 'Comportamiento inconsistente.']
+            en: [
+              'Annoying or slow animations: Anything over 400ms for simple feedback feels sluggish.',
+              'Distracting from the main task: Fancy animations that steal attention from the user\'s goal.',
+              'Inconsistent behavior: A button that bounces on one page but not on another breaks expectations.',
+              'No feedback at all: Users click and nothing happens—did it work?',
+              'Ignoring reduced motion preferences: Not respecting prefers-reduced-motion is an accessibility failure.'
+            ],
+            es: [
+              'Animaciones molestas o lentas: Cualquier cosa sobre 400ms para feedback simple se siente pesada.',
+              'Distraer de la tarea principal: Animaciones sofisticadas que roban atencion del objetivo del usuario.',
+              'Comportamiento inconsistente: Un boton que rebota en una pagina pero no en otra rompe expectativas.',
+              'Sin retroalimentacion: El usuario hace clic y nada pasa—funciono?',
+              'Ignorar movimiento reducido: No respetar prefers-reduced-motion es una falla de accesibilidad.'
+            ]
           },
           howToApply: {
             steps: [
               {
-                name: { en: 'Identify Trigger', es: 'Identificar Disparador' },
+                name: { en: 'Identify the Trigger', es: 'Identificar el Disparador' },
                 description: { en: 'User initiated (click) or System initiated (notification)?', es: '¿Iniciado por usuario (clic) o iniciado por sistema (notificación)?' }
               },
               {
@@ -1489,6 +1419,67 @@ export const tracks: Track[] = [
                 prompt: { en: 'Suggest 3 creative ways to visually indicate a "Success" state when a user completes a daily goal, without using a standard checkmark.', es: 'Sugiere 3 formas creativas de indicar visualmente un estado de "Éxito" cuando un usuario completa un objetivo diario, sin usar una marca de verificación estándar.' }
               }
             ]
+          },
+          deliverables: {
+            description: { en: 'Microinteraction design documentation.', es: 'Documentacion de diseno de microinteracciones.' },
+            items: {
+              en: [
+                'Interaction map: Catalog of all microinteractions with trigger/rules/feedback/loops',
+                'Animation specs: Duration (ms), easing curve, delay, and animated properties',
+                'State diagrams: Visual flow of all states (idle, hover, active, loading, success, error)',
+                'Motion tokens: Reusable timing and easing values as design tokens',
+                'Accessibility notes: Reduced motion alternatives and ARIA live regions'
+              ],
+              es: [
+                'Mapa de interacciones: Catalogo de microinteracciones con disparador/reglas/feedback/bucles',
+                'Specs de animacion: Duracion (ms), curva de easing, delay y propiedades animadas',
+                'Diagramas de estado: Flujo visual de todos los estados',
+                'Tokens de movimiento: Valores reutilizables de timing y easing como design tokens',
+                'Notas de accesibilidad: Alternativas de movimiento reducido y regiones ARIA live'
+              ]
+            }
+          },
+          practicalTools: {
+            design: {
+              en: ['Figma Smart Animate', 'Principle', 'ProtoPie', 'After Effects + Lottie'],
+              es: ['Figma Smart Animate', 'Principle', 'ProtoPie', 'After Effects + Lottie']
+            },
+            research: {
+              en: ['User testing with think-aloud', 'A/B testing animation variants', 'Heatmaps', 'Reduced-motion toggle testing'],
+              es: ['Testing con protocolo pensar en voz alta', 'A/B testing de variantes', 'Heatmaps', 'Testing con toggle de movimiento reducido']
+            },
+            handoff: {
+              en: ['Lottie files', 'CSS/Motion specs in Figma', 'Storybook interactive docs', 'Drag & swipe gesture specs'],
+              es: ['Archivos Lottie', 'Specs CSS/Motion en Figma', 'Documentacion interactiva Storybook', 'Specs de gestos de arrastre y deslizamiento']
+            }
+          },
+          howToValidate: {
+            what: { en: 'Validate that microinteractions improve perceived usability and provide clear feedback.', es: 'Validar que las microinteracciones mejoran usabilidad percibida y dan retroalimentacion clara.' },
+            methods: {
+              en: ['The 10-time test: Play the animation 10 times. Still pleasant?', 'Task completion: Does it help users understand what happened?', 'Perceived performance: Does a skeleton loader shorten the perceived wait?', 'Accessibility: Enable prefers-reduced-motion and verify state communication.'],
+              es: ['Prueba de las 10 veces: Reproduce la animacion 10 veces. Sigue agradable?', 'Completacion de tarea: Ayuda a entender que paso?', 'Rendimiento percibido: Un skeleton loader acorta la espera percibida?', 'Accesibilidad: Habilita prefers-reduced-motion y verifica comunicacion de estado.']
+            },
+            tools: { en: ['Chrome DevTools Animations panel', 'Accessibility Insights', 'Maze'], es: ['Panel de Animaciones Chrome DevTools', 'Accessibility Insights', 'Maze'] },
+            evidenceExample: { en: 'Facebook tested their Like button animation extensively. The bouncing heart with particle burst increased engagement by 6% vs. a simple color toggle.', es: 'Facebook probo su animacion del Me Gusta extensivamente. El corazon rebotando con particulas aumento engagement 6% vs. cambio de color simple.' }
+          },
+          quiz: [
+            {
+              question: { en: 'What are the four parts of a microinteraction according to Dan Saffer?', es: 'Cuales son las cuatro partes de una microinteraccion segun Dan Saffer?' },
+              options: { en: ['Input, Processing, Output, Storage', 'Trigger, Rules, Feedback, Loops & Modes', 'Design, Develop, Test, Deploy', 'Hover, Click, Animate, Reset'], es: ['Entrada, Procesamiento, Salida, Almacenamiento', 'Disparador, Reglas, Retroalimentacion, Bucles y Modos', 'Disenar, Desarrollar, Probar, Desplegar', 'Hover, Clic, Animar, Reiniciar'] },
+              correctIndex: 1,
+              explanation: { en: 'Trigger (what initiates), Rules (what happens), Feedback (what user perceives), Loops & Modes (meta-rules for long-term behavior).', es: 'Disparador (que lo inicia), Reglas (que sucede), Retroalimentacion (que percibe el usuario), Bucles y Modos (meta-reglas a largo plazo).' }
+            },
+            {
+              question: { en: 'What is the ideal duration range for most UI transitions?', es: 'Cual es el rango de duracion ideal para la mayoria de transiciones UI?' },
+              options: { en: ['10-50ms', '100-300ms', '500-1000ms', '1-3 seconds'], es: ['10-50ms', '100-300ms', '500-1000ms', '1-3 segundos'] },
+              correctIndex: 1,
+              explanation: { en: '100-300ms is the sweet spot for smooth, intentional UI transitions.', es: '100-300ms es el punto ideal para transiciones UI suaves e intencionales.' }
+            }
+          ],
+          realExample: {
+            title: { en: 'Facebook Like Button Evolution', es: 'Evolucion del Boton Me Gusta de Facebook' },
+            description: { en: 'Facebook evolved from a simple blue highlight to animated "Reactions" with bouncing emojis. Trigger (long press), Rules (reveal picker), Feedback (spring animation + particles), Loops (persists on re-tap). Increased reaction usage 6x.', es: 'Facebook evoluciono de un resaltado azul a "Reacciones" animadas con emojis. Disparador (presion larga), Reglas (revelar selector), Retroalimentacion (animacion de resorte + particulas), Bucles (persiste al re-tocar). Aumento el uso 6x.' },
+            company: 'Meta (Facebook)'
           }
         }
       },
@@ -1869,13 +1860,167 @@ export const tracks: Track[] = [
               }
             ]
           },
+          deliverables: {
+            description: {
+              en: 'Artifacts that demonstrate the application of psychology principles in your design process.',
+              es: 'Artefactos que demuestran la aplicacion de principios psicologicos en tu proceso de diseno.'
+            },
+            items: {
+              en: [
+                'Cognitive Load Audit: Annotated screens highlighting areas of high vs low cognitive load with improvement suggestions',
+                'Psychology Principles Map: Document mapping each design decision to a specific psychology law (Hick, Fitts, Miller, Jakob)',
+                'Attention Heatmap Analysis: Predicted eye-tracking patterns for key flows showing where users will look first',
+                'Progress & Gamification Strategy: Framework defining how progress indicators, badges, and streaks will drive engagement',
+                'Scanning Pattern Optimization: Before/after comparison of content restructured for F-pattern scanning'
+              ],
+              es: [
+                'Auditoria de Carga Cognitiva: Pantallas anotadas resaltando areas de alta vs baja carga cognitiva con sugerencias de mejora',
+                'Mapa de Principios Psicologicos: Documento mapeando cada decision de diseno a una ley psicologica especifica (Hick, Fitts, Miller, Jakob)',
+                'Analisis de Mapa de Calor de Atencion: Patrones de eye-tracking predichos para flujos clave mostrando donde miraran los usuarios primero',
+                'Estrategia de Progreso y Gamificacion: Framework definiendo como indicadores de progreso, insignias y rachas impulsaran el engagement',
+                'Optimizacion de Patron de Escaneo: Comparacion antes/despues del contenido reestructurado para escaneo en patron-F'
+              ]
+            }
+          },
+          practicalTools: {
+            design: {
+              en: ['Laws of UX (lawsofux.com) — Visual reference cards', 'Figma Attention Insight plugin — AI-powered heatmap predictions', 'Crazy Egg / Hotjar — Real eye-tracking heatmaps', 'Gamification Model Canvas'],
+              es: ['Laws of UX (lawsofux.com) — Tarjetas de referencia visual', 'Plugin Figma Attention Insight — Predicciones de mapas de calor con IA', 'Crazy Egg / Hotjar — Mapas de calor de eye-tracking reales', 'Gamification Model Canvas']
+            },
+            research: {
+              en: ['Tobii Eye Tracker — Hardware eye-tracking studies', 'Maze — Remote unmoderated usability testing with heatmaps', 'UserTesting — Think-aloud sessions revealing cognitive patterns', 'Google HEART framework — Measuring user happiness and engagement'],
+              es: ['Tobii Eye Tracker — Estudios de eye-tracking con hardware', 'Maze — Pruebas de usabilidad remotas no moderadas con mapas de calor', 'UserTesting — Sesiones think-aloud revelando patrones cognitivos', 'Google HEART framework — Midiendo felicidad y engagement del usuario']
+            },
+            handoff: {
+              en: ['Psychology annotations in Figma (sticky notes per screen)', 'Cognitive load scoring system for developers', 'Attention priority guide for content hierarchy'],
+              es: ['Anotaciones de psicologia en Figma (notas adhesivas por pantalla)', 'Sistema de puntuacion de carga cognitiva para desarrolladores', 'Guia de prioridad de atencion para jerarquia de contenido']
+            }
+          },
+          howToValidate: {
+            what: {
+              en: 'Validate that your designs align with cognitive psychology principles and actually reduce friction for real users.',
+              es: 'Validar que tus disenos se alinean con principios de psicologia cognitiva y realmente reducen la friccion para usuarios reales.'
+            },
+            methods: {
+              en: [
+                '5-second test: Show a screen for 5 seconds, then ask what users remember. This tests scanning patterns and visual hierarchy.',
+                'Cognitive walkthrough: Walk through each step of a flow and ask "Will the user know what to do? Will they understand the feedback?"',
+                'Working memory audit: Count the number of things a user must remember at any point. If >4, chunk or simplify.',
+                'A/B test gamification: Compare task completion rates with and without progress indicators, streaks, or badges.',
+                'Eye-tracking study: Use tools like Tobii or AI-based Attention Insight to validate where users actually look vs where you intended.'
+              ],
+              es: [
+                'Test de 5 segundos: Muestra una pantalla por 5 segundos, luego pregunta que recuerdan los usuarios. Esto prueba patrones de escaneo y jerarquia visual.',
+                'Recorrido cognitivo: Recorre cada paso de un flujo y pregunta "Sabra el usuario que hacer? Entendera el feedback?"',
+                'Auditoria de memoria de trabajo: Cuenta el numero de cosas que un usuario debe recordar en cualquier punto. Si >4, agrupa o simplifica.',
+                'Test A/B de gamificacion: Compara tasas de completado de tareas con y sin indicadores de progreso, rachas o insignias.',
+                'Estudio de eye-tracking: Usa herramientas como Tobii o Attention Insight basado en IA para validar donde realmente miran los usuarios vs donde pretendias.'
+              ]
+            },
+            tools: {
+              en: ['Maze 5-second tests', 'Attention Insight AI heatmaps', 'Tobii Pro eye-tracker', 'Google Analytics behavior flow', 'Hotjar session recordings'],
+              es: ['Tests de 5 segundos de Maze', 'Mapas de calor IA de Attention Insight', 'Eye-tracker Tobii Pro', 'Flujo de comportamiento Google Analytics', 'Grabaciones de sesion Hotjar']
+            },
+            evidenceExample: {
+              en: 'Duolingo\'s gamification system (streaks, XP, leagues, progress bars) is entirely built on these psychology principles. Their data shows that users with a 7-day streak are 3.6x more likely to continue learning. The progress bar uses the Goal Gradient Effect — users speed up as they approach the daily goal. Their lesson UI limits choices to 4 options at a time (Miller\'s Law), and the green "correct" animation leverages peripheral vision to provide instant positive feedback.',
+              es: 'El sistema de gamificacion de Duolingo (rachas, XP, ligas, barras de progreso) esta completamente construido sobre estos principios psicologicos. Sus datos muestran que usuarios con una racha de 7 dias tienen 3.6x mas probabilidad de continuar aprendiendo. La barra de progreso usa el Efecto Gradiente de Meta — los usuarios aceleran al acercarse al objetivo diario. Su UI de leccion limita opciones a 4 a la vez (Ley de Miller), y la animacion verde de "correcto" aprovecha la vision periferica para dar feedback positivo instantaneo.'
+            }
+          },
+          quiz: [
+            {
+              question: {
+                en: 'According to Nielsen Norman Group research, what percentage of text do users typically read on a web page?',
+                es: 'Segun la investigacion de Nielsen Norman Group, que porcentaje de texto leen tipicamente los usuarios en una pagina web?'
+              },
+              options: {
+                en: ['80-90%', '50-60%', '20-28%', '5-10%'],
+                es: ['80-90%', '50-60%', '20-28%', '5-10%']
+              },
+              correctIndex: 2,
+              explanation: {
+                en: 'Users only read 20-28% of text on a page. They scan in an F-pattern: reading the first line, scanning down the left side, and occasionally reading horizontal sections. This is why visual hierarchy, headings, and bullet points are critical.',
+                es: 'Los usuarios solo leen el 20-28% del texto en una pagina. Escanean en un patron-F: leyendo la primera linea, escaneando hacia abajo por el lado izquierdo, y ocasionalmente leyendo secciones horizontales. Por eso la jerarquia visual, encabezados y puntos son criticos.'
+              }
+            },
+            {
+              question: {
+                en: 'What is the "Endowed Progress Effect" in gamification?',
+                es: 'Que es el "Efecto de Progreso Dotado" en gamificacion?'
+              },
+              options: {
+                en: [
+                  'Giving users a reward before they start a task',
+                  'Starting a progress bar at 20% instead of 0% to increase completion rates',
+                  'Showing all completed tasks in a list',
+                  'Adding animation to progress bars'
+                ],
+                es: [
+                  'Dar a los usuarios una recompensa antes de empezar una tarea',
+                  'Empezar una barra de progreso al 20% en vez de 0% para aumentar tasas de completado',
+                  'Mostrar todas las tareas completadas en una lista',
+                  'Agregar animacion a barras de progreso'
+                ]
+              },
+              correctIndex: 1,
+              explanation: {
+                en: 'The Endowed Progress Effect (Nunes & Dreze, 2006) shows that artificial advancement toward a goal increases effort. A car wash card stamped 2/10 completed outperforms a 0/8 card — same distance to finish, but feeling "already started" is powerfully motivating. LinkedIn uses this for profile completion.',
+                es: 'El Efecto de Progreso Dotado (Nunes & Dreze, 2006) muestra que el avance artificial hacia una meta aumenta el esfuerzo. Una tarjeta de lavado de autos sellada 2/10 completada supera a una de 0/8 — misma distancia para terminar, pero sentir "ya empezaste" es poderosamente motivador. LinkedIn lo usa para completar perfiles.'
+              }
+            },
+            {
+              question: {
+                en: 'Why does peripheral vision play such a crucial role in UI design?',
+                es: 'Por que la vision periferica juega un papel tan crucial en el diseno UI?'
+              },
+              options: {
+                en: [
+                  'It allows users to read small text from a distance',
+                  'It evolved to detect movement and change, making it ideal for drawing attention to important UI elements',
+                  'It processes color more accurately than central vision',
+                  'It only works on mobile devices'
+                ],
+                es: [
+                  'Permite a los usuarios leer texto pequeno a distancia',
+                  'Evoluciono para detectar movimiento y cambio, haciendola ideal para atraer atencion a elementos UI importantes',
+                  'Procesa color de forma mas precisa que la vision central',
+                  'Solo funciona en dispositivos moviles'
+                ]
+              },
+              correctIndex: 1,
+              explanation: {
+                en: 'Human peripheral vision evolved as a threat-detection system — it is extremely sensitive to motion and change. In UI design, subtle animations (pulse, glow, shake) in the periphery guide user attention to notifications, CTAs, and error states more effectively than static visual weight alone.',
+                es: 'La vision periferica humana evoluciono como sistema de deteccion de amenazas — es extremadamente sensible al movimiento y cambio. En diseno UI, animaciones sutiles (pulso, brillo, sacudida) en la periferia guian la atencion del usuario a notificaciones, CTAs y estados de error mas efectivamente que solo el peso visual estatico.'
+              }
+            }
+          ],
+          realExample: {
+            title: {
+              en: 'Duolingo: A Masterclass in Applied UX Psychology',
+              es: 'Duolingo: Una Clase Magistral en Psicologia UX Aplicada'
+            },
+            description: {
+              en: 'Duolingo applies every principle covered in this lesson. Scanning: lesson cards use icons + short text, never paragraphs. Working Memory: exercises show max 4 answer options at a time. Progress: streaks (longest streak worldwide: 3,000+ days), XP points, league rankings, and the famous "Duo is sad" notification use the Zeigarnik Effect to pull users back. Peripheral Vision: the green celebration animation and the red "wrong" shake are designed to trigger peripheral attention for instant feedback. The result: 74 million monthly active users and the most downloaded education app worldwide.',
+              es: 'Duolingo aplica cada principio cubierto en esta leccion. Escaneo: las tarjetas de leccion usan iconos + texto corto, nunca parrafos. Memoria de Trabajo: los ejercicios muestran maximo 4 opciones de respuesta a la vez. Progreso: rachas (racha mas larga del mundo: 3,000+ dias), puntos XP, rankings de liga, y la famosa notificacion "Duo esta triste" usan el Efecto Zeigarnik para atraer usuarios de vuelta. Vision Periferica: la animacion verde de celebracion y la sacudida roja de "incorrecto" estan disenadas para activar la atencion periferica con feedback instantaneo. El resultado: 74 millones de usuarios activos mensuales y la app de educacion mas descargada del mundo.'
+            },
+            company: 'Duolingo'
+          },
           aiInPractice: {
-            description: { en: 'Use AI to analyze copy for cognitive load and suggest simpler alternatives.', es: 'Usa IA para analizar la carga cognitiva del texto y sugerir alternativas más simples.' },
+            description: { en: 'Use AI to analyze copy for cognitive load, audit designs for psychology principles, and generate gamification strategies.', es: 'Usa IA para analizar la carga cognitiva del texto, auditar disenos para principios psicologicos y generar estrategias de gamificacion.' },
             prompts: [
               {
                 tool: 'ChatGPT',
                 context: { en: 'Simplifying UI text', es: 'Simplificando texto de UI' },
                 prompt: { en: 'Rewrite this error message to be friendlier and easier to understand for a stressed user: "Error 503: Database Connection Failed."', es: 'Reescribe este mensaje de error para que sea más amigable y fácil de entender para un usuario estresado: "Error 503: Fallo de Conexión a Base de Datos".' }
+              },
+              {
+                tool: 'Claude',
+                context: { en: 'Cognitive load audit', es: 'Auditoria de carga cognitiva' },
+                prompt: { en: 'Analyze this checkout page description. Identify elements that create excessive cognitive load and suggest specific improvements based on Hick\'s Law, Miller\'s Law, and the F-pattern scanning model. Page: 15 form fields, 8 payment options, 3 upsells, a countdown timer, and a 200-word terms section.', es: 'Analiza esta descripcion de pagina de checkout. Identifica elementos que crean carga cognitiva excesiva y sugiere mejoras especificas basadas en la Ley de Hick, la Ley de Miller y el modelo de escaneo patron-F. Pagina: 15 campos de formulario, 8 opciones de pago, 3 upsells, un temporizador regresivo y una seccion de terminos de 200 palabras.' }
+              },
+              {
+                tool: 'ChatGPT',
+                context: { en: 'Gamification strategy', es: 'Estrategia de gamificacion' },
+                prompt: { en: 'Design a gamification system for a fitness app onboarding. Apply: Endowed Progress Effect (start at 20%), Zeigarnik Effect (incomplete streaks), Goal Gradient (accelerating rewards near milestones). Include specific UI elements, copy, and notification timing.', es: 'Disena un sistema de gamificacion para el onboarding de una app de fitness. Aplica: Efecto de Progreso Dotado (empezar al 20%), Efecto Zeigarnik (rachas incompletas), Gradiente de Meta (recompensas aceleradas cerca de hitos). Incluye elementos UI especificos, copy y timing de notificaciones.' }
               }
             ]
           }
@@ -1922,13 +2067,142 @@ export const tracks: Track[] = [
               }
             ]
           },
+          deliverables: {
+            description: {
+              en: 'Documents and audits that ensure your product respects user autonomy and complies with regulations.',
+              es: 'Documentos y auditorias que aseguran que tu producto respeta la autonomia del usuario y cumple con regulaciones.'
+            },
+            items: {
+              en: [
+                'Dark Pattern Audit Report: Screen-by-screen analysis identifying manipulative patterns with severity ratings',
+                'Ethical Design Guidelines: Internal standards for copy, consent flows, pricing transparency, and cancellation parity',
+                'Cookie Consent Compliance Check: GDPR/CCPA review ensuring equal button weight and genuine choice',
+                'Cancellation Parity Test: Comparison of sign-up vs cancellation flows ensuring equal ease of use',
+                'Accessibility & Inclusion Checklist: Verification that no dark patterns disproportionately affect vulnerable users'
+              ],
+              es: [
+                'Informe de Auditoria de Patrones Oscuros: Analisis pantalla por pantalla con calificaciones de severidad',
+                'Guias de Diseno Etico: Estandares internos para copy, flujos de consentimiento, transparencia de precios y paridad de cancelacion',
+                'Verificacion de Cumplimiento de Cookies: Revision GDPR/CCPA asegurando peso igual de botones y eleccion genuina',
+                'Test de Paridad de Cancelacion: Comparacion de flujos de registro vs cancelacion asegurando igual facilidad',
+                'Checklist de Accesibilidad e Inclusion: Verificacion de que ningun patron oscuro afecta a usuarios vulnerables'
+              ]
+            }
+          },
+          practicalTools: {
+            design: {
+              en: ['Deceptive Design (deceptive.design) — Hall of shame database', 'Figma Ethics Toolkit plugin', 'Dark Pattern Tip Line (darkpatternstipline.org)', 'Ethical Design Manifesto'],
+              es: ['Deceptive Design (deceptive.design) — Base de datos del salon de la vergüenza', 'Plugin Figma Ethics Toolkit', 'Dark Pattern Tip Line', 'Manifiesto de Diseno Etico']
+            },
+            research: {
+              en: ['Usability testing with vulnerable groups', 'A/B testing ethical vs dark variants', 'Consent comprehension surveys', 'Exit surveys for cancellation flows'],
+              es: ['Pruebas de usabilidad con grupos vulnerables', 'Tests A/B de variantes eticas vs oscuras', 'Encuestas de comprension de consentimiento', 'Encuestas de salida para flujos de cancelacion']
+            },
+            handoff: {
+              en: ['Ethical review checklist for developers', 'Regulatory compliance matrix (GDPR, DSA, FTC, CCPA)', 'Copy guidelines: "never use" word list'],
+              es: ['Checklist de revision etica para desarrolladores', 'Matriz de cumplimiento regulatorio (GDPR, DSA, FTC, CCPA)', 'Guias de copy: lista de palabras "nunca usar"']
+            }
+          },
+          howToValidate: {
+            what: {
+              en: 'Verify that your product does not use manipulative design patterns and complies with current privacy and consumer protection regulations.',
+              es: 'Verificar que tu producto no usa patrones de diseno manipuladores y cumple con regulaciones actuales de privacidad y proteccion al consumidor.'
+            },
+            methods: {
+              en: [
+                'Cancellation parity test: time how long it takes to cancel vs sign up. If cancellation takes >2x longer, it fails.',
+                'Cognitive walkthrough for consent: have 5 users explain what each checkbox does. If >20% get it wrong, the language is deceptive.',
+                'Price transparency audit: compare advertised price with final checkout total. Any difference >10% flags hidden costs.',
+                'Dark pattern peer review: have 3 designers independently audit each flow using the deceptive.design taxonomy.',
+                'Regulatory compliance check: map each flow against GDPR Art. 7, DSA Art. 25, and FTC Section 5.'
+              ],
+              es: [
+                'Test de paridad de cancelacion: mide cuanto toma cancelar vs registrarse. Si cancelar toma >2x mas, falla.',
+                'Recorrido cognitivo de consentimiento: pide a 5 usuarios que expliquen que hace cada checkbox. Si >20% se equivocan, el lenguaje es enganoso.',
+                'Auditoria de transparencia de precios: compara el precio anunciado con el total final. Diferencia >10% senala costos ocultos.',
+                'Revision de patrones oscuros entre pares: pide a 3 disenadores que auditen independientemente cada flujo.',
+                'Verificacion de cumplimiento regulatorio: mapea cada flujo contra GDPR Art. 7, DSA Art. 25 y FTC Seccion 5.'
+              ]
+            },
+            tools: {
+              en: ['Deceptive Design taxonomy', 'GDPR compliance checker', 'FTC dark patterns report', 'EU DSA Article 25 guidelines'],
+              es: ['Taxonomia de Deceptive Design', 'Verificador GDPR', 'Informe FTC de patrones oscuros', 'Directrices del Articulo 25 del DSA']
+            },
+            evidenceExample: {
+              en: 'Amazon Prime cancellation was audited by the FTC in 2023. Signing up: 2 clicks. Cancelling: 6 screens of "Are you sure?" with emotional appeals. Internal name: "Iliad" flow. Result: $25M fine + mandatory redesign.',
+              es: 'La cancelacion de Amazon Prime fue auditada por la FTC en 2023. Registrarse: 2 clics. Cancelar: 6 pantallas de "Estas seguro?" con apelaciones emocionales. Nombre interno: flujo "Iliada". Resultado: multa de $25M + rediseno obligatorio.'
+            }
+          },
+          quiz: [
+            {
+              question: {
+                en: 'What is "confirmshaming"?',
+                es: 'Que es "confirmshaming"?'
+              },
+              options: {
+                en: ['Making users confirm their identity before purchasing', 'Writing decline options to make users feel guilty', 'Requiring double confirmation for important actions', 'Showing shame-inducing error messages'],
+                es: ['Hacer que usuarios confirmen su identidad antes de comprar', 'Escribir opciones de rechazo para hacer sentir culpable al usuario', 'Requerir doble confirmacion para acciones importantes', 'Mostrar mensajes de error vergonzosos']
+              },
+              correctIndex: 1,
+              explanation: {
+                en: 'Confirmshaming writes the decline option to guilt or shame the user. Example: "No thanks, I don\'t want to be healthy". The ethical alternative: "No thanks" or "Maybe later".',
+                es: 'Confirmshaming escribe la opcion de rechazo para culpar o avergonzar al usuario. Ejemplo: "No gracias, no quiero ser saludable". La alternativa etica: "No gracias" o "Quizas luego".'
+              }
+            },
+            {
+              question: {
+                en: 'Under the EU Digital Services Act (2025), what is the maximum fine for dark patterns?',
+                es: 'Bajo el DSA de la UE (2025), cual es la multa maxima por patrones oscuros?'
+              },
+              options: {
+                en: ['€100,000 per violation', '1% of annual revenue', '6% of global annual revenue', '10% of quarterly revenue'],
+                es: ['€100,000 por violacion', '1% de ingresos anuales', '6% de ingresos anuales globales', '10% de ingresos trimestrales']
+              },
+              correctIndex: 2,
+              explanation: {
+                en: 'DSA Article 25 bans dark patterns with fines up to 6% of worldwide annual turnover. For Meta (~$135B revenue), that could mean up to $8.1 billion.',
+                es: 'El Articulo 25 del DSA prohibe patrones oscuros con multas de hasta el 6% de la facturacion anual mundial. Para Meta (~$135B ingresos), eso podria significar hasta $8.1 mil millones.'
+              }
+            },
+            {
+              question: {
+                en: 'Which is an example of the "Roach Motel" dark pattern?',
+                es: 'Cual es un ejemplo del patron oscuro "Hotel Cucaracha"?'
+              },
+              options: {
+                en: ['A product page with hidden fees at checkout', 'An account that takes 2 clicks to create but requires a phone call to delete', 'A cookie popup with only "Accept All"', 'A newsletter using guilt in the decline option'],
+                es: ['Una pagina con tarifas ocultas en checkout', 'Una cuenta que toma 2 clics crearla pero requiere llamar para eliminarla', 'Un popup de cookies con solo "Aceptar Todas"', 'Un newsletter usando culpa en la opcion de rechazo']
+              },
+              correctIndex: 1,
+              explanation: {
+                en: 'Roach Motel: easy to get in, hard to get out. Named after the trap: "Roaches check in, but they don\'t check out." Amazon Prime\'s cancellation is the most famous example.',
+                es: 'Hotel Cucaracha: facil entrar, dificil salir. Nombrado por la trampa: "Las cucarachas entran, pero no salen." La cancelacion de Amazon Prime es el ejemplo mas famoso.'
+              }
+            }
+          ],
+          realExample: {
+            title: {
+              en: 'Amazon Prime: The $25M "Iliad" Cancellation Flow',
+              es: 'Amazon Prime: El Flujo de Cancelacion "Iliada" de $25M'
+            },
+            description: {
+              en: 'In 2023, the FTC sued Amazon for its Prime cancellation process, internally nicknamed "Iliad" for its epic length. Signing up took 2 clicks. Cancelling required navigating through 6 pages of "Are you sure?" screens with emotional appeals, discount offers, and a cooling-off period. The FTC found Amazon leadership personally approved design changes to make cancellation harder. Result: $25M fine, mandatory redesign, and the DSA now requires "cancellation parity" across the EU.',
+              es: 'En 2023, la FTC demando a Amazon por su proceso de cancelacion de Prime, apodado "Iliada" por su longitud epica. Registrarse tomaba 2 clics. Cancelar requeria navegar 6 paginas de "Estas seguro?" con apelaciones emocionales, ofertas de descuento y un periodo de enfriamiento. La FTC encontro que la direccion de Amazon aprobo personalmente cambios para dificultar la cancelacion. Resultado: multa de $25M, rediseno obligatorio, y el DSA ahora requiere "paridad de cancelacion" en toda la UE.'
+            },
+            company: 'Amazon / FTC'
+          },
           aiInPractice: {
-            description: { en: 'Use AI to check your copy for potential manipulative language or bias.', es: 'Usa IA para verificar tu texto en busca de posible lenguaje manipulador o sesgo.' },
+            description: { en: 'Use AI to audit copy for manipulative language, check compliance with regulations, and generate ethical alternatives.', es: 'Usa IA para auditar copy por lenguaje manipulador, verificar cumplimiento regulatorio y generar alternativas eticas.' },
             prompts: [
               {
                 tool: 'Claude',
-                context: { en: 'Ethical copy audit', es: 'Auditoría ética de texto' },
-                prompt: { en: 'Analyze this subscription modal text. Highlight any phrasing that might be considered "confirmshaming" or manipulative.', es: 'Analiza este texto del modal de suscripción. Resalta cualquier fraseo que pueda considerarse "confirmshaming" o manipulador.' }
+                context: { en: 'Ethical copy audit', es: 'Auditoria etica de texto' },
+                prompt: { en: 'Analyze this subscription modal text. Highlight any phrasing that might be considered "confirmshaming" or manipulative. Suggest neutral, respectful alternatives.', es: 'Analiza este texto del modal de suscripcion. Resalta cualquier fraseo "confirmshaming" o manipulador. Sugiere alternativas neutrales y respetuosas.' }
+              },
+              {
+                tool: 'ChatGPT',
+                context: { en: 'Dark pattern detection', es: 'Deteccion de patrones oscuros' },
+                prompt: { en: 'I\'ll describe a user flow step by step. For each step, identify any dark pattern from the deceptive.design taxonomy. Rate severity and suggest ethical redesign.', es: 'Describire un flujo de usuario paso a paso. Para cada paso, identifica cualquier patron oscuro de la taxonomia deceptive.design. Califica severidad y sugiere rediseno etico.' }
               }
             ]
           }

@@ -46,6 +46,19 @@ import { VisualExamplesSection, CodeExamplesSection, ToolsSection } from './Acce
 import { AccessibilityInteractiveExamples } from '../lessons/accessibility/AccessibilityInteractiveExamples';
 import LeanUXHypothesisBuilder from '../lessons/LeanUXHypothesisBuilder';
 import MVPScopeSlider from '../lessons/MVPScopeSlider';
+import UXDeliverablesCaseStudy from '../lessons/UXDeliverablesCaseStudy';
+import { MethodologyPicker } from '../lessons/MethodologyPicker';
+import { HMWWorkshop } from '../lessons/HMWWorkshop';
+import { SprintPlanner } from '../lessons/SprintPlanner';
+import { TicketBuilder } from '../lessons/TicketBuilder';
+import { RequirementClassifier } from '../lessons/RequirementClassifier';
+import { TypeScaleComparison } from '../lessons/TypeScaleComparison';
+import { ColorPaletteGenerator } from '../lessons/ColorPaletteGenerator';
+import { ProblemStatementWorkshop } from '../lessons/ProblemStatementWorkshop';
+import { MicrointeractionsLab } from '../lessons/MicrointeractionsLab';
+import { FigmaLab } from '../lessons/FigmaLab';
+import { UXPsychologyLab } from '../lessons/UXPsychologyLab';
+import { DarkPatternsLab } from '../lessons/DarkPatternsLab';
 
 function QuizSection({ quiz, language }: { quiz: any[], language: any }) {
   const [selectedAnswers, setSelectedAnswers] = useState<{[key: number]: number}>({});
@@ -501,8 +514,8 @@ export function LessonPage() {
 
         {/* Real Example */}
         {topic.content.realExample && (
-          <section id="real-example" className="mb-12 scroll-mt-24">
-            <h2 className="text-2xl font-semibold text-white mb-4 flex items-center gap-2">
+          <section id="real-example" className="mb-12 mt-16 scroll-mt-24">
+            <h2 className="text-2xl font-semibold text-white mb-6 flex items-center gap-2">
               <Lightbulb className="size-6 text-amber-400" />
               {t({ en: 'Real World Example', es: 'Ejemplo del Mundo Real' })}
             </h2>
@@ -527,19 +540,70 @@ export function LessonPage() {
             {topic.id === 'ux-psychology' && <MentalModelExample />}
             {topic.id === 'information-architecture' && <SitemapExample />}
             {topic.id === 'ia-fundamentals' && <SitemapExample />}
-            {topic.id === 'design-methodologies' && <MethodologiesDeepDive />}
+            {topic.id === 'methodologies-overview' && <MethodologiesDeepDive />}
             {topic.id === 'customer-journey-map' && <InteractiveJourneyMap />}
             {topic.id === 'service-blueprint' && <BlueprintSimulator />}
             {topic.id === 'atomic-visual-guide' && <AtomicVisualGuideSection />}
             {topic.id === 'user-flows' && <UserFlowInteractive />}
             {topic.id === 'wireframing-prototyping' && <WireframeFidelityComparison />}
             {topic.id === 'ux-research' && <UXResearchDataExample />}
-            {topic.id === 'competitive-analysis' && <CompetitiveBenchmarkExample />}
+            {(topic.id === 'competitive-analysis' || topic.id === 'competitive-analysis-basics') && <CompetitiveBenchmarkExample />}
+            {topic.id === 'ux-process' && <UXDeliverablesCaseStudy />}
+            {topic.id === 'methodologies-overview' && <MethodologyPicker />}
+            {topic.id === 'design-thinking' && <HMWWorkshop />}
+            {topic.id === 'design-sprint' && <SprintPlanner />}
+            {topic.id === 'scrum-for-designers' && <TicketBuilder />}
+            {topic.id === 'user-stories-and-requirements' && <RequirementClassifier />}
             {topic.id === 'lean-ux' && <LeanUXHypothesisBuilder />}
             {topic.id === 'mvp-scope' && <MVPScopeSlider />}
             {topic.id === 'lean-ux' && (
               <div className="mt-12">
                 <MVPScopeSlider />
+              </div>
+            )}
+            {topic.id === 'type-scale' && (
+              <div className="mt-12">
+                <TypeScaleComparison />
+              </div>
+            )}
+            {topic.id === 'typography-fundamentals' && (
+              <div className="mt-12">
+                <TypeScaleComparison />
+              </div>
+            )}
+            {topic.id === 'color-theory' && (
+              <div className="mt-12">
+                <ColorPaletteGenerator />
+              </div>
+            )}
+            {topic.id === 'color-palette' && (
+              <div className="mt-12">
+                <ColorPaletteGenerator />
+              </div>
+            )}
+            {topic.id === 'problem-statements' && (
+              <div className="mt-12">
+                <ProblemStatementWorkshop />
+              </div>
+            )}
+            {topic.id === 'microinteractions' && (
+              <div className="mt-12">
+                <MicrointeractionsLab />
+              </div>
+            )}
+            {topic.id === 'figma-mastery' && (
+              <div className="mt-12">
+                <FigmaLab />
+              </div>
+            )}
+            {topic.id === 'ux-psychology' && (
+              <div className="mt-12">
+                <UXPsychologyLab />
+              </div>
+            )}
+            {topic.id === 'design-ethics' && (
+              <div className="mt-12">
+                <DarkPatternsLab />
               </div>
             )}
           </section>

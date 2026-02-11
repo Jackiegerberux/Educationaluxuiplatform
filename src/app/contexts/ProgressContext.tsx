@@ -16,7 +16,7 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
   // Load progress from localStorage on mount
   useEffect(() => {
     try {
-      const savedProgress = localStorage.getItem('aditidesign-progress');
+      const savedProgress = localStorage.getItem('uxfusion-progress');
       if (savedProgress) {
         setProgress(JSON.parse(savedProgress));
       }
@@ -30,7 +30,7 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
   // Save progress to localStorage whenever it changes
   useEffect(() => {
     if (!isLoading) {
-      localStorage.setItem('aditidesign-progress', JSON.stringify(progress));
+      localStorage.setItem('uxfusion-progress', JSON.stringify(progress));
     }
   }, [progress, isLoading]);
 

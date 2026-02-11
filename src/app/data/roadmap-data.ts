@@ -66,13 +66,13 @@ export const roadmapData: RoadmapCluster[] = [
           en: 'Empathize, define, ideate, prototype, test - the core design process',
           es: 'Empatizar, definir, idear, prototipar, testear - el proceso de diseño fundamental'
         },
-        lessonSlug: 'design-thinking-intro',
+        lessonSlug: 'design-thinking',
         status: 'in-progress',
         level: 'beginner',
         tags: ['ux', 'product'],
         skills: { 
-          en: ['Problem framing', 'Iterative mindset', 'Creative thinking'],
-          es: ['Encuadre de problema', 'Mentalidad iterativa', 'Pensamiento creativo']
+          en: ['Problem framing', 'Iterative mindset', 'Creative thinking', 'Empathy interviews', 'Prototyping'],
+          es: ['Encuadre de problema', 'Mentalidad iterativa', 'Pensamiento creativo', 'Entrevistas de empatía', 'Prototipado']
         },
         prerequisites: { en: ['UX vs UI vs Product'], es: ['UX vs UI vs Producto'] },
         nextSteps: { en: ['User Research', 'Empathy Interviews'], es: ['Investigación de Usuario', 'Entrevistas de Empatía'] },
@@ -80,7 +80,8 @@ export const roadmapData: RoadmapCluster[] = [
         order: 2,
         relatedLessons: [
           { title: { en: 'User Interviews', es: 'Entrevistas de Usuario' }, slug: 'empathy-interviewing' },
-          { title: { en: 'Jobs-to-be-Done', es: 'Trabajos por Hacer' }, slug: 'jobs-to-be-done' }
+          { title: { en: 'Jobs-to-be-Done', es: 'Trabajos por Hacer' }, slug: 'jobs-to-be-done' },
+          { title: { en: 'Methodologies Overview', es: 'Visión General de Metodologías' }, slug: 'methodologies-overview' }
         ]
       },
       {
@@ -551,6 +552,81 @@ export const roadmapData: RoadmapCluster[] = [
         ]
       },
       {
+        id: 'methodologies',
+        title: { en: 'Methodologies', es: 'Metodologías' },
+        description: { 
+          en: 'Choosing and combining UX/product methodologies: Design Thinking, Design Sprint, Lean UX, Scrum',
+          es: 'Elegir y combinar metodologías UX/producto: Design Thinking, Design Sprint, Lean UX, Scrum'
+        },
+        lessonSlug: 'methodologies-overview',
+        status: 'not-started',
+        level: 'intermediate',
+        tags: ['product', 'strategy', 'ux'],
+        skills: { 
+          en: ['Methodology selection', 'Process design', 'Team alignment', 'Agile + UX integration'],
+          es: ['Selección de metodología', 'Diseño de procesos', 'Alineación de equipo', 'Integración Agile + UX']
+        },
+        prerequisites: { en: ['Design Thinking', 'UX Process'], es: ['Design Thinking', 'Proceso UX'] },
+        nextSteps: { en: ['Lean UX', 'Problem Statements'], es: ['Lean UX', 'Declaraciones de Problema'] },
+        hasLesson: true,
+        order: 2,
+        relatedLessons: [
+          { title: { en: 'Lean UX', es: 'Lean UX' }, slug: 'lean-ux' },
+          { title: { en: 'Design Thinking', es: 'Design Thinking' }, slug: 'design-thinking-intro' },
+          { title: { en: 'Problem Statements', es: 'Declaraciones de Problema' }, slug: 'problem-statements' }
+        ]
+      },
+      {
+        id: 'design-sprint',
+        title: { en: 'Design Sprint', es: 'Design Sprint' },
+        description: { 
+          en: '5-day process to solve problems and test ideas through rapid prototyping',
+          es: 'Proceso de 5 días para resolver problemas y testear ideas mediante prototipado rápido'
+        },
+        lessonSlug: 'design-sprint',
+        status: 'in-progress',
+        level: 'intermediate',
+        tags: ['ux', 'product'],
+        skills: { 
+          en: ['Rapid prototyping', 'Facilitation', 'User testing', 'Decision making'],
+          es: ['Prototipado rápido', 'Facilitación', 'Pruebas de usuario', 'Toma de decisiones']
+        },
+        prerequisites: { en: ['Design Thinking', 'Prototyping'], es: ['Design Thinking', 'Prototipado'] },
+        nextSteps: { en: ['Lean UX', 'Usability Testing'], es: ['Lean UX', 'Pruebas de Usabilidad'] },
+        hasLesson: true,
+        order: 3,
+        relatedLessons: [
+          { title: { en: 'Design Thinking', es: 'Design Thinking' }, slug: 'design-thinking' },
+          { title: { en: 'Prototyping', es: 'Prototipado' }, slug: 'wireframing-prototyping' },
+          { title: { en: 'User Testing', es: 'Pruebas de Usuario' }, slug: 'usability-testing' }
+        ]
+      },
+      {
+        id: 'scrum-for-designers',
+        title: { en: 'Scrum for Designers', es: 'Scrum para Diseñadores' },
+        description: { 
+          en: 'How designers thrive in Scrum teams: dual-track agile, tickets, and dev collaboration',
+          es: 'Cómo diseñadores prosperan en equipos Scrum: agile de doble vía, tickets y colaboración con devs'
+        },
+        lessonSlug: 'scrum-for-designers',
+        status: 'in-progress',
+        level: 'intermediate',
+        tags: ['product', 'collaboration', 'ux'],
+        skills: { 
+          en: ['Scrum ceremonies', 'Ticket writing', 'Dual-track agile', 'Dev collaboration'],
+          es: ['Ceremonias Scrum', 'Escritura de tickets', 'Agile de doble vía', 'Colaboración con dev']
+        },
+        prerequisites: { en: ['Design Sprint', 'UX Process'], es: ['Design Sprint', 'Proceso UX'] },
+        nextSteps: { en: ['Lean UX', 'Handoff & Documentation'], es: ['Lean UX', 'Entrega y Documentación'] },
+        hasLesson: true,
+        order: 4,
+        relatedLessons: [
+          { title: { en: 'Design Sprint', es: 'Design Sprint' }, slug: 'design-sprint' },
+          { title: { en: 'Lean UX', es: 'Lean UX' }, slug: 'lean-ux' },
+          { title: { en: 'Handoff & Documentation', es: 'Entrega y Documentación' }, slug: 'handoff-documentation' }
+        ]
+      },
+      {
         id: 'problem-statements',
         title: { en: 'Problem Statements', es: 'Declaraciones de Problema' },
         description: { 
@@ -568,7 +644,7 @@ export const roadmapData: RoadmapCluster[] = [
         prerequisites: { en: ['Jobs-to-be-Done'], es: ['Trabajos por Hacer'] },
         nextSteps: { en: ['Design Systems'], es: ['Sistemas de Diseño'] },
         hasLesson: true,
-        order: 2,
+        order: 5,
         relatedLessons: [
           { title: { en: 'Jobs-to-be-Done', es: 'Trabajos por Hacer' }, slug: 'jobs-to-be-done' },
           { title: { en: 'Usability Testing', es: 'Testing de Usabilidad' }, slug: 'usability-testing-basics' }
@@ -592,9 +668,42 @@ export const roadmapData: RoadmapCluster[] = [
         prerequisites: { en: ['Customer Journey Mapping'], es: ['Mapeo de Viaje del Cliente'] },
         nextSteps: { en: ['Design Systems'], es: ['Sistemas de Diseño'] },
         hasLesson: true,
-        order: 3,
+        order: 6,
         relatedLessons: [
           { title: { en: 'Customer Journey Map', es: 'Mapa de Viaje del Cliente' }, slug: 'customer-journey-map' },
+          { title: { en: 'Problem Statements', es: 'Declaraciones de Problema' }, slug: 'problem-statements' }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'delivery-ops',
+    title: { en: 'Delivery & Product Ops', es: 'Entrega y Operaciones de Producto' },
+    color: 'teal',
+    order: 7,
+    nodes: [
+      {
+        id: 'user-stories-requirements',
+        title: { en: 'User Stories & Requirements', es: 'User Stories y Requisitos' },
+        description: { 
+          en: 'Transform vague requests into clear, actionable stories with acceptance criteria and task breakdowns',
+          es: 'Transforma solicitudes vagas en historias claras y accionables con criterios de aceptación y desglose de tareas'
+        },
+        lessonSlug: 'user-stories-and-requirements',
+        status: 'in-progress',
+        level: 'intermediate',
+        tags: ['product', 'collaboration'],
+        skills: { 
+          en: ['User stories', 'Acceptance criteria', 'Requirements analysis', 'Task breakdown'],
+          es: ['User stories', 'Criterios de aceptación', 'Análisis de requisitos', 'Desglose de tareas']
+        },
+        prerequisites: { en: ['Scrum for Designers', 'Design Sprint'], es: ['Scrum para Diseñadores', 'Design Sprint'] },
+        nextSteps: { en: ['Handoff & Documentation', 'Design Systems'], es: ['Entrega y Documentación', 'Sistemas de Diseño'] },
+        hasLesson: true,
+        order: 1,
+        relatedLessons: [
+          { title: { en: 'Scrum for Designers', es: 'Scrum para Diseñadores' }, slug: 'scrum-for-designers' },
+          { title: { en: 'Lean UX', es: 'Lean UX' }, slug: 'lean-ux' },
           { title: { en: 'Problem Statements', es: 'Declaraciones de Problema' }, slug: 'problem-statements' }
         ]
       }

@@ -29,7 +29,7 @@ export function PedagogicalFramework() {
         en: (
           <>
             <p className="text-zinc-300 leading-relaxed mb-4">
-              AditiDesign is a professional educational platform designed for <strong>trainee designers onboarding into UX/UI roles</strong>. 
+              UX Fusion is an open-source educational platform designed for <strong>trainee designers onboarding into UX/UI roles</strong>. 
               Our mission is to transform theoretical knowledge into practical competencies through applied learning.
             </p>
             <div className="bg-indigo-950/30 border border-indigo-500/20 rounded-xl p-6">
@@ -58,7 +58,7 @@ export function PedagogicalFramework() {
         es: (
           <>
             <p className="text-zinc-300 leading-relaxed mb-4">
-              AditiDesign es una plataforma educativa profesional diseñada para <strong>diseñadores en formación incorporándose a roles de UX/UI</strong>. 
+              UX Fusion es una plataforma educativa de código abierto diseñada para <strong>diseñadores en formación incorporándose a roles de UX/UI</strong>. 
               Nuestra misión es transformar el conocimiento teórico en competencias prácticas a través del aprendizaje aplicado.
             </p>
             <div className="bg-indigo-950/30 border border-indigo-500/20 rounded-xl p-6">
@@ -961,8 +961,8 @@ export function PedagogicalFramework() {
           </div>
           <p className="text-xl text-zinc-400 max-w-3xl">
             {t({ 
-              en: 'How AditiDesign transforms UX/UI theory into professional competencies through evidence-based learning design.', 
-              es: 'Cómo AditiDesign transforma la teoría de UX/UI en competencias profesionales a través de diseño de aprendizaje basado en evidencia.' 
+              en: 'How UX Fusion transforms UX/UI theory into professional competencies through evidence-based learning design.', 
+              es: 'Cómo UX Fusion transforma la teoría de UX/UI en competencias profesionales a través de diseño de aprendizaje basado en evidencia.' 
             })}
           </p>
         </div>

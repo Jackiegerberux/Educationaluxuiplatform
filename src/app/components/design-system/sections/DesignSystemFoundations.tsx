@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useLanguage } from '../../layout/LanguageContext';
+import { copyToClipboard } from '../../../utils/clipboard';
 import { 
   Palette, 
   Type, 
@@ -18,7 +19,7 @@ function CopyButton({ text }: { text: string }) {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(text);
+    copyToClipboard(text);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -222,8 +223,8 @@ export function DesignSystemFoundations() {
         <div className="bg-zinc-900/50 border border-zinc-800 rounded-xl p-6 mb-6">
           <p className="text-zinc-300 mb-4">
             {t({ 
-              en: 'AditiDesign uses an 8pt grid system (multiples of 4px) for consistent spacing.',
-              es: 'AditiDesign usa un sistema de grid de 8pt (múltiplos de 4px) para espaciado consistente.'
+              en: 'UX Fusion uses an 8pt grid system (multiples of 4px) for consistent spacing.',
+              es: 'UX Fusion usa un sistema de grid de 8pt (múltiplos de 4px) para espaciado consistente.'
             })}
           </p>
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
