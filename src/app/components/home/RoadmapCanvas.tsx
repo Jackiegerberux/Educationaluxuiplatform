@@ -89,7 +89,9 @@ export function RoadmapCanvas() {
       cyan: 'from-cyan-500/20 to-teal-500/20 border-cyan-500/30',
       green: 'from-green-500/20 to-emerald-500/20 border-green-500/30',
       orange: 'from-orange-500/20 to-yellow-500/20 border-orange-500/30',
-      pink: 'from-pink-500/20 to-rose-500/20 border-pink-500/30'
+      pink: 'from-pink-500/20 to-rose-500/20 border-pink-500/30',
+      red: 'from-red-500/20 to-orange-500/20 border-red-500/30',
+      teal: 'from-teal-500/20 to-cyan-500/20 border-teal-500/30'
     };
     return colors[color] || colors.blue;
   };

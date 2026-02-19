@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLanguage } from './LanguageContext';
-import { Linkedin, BookOpen, GraduationCap, Github, Star, Heart, ExternalLink } from 'lucide-react';
+import { Linkedin, BookOpen, GraduationCap, Github, Star, Heart } from 'lucide-react';
 
 export function Footer() {
   const { t } = useLanguage();

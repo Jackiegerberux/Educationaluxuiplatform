@@ -22,7 +22,16 @@ import {
   X,
   ChevronRight,
   Image,
-  Code
+  Code,
+  ArrowRightLeft,
+  BarChart3,
+  TrendingUp,
+  Compass,
+  Eye,
+  PenLine,
+  Users,
+  Scale,
+  MessageSquare
 } from 'lucide-react';
 import { Button } from '../ui/button';
 import { UserPersonaCard } from './examples/UserPersonaCard';
@@ -59,6 +68,13 @@ import { MicrointeractionsLab } from '../lessons/MicrointeractionsLab';
 import { FigmaLab } from '../lessons/FigmaLab';
 import { UXPsychologyLab } from '../lessons/UXPsychologyLab';
 import { DarkPatternsLab } from '../lessons/DarkPatternsLab';
+import { LawsOfUXLab } from '../lessons/LawsOfUXLab';
+import { HTMLLab } from '../lessons/HTMLLab';
+import { CSSLab } from '../lessons/CSSLab';
+import { JavaScriptLab } from '../lessons/JavaScriptLab';
+import { HeuristicAnalysisLab } from '../lessons/HeuristicAnalysisLab';
+import { BusinessGoalsExtras } from './BusinessGoalsExtras';
+import { StakeholderMappingExtras } from './StakeholderMappingExtras';
 
 function QuizSection({ quiz, language }: { quiz: any[], language: any }) {
   const [selectedAnswers, setSelectedAnswers] = useState<{[key: number]: number}>({});
@@ -174,11 +190,44 @@ export function LessonPage() {
     );
   }
 
+  // Guard against topics without content
+  if (!topic.content) {
+    return (
+      <div className="min-h-screen bg-black flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold text-white mb-4">{t({ en: 'Content coming soon', es: 'Contenido próximamente' })}</h1>
+          <p className="text-zinc-400 mb-6">{t(topic.title)}</p>
+          <Button onClick={() => navigate('/')}>
+            <ArrowLeft className="size-4 mr-2" />
+            {t({ en: 'Back to Learning Paths', es: 'Volver a Rutas de Aprendizaje' })}
+          </Button>
+        </div>
+      </div>
+    );
+  }
+
   const sections = [
     { id: 'overview', label: t({ en: 'Overview', es: 'Resumen' }), icon: BookOpen },
     { id: 'why-it-matters', label: t({ en: 'Why it matters', es: 'Por qué importa' }), icon: Lightbulb },
     { id: 'key-principles', label: t({ en: 'Key Principles', es: 'Principios Clave' }), icon: ListChecks },
     ...(topic.id === 'atomic-design' ? [{ id: 'visual-guide', label: t({ en: 'Visual Guide', es: 'Guía Visual' }), icon: Sparkles }] : []),
+    ...(topic.id === 'business-goals-kpis' ? [
+      { id: 'goals-comparison', label: t({ en: 'Goals Comparison', es: 'Comparación de Objetivos' }), icon: ArrowRightLeft },
+      { id: 'ux-kpis', label: t({ en: 'UX KPIs', es: 'KPIs UX' }), icon: BarChart3 },
+      { id: 'goals-to-metrics', label: t({ en: 'Goals → Metrics', es: 'Objetivos → Métricas' }), icon: TrendingUp },
+      { id: 'north-star', label: t({ en: 'North Star', es: 'North Star' }), icon: Compass },
+      { id: 'vanity-vs-real', label: t({ en: 'Vanity vs Real', es: 'Vanidad vs Real' }), icon: Eye },
+      { id: 'workshop', label: t({ en: 'Workshop', es: 'Taller' }), icon: PenLine },
+    ] : []),
+    ...(topic.id === 'stakeholder-mapping' ? [
+      { id: 'what-is-stakeholder', label: t({ en: 'What is a Stakeholder?', es: '¿Qué es un Stakeholder?' }), icon: Users },
+      { id: 'why-mapping-matters', label: t({ en: 'Why Mapping Matters', es: 'Por Qué Mapear' }), icon: AlertTriangle },
+      { id: 'power-interest-matrix', label: t({ en: 'Power vs Interest', es: 'Poder vs Interés' }), icon: BarChart3 },
+      { id: 'power-vs-influence', label: t({ en: 'Power vs Influence', es: 'Poder vs Influencia' }), icon: Scale },
+      { id: 'practical-exercise', label: t({ en: 'Exercise', es: 'Ejercicio' }), icon: PenLine },
+      { id: 'communication-strategy', label: t({ en: 'Communication', es: 'Comunicación' }), icon: MessageSquare },
+      { id: 'political-risks', label: t({ en: 'Political Risks', es: 'Riesgos Políticos' }), icon: AlertTriangle },
+    ] : []),
     { id: 'how-to-apply', label: t({ en: 'How to Apply', es: 'Cómo Aplicar' }), icon: ArrowRight },
     ...(topic.content.visualExamples ? [{ id: 'visual-examples', label: t({ en: 'Visual Examples', es: 'Ejemplos Visuales' }), icon: Image }] : []),
     ...(topic.content.codeExamples ? [{ id: 'code-examples', label: t({ en: 'Code Examples', es: 'Ejemplos de Código' }), icon: Code }] : []),
@@ -295,6 +344,16 @@ export function LessonPage() {
           </div>
         )}
 
+        {/* Business Goals & KPIs - Custom Sections (comparison table, KPI cards, North Star, Vanity vs Real) */}
+        {topic.id === 'business-goals-kpis' && (
+          <BusinessGoalsExtras />
+        )}
+
+        {/* Stakeholder Mapping - Custom Sections (matrix, exercise, communication, political risks) */}
+        {topic.id === 'stakeholder-mapping' && (
+          <StakeholderMappingExtras />
+        )}
+
         {/* How to Apply */}
         {topic.content.howToApply && (
           <section id="how-to-apply" className="mb-12 scroll-mt-24">
@@ -380,49 +439,50 @@ export function LessonPage() {
         )}
 
         {/* Tools */}
-        {topic.content.practicalTools && (
-          <section id="tools" className="mb-12 scroll-mt-24">
-            <h2 className="text-2xl font-semibold text-white mb-4 flex items-center gap-2">
-              <Wrench className="size-6 text-cyan-400" />
-              {t({ en: 'Recommended Tools', es: 'Herramientas Recomendadas' })}
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div className="bg-zinc-900/50 border border-zinc-800 rounded-xl p-4">
-                <h3 className="text-sm font-semibold text-zinc-400 mb-3 uppercase tracking-wide">
-                  {t({ en: 'Design', es: 'Diseño' })}
-                </h3>
-                <ul className="space-y-2">
-                  {t(topic.content.practicalTools.design).map((tool: string, idx: number) => (
-                    <li key={idx} className="text-sm text-zinc-300">{tool}</li>
-                  ))}
-                </ul>
+        {topic.content.practicalTools && (() => {
+          const pt = topic.content.practicalTools;
+          const categories: { key: string; data: { en: string[]; es: string[] } | undefined; label: { en: string; es: string }; icon: string; color: string }[] = [
+            { key: 'design', data: pt.design, label: { en: 'Design', es: 'Diseño' }, icon: '🎨', color: 'border-pink-500/20' },
+            { key: 'research', data: pt.research, label: { en: 'Research', es: 'Investigación' }, icon: '🔬', color: 'border-blue-500/20' },
+            { key: 'coding', data: pt.coding, label: { en: 'Coding', es: 'Código' }, icon: '💻', color: 'border-emerald-500/20' },
+            { key: 'ai', data: pt.ai, label: { en: 'AI Tools', es: 'Herramientas IA' }, icon: '🤖', color: 'border-purple-500/20' },
+            { key: 'management', data: pt.management, label: { en: 'Management & Planning', es: 'Gestión y Planificación' }, icon: '📋', color: 'border-orange-500/20' },
+            { key: 'documentation', data: pt.documentation, label: { en: 'Documentation', es: 'Documentación' }, icon: '📝', color: 'border-cyan-500/20' },
+            { key: 'testing', data: pt.testing, label: { en: 'Testing & QA', es: 'Testing y QA' }, icon: '🧪', color: 'border-yellow-500/20' },
+            { key: 'analytics', data: pt.analytics, label: { en: 'Analytics', es: 'Analíticas' }, icon: '📊', color: 'border-indigo-500/20' },
+            { key: 'handoff', data: pt.handoff, label: { en: 'Handoff', es: 'Entrega' }, icon: '🤝', color: 'border-amber-500/20' },
+          ].filter(c => c.data);
+
+          return (
+            <section id="tools" className="mb-12 scroll-mt-24">
+              <h2 className="text-2xl font-semibold text-white mb-4 flex items-center gap-2">
+                <Wrench className="size-6 text-cyan-400" />
+                {t({ en: 'Recommended Tools', es: 'Herramientas Recomendadas' })}
+                <span className="text-xs text-zinc-500 font-normal ml-2">
+                  ({categories.reduce((sum, c) => sum + (t(c.data!).length), 0)} {t({ en: 'tools', es: 'herramientas' })})
+                </span>
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {categories.map(cat => (
+                  <div key={cat.key} className={`bg-zinc-900/50 border border-zinc-800 ${cat.color} rounded-xl p-4`}>
+                    <h3 className="text-sm font-semibold text-zinc-400 mb-3 uppercase tracking-wide flex items-center gap-2">
+                      <span>{cat.icon}</span>
+                      {t(cat.label)}
+                    </h3>
+                    <ul className="space-y-2">
+                      {t(cat.data!).map((tool: string, idx: number) => (
+                        <li key={idx} className="text-sm text-zinc-300 flex items-start gap-2">
+                          <span className="text-zinc-600 mt-1 text-[8px]">●</span>
+                          <span>{tool}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
               </div>
-              {topic.content.practicalTools.research && (
-                <div className="bg-zinc-900/50 border border-zinc-800 rounded-xl p-4">
-                  <h3 className="text-sm font-semibold text-zinc-400 mb-3 uppercase tracking-wide">
-                    {t({ en: 'Research', es: 'Investigación' })}
-                  </h3>
-                  <ul className="space-y-2">
-                    {t(topic.content.practicalTools.research).map((tool: string, idx: number) => (
-                      <li key={idx} className="text-sm text-zinc-300">{tool}</li>
-                    ))}</ul>
-                </div>
-              )}
-              {topic.content.practicalTools.handoff && (
-                <div className="bg-zinc-900/50 border border-zinc-800 rounded-xl p-4">
-                  <h3 className="text-sm font-semibold text-zinc-400 mb-3 uppercase tracking-wide">
-                    {t({ en: 'Handoff', es: 'Entrega' })}
-                  </h3>
-                  <ul className="space-y-2">
-                    {t(topic.content.practicalTools.handoff).map((tool: string, idx: number) => (
-                      <li key={idx} className="text-sm text-zinc-300">{tool}</li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-            </div>
-          </section>
-        )}
+            </section>
+          );
+        })()}
 
         {/* AI in Practice */}
         {topic.content.aiInPractice && (
@@ -604,6 +664,31 @@ export function LessonPage() {
             {topic.id === 'design-ethics' && (
               <div className="mt-12">
                 <DarkPatternsLab />
+              </div>
+            )}
+            {topic.id === 'laws-of-ux' && (
+              <div className="mt-12">
+                <LawsOfUXLab />
+              </div>
+            )}
+            {topic.id === 'html-fundamentals' && (
+              <div className="mt-12">
+                <HTMLLab />
+              </div>
+            )}
+            {topic.id === 'css-fundamentals' && (
+              <div className="mt-12">
+                <CSSLab />
+              </div>
+            )}
+            {topic.id === 'intro-javascript' && (
+              <div className="mt-12">
+                <JavaScriptLab />
+              </div>
+            )}
+            {topic.id === 'heuristic-analysis' && (
+              <div className="mt-12">
+                <HeuristicAnalysisLab />
               </div>
             )}
           </section>

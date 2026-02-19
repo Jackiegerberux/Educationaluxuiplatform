@@ -13,10 +13,18 @@ import { leanUxLesson } from './lean-ux-lesson';
 import { uxResearchLesson } from './ux-research-lesson';
 import { userPersonasLesson } from './user-personas-lesson';
 import { figmaMasteryLesson } from './figma-mastery-lesson';
+import { frontendFoundationsLesson, htmlFundamentalsLesson, cssFundamentalsLesson, introJavaScriptLesson } from './frontend-lessons';
+import { heuristicAnalysisLesson } from './heuristic-analysis-lesson';
+import { businessGoalsKpisLesson } from './business-goals-kpis-lesson';
+import { stakeholderMappingLesson } from './stakeholder-mapping-lesson';
+import type { Topic, Track } from './types';
 
-export type { Language, Topic, Track } from './types';
+export type { Language, Topic, Track, LessonTag } from './types';
+import type { LessonTag } from './types';
 
-export const tracks: Track[] = [
+// Internal data source — all topic content organized for extraction
+// The exported `tracks` array below reorganizes these into 8 learning phases
+const _topicSource: Track[] = [
   {
     id: 'foundations',
     title: { en: 'UX/UI Foundations', es: 'Fundamentos UX/UI' },
@@ -981,6 +989,36 @@ export const tracks: Track[] = [
               }
             ]
           },
+          howToValidate: {
+            what: {
+              en: 'Validate that the UX process and deliverables are actually informing decisions, not just creating documents for the sake of it.',
+              es: 'Valida que el proceso UX y los entregables realmente estén informando decisiones, no solo creando documentos por crearlos.'
+            },
+            methods: {
+              en: [
+                'Stakeholder alignment check: after each phase, can stakeholders articulate what was learned and decided?',
+                'Deliverable utility audit: for each artifact, ask "What decision did this enable?" If no answer, it was waste.',
+                'Decision log review: track every design decision and link it to evidence from a UX phase.',
+                'Phase gate reviews: formal checkpoints between Discovery, Definition, Design, and Delivery.',
+                'Cross-functional retrospective: did the process reduce ambiguity and rework?'
+              ],
+              es: [
+                'Verificación de alineación de stakeholders: después de cada fase, ¿pueden articular qué se aprendió y decidió?',
+                'Auditoría de utilidad de entregables: para cada artefacto, pregunta "¿Qué decisión habilitó esto?" Si no hay respuesta, fue desperdicio.',
+                'Revisión de registro de decisiones: rastrea cada decisión de diseño y vincúlala a evidencia de una fase UX.',
+                'Revisiones de puertas de fase: puntos de control formales entre Descubrimiento, Definición, Diseño y Entrega.',
+                'Retrospectiva interfuncional: ¿el proceso redujo la ambigüedad y el retrabajo?'
+              ]
+            },
+            tools: {
+              en: ['Confluence/Notion (decision logs)', 'Miro (retrospectives)', 'Typeform (stakeholder pulse surveys)', 'Jira (cycle time tracking)'],
+              es: ['Confluence/Notion (registros de decisiones)', 'Miro (retrospectivas)', 'Typeform (encuestas de pulso a stakeholders)', 'Jira (seguimiento de tiempo de ciclo)']
+            },
+            evidenceExample: {
+              en: '"After implementing phase gates between Discovery and Design, stakeholder alignment improved 60% and we reduced late-stage redesigns by 45% because misunderstandings were caught in Definition, not Delivery."',
+              es: '"Después de implementar puertas de fase entre Descubrimiento y Diseño, la alineación de stakeholders mejoró 60% y redujimos rediseños tardíos en 45% porque los malentendidos se capturaron en Definición, no en Entrega."'
+            }
+          },
           realExample: {
             title: { 
               en: 'Complete UX Process Case Study', 
@@ -1271,7 +1309,7 @@ export const tracks: Track[] = [
       userStoriesRequirementsLesson,
       // === PHASE 7: INTERMEDIATE - Testing & Validation ===
       ...uiLessons.filter(lesson => lesson.id === 'accessibility-wcag'),
-      ...prototypingLessons,
+      ...prototypingLessons.filter(lesson => lesson.id !== 'usability-testing'),
       ...advancedResearchLessons.filter(lesson => lesson.id === 'customer-journey-map')
     ]
   },
@@ -1819,6 +1857,8 @@ export const tracks: Track[] = [
           }
         }
       },
+      // Heuristic Analysis — professional methodology for evaluating interfaces
+      heuristicAnalysisLesson,
       {
         id: 'ux-psychology',
         title: { en: 'UX Psychology', es: 'Psicología UX' },
@@ -2324,95 +2364,448 @@ export const tracks: Track[] = [
         referenceLink: 'https://lawsofux.com/',
         content: {
           definition: {
-            en: 'A collection of maxims and principles that designers can consider when building user interfaces, based on psychology.',
-            es: 'Una colección de máximas y principios que los diseñadores pueden considerar al construir interfaces de usuario, basadas en la psicología.'
+            en: 'Laws of UX are a collection of evidence-based maxims and principles that designers can use when building user interfaces. Rooted in cognitive psychology, perception science, and behavioral economics, they translate how the human brain processes information into actionable design guidelines. The most influential include Hick\'s Law (decision time), Fitts\'s Law (motor movement), Jakob\'s Law (familiarity), Miller\'s Law (working memory), the Aesthetic-Usability Effect, and the Doherty Threshold (system responsiveness).',
+            es: 'Las Leyes de UX son una colección de máximas y principios basados en evidencia que los diseñadores pueden usar al construir interfaces. Enraizadas en la psicología cognitiva, la ciencia de la percepción y la economía conductual, traducen cómo el cerebro humano procesa la información en guías de diseño accionables. Las más influyentes incluyen la Ley de Hick (tiempo de decisión), la Ley de Fitts (movimiento motor), la Ley de Jakob (familiaridad), la Ley de Miller (memoria de trabajo), el Efecto Estético-Usabilidad y el Umbral de Doherty (velocidad de respuesta del sistema).'
           },
           why: {
-            en: 'They provide a scientific basis for design decisions, moving arguments from "I like it" to "This is how the brain works".',
-            es: 'Proporcionan una base científica para las decisiones de diseño, moviendo los argumentos de "me gusta" a "así funciona el cerebro".'
+            en: 'Design decisions defended with "I think it looks better" rarely survive stakeholder meetings. Laws of UX give you a scientific vocabulary to justify your choices: "We reduced the options from 12 to 4 because Hick\'s Law shows decision time increases logarithmically with choices." They transform subjective preferences into objective, measurable arguments.',
+            es: 'Las decisiones de diseño defendidas con "creo que se ve mejor" rara vez sobreviven a reuniones con stakeholders. Las Leyes de UX te dan un vocabulario científico para justificar tus decisiones: "Redujimos las opciones de 12 a 4 porque la Ley de Hick muestra que el tiempo de decisión aumenta logarítmicamente con las opciones." Transforman preferencias subjetivas en argumentos objetivos y medibles.'
           },
           keyPrinciples: {
-            en: ['Hick\'s Law (Choices).', 'Fitts\'s Law (Target size/distance).', 'Jakob\'s Law (Familiarity).', 'Miller\'s Law (Chunking).'],
-            es: ['Ley de Hick (Opciones).', 'Ley de Fitts (Tamaño/distancia del objetivo).', 'Ley de Jakob (Familiaridad).', 'Ley de Miller (Agrupación).']
+            en: [
+              'Hick\'s Law: Decision time = a + b × log₂(n). Reduce options, use progressive disclosure, break complex tasks into steps.',
+              'Fitts\'s Law: Movement time = a + b × log₂(2D/W). Bigger, closer targets are faster to hit. Make primary CTAs large and within thumb reach on mobile.',
+              'Jakob\'s Law: Users spend most of their time on OTHER sites. They prefer yours to work the same way. Innovate on value, not on navigation.',
+              'Miller\'s Law: The average person can hold 7 ± 2 items in working memory. Chunk information into groups of 5-9.',
+              'Aesthetic-Usability Effect: Users perceive aesthetically pleasing designs as more usable. Visual polish increases tolerance for minor issues.',
+              'Doherty Threshold: Productivity soars when system response time is < 400ms. Use skeleton screens, optimistic UI, and progress indicators.',
+              'Von Restorff Effect: Items that stand out from their surroundings are more memorable. Use visual contrast for important elements.',
+              'Serial Position Effect: Users best remember the first and last items in a series. Place key actions at the beginning and end of lists.'
+            ],
+            es: [
+              'Ley de Hick: Tiempo de decisión = a + b × log₂(n). Reduce opciones, usa revelación progresiva, divide tareas complejas en pasos.',
+              'Ley de Fitts: Tiempo de movimiento = a + b × log₂(2D/W). Objetivos más grandes y cercanos son más rápidos de alcanzar. Haz los CTA principales grandes.',
+              'Ley de Jakob: Los usuarios pasan la mayor parte de su tiempo en OTROS sitios. Prefieren que el tuyo funcione igual. Innova en valor, no en navegación.',
+              'Ley de Miller: La persona promedio puede retener 7 ± 2 elementos en memoria de trabajo. Agrupa información en conjuntos de 5-9.',
+              'Efecto Estético-Usabilidad: Los usuarios perciben diseños estéticamente agradables como más usables. El pulido visual aumenta tolerancia a problemas menores.',
+              'Umbral de Doherty: La productividad se dispara cuando el tiempo de respuesta es < 400ms. Usa skeleton screens, UI optimista e indicadores de progreso.',
+              'Efecto Von Restorff: Los elementos que se destacan de su entorno son más memorables. Usa contraste visual para elementos importantes.',
+              'Efecto de Posición Serial: Los usuarios recuerdan mejor los primeros y últimos elementos de una serie. Coloca acciones clave al principio y final.'
+            ]
           },
           commonMistakes: {
-            en: ['Applying laws dogmatically.', 'Ignoring context.', 'Using dark patterns disguised as psychology.'],
-            es: ['Aplicar leyes dogmáticamente.', 'Ignorar el contexto.', 'Usar patrones oscuros disfrazados de psicología.']
+            en: [
+              'Applying laws dogmatically without considering context — Fitts\'s Law doesn\'t mean every button should be full-width.',
+              'Confusing "familiar" (Jakob\'s Law) with "identical" — you can and should innovate, just not on foundational navigation patterns.',
+              'Using dark patterns disguised as psychology — exploiting Hick\'s Law to hide unsubscribe options is unethical.',
+              'Over-chunking content (Miller\'s Law) — forcing arbitrary groups of 7 when content doesn\'t naturally support it.',
+              'Treating aesthetic design as a substitute for usability testing — the Aesthetic-Usability Effect masks problems, it doesn\'t fix them.',
+              'Ignoring the Doherty Threshold on mobile — 400ms feels much longer on a phone than on desktop.'
+            ],
+            es: [
+              'Aplicar leyes dogmáticamente sin considerar el contexto — la Ley de Fitts no significa que cada botón deba ser de ancho completo.',
+              'Confundir "familiar" (Ley de Jakob) con "idéntico" — puedes y debes innovar, solo no en patrones de navegación fundamentales.',
+              'Usar patrones oscuros disfrazados de psicología — explotar la Ley de Hick para esconder opciones de cancelación es poco ético.',
+              'Sobre-agrupar contenido (Ley de Miller) — forzar grupos arbitrarios de 7 cuando el contenido no lo soporta naturalmente.',
+              'Tratar el diseño estético como sustituto de pruebas de usabilidad — el Efecto Estético-Usabilidad enmascara problemas, no los resuelve.',
+              'Ignorar el Umbral de Doherty en móvil — 400ms se sienten mucho más largos en un teléfono que en desktop.'
+            ]
           },
           howToApply: {
             steps: [
               {
-                name: { en: 'Audit with Laws', es: 'Auditar con Leyes' },
-                description: { en: 'Review a flow. Are buttons large enough (Fitts)? Is it familiar (Jakob)?', es: 'Revisa un flujo. ¿Son los botones lo suficientemente grandes (Fitts)? ¿Es familiar (Jakob)?' }
+                name: { en: 'Audit an Existing Flow', es: 'Auditar un Flujo Existente' },
+                description: { en: 'Pick a user flow (checkout, onboarding, search). Walk through each screen and identify which laws are being applied or violated.', es: 'Elige un flujo de usuario (checkout, onboarding, búsqueda). Recorre cada pantalla e identifica qué leyes se aplican o violan.' }
               },
               {
-                name: { en: 'Design Defense', es: 'Defensa del Diseño' },
-                description: { en: 'Use laws to justify your decisions to stakeholders.', es: 'Usa leyes para justificar tus decisiones ante los stakeholders.' }
+                name: { en: 'Prioritize by Impact', es: 'Priorizar por Impacto' },
+                description: { en: 'Rank each violation by severity: Critical (blocks task completion), Major (significant friction), Minor (polish opportunity). Fix critical first.', es: 'Clasifica cada violación por severidad: Crítica (bloquea completar la tarea), Mayor (fricción significativa), Menor (oportunidad de pulido). Corrige las críticas primero.' }
+              },
+              {
+                name: { en: 'Redesign with Laws', es: 'Rediseñar con Leyes' },
+                description: { en: 'Apply the relevant law to redesign each violation. Document the "before vs after" for your portfolio.', es: 'Aplica la ley relevante para rediseñar cada violación. Documenta el "antes vs después" para tu portafolio.' }
+              },
+              {
+                name: { en: 'Defend in Review', es: 'Defender en Revisión' },
+                description: { en: 'Present your changes using the law as justification: "I grouped 12 nav items into 4 categories (Miller\'s Law), reduced decision time by ~40% (Hick\'s Law)."', es: 'Presenta tus cambios usando la ley como justificación: "Agrupé 12 ítems de nav en 4 categorías (Ley de Miller), reduje el tiempo de decisión ~40% (Ley de Hick)."' }
               }
             ]
           },
+          deliverables: {
+            description: { en: 'Artifacts to demonstrate mastery of UX Laws in your portfolio.', es: 'Artefactos para demostrar dominio de las Leyes de UX en tu portafolio.' },
+            items: {
+              en: [
+                'UX Audit Report: Annotated screenshots mapping each screen to relevant laws, with severity ratings',
+                'Before/After Case Study: Visual comparison showing how applying laws improved a specific flow',
+                'Laws of UX Cheat Sheet: One-page reference card with each law, formula, and design application',
+                'Stakeholder Presentation: Slide deck using laws to justify design decisions with evidence'
+              ],
+              es: [
+                'Informe de Auditoría UX: Capturas anotadas mapeando cada pantalla a leyes relevantes, con severidad',
+                'Caso de Estudio Antes/Después: Comparación visual mostrando cómo aplicar las leyes mejoró un flujo',
+                'Hoja de Referencia de Leyes UX: Tarjeta de una página con cada ley, fórmula y aplicación de diseño',
+                'Presentación para Stakeholders: Deck de slides usando leyes para justificar decisiones con evidencia'
+              ]
+            }
+          },
+          practicalTools: {
+            design: {
+              en: ['Figma (annotate designs with law references)', 'Stark (contrast checking for Aesthetic-Usability)', 'UseItBetter (heatmap analysis for Fitts\'s Law)'],
+              es: ['Figma (anotar diseños con referencias a leyes)', 'Stark (verificación de contraste para Estético-Usabilidad)', 'UseItBetter (análisis de heatmap para Ley de Fitts)']
+            },
+            research: {
+              en: ['Maze (task completion time measurement)', 'Lookback (think-aloud sessions)', 'Google Lighthouse (performance for Doherty Threshold)'],
+              es: ['Maze (medición de tiempo de completado de tarea)', 'Lookback (sesiones think-aloud)', 'Google Lighthouse (rendimiento para Umbral de Doherty)']
+            },
+            handoff: {
+              en: ['lawsofux.com (quick reference)', 'Notion/Confluence (documentation templates)', 'Loom (recorded design defense presentations)'],
+              es: ['lawsofux.com (referencia rápida)', 'Notion/Confluence (plantillas de documentación)', 'Loom (presentaciones de defensa de diseño grabadas)']
+            }
+          },
+          howToValidate: {
+            what: {
+              en: 'Validate that your design decisions align with UX laws by measuring real user behavior.',
+              es: 'Valida que tus decisiones de diseño se alinean con las leyes de UX midiendo comportamiento real del usuario.'
+            },
+            methods: {
+              en: [
+                'A/B test: Compare decision time between original (many options) vs simplified (Hick\'s Law) version',
+                'Click heatmaps: Verify users hit primary CTAs quickly and accurately (Fitts\'s Law)',
+                'Five-second test: Show two interfaces — users rate "easier to use" (Aesthetic-Usability Effect)',
+                'System Usability Scale (SUS): Pre/post redesign survey to measure perceived usability improvement',
+                'Performance monitoring: Measure actual response times vs perceived load (Doherty Threshold)'
+              ],
+              es: [
+                'Test A/B: Compara tiempo de decisión entre versión original (muchas opciones) vs simplificada (Ley de Hick)',
+                'Mapas de calor de clicks: Verifica que usuarios alcanzan CTAs rápida y precisamente (Ley de Fitts)',
+                'Test de cinco segundos: Muestra dos interfaces — usuarios califican "más fácil de usar" (Efecto Estético-Usabilidad)',
+                'Escala de Usabilidad del Sistema (SUS): Encuesta pre/post rediseño para medir mejora de usabilidad',
+                'Monitoreo de rendimiento: Mide tiempos de respuesta reales vs percibido (Umbral de Doherty)'
+              ]
+            },
+            tools: {
+              en: ['Maze', 'Hotjar', 'Google Lighthouse', 'Optimal Workshop', 'UsabilityHub'],
+              es: ['Maze', 'Hotjar', 'Google Lighthouse', 'Optimal Workshop', 'UsabilityHub']
+            },
+            evidenceExample: {
+              en: 'After applying Hick\'s Law to a SaaS pricing page (reducing plans from 5 to 3), we measured a 34% decrease in average decision time and a 12% increase in conversion rate. The A/B test ran for 2 weeks with 4,200 visitors per variant.',
+              es: 'Después de aplicar la Ley de Hick a una página de precios SaaS (reduciendo planes de 5 a 3), medimos una disminución del 34% en tiempo de decisión promedio y un aumento del 12% en conversión. El test A/B corrió 2 semanas con 4,200 visitantes por variante.'
+            }
+          },
+          quiz: [
+            {
+              question: {
+                en: 'A checkout flow has 12 payment options displayed simultaneously. Which law suggests this will slow down user decisions?',
+                es: 'Un flujo de checkout muestra 12 opciones de pago simultáneamente. ¿Qué ley sugiere que esto ralentizará las decisiones del usuario?'
+              },
+              options: {
+                en: ['Fitts\'s Law', 'Hick\'s Law', 'Jakob\'s Law', 'Miller\'s Law'],
+                es: ['Ley de Fitts', 'Ley de Hick', 'Ley de Jakob', 'Ley de Miller']
+              },
+              correctIndex: 1,
+              explanation: {
+                en: 'Hick\'s Law states that decision time increases logarithmically with the number of choices. 12 simultaneous payment options create decision paralysis. Group them or show popular ones first.',
+                es: 'La Ley de Hick establece que el tiempo de decisión aumenta logarítmicamente con la cantidad de opciones. 12 opciones simultáneas crean parálisis de decisión. Agrúpalas o muestra las populares primero.'
+              }
+            },
+            {
+              question: {
+                en: 'A mobile app has a tiny "Delete account" button right next to "Save changes." Which law is being violated?',
+                es: 'Una app móvil tiene un botón "Eliminar cuenta" justo al lado de "Guardar cambios." ¿Qué ley se viola?'
+              },
+              options: {
+                en: ['Miller\'s Law', 'Aesthetic-Usability Effect', 'Fitts\'s Law', 'Doherty Threshold'],
+                es: ['Ley de Miller', 'Efecto Estético-Usabilidad', 'Ley de Fitts', 'Umbral de Doherty']
+              },
+              correctIndex: 2,
+              explanation: {
+                en: 'Fitts\'s Law dictates that destructive actions should be placed far from common interaction targets. Placing "Delete" next to "Save" with similar size increases accidental taps.',
+                es: 'La Ley de Fitts dicta que acciones destructivas deben estar lejos de objetivos de interacción comunes. Colocar "Eliminar" junto a "Guardar" aumenta toques accidentales.'
+              }
+            },
+            {
+              question: {
+                en: 'An e-commerce site puts the shopping cart icon in the footer instead of the header. Which law explains why this frustrates users?',
+                es: 'Un sitio e-commerce pone el carrito en el footer en lugar del header. ¿Qué ley explica por qué esto frustra a los usuarios?'
+              },
+              options: {
+                en: ['Miller\'s Law', 'Doherty Threshold', 'Jakob\'s Law', 'Von Restorff Effect'],
+                es: ['Ley de Miller', 'Umbral de Doherty', 'Ley de Jakob', 'Efecto Von Restorff']
+              },
+              correctIndex: 2,
+              explanation: {
+                en: 'Jakob\'s Law: users spend most of their time on other sites and expect yours to work the same way. The shopping cart in the top-right header is a universal mental model.',
+                es: 'Ley de Jakob: los usuarios pasan la mayor parte de su tiempo en otros sitios y esperan que el tuyo funcione igual. El carrito en el header arriba-derecha es un modelo mental universal.'
+              }
+            }
+          ],
+          realExample: {
+            title: {
+              en: 'Spotify: Laws of UX in Action',
+              es: 'Spotify: Leyes de UX en Acción'
+            },
+            description: {
+              en: 'Spotify\'s interface is a masterclass in applied UX Laws. Hick\'s Law: The home screen shows 6-8 personalized playlists instead of their 100M+ song catalog. Miller\'s Law: Navigation is chunked into 3 main tabs (Home, Search, Library). Fitts\'s Law: The play/pause button is the largest element on the Now Playing screen. Jakob\'s Law: The bottom tab bar and search icon follow universal patterns from Instagram and YouTube. Doherty Threshold: Songs load with skeleton shimmer and pre-buffer audio so playback feels instant. Aesthetic-Usability Effect: Album art and gradient backgrounds make even simple list views feel premium.',
+              es: 'La interfaz de Spotify es una clase magistral en Leyes de UX aplicadas. Ley de Hick: La pantalla de inicio muestra 6-8 playlists personalizadas en lugar de su catálogo de 100M+ canciones. Ley de Miller: La navegación se agrupa en 3 tabs principales (Inicio, Buscar, Biblioteca). Ley de Fitts: El botón play/pausa es el elemento más grande en la pantalla de Reproducción. Ley de Jakob: La barra de tabs inferior e icono de búsqueda siguen patrones universales de Instagram y YouTube. Umbral de Doherty: Las canciones cargan con shimmer skeleton y pre-buffering. Efecto Estético-Usabilidad: Las portadas de álbumes y fondos degradados hacen que vistas de lista simples se sientan premium.'
+            },
+            company: 'Spotify'
+          },
           aiInPractice: {
-            description: { en: 'Use AI to learn how to explain complex psychological concepts to non-designers.', es: 'Usa IA para aprender a explicar conceptos psicológicos complejos a no diseñadores.' },
+            description: { en: 'Use AI to audit interfaces against UX Laws and generate evidence-based design rationale.', es: 'Usa IA para auditar interfaces contra Leyes de UX y generar justificaciones basadas en evidencia.' },
             prompts: [
               {
                 tool: 'ChatGPT',
-                context: { en: 'Explaining Fitts\'s Law', es: 'Explicando la Ley de Fitts' },
-                prompt: { en: 'Explain Fitts\'s Law to a marketing manager in 2 sentences. Use a metaphor about targets.', es: 'Explica la Ley de Fitts a un gerente de marketing en 2 oraciones. Usa una metáfora sobre objetivos.' }
+                context: { en: 'UX Laws Audit', es: 'Auditoría de Leyes UX' },
+                prompt: { en: 'I\'ll describe a user flow screen by screen. For each screen, identify which Laws of UX are being applied well and which are being violated. Rate each violation as Critical/Major/Minor and suggest a fix.', es: 'Describiré un flujo de usuario pantalla por pantalla. Para cada pantalla, identifica qué Leyes de UX se aplican bien y cuáles se violan. Califica cada violación como Crítica/Mayor/Menor y sugiere una corrección.' }
+              },
+              {
+                tool: 'ChatGPT',
+                context: { en: 'Stakeholder Presentation', es: 'Presentación para Stakeholders' },
+                prompt: { en: 'Explain Fitts\'s Law to a marketing manager in 2 sentences. Use a metaphor about targets. Then explain how it justifies making our primary CTA 48px minimum on mobile.', es: 'Explica la Ley de Fitts a un gerente de marketing en 2 oraciones. Usa una metáfora sobre objetivos. Luego explica cómo justifica hacer nuestro CTA principal de mínimo 48px en móvil.' }
               }
             ]
           }
         }
       },
-      {
-        id: 'frontend-foundations',
-        title: { en: 'Front-End Foundations', es: 'Fundamentos Front-End' },
-        description: { en: 'HTML, CSS & Layout mental models for designers.', es: 'Modelos mentales de HTML, CSS y diseño para diseñadores.' },
-        status: 'advanced',
-        timeEstimate: '2h',
-        referenceLink: 'https://developer.mozilla.org/en-US/docs/Learn/Front-end_web_developer',
-        content: {
-          definition: {
-            en: 'Understanding the medium of the web (HTML/CSS) to create feasible and accessible designs. It is not about writing production code, but understanding how the browser renders your design.',
-            es: 'Entender el medio de la web (HTML/CSS) para crear diseños viables y accesibles. No se trata de escribir código de producción, sino de entender cómo el navegador renderiza tu diseño.'
-          },
-          why: {
-            en: 'Bridging the gap between design and development reduces friction, improves implementation accuracy, and helps you design for dynamic content.',
-            es: 'Cerrar la brecha entre el diseño y el desarrollo reduce la fricción, mejora la precisión de la implementación y te ayuda a diseñar para contenido dinámico.'
-          },
-          keyPrinciples: {
-            en: ['Box Model (Margin, Border, Padding).', 'Flexbox & Grid layouts.', 'Responsive units (rem, vh).', 'The "Design Handoff" (Communicating intent vs pixels).', 'Accessibility tree.'],
-            es: ['Modelo de Caja (Margen, Borde, Relleno).', 'Diseños Flexbox y Grid.', 'Unidades responsivas (rem, vh).', 'El "Design Handoff" (Comunicar intención vs píxeles).', 'Árbol de accesibilidad.']
-          },
-          commonMistakes: {
-            en: ['Designing with fixed widths (px) everywhere.', 'Ignoring hover/focus states.', 'Not accounting for variable content length.', 'Thinking of the web as a static canvas.'],
-            es: ['Diseñar con anchos fijos (px) en todas partes.', 'Ignorar estados de hover/foco.', 'No tener en cuenta la longitud variable del contenido.', 'Pensar en la web como un lienzo estático.']
-          },
-          howToApply: {
-            steps: [
-              {
-                name: { en: 'Think in Boxes', es: 'Piensa en Cajas' },
-                description: { en: 'Draw boxes around every element in your design.', es: 'Dibuja cajas alrededor de cada elemento en tu diseño.' }
-              },
-              {
-                name: { en: 'Annotate for Handoff', es: 'Anotar para Handoff' },
-                description: { en: 'Explain behavior: "Fixed on scroll", "Truncate text after 2 lines". Don\'t just send screens.', es: 'Explica comportamiento: "Fijo al scroll", "Cortar texto tras 2 líneas". No envíes solo pantallas.' }
-              }
-            ]
-          },
-          aiInPractice: {
-            description: { en: 'Use AI to translate design concepts into CSS logic to help communicate with developers.', es: 'Usa IA para traducir conceptos de diseño a lógica CSS para ayudar a comunicarte con los desarrolladores.' },
-            prompts: [
-              {
-                tool: 'ChatGPT',
-                context: { en: 'Explaining a layout', es: 'Explicando un diseño' },
-                prompt: { en: 'How do I explain to a developer that I want this container to center its children both horizontally and vertically using Flexbox?', es: '¿Cómo le explico a un desarrollador que quiero que este contenedor centre sus hijos tanto horizontal como verticalmente usando Flexbox?' }
-              }
-            ]
-          }
-        }
-      }
+      frontendFoundationsLesson,
+      htmlFundamentalsLesson,
+      cssFundamentalsLesson,
+      introJavaScriptLesson
+    ]
+  },
+  {
+    id: 'strategy-lessons',
+    title: { en: 'Strategy & Business', es: 'Estrategia y Negocio' },
+    description: {
+      en: 'Business goals, KPIs, and strategic design thinking.',
+      es: 'Objetivos de negocio, KPIs y pensamiento de diseño estratégico.'
+    },
+    topics: [
+      businessGoalsKpisLesson,
+      stakeholderMappingLesson,
     ]
   }
+];
+
+// Helper to find topics from the internal source by ID
+const _allTopics: Topic[] = _topicSource.flatMap(t => t.topics);
+const _t = (id: string, tag: LessonTag = 'Core UX'): Topic => {
+  const topic = _allTopics.find(t => t.id === id);
+  if (!topic) throw new Error(`Topic not found: ${id}`);
+  return { ...topic, tag };
+};
+
+// Helper to create placeholder topics for upcoming lessons
+const _placeholder = (
+  id: string,
+  title: { en: string; es: string },
+  description: { en: string; es: string },
+  status: 'beginner' | 'intermediate' | 'advanced',
+  timeEstimate: string,
+  tag: LessonTag
+): Topic => ({
+  id,
+  title,
+  description,
+  status,
+  timeEstimate,
+  tag,
+  isPlaceholder: true,
+});
+
+// ============================================================
+// EXPORTED TRACKS — 8 Phases following real UX project workflow
+// Ordered: basic → intermediate → advanced within each phase
+// Tags: Core UX | Product | UI | Tech | Strategy | Metrics
+//
+// Changes from previous structure:
+//   • "wireframes" merged into "wireframing-prototyping"
+//   • "usability-basics" moved from Phase 5 → Phase 1
+//   • 11 placeholder lessons added for curriculum completeness
+//   • All lessons tagged by discipline
+// ============================================================
+export const tracks: Track[] = [
+  // ── PHASE 1 ─────────────────────────────────────────────────
+  {
+    id: 'phase-1-foundations',
+    title: { en: 'Foundations', es: 'Fundamentos' },
+    description: {
+      en: 'Thinking like a Product Designer — mindset, context, and frameworks.',
+      es: 'Pensar como Diseñador de Producto — mentalidad, contexto y marcos de trabajo.'
+    },
+    topics: [
+      // beginner
+      _t('ux-ui-product-design-intro', 'Core UX'),
+      _t('usability-basics', 'Core UX'),
+      _t('design-thinking', 'Core UX'),
+      // intermediate
+      _t('ux-process', 'Core UX'),
+      _t('methodologies-overview', 'Core UX'),
+      _t('lean-ux', 'Strategy'),
+      _t('design-sprint', 'Strategy'),
+      _t('scrum-for-designers', 'Strategy'),
+      _t('user-stories-and-requirements', 'Product'),
+    ]
+  },
+  // ── PHASE 2 ─────────────────────────────────────────────────
+  {
+    id: 'phase-2-discovery',
+    title: { en: 'Problem Framing & Discovery', es: 'Definición del Problema y Descubrimiento' },
+    description: {
+      en: 'Start a project right — business goals, constraints, and competitive landscape.',
+      es: 'Comienza un proyecto bien — objetivos de negocio, restricciones y panorama competitivo.'
+    },
+    topics: [
+      // beginner
+      _t('business-goals-kpis', 'Strategy'),
+      _t('stakeholder-mapping', 'Strategy'),
+      // intermediate
+      _t('problem-statements', 'Core UX'),
+      _t('competitive-analysis-basics', 'Product'),
+      _t('competitive-analysis', 'Product'),
+      _placeholder('product-discovery',
+        { en: 'Product Discovery', es: 'Descubrimiento de Producto' },
+        { en: 'Frameworks for deciding what to build before committing resources.', es: 'Frameworks para decidir qué construir antes de comprometer recursos.' },
+        'intermediate', '1h 30m', 'Product'),
+      _placeholder('hypothesis-definition',
+        { en: 'Hypothesis Definition', es: 'Definición de Hipótesis' },
+        { en: 'Formulating testable assumptions to guide research and design.', es: 'Formulando suposiciones testeables para guiar investigación y diseño.' },
+        'intermediate', '1h', 'Strategy'),
+    ]
+  },
+  // ── PHASE 3 ─────────────────────────────────────────────────
+  {
+    id: 'phase-3-research',
+    title: { en: 'Research & User Understanding', es: 'Investigación y Comprensión del Usuario' },
+    description: {
+      en: 'Understand real user behavior through research, personas, journeys, and psychology.',
+      es: 'Comprende el comportamiento real del usuario mediante investigación, personas, viajes y psicología.'
+    },
+    topics: [
+      // beginner
+      _t('surveys-questionnaires', 'Core UX'),
+      // intermediate
+      _t('ux-research', 'Core UX'),
+      _t('user-personas', 'Core UX'),
+      _t('customer-journey-map', 'Core UX'),
+      _placeholder('research-planning-synthesis',
+        { en: 'Research Planning & Synthesis', es: 'Planificación y Síntesis de Investigación' },
+        { en: 'End-to-end research planning, execution, and actionable synthesis.', es: 'Planificación de investigación de principio a fin, ejecución y síntesis accionable.' },
+        'intermediate', '1h 30m', 'Core UX'),
+      // advanced
+      _t('ux-psychology', 'Core UX'),
+      _t('laws-of-ux', 'Core UX'),
+    ]
+  },
+  // ── PHASE 4 ─────────────────────────────────────────────────
+  {
+    id: 'phase-4-architecture',
+    title: { en: 'Information Architecture & Structure', es: 'Arquitectura de Información y Estructura' },
+    description: {
+      en: 'Build product logic before designing the UI — organize, label, and map user paths.',
+      es: 'Construye la lógica del producto antes de diseñar la UI — organiza, etiqueta y mapea caminos del usuario.'
+    },
+    topics: [
+      _t('information-architecture', 'Core UX'),
+      _t('ia-fundamentals', 'Core UX'),
+      _t('card-sorting', 'Core UX'),
+      _t('user-flows', 'Core UX'),
+    ]
+  },
+  // ── PHASE 5 ─────────────────────────────────────────────────
+  {
+    id: 'phase-5-design',
+    title: { en: 'Interaction & Interface Design', es: 'Diseño de Interacción e Interfaz' },
+    description: {
+      en: 'Design the solution — wireframes, visual design, typography, color, and microinteractions.',
+      es: 'Diseña la solución — wireframes, diseño visual, tipografía, color y microinteracciones.'
+    },
+    topics: [
+      // beginner (wireframes merged into wireframing-prototyping)
+      _t('wireframing-prototyping', 'UI'),
+      _placeholder('interaction-design-principles',
+        { en: 'Interaction Design Principles', es: 'Principios de Diseño de Interacción' },
+        { en: 'Core principles of feedback, affordance, and mapping for digital interfaces.', es: 'Principios fundamentales de feedback, affordance y mapping para interfaces digitales.' },
+        'beginner', '1h', 'UI'),
+      _t('visual-hierarchy', 'UI'),
+      _t('typography-fundamentals', 'UI'),
+      _t('color-theory', 'UI'),
+      // intermediate
+      _t('accessibility-wcag', 'UI'),
+      _placeholder('responsive-design-patterns',
+        { en: 'Responsive Design Patterns', es: 'Patrones de Diseño Responsivo' },
+        { en: 'Designing adaptive layouts that work across devices and screen sizes.', es: 'Diseñando layouts adaptativos que funcionan en distintos dispositivos y tamaños de pantalla.' },
+        'intermediate', '1h 15m', 'UI'),
+      _placeholder('ux-writing-basics',
+        { en: 'UX Writing Basics', es: 'Fundamentos de UX Writing' },
+        { en: 'Crafting clear, concise microcopy that guides users through interfaces.', es: 'Creando microcopy claro y conciso que guía a los usuarios a través de interfaces.' },
+        'intermediate', '1h', 'UI'),
+      // advanced
+      _t('microinteractions', 'UI'),
+      _t('heuristic-analysis', 'Core UX'),
+    ]
+  },
+  // ── PHASE 6 ─────────────────────────────────────────────────
+  {
+    id: 'phase-6-validation',
+    title: { en: 'Validation & Optimization', es: 'Validación y Optimización' },
+    description: {
+      en: 'Measure if the design works — usability testing, analytics, and accessibility audits.',
+      es: 'Mide si el diseño funciona — pruebas de usabilidad, analítica y auditorías de accesibilidad.'
+    },
+    topics: [
+      // intermediate
+      _t('usability-testing', 'Core UX'),
+      _t('prototyping-methods', 'Core UX'),
+      _placeholder('analytics-ux-metrics',
+        { en: 'Analytics & UX Metrics', es: 'Analítica y Métricas UX' },
+        { en: 'Using quantitative data to measure design impact and inform iterations.', es: 'Usando datos cuantitativos para medir el impacto del diseño e informar iteraciones.' },
+        'intermediate', '1h 30m', 'Metrics'),
+      _placeholder('ab-testing',
+        { en: 'A/B Testing', es: 'Pruebas A/B' },
+        { en: 'Running controlled experiments to validate design decisions with data.', es: 'Ejecutando experimentos controlados para validar decisiones de diseño con datos.' },
+        'intermediate', '1h', 'Metrics'),
+      _placeholder('accessibility-testing',
+        { en: 'Accessibility Testing', es: 'Pruebas de Accesibilidad' },
+        { en: 'Systematic methods for auditing and verifying WCAG compliance.', es: 'Métodos sistemáticos para auditar y verificar cumplimiento WCAG.' },
+        'intermediate', '1h 15m', 'UI'),
+      // advanced
+      _t('accessibility', 'Core UX'),
+    ]
+  },
+  // ── PHASE 7 ─────────────────────────────────────────────────
+  {
+    id: 'phase-7-systems',
+    title: { en: 'Systems & Scale', es: 'Sistemas y Escala' },
+    description: {
+      en: 'Think in enterprise products — atomic design, governance, ethics, and service blueprints.',
+      es: 'Piensa en productos enterprise — diseño atómico, gobernanza, ética y service blueprints.'
+    },
+    topics: [
+      _t('atomic-design', 'UI'),
+      _t('figma-mastery', 'UI'),
+      _t('design-systems-governance', 'Strategy'),
+      _t('design-ethics', 'Strategy'),
+      _t('service-blueprint', 'Strategy'),
+    ]
+  },
+  // ── PHASE 8 ─────────────────────────────────────────────────
+  {
+    id: 'phase-8-frontend',
+    title: { en: 'Frontend for Designers', es: 'Frontend para Diseñadores' },
+    description: {
+      en: 'Technical complement — HTML, CSS, and JavaScript fundamentals for UX/UI designers.',
+      es: 'Complemento técnico — fundamentos de HTML, CSS y JavaScript para diseñadores UX/UI.'
+    },
+    topics: [
+      // beginner
+      _t('html-fundamentals', 'Tech'),
+      _t('css-fundamentals', 'Tech'),
+      _t('intro-javascript', 'Tech'),
+      // advanced (overview)
+      _t('frontend-foundations', 'Tech'),
+    ]
+  },
 ];
 
 export interface Tool {
@@ -2681,552 +3074,4 @@ export const heuristics: Heuristic[] = [
   }
 ];
 
-// Validation Framework
-export interface ValidationItem {
-  id: string;
-  artifact: { en: string; es: string };
-  stage: 'discover' | 'define' | 'develop' | 'deliver';
-  hypothesis: { en: string; es: string };
-  validationMethod: { en: string; es: string };
-  evidenceType: 'qualitative' | 'quantitative' | 'mixed';
-  tools: { en: string[]; es: string[] };
-  outputArtifact: { en: string; es: string };
-  successCriteria: { en: string; es: string };
-  decisionImpact: { en: string; es: string };
-  exampleScenario: { en: string; es: string };
-  commonMistakes: { en: string[]; es: string[] };
-  aiPrompts: {
-    tool: string;
-    context: { en: string; es: string };
-    prompt: { en: string; es: string };
-  }[];
-}
 
-export const validationMatrix: ValidationItem[] = [
-  {
-    id: 'mvp',
-    artifact: { en: 'MVP Definition', es: 'Definición de MVP' },
-    stage: 'discover',
-    hypothesis: { 
-      en: 'This product/feature solves a real user problem worth paying for',
-      es: 'Este producto/característica resuelve un problema real del usuario por el que vale la pena pagar'
-    },
-    validationMethod: { 
-      en: 'UX Research: Problem interviews, surveys, market analysis',
-      es: 'Investigación UX: Entrevistas de problema, encuestas, análisis de mercado'
-    },
-    evidenceType: 'qualitative',
-    tools: { 
-      en: ['User Interviews', 'Google Forms', 'Typeform', 'Dovetail', 'Miro'],
-      es: ['Entrevistas de usuario', 'Google Forms', 'Typeform', 'Dovetail', 'Miro']
-    },
-    outputArtifact: { 
-      en: 'Research report with problem validation, user quotes, pain point prioritization',
-      es: 'Informe de investigación con validación del problema, citas de usuarios, priorización de puntos de dolor'
-    },
-    successCriteria: { 
-      en: '70%+ of interviewees confirm the problem exists and current solutions are unsatisfactory',
-      es: 'El 70%+ de los entrevistados confirman que el problema existe y las soluciones actuales son insatisfactorias'
-    },
-    decisionImpact: { 
-      en: 'GO/NO-GO decision on product development. Defines problem-solution fit.',
-      es: 'Decisión GO/NO-GO sobre el desarrollo del producto. Define el ajuste problema-solución.'
-    },
-    exampleScenario: { 
-      en: 'A fintech startup believes freelancers struggle with invoice tracking. They interview 20 freelancers and discover 85% use manual spreadsheets and lose an average of 2 hours/week. This validates the problem.',
-      es: 'Una startup fintech cree que los freelancers tienen problemas con el seguimiento de facturas. Entrevistan a 20 freelancers y descubren que el 85% usa hojas de cálculo manuales y pierde un promedio de 2 horas/semana. Esto valida el problema.'
-    },
-    commonMistakes: { 
-      en: [
-        'Asking leading questions that confirm your bias',
-        'Only talking to friendly users who will say yes',
-        'Confusing interest ("that sounds cool") with intent to pay',
-        'Skipping competitive analysis'
-      ],
-      es: [
-        'Hacer preguntas sesgadas que confirman tu sesgo',
-        'Solo hablar con usuarios amigables que dirán que sí',
-        'Confundir interés ("suena genial") con intención de pagar',
-        'Saltarse el análisis competitivo'
-      ]
-    },
-    aiPrompts: [
-      {
-        tool: 'ChatGPT',
-        context: { 
-          en: 'Creating interview scripts for problem validation',
-          es: 'Creando guiones de entrevista para validación de problemas'
-        },
-        prompt: { 
-          en: 'I\'m validating a problem: [describe problem]. Generate 10 open-ended interview questions that avoid leading language and help me understand if this is a real pain point for [target audience].',
-          es: 'Estoy validando un problema: [describir problema]. Genera 10 preguntas de entrevista abiertas que eviten lenguaje sesgado y me ayuden a entender si este es un punto de dolor real para [audiencia objetivo].'
-        }
-      },
-      {
-        tool: 'Claude',
-        context: { 
-          en: 'Analyzing interview transcripts',
-          es: 'Analizando transcripciones de entrevistas'
-        },
-        prompt: { 
-          en: 'Here are 5 user interview transcripts [paste]. Extract recurring pain points, quote the most compelling evidence, and assess if the problem is validated (yes/no/maybe) with reasoning.',
-          es: 'Aquí hay 5 transcripciones de entrevistas de usuario [pegar]. Extrae puntos de dolor recurrentes, cita la evidencia más convincente y evalúa si el problema está validado (sí/no/tal vez) con razonamiento.'
-        }
-      },
-      {
-        tool: 'Perplexity',
-        context: { 
-          en: 'Market & competitive research',
-          es: 'Investigación de mercado y competencia'
-        },
-        prompt: { 
-          en: 'What are the top 5 competitors solving [problem] for [audience]? For each, summarize their approach, pricing, and key user complaints from reviews.',
-          es: '¿Cuáles son los 5 principales competidores que resuelven [problema] para [audiencia]? Para cada uno, resume su enfoque, precios y quejas clave de usuarios en reseñas.'
-        }
-      }
-    ]
-  },
-  {
-    id: 'personas',
-    artifact: { en: 'User Personas', es: 'Personas de Usuario' },
-    stage: 'define',
-    hypothesis: { 
-      en: 'We understand who our users are, their goals, behaviors, and contexts',
-      es: 'Entendemos quiénes son nuestros usuarios, sus objetivos, comportamientos y contextos'
-    },
-    validationMethod: { 
-      en: 'Qualitative contextual interviews + Empathy mapping',
-      es: 'Entrevistas contextuales cualitativas + Mapeo de empatía'
-    },
-    evidenceType: 'qualitative',
-    tools: { 
-      en: ['Zoom/Meet', 'Dovetail', 'Miro', 'Otter.ai', 'User Testing platforms'],
-      es: ['Zoom/Meet', 'Dovetail', 'Miro', 'Otter.ai', 'Plataformas de User Testing']
-    },
-    outputArtifact: { 
-      en: '2-4 persona documents with demographics, goals, frustrations, scenarios, empathy map',
-      es: '2-4 documentos de persona con demografía, objetivos, frustraciones, escenarios, mapa de empatía'
-    },
-    successCriteria: { 
-      en: 'Personas are based on real data from 10+ interviews, team can identify which persona a feature serves',
-      es: 'Las personas se basan en datos reales de 10+ entrevistas, el equipo puede identificar a qué persona sirve una característica'
-    },
-    decisionImpact: { 
-      en: 'Guides feature prioritization, tone of voice, and design decisions',
-      es: 'Guía la priorización de características, el tono de voz y las decisiones de diseño'
-    },
-    exampleScenario: { 
-      en: 'An e-learning platform interviews teachers and discovers two distinct personas: "Tech-savvy Sarah" who wants automation and "Traditional Tom" who needs hand-holding. This shapes onboarding flows.',
-      es: 'Una plataforma de e-learning entrevista a profesores y descubre dos personas distintas: "Sarah experta en tecnología" que quiere automatización y "Tom tradicional" que necesita guía paso a paso. Esto moldea los flujos de onboarding.'
-    },
-    commonMistakes: { 
-      en: [
-        'Creating personas from assumptions, not research',
-        'Making too many personas (stick to 3-4 primary)',
-        'Including irrelevant details (favorite color)',
-        'Not validating with real users after creation'
-      ],
-      es: [
-        'Crear personas a partir de suposiciones, no investigación',
-        'Hacer demasiadas personas (mantener 3-4 primarias)',
-        'Incluir detalles irrelevantes (color favorito)',
-        'No validar con usuarios reales después de la creación'
-      ]
-    },
-    aiPrompts: [
-      {
-        tool: 'ChatGPT',
-        context: { 
-          en: 'Building persona templates',
-          es: 'Construyendo plantillas de persona'
-        },
-        prompt: { 
-          en: 'Based on these interview notes [paste 3-5 summaries], create a user persona template with: Name, Demographics, Goals, Frustrations, Tech Comfort, and a Day-in-the-Life scenario.',
-          es: 'Basado en estas notas de entrevista [pegar 3-5 resúmenes], crea una plantilla de persona de usuario con: Nombre, Demografía, Objetivos, Frustraciones, Comodidad Tecnológica y un escenario de Un Día en la Vida.'
-        }
-      },
-      {
-        tool: 'Claude',
-        context: { 
-          en: 'Empathy map creation',
-          es: 'Creación de mapa de empatía'
-        },
-        prompt: { 
-          en: 'I interviewed [persona name] who is [role]. Here\'s the transcript [paste]. Create an empathy map with sections: What they SAY, THINK, DO, and FEEL about [product context].',
-          es: 'Entrevisté a [nombre de persona] que es [rol]. Aquí está la transcripción [pegar]. Crea un mapa de empatía con secciones: Qué DICEN, PIENSAN, HACEN y SIENTEN sobre [contexto del producto].'
-        }
-      }
-    ]
-  },
-  {
-    id: 'competitors',
-    artifact: { en: 'Competitive Analysis', es: 'Análisis Competitivo' },
-    stage: 'discover',
-    hypothesis: { 
-      en: 'We understand what competitors do well and where opportunities exist',
-      es: 'Entendemos qué hacen bien los competidores y dónde existen oportunidades'
-    },
-    validationMethod: { 
-      en: 'Benchmarking, heuristic evaluation of competitors, user reviews analysis',
-      es: 'Benchmarking, evaluación heurística de competidores, análisis de reseñas de usuarios'
-    },
-    evidenceType: 'mixed',
-    tools: { 
-      en: ['Excel/Notion matrix', 'UXCam', 'SimilarWeb', 'App Store reviews', 'G2/Capterra'],
-      es: ['Matriz Excel/Notion', 'UXCam', 'SimilarWeb', 'Reseñas de App Store', 'G2/Capterra']
-    },
-    outputArtifact: { 
-      en: 'Competitive matrix with feature comparison, UX strengths/weaknesses, pricing, user sentiment',
-      es: 'Matriz competitiva con comparación de características, fortalezas/debilidades UX, precios, sentimiento del usuario'
-    },
-    successCriteria: { 
-      en: 'Analysis covers 5-10 competitors, identifies 3+ gaps/opportunities, includes user feedback data',
-      es: 'El análisis cubre 5-10 competidores, identifica 3+ brechas/oportunidades, incluye datos de retroalimentación de usuarios'
-    },
-    decisionImpact: { 
-      en: 'Defines differentiation strategy and prevents building redundant features',
-      es: 'Define la estrategia de diferenciación y evita construir características redundantes'
-    },
-    exampleScenario: { 
-      en: 'A project management tool benchmarks Asana, Monday, Trello. They discover all lack native time-tracking, which becomes their differentiator.',
-      es: 'Una herramienta de gestión de proyectos compara Asana, Monday, Trello. Descubren que todos carecen de seguimiento de tiempo nativo, que se convierte en su diferenciador.'
-    },
-    commonMistakes: { 
-      en: [
-        'Only looking at direct competitors, ignoring adjacent solutions',
-        'Copying features without understanding why they exist',
-        'Not testing competitor products hands-on',
-        'Ignoring user reviews and complaints'
-      ],
-      es: [
-        'Solo mirar competidores directos, ignorando soluciones adyacentes',
-        'Copiar características sin entender por qué existen',
-        'No probar productos de la competencia de primera mano',
-        'Ignorar reseñas y quejas de usuarios'
-      ]
-    },
-    aiPrompts: [
-      {
-        tool: 'Perplexity',
-        context: { 
-          en: 'Finding competitors',
-          es: 'Encontrando competidores'
-        },
-        prompt: { 
-          en: 'List 10 direct and indirect competitors for [product description]. For each, provide: URL, target audience, key differentiator, and pricing model.',
-          es: 'Lista 10 competidores directos e indirectos para [descripción del producto]. Para cada uno, proporciona: URL, audiencia objetivo, diferenciador clave y modelo de precios.'
-        }
-      },
-      {
-        tool: 'ChatGPT',
-        context: { 
-          en: 'Analyzing user reviews',
-          es: 'Analizando reseñas de usuarios'
-        },
-        prompt: { 
-          en: 'Here are 20 App Store reviews for [competitor name] [paste reviews]. Categorize complaints and praise into themes. What do users consistently wish existed?',
-          es: 'Aquí hay 20 reseñas de App Store para [nombre del competidor] [pegar reseñas]. Categoriza quejas y elogios en temas. ¿Qué desean consistentemente los usuarios que existiera?'
-        }
-      }
-    ]
-  },
-  {
-    id: 'information-architecture',
-    artifact: { en: 'Information Architecture', es: 'Arquitectura de Información' },
-    stage: 'define',
-    hypothesis: { 
-      en: 'Users can find and navigate content intuitively',
-      es: 'Los usuarios pueden encontrar y navegar el contenido intuitivamente'
-    },
-    validationMethod: { 
-      en: 'Card sorting (open/closed) + Tree testing',
-      es: 'Card sorting (abierto/cerrado) + Tree testing'
-    },
-    evidenceType: 'quantitative',
-    tools: { 
-      en: ['Optimal Workshop', 'Maze', 'UserZoom', 'Miro (for manual card sorting)'],
-      es: ['Optimal Workshop', 'Maze', 'UserZoom', 'Miro (para card sorting manual)']
-    },
-    outputArtifact: { 
-      en: 'Sitemap with validated hierarchy, navigation labels tested with real users',
-      es: 'Mapa del sitio con jerarquía validada, etiquetas de navegación probadas con usuarios reales'
-    },
-    successCriteria: { 
-      en: '80%+ success rate on tree testing tasks (e.g., "Find where to cancel subscription")',
-      es: '80%+ tasa de éxito en tareas de tree testing (ej. "Encuentra dónde cancelar la suscripción")'
-    },
-    decisionImpact: { 
-      en: 'Prevents navigation redesigns post-launch, reduces support tickets',
-      es: 'Previene rediseños de navegación post-lanzamiento, reduce tickets de soporte'
-    },
-    exampleScenario: { 
-      en: 'An e-commerce site runs card sorting with 30 users. They discover users expect "Returns" under "Help", not "Account". Tree testing confirms this with 92% findability.',
-      es: 'Un sitio de e-commerce ejecuta card sorting con 30 usuarios. Descubren que los usuarios esperan "Devoluciones" bajo "Ayuda", no "Cuenta". Tree testing confirma esto con 92% de encontrabilidad.'
-    },
-    commonMistakes: { 
-      en: [
-        'Doing IA based on company org chart, not user mental models',
-        'Using jargon in navigation labels',
-        'Not testing IA before building wireframes',
-        'Ignoring mobile navigation constraints'
-      ],
-      es: [
-        'Hacer IA basada en el organigrama de la empresa, no en modelos mentales del usuario',
-        'Usar jerga en etiquetas de navegación',
-        'No probar IA antes de construir wireframes',
-        'Ignorar restricciones de navegación móvil'
-      ]
-    },
-    aiPrompts: [
-      {
-        tool: 'ChatGPT',
-        context: { 
-          en: 'Generating card sorting items',
-          es: 'Generando elementos de card sorting'
-        },
-        prompt: { 
-          en: 'I\'m designing [product type]. Generate 40 content items (features, pages, sections) that users would need to organize in a card sorting exercise.',
-          es: 'Estoy diseñando [tipo de producto]. Genera 40 elementos de contenido (características, páginas, secciones) que los usuarios necesitarían organizar en un ejercicio de card sorting.'
-        }
-      },
-      {
-        tool: 'Claude',
-        context: { 
-          en: 'Analyzing card sorting results',
-          es: 'Analizando resultados de card sorting'
-        },
-        prompt: { 
-          en: 'Here are card sorting results from 15 users [paste data]. Identify the top 5 most agreed-upon categories and suggest clear labels for each.',
-          es: 'Aquí están los resultados de card sorting de 15 usuarios [pegar datos]. Identifica las 5 categorías más consensuadas y sugiere etiquetas claras para cada una.'
-        }
-      }
-    ]
-  },
-  {
-    id: 'user-flows',
-    artifact: { en: 'User Flows', es: 'Flujos de Usuario' },
-    stage: 'develop',
-    hypothesis: { 
-      en: 'Users can complete core tasks without friction or dead ends',
-      es: 'Los usuarios pueden completar tareas clave sin fricción o callejones sin salida'
-    },
-    validationMethod: { 
-      en: 'Usability testing (task-based) + Cognitive walkthrough',
-      es: 'Pruebas de usabilidad (basadas en tareas) + Cognitive walkthrough'
-    },
-    evidenceType: 'qualitative',
-    tools: { 
-      en: ['Maze', 'UserTesting', 'Lookback', 'Figma prototype + Zoom'],
-      es: ['Maze', 'UserTesting', 'Lookback', 'Prototipo Figma + Zoom']
-    },
-    outputArtifact: { 
-      en: 'Annotated flow diagrams with success rates, drop-off points, user quotes',
-      es: 'Diagramas de flujo anotados con tasas de éxito, puntos de abandono, citas de usuarios'
-    },
-    successCriteria: { 
-      en: '90%+ task completion rate, average time-on-task within expected range',
-      es: '90%+ tasa de completación de tareas, tiempo promedio en tarea dentro del rango esperado'
-    },
-    decisionImpact: { 
-      en: 'Identifies flow bottlenecks before development, prioritizes flow improvements',
-      es: 'Identifica cuellos de botella del flujo antes del desarrollo, prioriza mejoras del flujo'
-    },
-    exampleScenario: { 
-      en: 'A checkout flow is tested with 10 users. 40% fail because the "Apply Coupon" field is hidden in a collapsed section. This triggers a design iteration.',
-      es: 'Un flujo de checkout es probado con 10 usuarios. El 40% falla porque el campo "Aplicar Cupón" está oculto en una sección colapsada. Esto dispara una iteración de diseño.'
-    },
-    commonMistakes: { 
-      en: [
-        'Testing flows with internal team members (too biased)',
-        'Not defining success metrics before testing',
-        'Asking users "Do you like this?" instead of giving tasks',
-        'Testing too late (after development starts)'
-      ],
-      es: [
-        'Probar flujos con miembros internos del equipo (demasiado sesgados)',
-        'No definir métricas de éxito antes de probar',
-        'Preguntar a usuarios "¿Te gusta esto?" en lugar de dar tareas',
-        'Probar demasiado tarde (después de que el desarrollo comienza)'
-      ]
-    },
-    aiPrompts: [
-      {
-        tool: 'ChatGPT',
-        context: { 
-          en: 'Creating test tasks',
-          es: 'Creando tareas de prueba'
-        },
-        prompt: { 
-          en: 'I need to test a [flow name, e.g., "sign-up flow"]. Generate 5 realistic task scenarios for usability testing that avoid leading language.',
-          es: 'Necesito probar un [nombre de flujo, ej. "flujo de registro"]. Genera 5 escenarios de tareas realistas para pruebas de usabilidad que eviten lenguaje sesgado.'
-        }
-      },
-      {
-        tool: 'Claude',
-        context: { 
-          en: 'Edge case generation',
-          es: 'Generación de casos extremos'
-        },
-        prompt: { 
-          en: 'What are 10 edge cases or error states I should account for in a [flow name] flow? For each, suggest user-friendly error messaging.',
-          es: '¿Cuáles son 10 casos extremos o estados de error que debo tener en cuenta en un flujo de [nombre de flujo]? Para cada uno, sugiere mensajes de error amigables para el usuario.'
-        }
-      }
-    ]
-  },
-  {
-    id: 'wireframes',
-    artifact: { en: 'Wireframes (iterations)', es: 'Wireframes (iteraciones)' },
-    stage: 'develop',
-    hypothesis: { 
-      en: 'The layout and information hierarchy support user goals',
-      es: 'El diseño y la jerarquía de información respaldan los objetivos del usuario'
-    },
-    validationMethod: { 
-      en: 'Usability testing (5-8 users) + Heuristic evaluation',
-      es: 'Pruebas de usabilidad (5-8 usuarios) + Evaluación heurística'
-    },
-    evidenceType: 'qualitative',
-    tools: { 
-      en: ['Figma/Sketch', 'Maze', 'Lookback', 'Nielsen Heuristics checklist'],
-      es: ['Figma/Sketch', 'Maze', 'Lookback', 'Checklist de Heurísticas de Nielsen']
-    },
-    outputArtifact: { 
-      en: 'Iteration log with before/after wireframes, usability findings, heuristic scores',
-      es: 'Registro de iteraciones con wireframes antes/después, hallazgos de usabilidad, puntuaciones heurísticas'
-    },
-    successCriteria: { 
-      en: 'No critical usability issues remain, heuristic evaluation scores 7+/10 on key screens',
-      es: 'No quedan problemas críticos de usabilidad, evaluación heurística puntúa 7+/10 en pantallas clave'
-    },
-    decisionImpact: { 
-      en: 'Prevents costly UI rework, ensures alignment before visual design phase',
-      es: 'Previene retrabajo costoso de UI, asegura alineación antes de la fase de diseño visual'
-    },
-    exampleScenario: { 
-      en: 'A dashboard wireframe is tested. Users can\'t distinguish primary actions from secondary. Heuristic evaluation flags poor "recognition rather than recall". Designer adds color-coded buttons in iteration 2.',
-      es: 'Un wireframe de dashboard es probado. Los usuarios no pueden distinguir acciones primarias de secundarias. La evaluación heurística señala pobre "reconocimiento en lugar de recuerdo". El diseñador agrega botones codificados por color en la iteración 2.'
-    },
-    commonMistakes: { 
-      en: [
-        'Adding visual design too early (distracts from structure)',
-        'Testing only the happy path, ignoring error states',
-        'Not documenting why changes were made',
-        'Doing only 1 iteration (plan for 2-3)'
-      ],
-      es: [
-        'Agregar diseño visual demasiado pronto (distrae de la estructura)',
-        'Probar solo el camino feliz, ignorando estados de error',
-        'No documentar por qué se hicieron cambios',
-        'Hacer solo 1 iteración (planear 2-3)'
-      ]
-    },
-    aiPrompts: [
-      {
-        tool: 'ChatGPT',
-        context: { 
-          en: 'Heuristic evaluation',
-          es: 'Evaluación heurística'
-        },
-        prompt: { 
-          en: 'Act as a UX evaluator. Here\'s a screenshot of [screen name] [attach]. Evaluate it against Nielsen\'s 10 heuristics and assign a severity rating (0-4) for each issue found.',
-          es: 'Actúa como evaluador UX. Aquí hay una captura de pantalla de [nombre de pantalla] [adjuntar]. Evalúala contra las 10 heurísticas de Nielsen y asigna una calificación de severidad (0-4) para cada problema encontrado.'
-        }
-      },
-      {
-        tool: 'Claude',
-        context: { 
-          en: 'Iteration suggestions',
-          es: 'Sugerencias de iteración'
-        },
-        prompt: { 
-          en: 'Based on this usability test feedback [paste 5 user quotes], suggest 3 concrete design changes for the next wireframe iteration.',
-          es: 'Basado en esta retroalimentación de prueba de usabilidad [pegar 5 citas de usuarios], sugiere 3 cambios de diseño concretos para la próxima iteración de wireframe.'
-        }
-      }
-    ]
-  },
-  {
-    id: 'ui-design',
-    artifact: { en: 'UI Design (High-Fidelity)', es: 'Diseño UI (Alta Fidelidad)' },
-    stage: 'deliver',
-    hypothesis: { 
-      en: 'Visual design is accessible, on-brand, and production-ready',
-      es: 'El diseño visual es accesible, alineado con la marca y listo para producción'
-    },
-    validationMethod: { 
-      en: 'Functional prototype testing + Accessibility checks (WCAG) + Design QA',
-      es: 'Pruebas de prototipo funcional + Verificaciones de accesibilidad (WCAG) + QA de diseño'
-    },
-    evidenceType: 'mixed',
-    tools: { 
-      en: ['Figma prototype', 'Stark (accessibility)', 'Contrast checker', 'Dev handoff tools (Zeplin)'],
-      es: ['Prototipo Figma', 'Stark (accesibilidad)', 'Verificador de contraste', 'Herramientas de handoff dev (Zeplin)']
-    },
-    outputArtifact: { 
-      en: 'Annotated design files, accessibility report (WCAG AA compliance), component library',
-      es: 'Archivos de diseño anotados, informe de accesibilidad (cumplimiento WCAG AA), biblioteca de componentes'
-    },
-    successCriteria: { 
-      en: 'WCAG AA pass on color contrast, keyboard navigation, screen reader testing; 0 critical design bugs',
-      es: 'Aprobación WCAG AA en contraste de color, navegación por teclado, prueba de lector de pantalla; 0 bugs críticos de diseño'
-    },
-    decisionImpact: { 
-      en: 'Final GO for development handoff, legal compliance (accessibility laws)',
-      es: 'GO final para handoff de desarrollo, cumplimiento legal (leyes de accesibilidad)'
-    },
-    exampleScenario: { 
-      en: 'A SaaS dashboard is tested with keyboard-only navigation. Designers discover modal dialogs can\'t be closed with Escape key. Stark plugin flags 4 color contrast failures. Both are fixed before dev handoff.',
-      es: 'Un dashboard SaaS es probado con navegación solo por teclado. Los diseñadores descubren que los diálogos modales no se pueden cerrar con la tecla Escape. El plugin Stark señala 4 fallas de contraste de color. Ambos se corrigen antes del handoff de desarrollo.'
-    },
-    commonMistakes: { 
-      en: [
-        'Skipping accessibility testing until QA (too late)',
-        'Not testing with actual assistive technologies',
-        'Using auto-layout in Figma but not annotating responsive behavior',
-        'Not creating a component library for developers'
-      ],
-      es: [
-        'Saltarse pruebas de accesibilidad hasta QA (demasiado tarde)',
-        'No probar con tecnologías asistivas reales',
-        'Usar auto-layout en Figma pero no anotar comportamiento responsivo',
-        'No crear una biblioteca de componentes para desarrolladores'
-      ]
-    },
-    aiPrompts: [
-      {
-        tool: 'ChatGPT',
-        context: { 
-          en: 'Accessibility checklist',
-          es: 'Checklist de accesibilidad'
-        },
-        prompt: { 
-          en: 'Generate a QA checklist for [screen name] covering WCAG 2.1 AA criteria: color contrast, keyboard navigation, ARIA labels, and focus states.',
-          es: 'Genera un checklist de QA para [nombre de pantalla] cubriendo criterios WCAG 2.1 AA: contraste de color, navegación por teclado, etiquetas ARIA y estados de foco.'
-        }
-      },
-      {
-        tool: 'Claude',
-        context: { 
-          en: 'Design annotation',
-          es: 'Anotación de diseño'
-        },
-        prompt: { 
-          en: 'I\'m handing off this design to developers [describe component]. Write clear annotations for: responsive breakpoints, interaction states (hover/active/disabled), and edge cases.',
-          es: 'Estoy entregando este diseño a desarrolladores [describir componente]. Escribe anotaciones claras para: breakpoints responsivos, estados de interacción (hover/active/disabled) y casos extremos.'
-        }
-      },
-      {
-        tool: 'Perplexity',
-        context: { 
-          en: 'Accessibility standards research',
-          es: 'Investigación de estándares de accesibilidad'
-        },
-        prompt: { 
-          en: 'What are the WCAG 2.1 AA requirements for [specific component, e.g., "dropdown menus"]? Provide code examples if available.',
-          es: '¿Cuáles son los requisitos WCAG 2.1 AA para [componente específico, ej. "menús desplegables"]? Proporciona ejemplos de código si están disponibles.'
-        }
-      }
-    ]
-  }
-];

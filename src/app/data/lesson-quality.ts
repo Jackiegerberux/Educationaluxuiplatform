@@ -36,6 +36,11 @@ export function evaluateLessonQuality(topic: Topic): LessonQualityResult {
   const missingFields: string[] = [];
   let score = 0;
 
+  // Guard: if topic has no content at all, return Bronze immediately
+  if (!topic.content) {
+    return { badge: 'bronze', score: 0, missingFields: ['content (missing entirely)'] };
+  }
+
   // Bronze requirements (5 points each = 25 points)
   if (!topic.content.definition || topic.content.definition.en.length === 0) {
     missingFields.push('definition');
@@ -140,6 +145,14 @@ export function evaluateLessonQuality(topic: Topic): LessonQualityResult {
     'microinteractions',
     'figma-mastery',
     'design-ethics',
+    'laws-of-ux',
+    'frontend-foundations',
+    'html-fundamentals',
+    'css-fundamentals',
+    'intro-javascript',
+    'heuristic-analysis',
+    'business-goals-kpis',
+    'stakeholder-mapping',
   ].includes(topic.id);
 
   if (!hasInteractiveExample) {

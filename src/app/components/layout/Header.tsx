@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router';
 import { useLanguage } from './LanguageContext';
-import { Layers, BookOpen, Brain, Menu, X, Wrench, Map, CheckSquare, Code2, GraduationCap } from 'lucide-react';
+import { Layers, BookOpen, Brain, Menu, X, Wrench, Map, Code2, GraduationCap } from 'lucide-react';
 import { Button } from '../ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '../ui/sheet';
 import { motion } from 'motion/react';
@@ -25,7 +25,6 @@ export function Header() {
     { id: 'pedagogy', path: '/pedagogy', label: { en: 'Pedagogy', es: 'Pedagogía' }, icon: GraduationCap },
     { id: 'design-system', path: '/design-system', label: { en: 'Design System', es: 'Design System' }, icon: Code2 },
     { id: 'synthesis', path: '/synthesis', label: { en: 'Knowledge Map', es: 'Mapa de Conocimiento' }, icon: Map },
-    { id: 'validation', path: '/validation', label: { en: 'Validation', es: 'Validación' }, icon: CheckSquare },
     { id: 'tooling', path: '/tooling', label: { en: 'Tooling', es: 'Herramientas' }, icon: Wrench },
     { id: 'heuristics', path: '/heuristics', label: { en: 'Heuristics', es: 'Heurísticas' }, icon: Brain },
   ];

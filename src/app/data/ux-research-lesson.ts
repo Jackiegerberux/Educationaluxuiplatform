@@ -55,6 +55,36 @@ export const uxResearchLesson: Topic = {
         }
       ]
     },
+    howToValidate: {
+      what: {
+        en: 'Validate that your research findings are reliable, unbiased, and actionable — not just confirming what the team already believed.',
+        es: 'Valida que tus hallazgos de investigacion son confiables, imparciales y accionables — no solo confirmando lo que el equipo ya creia.'
+      },
+      methods: {
+        en: [
+          'Triangulation: confirm findings using 2+ methods (interviews + analytics + surveys).',
+          'Peer review: have another researcher audit your interview script for leading questions.',
+          'Participant diversity check: did you recruit representative users, not just power users or friends?',
+          'Actionability test: can each insight be directly tied to a design decision?',
+          'Stakeholder comprehension: present findings and test if non-researchers understand the "so what?"'
+        ],
+        es: [
+          'Triangulacion: confirma hallazgos usando 2+ metodos (entrevistas + analiticas + encuestas).',
+          'Revision por pares: pide a otro investigador que audite tu guion de entrevista buscando preguntas inductivas.',
+          'Verificacion de diversidad de participantes: ¿reclutaste usuarios representativos, no solo power users o amigos?',
+          'Test de accionabilidad: ¿cada insight puede vincularse directamente a una decision de diseno?',
+          'Comprension de stakeholders: presenta hallazgos y verifica si no-investigadores entienden el "¿y que?"'
+        ]
+      },
+      tools: {
+        en: ['Dovetail (tag & pattern analysis)', 'Notion (research repository)', 'Maze (quantitative validation)', 'Optimal Workshop (IA validation)'],
+        es: ['Dovetail (analisis de tags y patrones)', 'Notion (repositorio de investigacion)', 'Maze (validacion cuantitativa)', 'Optimal Workshop (validacion de AI)']
+      },
+      evidenceExample: {
+        en: '"We interviewed 8 users and found 75% struggled with checkout. We then ran a 342-person survey and analytics review that confirmed the same friction points — triangulated data gave us high confidence to redesign."',
+        es: '"Entrevistamos 8 usuarios y encontramos que el 75% tenia dificultades con el checkout. Luego ejecutamos una encuesta de 342 personas y revision de analiticas que confirmaron los mismos puntos de friccion — datos triangulados nos dieron alta confianza para redisenar."'
+      }
+    },
     realExample: {
       title: { 
         en: 'E-commerce Checkout Optimization Study', 

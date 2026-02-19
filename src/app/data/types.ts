@@ -1,11 +1,15 @@
 export type Language = 'en' | 'es';
 
+export type LessonTag = 'Core UX' | 'Product' | 'UI' | 'Tech' | 'Strategy' | 'Metrics';
+
 export interface Topic {
   id: string;
   title: { en: string; es: string };
   description: { en: string; es: string };
   status: 'beginner' | 'intermediate' | 'advanced';
   timeEstimate: string;
+  tag?: LessonTag;
+  isPlaceholder?: boolean;
   reference?: { en: string; es: string };
   referenceLink?: string;
   content?: {
@@ -25,8 +29,14 @@ export interface Topic {
     };
     practicalTools?: {
       design: { en: string[]; es: string[] };
-      research: { en: string[]; es: string[] };
-      handoff: { en: string[]; es: string[] };
+      research?: { en: string[]; es: string[] };
+      handoff?: { en: string[]; es: string[] };
+      coding?: { en: string[]; es: string[] };
+      ai?: { en: string[]; es: string[] };
+      management?: { en: string[]; es: string[] };
+      documentation?: { en: string[]; es: string[] };
+      testing?: { en: string[]; es: string[] };
+      analytics?: { en: string[]; es: string[] };
     };
     aiInPractice?: {
       description: { en: string; es: string };
