@@ -17,6 +17,12 @@ import { frontendFoundationsLesson, htmlFundamentalsLesson, cssFundamentalsLesso
 import { heuristicAnalysisLesson } from './heuristic-analysis-lesson';
 import { businessGoalsKpisLesson } from './business-goals-kpis-lesson';
 import { stakeholderMappingLesson } from './stakeholder-mapping-lesson';
+import { productRoadmappingLesson } from './product-roadmapping-lesson';
+import { uxMetricsAdvancedLesson } from './ux-metrics-advanced-lesson';
+import { edgeAndSystemStatesLesson } from './edge-and-system-states-lesson';
+import { uxDocumentationProLesson } from './ux-documentation-pro-lesson';
+import { releasePlanningLesson } from './release-planning-lesson';
+import { portfolioCaseStudyLesson } from './portfolio-case-study-lesson';
 import type { Topic, Track } from './types';
 
 export type { Language, Topic, Track, LessonTag } from './types';
@@ -1290,14 +1296,14 @@ const _topicSource: Track[] = [
           ],
           realExample: {
             title: {
-              en: 'Telecom Admin Platform: New Billing Dashboard',
-              es: 'Plataforma Admin de Telecomunicaciones: Nuevo Dashboard de Facturación'
+              en: 'Claro Admin Platform: New Billing Dashboard',
+              es: 'Plataforma Admin de Claro: Nuevo Dashboard de Facturación'
             },
             description: {
-              en: 'Scenario: A telecom company wants to add a billing dashboard for internal admins. Problem is clear (admins need better visibility), but the solution is uncertain (what metrics? what actions?). Timeline: 8 weeks. Team: 1 PM, 2 designers, 4 engineers. Recommended approach: Week 1-2: Design Sprint (prototype 3 dashboard concepts, test with 5 admins). Week 3-8: 3 x 2-week Scrum sprints (build validated design incrementally). Tools: Miro (sprint workshop), Figma (prototypes), Jira (sprint tracking). Outcome: shipped dashboard with 80% adoption in first month because solution was validated before building.',
-              es: 'Escenario: Una compañía de telecomunicaciones quiere agregar un dashboard de facturación para admins internos. El problema es claro (los admins necesitan mejor visibilidad), pero la solución es incierta (¿qué métricas? ¿qué acciones?). Cronograma: 8 semanas. Equipo: 1 PM, 2 diseñadores, 4 ingenieros. Enfoque recomendado: Semana 1-2: Design Sprint (prototipar 3 conceptos de dashboard, probar con 5 admins). Semana 3-8: 3 x sprints Scrum de 2 semanas (construir diseño validado incrementalmente). Herramientas: Miro (taller de sprint), Figma (prototipos), Jira (seguimiento de sprint). Resultado: dashboard lanzado con 80% de adopción en el primer mes porque la solución fue validada antes de construir.'
+              en: 'Scenario: Claro wants to add a billing dashboard for internal admins. Problem is clear (admins need better visibility), but the solution is uncertain (what metrics? what actions?). Timeline: 8 weeks. Team: 1 PM, 2 designers, 4 engineers. Recommended approach: Week 1-2: Design Sprint (prototype 3 dashboard concepts, test with 5 admins). Week 3-8: 3 x 2-week Scrum sprints (build validated design incrementally). Tools: Miro (sprint workshop), Figma (prototypes), Jira (sprint tracking). Outcome: shipped dashboard with 80% adoption in first month because solution was validated before building.',
+              es: 'Escenario: Claro quiere agregar un dashboard de facturación para admins internos. El problema es claro (los admins necesitan mejor visibilidad), pero la solución es incierta (¿qué métricas? ¿qué acciones?). Cronograma: 8 semanas. Equipo: 1 PM, 2 diseñadores, 4 ingenieros. Enfoque recomendado: Semana 1-2: Design Sprint (prototipar 3 conceptos de dashboard, probar con 5 admins). Semana 3-8: 3 x sprints Scrum de 2 semanas (construir diseño validado incrementalmente). Herramientas: Miro (taller de sprint), Figma (prototipos), Jira (seguimiento de sprint). Resultado: dashboard lanzado con 80% de adopción en el primer mes porque la solución fue validada antes de construir.'
             },
-            company: 'TelcoAdmin (Case Study)'
+            company: 'Claro (Case Study)'
           }
         }
       },
@@ -1307,6 +1313,8 @@ const _topicSource: Track[] = [
       designSprintLesson,
       scrumForDesignersLesson,
       userStoriesRequirementsLesson,
+      productRoadmappingLesson,
+      uxMetricsAdvancedLesson,
       // === PHASE 7: INTERMEDIATE - Testing & Validation ===
       ...uiLessons.filter(lesson => lesson.id === 'accessibility-wcag'),
       ...prototypingLessons.filter(lesson => lesson.id !== 'usability-testing'),
@@ -1859,6 +1867,8 @@ const _topicSource: Track[] = [
       },
       // Heuristic Analysis — professional methodology for evaluating interfaces
       heuristicAnalysisLesson,
+      // Edge & System States — designing beyond the happy path
+      edgeAndSystemStatesLesson,
       {
         id: 'ux-psychology',
         title: { en: 'UX Psychology', es: 'Psicología UX' },
@@ -2583,6 +2593,29 @@ const _topicSource: Track[] = [
     topics: [
       businessGoalsKpisLesson,
       stakeholderMappingLesson,
+      uxDocumentationProLesson,
+    ]
+  },
+  {
+    id: 'delivery-product-ops',
+    title: { en: 'Delivery & Product Ops', es: 'Entrega y Operaciones de Producto' },
+    description: {
+      en: 'Execution strategy — from roadmap to release, incremental delivery, and post-release monitoring.',
+      es: 'Estrategia de ejecución — del roadmap al release, entrega incremental y monitoreo post-release.'
+    },
+    topics: [
+      releasePlanningLesson,
+    ]
+  },
+  {
+    id: 'career-professional-growth',
+    title: { en: 'Career & Professional Growth', es: 'Carrera y Crecimiento Profesional' },
+    description: {
+      en: 'Build your professional brand — portfolio storytelling, case study writing, and interview preparation.',
+      es: 'Construye tu marca profesional — storytelling de portafolio, redacción de casos de estudio y preparación para entrevistas.'
+    },
+    topics: [
+      portfolioCaseStudyLesson,
     ]
   }
 ];
@@ -2595,24 +2628,6 @@ const _t = (id: string, tag: LessonTag = 'Core UX'): Topic => {
   return { ...topic, tag };
 };
 
-// Helper to create placeholder topics for upcoming lessons
-const _placeholder = (
-  id: string,
-  title: { en: string; es: string },
-  description: { en: string; es: string },
-  status: 'beginner' | 'intermediate' | 'advanced',
-  timeEstimate: string,
-  tag: LessonTag
-): Topic => ({
-  id,
-  title,
-  description,
-  status,
-  timeEstimate,
-  tag,
-  isPlaceholder: true,
-});
-
 // ============================================================
 // EXPORTED TRACKS — 8 Phases following real UX project workflow
 // Ordered: basic → intermediate → advanced within each phase
@@ -2621,7 +2636,6 @@ const _placeholder = (
 // Changes from previous structure:
 //   • "wireframes" merged into "wireframing-prototyping"
 //   • "usability-basics" moved from Phase 5 → Phase 1
-//   • 11 placeholder lessons added for curriculum completeness
 //   • All lessons tagged by discipline
 // ============================================================
 export const tracks: Track[] = [
@@ -2663,14 +2677,8 @@ export const tracks: Track[] = [
       _t('problem-statements', 'Core UX'),
       _t('competitive-analysis-basics', 'Product'),
       _t('competitive-analysis', 'Product'),
-      _placeholder('product-discovery',
-        { en: 'Product Discovery', es: 'Descubrimiento de Producto' },
-        { en: 'Frameworks for deciding what to build before committing resources.', es: 'Frameworks para decidir qué construir antes de comprometer recursos.' },
-        'intermediate', '1h 30m', 'Product'),
-      _placeholder('hypothesis-definition',
-        { en: 'Hypothesis Definition', es: 'Definición de Hipótesis' },
-        { en: 'Formulating testable assumptions to guide research and design.', es: 'Formulando suposiciones testeables para guiar investigación y diseño.' },
-        'intermediate', '1h', 'Strategy'),
+      _t('product-roadmapping', 'Strategy'),
+      _t('release-planning-and-increment-strategy', 'Product'),
     ]
   },
   // ── PHASE 3 ─────────────────────────────────────────────────
@@ -2688,10 +2696,6 @@ export const tracks: Track[] = [
       _t('ux-research', 'Core UX'),
       _t('user-personas', 'Core UX'),
       _t('customer-journey-map', 'Core UX'),
-      _placeholder('research-planning-synthesis',
-        { en: 'Research Planning & Synthesis', es: 'Planificación y Síntesis de Investigación' },
-        { en: 'End-to-end research planning, execution, and actionable synthesis.', es: 'Planificación de investigación de principio a fin, ejecución y síntesis accionable.' },
-        'intermediate', '1h 30m', 'Core UX'),
       // advanced
       _t('ux-psychology', 'Core UX'),
       _t('laws-of-ux', 'Core UX'),
@@ -2723,26 +2727,15 @@ export const tracks: Track[] = [
     topics: [
       // beginner (wireframes merged into wireframing-prototyping)
       _t('wireframing-prototyping', 'UI'),
-      _placeholder('interaction-design-principles',
-        { en: 'Interaction Design Principles', es: 'Principios de Diseño de Interacción' },
-        { en: 'Core principles of feedback, affordance, and mapping for digital interfaces.', es: 'Principios fundamentales de feedback, affordance y mapping para interfaces digitales.' },
-        'beginner', '1h', 'UI'),
       _t('visual-hierarchy', 'UI'),
       _t('typography-fundamentals', 'UI'),
       _t('color-theory', 'UI'),
       // intermediate
       _t('accessibility-wcag', 'UI'),
-      _placeholder('responsive-design-patterns',
-        { en: 'Responsive Design Patterns', es: 'Patrones de Diseño Responsivo' },
-        { en: 'Designing adaptive layouts that work across devices and screen sizes.', es: 'Diseñando layouts adaptativos que funcionan en distintos dispositivos y tamaños de pantalla.' },
-        'intermediate', '1h 15m', 'UI'),
-      _placeholder('ux-writing-basics',
-        { en: 'UX Writing Basics', es: 'Fundamentos de UX Writing' },
-        { en: 'Crafting clear, concise microcopy that guides users through interfaces.', es: 'Creando microcopy claro y conciso que guía a los usuarios a través de interfaces.' },
-        'intermediate', '1h', 'UI'),
       // advanced
       _t('microinteractions', 'UI'),
       _t('heuristic-analysis', 'Core UX'),
+      _t('edge-and-system-states', 'UI'),
     ]
   },
   // ── PHASE 6 ─────────────────────────────────────────────────
@@ -2757,20 +2750,9 @@ export const tracks: Track[] = [
       // intermediate
       _t('usability-testing', 'Core UX'),
       _t('prototyping-methods', 'Core UX'),
-      _placeholder('analytics-ux-metrics',
-        { en: 'Analytics & UX Metrics', es: 'Analítica y Métricas UX' },
-        { en: 'Using quantitative data to measure design impact and inform iterations.', es: 'Usando datos cuantitativos para medir el impacto del diseño e informar iteraciones.' },
-        'intermediate', '1h 30m', 'Metrics'),
-      _placeholder('ab-testing',
-        { en: 'A/B Testing', es: 'Pruebas A/B' },
-        { en: 'Running controlled experiments to validate design decisions with data.', es: 'Ejecutando experimentos controlados para validar decisiones de diseño con datos.' },
-        'intermediate', '1h', 'Metrics'),
-      _placeholder('accessibility-testing',
-        { en: 'Accessibility Testing', es: 'Pruebas de Accesibilidad' },
-        { en: 'Systematic methods for auditing and verifying WCAG compliance.', es: 'Métodos sistemáticos para auditar y verificar cumplimiento WCAG.' },
-        'intermediate', '1h 15m', 'UI'),
       // advanced
       _t('accessibility', 'Core UX'),
+      _t('ux-metrics-advanced', 'Metrics'),
     ]
   },
   // ── PHASE 7 ─────────────────────────────────────────────────
@@ -2787,6 +2769,7 @@ export const tracks: Track[] = [
       _t('design-systems-governance', 'Strategy'),
       _t('design-ethics', 'Strategy'),
       _t('service-blueprint', 'Strategy'),
+      _t('ux-documentation-pro', 'Strategy'),
     ]
   },
   // ── PHASE 8 ─────────────────────────────────────────────────
@@ -2804,6 +2787,19 @@ export const tracks: Track[] = [
       _t('intro-javascript', 'Tech'),
       // advanced (overview)
       _t('frontend-foundations', 'Tech'),
+    ]
+  },
+  // ── PHASE 9 ─────────────────────────────────────────────────
+  {
+    id: 'phase-9-career',
+    title: { en: 'Career & Professional Growth', es: 'Carrera y Crecimiento Profesional' },
+    description: {
+      en: 'Build your professional brand — portfolio storytelling, case study writing, and interview preparation.',
+      es: 'Construye tu marca profesional — storytelling de portafolio, redacción de casos de estudio y preparación para entrevistas.'
+    },
+    topics: [
+      // advanced
+      _t('portfolio-case-study-writing', 'Strategy'),
     ]
   },
 ];

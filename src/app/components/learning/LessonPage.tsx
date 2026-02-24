@@ -31,7 +31,13 @@ import {
   PenLine,
   Users,
   Scale,
-  MessageSquare
+  MessageSquare,
+  GitBranch,
+  Shield,
+  Map,
+  Filter,
+  FileText,
+  Rocket
 } from 'lucide-react';
 import { Button } from '../ui/button';
 import { UserPersonaCard } from './examples/UserPersonaCard';
@@ -61,6 +67,16 @@ import { HMWWorkshop } from '../lessons/HMWWorkshop';
 import { SprintPlanner } from '../lessons/SprintPlanner';
 import { TicketBuilder } from '../lessons/TicketBuilder';
 import { RequirementClassifier } from '../lessons/RequirementClassifier';
+import { RoadmapBuilder } from '../lessons/RoadmapBuilder';
+import { FunnelBuilder } from '../lessons/FunnelBuilder';
+import {
+  ProductLifecycleLoop,
+  NorthStarExamples,
+  LeadingVsLagging,
+  FeatureFactoryComparison,
+  MeasurementLoop,
+  ImpactFormulaCallout,
+} from '../lessons/MetricsVisuals';
 import { TypeScaleComparison } from '../lessons/TypeScaleComparison';
 import { ColorPaletteGenerator } from '../lessons/ColorPaletteGenerator';
 import { ProblemStatementWorkshop } from '../lessons/ProblemStatementWorkshop';
@@ -75,6 +91,24 @@ import { JavaScriptLab } from '../lessons/JavaScriptLab';
 import { HeuristicAnalysisLab } from '../lessons/HeuristicAnalysisLab';
 import { BusinessGoalsExtras } from './BusinessGoalsExtras';
 import { StakeholderMappingExtras } from './StakeholderMappingExtras';
+import { DualTrackVisualizer, DoRChecklist, SprintCeremonyPlaybook, UXDevNegotiation } from './ScrumExtras';
+import { DesignSprintExtras } from './DesignSprintExtras';
+import { StateMapper } from '../lessons/StateMapper';
+import { ClaroAdminCaseStudy } from '../lessons/ClaroAdminCaseStudy';
+import { DocumentationBuilder } from '../lessons/DocumentationBuilder';
+import { ReleasePlanner } from '../lessons/ReleasePlanner';
+import { CaseStudyBuilder } from '../lessons/CaseStudyBuilder';
+import {
+  CaseStudyHeroBanner,
+  NarrativeArcDiagram,
+  JuniorVsSeniorComparison,
+  RecruiterTimeVisual,
+  SevenSectionFramework,
+  WeakVsStrongImpact,
+  InterviewCallbackStats,
+  PortfolioMistakesVisual,
+  StorytellingBanner,
+} from '../lessons/CaseStudyVisuals';
 
 function QuizSection({ quiz, language }: { quiz: any[], language: any }) {
   const [selectedAnswers, setSelectedAnswers] = useState<{[key: number]: number}>({});
@@ -228,6 +262,37 @@ export function LessonPage() {
       { id: 'communication-strategy', label: t({ en: 'Communication', es: 'Comunicación' }), icon: MessageSquare },
       { id: 'political-risks', label: t({ en: 'Political Risks', es: 'Riesgos Políticos' }), icon: AlertTriangle },
     ] : []),
+    ...(topic.id === 'scrum-for-designers' ? [
+      { id: 'dual-track', label: t({ en: 'Dual Track Agile', es: 'Doble Vía Agile' }), icon: GitBranch },
+      { id: 'dor-checker', label: t({ en: 'DoR Checker', es: 'Verificador DoR' }), icon: Shield },
+      { id: 'ceremony-playbook', label: t({ en: 'Ceremony Playbook', es: 'Playbook Ceremonias' }), icon: Users },
+      { id: 'ux-dev-negotiation', label: t({ en: 'UX-Dev Trade-offs', es: 'Trade-offs UX-Dev' }), icon: Scale },
+    ] : []),
+    ...(topic.id === 'design-sprint' ? [
+      { id: 'sprint-variants', label: t({ en: 'Sprint Variants', es: 'Variantes de Sprint' }), icon: Compass },
+      { id: 'when-not-to-sprint', label: t({ en: 'When NOT to Sprint', es: 'Cuándo NO Sprint' }), icon: AlertTriangle },
+      { id: 'selling-sprint', label: t({ en: 'Selling a Sprint', es: 'Vender un Sprint' }), icon: TrendingUp },
+      { id: 'post-sprint', label: t({ en: 'Post-Sprint', es: 'Post-Sprint' }), icon: ArrowRight },
+      { id: 'sprint-risks', label: t({ en: 'Sprint Risks', es: 'Riesgos de Sprint' }), icon: AlertTriangle },
+    ] : []),
+    ...(topic.id === 'product-roadmapping' ? [
+      { id: 'roadmap-builder', label: t({ en: 'Roadmap Builder', es: 'Constructor de Roadmap' }), icon: Map },
+    ] : []),
+    ...(topic.id === 'ux-metrics-advanced' ? [
+      { id: 'funnel-builder', label: t({ en: 'Funnel Builder', es: 'Constructor de Funnel' }), icon: Filter },
+    ] : []),
+    ...(topic.id === 'edge-and-system-states' ? [
+      { id: 'state-mapper', label: t({ en: 'State Mapper', es: 'Mapeador de Estados' }), icon: Shield },
+    ] : []),
+    ...(topic.id === 'ux-documentation-pro' ? [
+      { id: 'documentation-builder', label: t({ en: 'Doc Builder', es: 'Constructor de Docs' }), icon: FileText },
+    ] : []),
+    ...(topic.id === 'release-planning-and-increment-strategy' ? [
+      { id: 'release-planner', label: t({ en: 'Release Planner', es: 'Planificador de Release' }), icon: Rocket },
+    ] : []),
+    ...(topic.id === 'portfolio-case-study-writing' ? [
+      { id: 'case-study-builder', label: t({ en: 'Case Study Builder', es: 'Constructor de Casos' }), icon: FileText },
+    ] : []),
     { id: 'how-to-apply', label: t({ en: 'How to Apply', es: 'Cómo Aplicar' }), icon: ArrowRight },
     ...(topic.content.visualExamples ? [{ id: 'visual-examples', label: t({ en: 'Visual Examples', es: 'Ejemplos Visuales' }), icon: Image }] : []),
     ...(topic.content.codeExamples ? [{ id: 'code-examples', label: t({ en: 'Code Examples', es: 'Ejemplos de Código' }), icon: Code }] : []),
@@ -291,6 +356,8 @@ export function LessonPage() {
           <p className="text-xl text-zinc-400 mb-6">
             {t(topic.description)}
           </p>
+          {/* Portfolio Case Study Writing - Hero Banner */}
+          {topic.id === 'portfolio-case-study-writing' && <CaseStudyHeroBanner />}
         </motion.div>
 
         {/* Overview/Definition */}
@@ -300,9 +367,28 @@ export function LessonPage() {
             {t({ en: 'What is this?', es: '¿Qué es esto?' })}
           </h2>
           <div className="bg-zinc-900/50 border border-zinc-800 rounded-2xl p-6">
-            <p className="text-zinc-300 leading-relaxed">
-              {t(topic.content.definition)}
-            </p>
+            {(() => {
+              const text = t(topic.content.definition);
+              const paragraphs = text.split('\n\n').filter((p: string) => p.trim());
+              const isMetrics = topic.id === 'ux-metrics-advanced';
+              const isCaseStudy = topic.id === 'portfolio-case-study-writing';
+
+              return (
+                <div className="space-y-4">
+                  {paragraphs.map((para: string, idx: number) => (
+                    <React.Fragment key={idx}>
+                      <p className="text-zinc-300 leading-relaxed">{para}</p>
+                      {/* Insert visuals after specific paragraphs for ux-metrics-advanced */}
+                      {isMetrics && idx === 0 && <ProductLifecycleLoop />}
+                      {isMetrics && idx === 1 && <NorthStarExamples />}
+                      {isMetrics && idx === 2 && <LeadingVsLagging />}
+                      {/* Insert visuals for portfolio-case-study-writing */}
+                      {isCaseStudy && idx === 0 && <NarrativeArcDiagram />}
+                    </React.Fragment>
+                  ))}
+                </div>
+              );
+            })()}
           </div>
         </section>
 
@@ -313,9 +399,29 @@ export function LessonPage() {
             {t({ en: 'Why it matters', es: 'Por qué importa' })}
           </h2>
           <div className="bg-gradient-to-br from-yellow-950/20 to-orange-950/20 border border-yellow-500/20 rounded-2xl p-6">
-            <p className="text-zinc-300 leading-relaxed">
-              {t(topic.content.why)}
-            </p>
+            {(() => {
+              const text = t(topic.content.why);
+              const paragraphs = text.split('\n\n').filter((p: string) => p.trim());
+              const isMetrics = topic.id === 'ux-metrics-advanced';
+              const isCaseStudy = topic.id === 'portfolio-case-study-writing';
+
+              return (
+                <div className="space-y-4">
+                  {paragraphs.map((para: string, idx: number) => (
+                    <React.Fragment key={idx}>
+                      <p className="text-zinc-300 leading-relaxed">{para}</p>
+                      {/* Insert visuals after specific paragraphs for ux-metrics-advanced */}
+                      {isMetrics && idx === 0 && <FeatureFactoryComparison />}
+                      {isMetrics && idx === 1 && <ImpactFormulaCallout />}
+                      {isMetrics && idx === 2 && <MeasurementLoop />}
+                      {/* Insert visuals for portfolio-case-study-writing */}
+                      {isCaseStudy && idx === 0 && <InterviewCallbackStats />}
+                      {isCaseStudy && idx === 1 && <JuniorVsSeniorComparison />}
+                    </React.Fragment>
+                  ))}
+                </div>
+              );
+            })()}
           </div>
         </section>
 
@@ -334,6 +440,8 @@ export function LessonPage() {
                 </li>
               ))}
             </ul>
+            {/* Portfolio Case Study Writing - Recruiter Time Visual after principles */}
+            {topic.id === 'portfolio-case-study-writing' && <RecruiterTimeVisual />}
           </div>
         </section>
 
@@ -353,6 +461,43 @@ export function LessonPage() {
         {topic.id === 'stakeholder-mapping' && (
           <StakeholderMappingExtras />
         )}
+
+        {/* Scrum for Designers 2.0 - Dual Track, DoR Checker, Ceremony Playbook, UX-Dev Negotiation */}
+        {topic.id === 'scrum-for-designers' && (
+          <div className="mb-12">
+            <DualTrackVisualizer />
+            <DoRChecklist />
+            <SprintCeremonyPlaybook />
+            <UXDevNegotiation />
+          </div>
+        )}
+
+        {/* Design Sprint 2.0 - Variants, When NOT to Sprint, Selling a Sprint, Post-Sprint, Risks */}
+        {topic.id === 'design-sprint' && (
+          <DesignSprintExtras />
+        )}
+
+        {/* Product Roadmapping - Interactive RICE-based Roadmap Builder */}
+        {topic.id === 'product-roadmapping' && <RoadmapBuilder />}
+        {/* UX Metrics Advanced - Funnel Builder */}
+        {topic.id === 'ux-metrics-advanced' && <FunnelBuilder />}
+        {/* Edge & System States - State Mapper */}
+        {topic.id === 'edge-and-system-states' && <StateMapper />}
+        {/* UX Documentation Pro - Documentation Builder */}
+        {topic.id === 'ux-documentation-pro' && <DocumentationBuilder />}
+        {/* Release Planning - Release Planner */}
+        {topic.id === 'release-planning-and-increment-strategy' && <ReleasePlanner />}
+        {/* Portfolio Case Study Writing - Case Study Builder */}
+        {topic.id === 'portfolio-case-study-writing' && (
+          <>
+            <StorytellingBanner />
+            <CaseStudyBuilder />
+          </>
+        )}
+        {/* Lean UX - Hypothesis Builder */}
+        {topic.id === 'lean-ux' && <LeanUXHypothesisBuilder />}
+        {/* MVP Scope - Slider */}
+        {topic.id === 'mvp-scope' && <MVPScopeSlider />}
 
         {/* How to Apply */}
         {topic.content.howToApply && (
@@ -376,6 +521,8 @@ export function LessonPage() {
                 </div>
               ))}
             </div>
+            {/* Portfolio Case Study Writing - 7-Section Framework after How to Apply */}
+            {topic.id === 'portfolio-case-study-writing' && <SevenSectionFramework />}
           </section>
         )}
 
@@ -413,6 +560,8 @@ export function LessonPage() {
                   </li>
                 ))}
               </ul>
+              {/* Portfolio Case Study Writing - Portfolio Mistakes Visual after Common Mistakes */}
+              {topic.id === 'portfolio-case-study-writing' && <PortfolioMistakesVisual />}
             </div>
           </section>
         )}
@@ -575,6 +724,8 @@ export function LessonPage() {
         {/* Real Example */}
         {topic.content.realExample && (
           <section id="real-example" className="mb-12 mt-16 scroll-mt-24">
+            {/* Portfolio Case Study Writing - Weak vs Strong Impact before Real Example */}
+            {topic.id === 'portfolio-case-study-writing' && <WeakVsStrongImpact />}
             <h2 className="text-2xl font-semibold text-white mb-6 flex items-center gap-2">
               <Lightbulb className="size-6 text-amber-400" />
               {t({ en: 'Real World Example', es: 'Ejemplo del Mundo Real' })}
@@ -614,6 +765,14 @@ export function LessonPage() {
             {topic.id === 'design-sprint' && <SprintPlanner />}
             {topic.id === 'scrum-for-designers' && <TicketBuilder />}
             {topic.id === 'user-stories-and-requirements' && <RequirementClassifier />}
+            {topic.id === 'product-roadmapping' && <RoadmapBuilder />}
+            {topic.id === 'release-planning-and-increment-strategy' && <ReleasePlanner />}
+            {topic.id === 'portfolio-case-study-writing' && (
+              <>
+                <StorytellingBanner />
+                <CaseStudyBuilder />
+              </>
+            )}
             {topic.id === 'lean-ux' && <LeanUXHypothesisBuilder />}
             {topic.id === 'mvp-scope' && <MVPScopeSlider />}
             {topic.id === 'lean-ux' && (
@@ -689,6 +848,11 @@ export function LessonPage() {
             {topic.id === 'heuristic-analysis' && (
               <div className="mt-12">
                 <HeuristicAnalysisLab />
+              </div>
+            )}
+            {topic.id === 'edge-and-system-states' && (
+              <div className="mt-12">
+                <ClaroAdminCaseStudy />
               </div>
             )}
           </section>

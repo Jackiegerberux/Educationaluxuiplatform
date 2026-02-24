@@ -9,7 +9,6 @@ export interface Topic {
   status: 'beginner' | 'intermediate' | 'advanced';
   timeEstimate: string;
   tag?: LessonTag;
-  isPlaceholder?: boolean;
   reference?: { en: string; es: string };
   referenceLink?: string;
   content?: {

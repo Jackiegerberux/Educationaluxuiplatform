@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useLanguage } from '../layout/LanguageContext';
-import { Ticket, User, Target, Copy, Check, ExternalLink, CheckSquare } from 'lucide-react';
+import { Ticket, User, Target, Copy, Check, ExternalLink, CheckSquare, Shield, AlertTriangle, FileWarning } from 'lucide-react';
 import { copyToClipboard } from '../../utils/clipboard';
 
 interface TicketOutput {
@@ -8,6 +8,9 @@ interface TicketOutput {
   acceptanceCriteria: string[];
   uxChecklist: string[];
   analyticsNotes: string[];
+  definitionOfDone: string[];
+  sprintRisk: 'low' | 'medium' | 'high';
+  hasDesignDebt: boolean;
 }
 
 export function TicketBuilder() {
@@ -71,11 +74,36 @@ export function TicketBuilder() {
       t({ en: `Track: Time to complete task (metric: task_duration_ms)`, es: `Trackear: Tiempo para completar tarea (métrica: task_duration_ms)` })
     ];
 
+    // Generate Definition of Done
+    const definitionOfDone = [
+      t({ en: 'Code matches Figma mockup pixel-for-pixel at all breakpoints', es: 'Código coincide con mockup de Figma pixel-por-pixel en todos los breakpoints' }),
+      t({ en: 'All acceptance criteria pass (Given/When/Then verified)', es: 'Todos los criterios de aceptación pasan (Given/When/Then verificado)' }),
+      t({ en: 'Accessibility audit passed (keyboard nav, screen reader, contrast)', es: 'Auditoría de accesibilidad pasada (nav por teclado, lector de pantalla, contraste)' }),
+      t({ en: 'Mobile responsive tested on iOS Safari + Android Chrome', es: 'Responsive móvil testeado en iOS Safari + Android Chrome' }),
+      t({ en: 'Analytics events verified in staging environment', es: 'Eventos de analytics verificados en ambiente de staging' }),
+      t({ en: 'Edge cases handled: empty, loading, error, overflow states', es: 'Edge cases manejados: estados vacío, carga, error, overflow' }),
+      t({ en: 'Code reviewed by at least one peer engineer', es: 'Código revisado por al menos un ingeniero par' }),
+    ];
+
+    // Determine Sprint Risk based on inputs
+    const wordCount = (featureName + ' ' + goal + ' ' + constraints).split(/\s+/).length;
+    const hasConstraints = constraints.trim().length > 0;
+    const sprintRisk: 'low' | 'medium' | 'high' =
+      wordCount > 30 || (hasConstraints && constraints.length > 80) ? 'high' :
+      wordCount > 15 || hasConstraints ? 'medium' : 'low';
+
+    // Design Debt flag: triggered when constraints suggest compromises
+    const debtKeywords = ['existing', 'legacy', 'workaround', 'temporary', 'limit', 'max', 'only', 'solo', 'sin', 'without', 'no time', 'skip'];
+    const hasDesignDebt = hasConstraints && debtKeywords.some(kw => constraints.toLowerCase().includes(kw));
+
     setOutput({
       userStory,
       acceptanceCriteria,
       uxChecklist,
-      analyticsNotes
+      analyticsNotes,
+      definitionOfDone,
+      sprintRisk,
+      hasDesignDebt
     });
   };
 
@@ -94,6 +122,12 @@ ${output.uxChecklist.map(item => `- [ ] ${item}`).join('\n')}
 
 ${t({ en: '## Analytics & Tracking', es: '## Analytics y Tracking' })}
 ${output.analyticsNotes.map(note => `- ${note}`).join('\n')}
+
+${t({ en: '## Definition of Done', es: '## Definición de Terminado' })}
+${output.definitionOfDone.map(item => `- [ ] ${item}`).join('\n')}
+
+${t({ en: '## Sprint Risk Level', es: '## Nivel de Riesgo del Sprint' })}: ${output.sprintRisk.toUpperCase()}
+${output.hasDesignDebt ? `\n${t({ en: '## Design Debt Risk: DETECTED', es: '## Riesgo de Deuda de Diseño: DETECTADO' })}\n${t({ en: 'Constraints suggest compromises. Log design debt ticket for future sprint.', es: 'Las restricciones sugieren compromisos. Registra ticket de deuda de diseño para sprint futuro.' })}` : ''}
 
 ${t({ en: '## Figma Link', es: '## Link de Figma' })}
 [Add Figma link here]
@@ -331,6 +365,71 @@ ${constraints ? `${t({ en: '## Constraints & Notes', es: '## Restricciones y Not
                 </p>
               </div>
             )}
+
+            {/* Definition of Done */}
+            <div>
+              <h5 className="text-sm font-semibold text-emerald-400 uppercase tracking-wide mb-2 flex items-center gap-2">
+                <Shield className="size-4" />
+                {t({ en: 'Definition of Done', es: 'Definición de Terminado' })}
+              </h5>
+              <ul className="space-y-2">
+                {output.definitionOfDone.map((item, idx) => (
+                  <li key={idx} className="flex items-center gap-3 text-zinc-300 text-sm bg-emerald-500/5 p-3 rounded-lg border border-emerald-500/20">
+                    <CheckSquare className="size-4 text-emerald-400 flex-shrink-0" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Sprint Risk + Design Debt */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div className={`rounded-xl border p-4 ${
+                output.sprintRisk === 'low' ? 'bg-green-500/10 border-green-500/30' :
+                output.sprintRisk === 'medium' ? 'bg-amber-500/10 border-amber-500/30' :
+                'bg-red-500/10 border-red-500/30'
+              }`}>
+                <div className="flex items-center gap-2 mb-1">
+                  <AlertTriangle className={`size-4 ${
+                    output.sprintRisk === 'low' ? 'text-green-400' :
+                    output.sprintRisk === 'medium' ? 'text-amber-400' : 'text-red-400'
+                  }`} />
+                  <h5 className="text-xs font-bold uppercase tracking-wider text-zinc-400">
+                    {t({ en: 'Sprint Risk Level', es: 'Nivel de Riesgo del Sprint' })}
+                  </h5>
+                </div>
+                <p className={`text-lg font-bold ${
+                  output.sprintRisk === 'low' ? 'text-green-400' :
+                  output.sprintRisk === 'medium' ? 'text-amber-400' : 'text-red-400'
+                }`}>
+                  {output.sprintRisk === 'low' ? t({ en: 'Low', es: 'Bajo' }) :
+                   output.sprintRisk === 'medium' ? t({ en: 'Medium', es: 'Medio' }) :
+                   t({ en: 'High', es: 'Alto' })}
+                </p>
+                <p className="text-[11px] text-zinc-500 mt-1">
+                  {output.sprintRisk === 'low' ? t({ en: 'Simple scope — low rework probability', es: 'Alcance simple — baja probabilidad de retrabajo' }) :
+                   output.sprintRisk === 'medium' ? t({ en: 'Moderate complexity — monitor constraints', es: 'Complejidad moderada — monitorear restricciones' }) :
+                   t({ en: 'Complex scope + constraints — split into increments', es: 'Alcance complejo + restricciones — dividir en incrementos' })}
+                </p>
+              </div>
+
+              {output.hasDesignDebt && (
+                <div className="rounded-xl border border-orange-500/30 bg-orange-500/10 p-4">
+                  <div className="flex items-center gap-2 mb-1">
+                    <FileWarning className="size-4 text-orange-400" />
+                    <h5 className="text-xs font-bold uppercase tracking-wider text-zinc-400">
+                      {t({ en: 'Design Debt Risk', es: 'Riesgo de Deuda de Diseño' })}
+                    </h5>
+                  </div>
+                  <p className="text-sm font-bold text-orange-400">
+                    {t({ en: 'Detected', es: 'Detectado' })}
+                  </p>
+                  <p className="text-[11px] text-zinc-500 mt-1">
+                    {t({ en: 'Constraints suggest compromises. Log design debt ticket for future sprint.', es: 'Las restricciones sugieren compromisos. Registra ticket de deuda de diseño para sprint futuro.' })}
+                  </p>
+                </div>
+              )}
+            </div>
           </div>
 
           <div className="bg-violet-950/20 border border-violet-500/30 rounded-xl p-4">

@@ -505,8 +505,8 @@ function PracticalExercise() {
         <div className="bg-zinc-900/60 border border-zinc-700/50 rounded-xl p-5 mb-6">
           <p className="text-sm text-zinc-200 leading-relaxed">
             {t({
-              en: 'You are the UX Designer on a telecom company\'s mobile app team. The project: redesigning the mobile data purchase flow to reduce drop-off from 45% to under 20%. The flow involves browsing plans, selecting a package, confirming payment, and receiving a confirmation. Multiple departments are involved. Classify each stakeholder into the correct quadrant and think about your engagement strategy.',
-              es: 'Eres el Diseñador UX en el equipo de la app móvil de una empresa de telecomunicaciones. El proyecto: rediseñar el flujo de compra de datos móviles para reducir el abandono de 45% a menos de 20%. El flujo incluye explorar planes, seleccionar un paquete, confirmar pago y recibir confirmación. Múltiples departamentos están involucrados. Clasifica cada stakeholder en el cuadrante correcto y piensa en tu estrategia de engagement.'
+              en: 'You are the UX Designer on Claro\'s mobile app team. The project: redesigning the mobile data purchase flow to reduce drop-off from 45% to under 20%. The flow involves browsing plans, selecting a package, confirming payment, and receiving a confirmation. Multiple departments are involved. Classify each stakeholder into the correct quadrant and think about your engagement strategy.',
+              es: 'Eres el Diseñador UX en el equipo de la app móvil de Claro. El proyecto: rediseñar el flujo de compra de datos móviles para reducir el abandono de 45% a menos de 20%. El flujo incluye explorar planes, seleccionar un paquete, confirmar pago y recibir confirmación. Múltiples departamentos están involucrados. Clasifica cada stakeholder en el cuadrante correcto y piensa en tu estrategia de engagement.'
             })}
           </p>
         </div>

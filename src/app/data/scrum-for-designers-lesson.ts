@@ -155,23 +155,31 @@ export const scrumForDesignersLesson: Topic = {
     },
     howToValidate: {
       what: {
-        en: 'Validate whether your Scrum process is working: Are designs shipping on time? Is the team aligned? Are you reducing rework?',
-        es: 'Valida si tu proceso Scrum está funcionando: ¿Los diseños se lanzan a tiempo? ¿El equipo está alineado? ¿Estás reduciendo rehacer trabajo?'
+        en: 'Validate whether your Scrum process is working: Are designs shipping on time? Is the team aligned? Are you reducing rework? Track these measurable indicators sprint over sprint to prove your process is improving.',
+        es: 'Valida si tu proceso Scrum está funcionando: ¿Los diseños se lanzan a tiempo? ¿El equipo está alineado? ¿Estás reduciendo retrabajo? Trackea estos indicadores medibles sprint tras sprint para probar que tu proceso está mejorando.'
       },
       methods: {
         en: [
           'Sprint velocity: Track story points completed per sprint. If design tickets consistently slip, you are over-committing or missing DoR.',
-          'Rework rate: Count how many tickets come back with "does not match design" feedback. High rework = poor handoff or unclear specs.',
+          'Rework rate: Count how many tickets come back with "does not match design" feedback. High rework = poor handoff or unclear specs. Target: <5% of tickets.',
           'Cycle time: Measure time from "ticket created" to "shipped to users." Long cycle time = bottlenecks in design or dev.',
           'Designer availability: Are engineers blocked waiting for design answers? Track "blocked by design" tags in Jira. Aim for <5% of sprint time.',
-          'Stakeholder satisfaction: After Sprint Review, ask: "Did you see what you expected?" If stakeholders are surprised, your communication is failing.'
+          'Stakeholder satisfaction: After Sprint Review, ask: "Did you see what you expected?" If stakeholders are surprised, your communication is failing.',
+          'Dev clarification questions: Count mid-sprint "how should this look?" questions. Decreasing trend = better specs. Target: <3 per sprint.',
+          'Sprint spillover rate: % of design tickets that don\'t complete in the sprint they were committed to. Target: <10%.',
+          'UX delivery within sprint: % of UX work that ships inside the same sprint cycle (not carried over). Target: >85%.',
+          'Design rework %: Track tickets returned with "doesn\'t match design" divided by total tickets. Trend should decrease sprint over sprint.'
         ],
         es: [
           'Velocidad de sprint: Trackea puntos de historia completados por sprint. Si tickets de diseño consistentemente se retrasan, estás sobre-comprometiéndote o falta DoR.',
-          'Tasa de rehacer: Cuenta cuántos tickets regresan con feedback de "no coincide con diseño". Alto rehacer = mal handoff o specs poco claras.',
+          'Tasa de retrabajo: Cuenta cuántos tickets regresan con feedback de "no coincide con diseño". Alto retrabajo = mal handoff o specs poco claras. Objetivo: <5% de tickets.',
           'Tiempo de ciclo: Mide tiempo desde "ticket creado" hasta "lanzado a usuarios." Tiempo de ciclo largo = cuellos de botella en diseño o dev.',
           'Disponibilidad del diseñador: ¿Ingenieros están bloqueados esperando respuestas de diseño? Trackea tags "bloqueado por diseño" en Jira. Apunta a <5% de tiempo de sprint.',
-          'Satisfacción de stakeholders: Después de Sprint Review, pregunta: "¿Viste lo que esperabas?" Si stakeholders se sorprenden, tu comunicación está fallando.'
+          'Satisfacción de stakeholders: Después de Sprint Review, pregunta: "¿Viste lo que esperabas?" Si stakeholders se sorprenden, tu comunicación está fallando.',
+          'Preguntas de aclaración de dev: Cuenta preguntas "¿cómo debería verse esto?" a mitad de sprint. Tendencia decreciente = mejores specs. Objetivo: <3 por sprint.',
+          'Tasa de spillover de sprint: % de tickets de diseño que no se completan en el sprint al que se comprometieron. Objetivo: <10%.',
+          'Entrega UX dentro del sprint: % de trabajo UX que se lanza dentro del mismo ciclo de sprint (no se arrastra). Objetivo: >85%.',
+          'Retrabajo de diseño %: Trackea tickets devueltos con "no coincide con diseño" dividido por total de tickets. La tendencia debería decrecer sprint tras sprint.'
         ]
       },
       tools: {

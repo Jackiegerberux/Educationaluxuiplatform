@@ -117,7 +117,7 @@ const _roadmapSource: RoadmapCluster[] = [
 
   // ═══════════════════════════════════════════════════════════
   // CLUSTER 2: RESEARCH & USERS
-  // ═══════════════════════════════════════════════════════════
+  // ════════════════════════════════════════════════��══════════
   {
     id: 'research',
     title: { en: 'Research & Users', es: 'Investigación y Usuarios' },
@@ -642,6 +642,31 @@ const _roadmapSource: RoadmapCluster[] = [
         ]
       },
       {
+        id: 'release-planning-and-increment-strategy',
+        title: { en: 'Release Planning & Increment Strategy', es: 'Planificación de Releases y Estrategia de Incrementos' },
+        description: {
+          en: 'Plan execution and delivery: incremental releases, rollout strategies, and post-release monitoring',
+          es: 'Planifica ejecución y entrega: releases incrementales, estrategias de rollout y monitoreo post-release'
+        },
+        lessonSlug: 'release-planning-and-increment-strategy',
+        status: 'not-started',
+        level: 'advanced',
+        tags: ['product', 'strategy'],
+        skills: {
+          en: ['Increment decomposition', 'Release scoping', 'Rollout strategy', 'Post-release monitoring', 'Risk matrices'],
+          es: ['Descomposición de incrementos', 'Alcance de releases', 'Estrategia de rollout', 'Monitoreo post-release', 'Matrices de riesgo']
+        },
+        prerequisites: { en: ['Product Roadmapping', 'Scrum for Designers'], es: ['Roadmapping de Producto', 'Scrum para Diseñadores'] },
+        nextSteps: { en: ['Advanced UX Metrics', 'UX Documentation Pro'], es: ['Métricas UX Avanzadas', 'Documentación UX Pro'] },
+        hasLesson: true,
+        order: 7,
+        relatedLessons: [
+          { title: { en: 'Product Roadmapping', es: 'Roadmapping de Producto' }, slug: 'product-roadmapping' },
+          { title: { en: 'Scrum for Designers', es: 'Scrum para Diseñadores' }, slug: 'scrum-for-designers' },
+          { title: { en: 'Advanced UX Metrics', es: 'Métricas UX Avanzadas' }, slug: 'ux-metrics-advanced' }
+        ]
+      },
+      {
         id: 'user-stories-requirements',
         title: { en: 'User Stories & Requirements', es: 'User Stories y Requisitos' },
         description: {
@@ -772,6 +797,31 @@ const _roadmapSource: RoadmapCluster[] = [
           { title: { en: 'Usability Testing', es: 'Pruebas de Usabilidad' }, slug: 'usability-testing' },
           { title: { en: 'Dark Patterns', es: 'Dark Patterns' }, slug: 'dark-patterns' }
         ]
+      },
+      {
+        id: 'ux-metrics-advanced',
+        title: { en: 'Advanced UX Metrics', es: 'Métricas UX Avanzadas' },
+        description: {
+          en: 'Strategic product-level metrics: North Star, activation funnels, retention cohorts, and experiment-driven iteration',
+          es: 'Métricas estratégicas a nivel de producto: North Star, funnels de activación, cohortes de retención e iteración guiada por experimentos'
+        },
+        lessonSlug: 'ux-metrics-advanced',
+        status: 'not-started',
+        level: 'advanced',
+        tags: ['product', 'strategy'],
+        skills: {
+          en: ['North Star Metric', 'Funnel modeling', 'Retention cohorts', 'A/B experimentation', 'RICE-to-metrics alignment'],
+          es: ['Métrica North Star', 'Modelado de funnel', 'Cohortes de retención', 'Experimentación A/B', 'Alineación RICE-a-métricas']
+        },
+        prerequisites: { en: ['Business Goals & KPIs', 'Product Roadmapping'], es: ['Objetivos de Negocio y KPIs', 'Roadmapping de Producto'] },
+        nextSteps: { en: ['A/B Testing', 'Analytics & UX Metrics'], es: ['Pruebas A/B', 'Analítica y Métricas UX'] },
+        hasLesson: true,
+        order: 5,
+        relatedLessons: [
+          { title: { en: 'Business Goals & KPIs', es: 'Objetivos de Negocio y KPIs' }, slug: 'business-goals-kpis' },
+          { title: { en: 'Product Roadmapping', es: 'Roadmapping de Producto' }, slug: 'product-roadmapping' },
+          { title: { en: 'Design Sprint', es: 'Design Sprint' }, slug: 'design-sprint' }
+        ]
       }
     ]
   },
@@ -831,6 +881,31 @@ const _roadmapSource: RoadmapCluster[] = [
         relatedLessons: [
           { title: { en: 'Customer Journey Map', es: 'Mapa de Viaje del Cliente' }, slug: 'customer-journey-map' },
           { title: { en: 'Problem Statements', es: 'Declaraciones de Problema' }, slug: 'problem-statements' }
+        ]
+      },
+      {
+        id: 'product-roadmapping',
+        title: { en: 'Product Roadmapping', es: 'Roadmapping de Producto' },
+        description: {
+          en: 'Strategic alignment and communication of product direction through outcome-based roadmaps',
+          es: 'Alineación estratégica y comunicación de dirección de producto a través de roadmaps basados en resultados'
+        },
+        lessonSlug: 'product-roadmapping',
+        status: 'not-started',
+        level: 'intermediate',
+        tags: ['product', 'strategy'],
+        skills: {
+          en: ['Outcome-based roadmapping', 'RICE prioritization', 'Now/Next/Later planning', 'KPI alignment', 'Stakeholder communication'],
+          es: ['Roadmapping basado en resultados', 'Priorización RICE', 'Planificación Ahora/Siguiente/Después', 'Alineación de KPIs', 'Comunicación con stakeholders']
+        },
+        prerequisites: { en: ['Business Goals & KPIs', 'Stakeholder Mapping'], es: ['Objetivos de Negocio y KPIs', 'Mapeo de Stakeholders'] },
+        nextSteps: { en: ['Design Sprint', 'Scrum for Designers', 'User Stories & Requirements'], es: ['Design Sprint', 'Scrum para Diseñadores', 'User Stories y Requerimientos'] },
+        hasLesson: true,
+        order: 3,
+        relatedLessons: [
+          { title: { en: 'Business Goals & KPIs', es: 'Objetivos de Negocio y KPIs' }, slug: 'business-goals-kpis' },
+          { title: { en: 'Design Sprint', es: 'Design Sprint' }, slug: 'design-sprint' },
+          { title: { en: 'Scrum for Designers', es: 'Scrum para Diseñadores' }, slug: 'scrum-for-designers' }
         ]
       },
       {
@@ -930,6 +1005,31 @@ const _roadmapSource: RoadmapCluster[] = [
         ]
       },
       {
+        id: 'edge-and-system-states',
+        title: { en: 'Edge & System States', es: 'Estados Edge y de Sistema' },
+        description: {
+          en: 'Design beyond the happy path: empty, loading, error, success, and edge states',
+          es: 'Diseña más allá del camino feliz: estados vacíos, de carga, error, éxito y edge'
+        },
+        lessonSlug: 'edge-and-system-states',
+        status: 'not-started',
+        level: 'advanced',
+        tags: ['ui', 'ux'],
+        skills: {
+          en: ['State matrix design', 'Error messaging', 'Loading patterns', 'Edge case mapping', 'Dev handoff alignment'],
+          es: ['Diseño de matriz de estados', 'Mensajería de error', 'Patrones de carga', 'Mapeo de edge cases', 'Alineación de handoff con dev']
+        },
+        prerequisites: { en: ['Microinteractions', 'Heuristic Analysis'], es: ['Microinteracciones', 'Análisis Heurístico'] },
+        nextSteps: { en: ['UX Writing Basics', 'Accessibility Testing'], es: ['Fundamentos de UX Writing', 'Pruebas de Accesibilidad'] },
+        hasLesson: true,
+        order: 7,
+        relatedLessons: [
+          { title: { en: 'Microinteractions', es: 'Microinteracciones' }, slug: 'microinteractions' },
+          { title: { en: 'Heuristic Analysis', es: 'Análisis Heurístico' }, slug: 'heuristic-analysis' },
+          { title: { en: 'Accessibility WCAG', es: 'Accesibilidad WCAG' }, slug: 'accessibility-wcag' }
+        ]
+      },
+      {
         id: 'ux-psychology',
         title: { en: 'UX Psychology', es: 'Psicología UX' },
         description: {
@@ -999,6 +1099,31 @@ const _roadmapSource: RoadmapCluster[] = [
         relatedLessons: [
           { title: { en: 'Atomic Design', es: 'Diseño Atómico' }, slug: 'atomic-design' },
           { title: { en: 'Figma Mastery', es: 'Dominio de Figma' }, slug: 'figma-mastery' }
+        ]
+      },
+      {
+        id: 'ux-documentation-pro',
+        title: { en: 'UX Documentation Pro', es: 'Documentación UX Pro' },
+        description: {
+          en: 'Enterprise-grade UX documentation that eliminates ambiguity and scales across teams',
+          es: 'Documentación UX enterprise que elimina ambigüedad y escala entre equipos'
+        },
+        lessonSlug: 'ux-documentation-pro',
+        status: 'not-started',
+        level: 'advanced',
+        tags: ['strategy', 'product'],
+        skills: {
+          en: ['UX specs', 'Interaction tables', 'State matrices', 'Decision logs', 'Version notes', 'Acceptance criteria'],
+          es: ['Specs UX', 'Tablas de interacción', 'Matrices de estado', 'Logs de decisiones', 'Notas de versión', 'Criterios de aceptación']
+        },
+        prerequisites: { en: ['Edge & System States', 'Design Systems Governance'], es: ['Estados Edge y de Sistema', 'Gobernanza del Sistema'] },
+        nextSteps: { en: ['Service Blueprint', 'Front-End Foundations'], es: ['Service Blueprint', 'Fundamentos Front-End'] },
+        hasLesson: true,
+        order: 10,
+        relatedLessons: [
+          { title: { en: 'Edge & System States', es: 'Estados Edge y de Sistema' }, slug: 'edge-and-system-states' },
+          { title: { en: 'Design Systems Governance', es: 'Gobernanza del Sistema' }, slug: 'design-systems-governance' },
+          { title: { en: 'Service Blueprint', es: 'Service Blueprint' }, slug: 'service-blueprint' }
         ]
       },
       {
@@ -1123,6 +1248,47 @@ const _roadmapSource: RoadmapCluster[] = [
         ]
       }
     ]
+  },
+  // ═══════════════════════════════════════════════════════════
+  // CLUSTER 9: CAREER & PROFESSIONAL GROWTH
+  // ═══════════════════════════════════════════════════════════
+  {
+    id: 'career-professional-growth',
+    title: { en: 'Career & Professional Growth', es: 'Carrera y Crecimiento Profesional' },
+    color: 'indigo',
+    order: 9,
+    nodes: [
+      {
+        id: 'portfolio-case-study-writing',
+        title: { en: 'Portfolio Case Study Writing', es: 'Redacción de Casos de Estudio para Portafolio' },
+        description: {
+          en: 'Transform real UX projects into compelling professional case studies with storytelling, decisions, and measurable impact',
+          es: 'Transforma proyectos UX reales en casos de estudio profesionales con storytelling, decisiones e impacto medible'
+        },
+        lessonSlug: 'portfolio-case-study-writing',
+        status: 'not-started',
+        level: 'advanced',
+        tags: ['strategy', 'ux'],
+        skills: {
+          en: ['Case study structure', 'Storytelling', 'Impact quantification', 'Decision trade-offs', 'Interview preparation'],
+          es: ['Estructura de caso de estudio', 'Storytelling', 'Cuantificación de impacto', 'Trade-offs de decisiones', 'Preparación para entrevistas']
+        },
+        prerequisites: {
+          en: ['UX Documentation Pro', 'At least 2-3 completed UX projects'],
+          es: ['Documentación UX Pro', 'Al menos 2-3 proyectos UX completados']
+        },
+        nextSteps: {
+          en: ['Build your portfolio', 'Practice interview walkthroughs'],
+          es: ['Construye tu portafolio', 'Practica recorridos de entrevista']
+        },
+        hasLesson: true,
+        order: 1,
+        relatedLessons: [
+          { title: { en: 'UX Documentation Pro', es: 'Documentación UX Pro' }, slug: 'ux-documentation-pro' },
+          { title: { en: 'UX Metrics Advanced', es: 'Métricas UX Avanzadas' }, slug: 'ux-metrics-advanced' }
+        ]
+      }
+    ]
   }
 ];
 
@@ -1133,30 +1299,6 @@ const _n = (id: string): RoadmapNode => {
   if (!node) throw new Error(`Roadmap node not found: ${id}`);
   return node;
 };
-
-// Helper to create placeholder roadmap nodes for upcoming lessons
-const _pn = (
-  id: string,
-  title: { en: string; es: string },
-  description: { en: string; es: string },
-  level: NodeLevel,
-  tags: NodeTag[],
-  order: number,
-): RoadmapNode => ({
-  id,
-  title,
-  description,
-  lessonSlug: id,
-  status: 'not-started',
-  level,
-  tags,
-  skills: { en: ['Coming soon'], es: ['Próximamente'] },
-  prerequisites: { en: [], es: [] },
-  nextSteps: { en: [], es: [] },
-  hasLesson: false,
-  order,
-  relatedLessons: [],
-});
 
 // ============================================================
 // EXPORTED ROADMAP DATA — 8 Phases following real project workflow
@@ -1204,8 +1346,8 @@ export const roadmapData: RoadmapCluster[] = [
         },
         prerequisites: { en: ['UX/UI Foundations'], es: ['Fundamentos UX/UI'] },
         nextSteps: {
-          en: ['Stakeholder Mapping', 'Problem Statements', 'Product Discovery'],
-          es: ['Mapeo de Stakeholders', 'Declaraciones de Problema', 'Descubrimiento de Producto']
+          en: ['Stakeholder Mapping', 'Problem Statements', 'Product Roadmapping'],
+          es: ['Mapeo de Stakeholders', 'Declaraciones de Problema', 'Roadmapping de Producto']
         },
         hasLesson: true,
         order: 1,
@@ -1231,8 +1373,8 @@ export const roadmapData: RoadmapCluster[] = [
         },
         prerequisites: { en: ['Business Goals & KPIs'], es: ['Objetivos de Negocio y KPIs'] },
         nextSteps: {
-          en: ['Problem Statements', 'Competitive Analysis', 'Product Discovery'],
-          es: ['Declaraciones de Problema', 'Análisis Competitivo', 'Descubrimiento de Producto']
+          en: ['Problem Statements', 'Competitive Analysis', 'Product Roadmapping'],
+          es: ['Declaraciones de Problema', 'Análisis Competitivo', 'Roadmapping de Producto']
         },
         hasLesson: true,
         order: 2,
@@ -1244,14 +1386,8 @@ export const roadmapData: RoadmapCluster[] = [
       { ..._n('problem-statements'), order: 3 },
       { ..._n('competitive-analysis-basics'), order: 4 },
       { ..._n('competitive-analysis'), order: 5 },
-      _pn('product-discovery',
-        { en: 'Product Discovery', es: 'Descubrimiento de Producto' },
-        { en: 'Frameworks for deciding what to build before committing resources', es: 'Frameworks para decidir qué construir antes de comprometer recursos' },
-        'intermediate', ['product'], 6),
-      _pn('hypothesis-definition',
-        { en: 'Hypothesis Definition', es: 'Definición de Hipótesis' },
-        { en: 'Formulating testable assumptions to guide research and design', es: 'Formulando suposiciones testeables para guiar investigación y diseño' },
-        'intermediate', ['strategy'], 7),
+      { ..._n('product-roadmapping'), order: 6 },
+      { ..._n('release-planning-and-increment-strategy'), order: 7 },
     ]
   },
   {
@@ -1264,12 +1400,8 @@ export const roadmapData: RoadmapCluster[] = [
       { ..._n('ux-research'), order: 2 },
       { ..._n('user-personas'), order: 3 },
       { ..._n('customer-journey-map'), order: 4 },
-      _pn('research-planning-synthesis',
-        { en: 'Research Planning & Synthesis', es: 'Planificación y Síntesis de Investigación' },
-        { en: 'End-to-end research planning, execution, and actionable synthesis', es: 'Planificación de investigación de principio a fin, ejecución y síntesis accionable' },
-        'intermediate', ['research'], 5),
-      { ..._n('ux-psychology'), order: 6 },
-      { ..._n('laws-of-ux'), order: 7 },
+      { ..._n('ux-psychology'), order: 5 },
+      { ..._n('laws-of-ux'), order: 6 },
     ]
   },
   {
@@ -1291,24 +1423,13 @@ export const roadmapData: RoadmapCluster[] = [
     order: 5,
     nodes: [
       { ..._n('wireframing-prototyping'), order: 1 },
-      _pn('interaction-design-principles',
-        { en: 'Interaction Design Principles', es: 'Principios de Diseño de Interacción' },
-        { en: 'Core principles of feedback, affordance, and mapping for digital interfaces', es: 'Principios fundamentales de feedback, affordance y mapping para interfaces digitales' },
-        'beginner', ['ui'], 2),
-      { ..._n('visual-hierarchy'), order: 3 },
-      { ..._n('typography'), order: 4 },
-      { ..._n('color-theory'), order: 5 },
-      { ..._n('accessibility-wcag'), order: 6 },
-      _pn('responsive-design-patterns',
-        { en: 'Responsive Design Patterns', es: 'Patrones de Diseño Responsivo' },
-        { en: 'Designing adaptive layouts that work across devices and screen sizes', es: 'Diseñando layouts adaptativos que funcionan en distintos dispositivos y tamaños de pantalla' },
-        'intermediate', ['ui'], 7),
-      _pn('ux-writing-basics',
-        { en: 'UX Writing Basics', es: 'Fundamentos de UX Writing' },
-        { en: 'Crafting clear, concise microcopy that guides users through interfaces', es: 'Creando microcopy claro y conciso que guía a los usuarios a través de interfaces' },
-        'intermediate', ['ui'], 8),
-      { ..._n('microinteractions'), order: 9 },
-      { ..._n('heuristic-analysis'), order: 10 },
+      { ..._n('visual-hierarchy'), order: 2 },
+      { ..._n('typography'), order: 3 },
+      { ..._n('color-theory'), order: 4 },
+      { ..._n('accessibility-wcag'), order: 5 },
+      { ..._n('microinteractions'), order: 6 },
+      { ..._n('heuristic-analysis'), order: 7 },
+      { ..._n('edge-and-system-states'), order: 8 },
     ]
   },
   {
@@ -1319,19 +1440,8 @@ export const roadmapData: RoadmapCluster[] = [
     nodes: [
       { ..._n('usability-testing'), order: 1 },
       { ..._n('prototyping-methods'), order: 2 },
-      _pn('analytics-ux-metrics',
-        { en: 'Analytics & UX Metrics', es: 'Analítica y Métricas UX' },
-        { en: 'Using quantitative data to measure design impact and inform iterations', es: 'Usando datos cuantitativos para medir el impacto del diseño e informar iteraciones' },
-        'intermediate', ['research', 'strategy'], 3),
-      _pn('ab-testing',
-        { en: 'A/B Testing', es: 'Pruebas A/B' },
-        { en: 'Running controlled experiments to validate design decisions with data', es: 'Ejecutando experimentos controlados para validar decisiones de diseño con datos' },
-        'intermediate', ['research'], 4),
-      _pn('accessibility-testing',
-        { en: 'Accessibility Testing', es: 'Pruebas de Accesibilidad' },
-        { en: 'Systematic methods for auditing and verifying WCAG compliance', es: 'Métodos sistemáticos para auditar y verificar cumplimiento WCAG' },
-        'intermediate', ['ui'], 5),
-      { ..._n('accessibility'), order: 6 },
+      { ..._n('accessibility'), order: 3 },
+      { ..._n('ux-metrics-advanced'), order: 4 },
     ]
   },
   {
@@ -1345,6 +1455,7 @@ export const roadmapData: RoadmapCluster[] = [
       { ..._n('design-systems-governance'), order: 3 },
       { ..._n('design-ethics'), order: 4 },
       { ..._n('service-blueprint'), order: 5 },
+      { ..._n('ux-documentation-pro'), order: 6 },
     ]
   },
   {
@@ -1357,6 +1468,15 @@ export const roadmapData: RoadmapCluster[] = [
       { ..._n('css-fundamentals'), order: 2 },
       { ..._n('intro-javascript'), order: 3 },
       { ..._n('frontend-foundations'), order: 4 },
+    ]
+  },
+  {
+    id: 'phase-9-career',
+    title: { en: 'Career & Professional Growth', es: 'Carrera y Crecimiento Profesional' },
+    color: 'indigo',
+    order: 9,
+    nodes: [
+      { ..._n('portfolio-case-study-writing'), order: 1 },
     ]
   },
 ];

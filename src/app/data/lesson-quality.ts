@@ -153,6 +153,12 @@ export function evaluateLessonQuality(topic: Topic): LessonQualityResult {
     'heuristic-analysis',
     'business-goals-kpis',
     'stakeholder-mapping',
+    'product-roadmapping',
+    'ux-metrics-advanced',
+    'edge-and-system-states',
+    'ux-documentation-pro',
+    'release-planning-and-increment-strategy',
+    'portfolio-case-study-writing',
   ].includes(topic.id);
 
   if (!hasInteractiveExample) {

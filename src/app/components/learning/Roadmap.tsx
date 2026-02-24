@@ -4,7 +4,7 @@ import { tracks, Topic } from '../../data/content';
 import type { LessonTag } from '../../data/types';
 import { evaluateLessonQuality, getBadgeStyles } from '../../data/lesson-quality';
 import { motion } from 'motion/react';
-import { Clock, ChevronRight, ChevronDown, Award, Sparkles } from 'lucide-react';
+import { Clock, ChevronRight, ChevronDown, Award } from 'lucide-react';
 import { Badge } from '../ui/badge';
 import { Card, CardContent } from '../ui/card';
 import { LessonPreview } from './LessonPreview';
@@ -43,9 +43,7 @@ export function Roadmap() {
   };
 
   const handleTopicClick = (topic: Topic) => {
-    if (!topic.isPlaceholder) {
-      setPreviewTopic(topic);
-    }
+    setPreviewTopic(topic);
   };
 
   const handleClosePreview = () => {
@@ -73,8 +71,8 @@ export function Roadmap() {
             </h2>
             <p className="text-zinc-400 max-w-2xl mb-8">
               {t({
-                en: '8 phases following a real UX project workflow — from foundations to frontend. 52 lessons ordered by complexity.',
-                es: '8 fases siguiendo un flujo real de proyecto UX — desde fundamentos hasta frontend. 52 lecciones ordenadas por complejidad.'
+                en: '8 phases following a real UX project workflow — from foundations to frontend. 47 lessons ordered by complexity.',
+                es: '8 fases siguiendo un flujo real de proyecto UX — desde fundamentos hasta frontend. 47 lecciones ordenadas por complejidad.'
               })}
             </p>
             {/* Tag legend */}
@@ -129,7 +127,6 @@ export function Roadmap() {
                 <div className={`relative border-l ${colors.line} ml-6 space-y-6 pb-4`}>
                   {visibleTopics.map((topic, index) => {
                     const lessonNumber = phaseStart + index + 1;
-                    const isPlaceholder = topic.isPlaceholder;
                     const tag = topic.tag;
                     const tStyle = tag ? tagStyles[tag] : null;
 
@@ -142,18 +139,10 @@ export function Roadmap() {
                       transition={{ delay: index >= DEFAULT_VISIBLE ? (index - DEFAULT_VISIBLE) * 0.06 : 0, duration: 0.3 }}
                     >
                       {/* Timeline dot */}
-                      <div className={`absolute left-[-5px] top-1.5 size-2.5 rounded-full border-2 transition-colors ${
-                        isPlaceholder
-                          ? 'border-dashed border-zinc-600 bg-zinc-900'
-                          : `bg-black ${colors.dot}`
-                      }`} />
+                      <div className={`absolute left-[-5px] top-1.5 size-2.5 rounded-full border-2 transition-colors bg-black ${colors.dot}`} />
 
                       <Card
-                        className={`transition-all overflow-hidden group/card ${
-                          isPlaceholder
-                            ? 'bg-zinc-900/30 border-dashed border-zinc-700/60 hover:border-zinc-600 cursor-default'
-                            : 'bg-zinc-900/50 border-zinc-800 hover:border-zinc-700 hover:bg-zinc-900 cursor-pointer'
-                        }`}
+                        className="transition-all overflow-hidden group/card bg-zinc-900/50 border-zinc-800 hover:border-zinc-700 hover:bg-zinc-900 cursor-pointer"
                         onClick={() => handleTopicClick(topic)}
                       >
                         <CardContent className="p-5">
@@ -189,19 +178,8 @@ export function Roadmap() {
                                 </Badge>
                               )}
 
-                              {/* Placeholder badge */}
-                              {isPlaceholder && (
-                                <Badge
-                                  variant="secondary"
-                                  className="text-[10px] px-1.5 py-0 bg-yellow-500/10 text-yellow-400 border border-yellow-500/30 flex items-center gap-1"
-                                >
-                                  <Sparkles className="size-2.5" />
-                                  {t({ en: 'Coming Soon', es: 'Próximamente' })}
-                                </Badge>
-                              )}
-
-                              {/* Quality badge — only for existing lessons */}
-                              {!isPlaceholder && (() => {
+                              {/* Quality badge */}
+                              {(() => {
                                 const quality = evaluateLessonQuality(topic);
                                 const styles = getBadgeStyles(quality.badge);
                                 return (
@@ -223,33 +201,20 @@ export function Roadmap() {
                           </div>
 
                           {/* Title */}
-                          <h4 className={`text-lg font-semibold mb-1.5 transition-colors ${
-                            isPlaceholder
-                              ? 'text-zinc-400'
-                              : 'text-white group-hover/card:text-indigo-400'
-                          }`}>
+                          <h4 className="text-lg font-semibold mb-1.5 transition-colors text-white group-hover/card:text-indigo-400">
                             {t(topic.title)}
                           </h4>
 
                           {/* Description */}
-                          <p className={`text-sm mb-4 leading-relaxed ${
-                            isPlaceholder ? 'text-zinc-500 italic' : 'text-zinc-400'
-                          }`}>
+                          <p className="text-sm mb-4 leading-relaxed text-zinc-400">
                             {t(topic.description)}
                           </p>
 
                           {/* CTA */}
-                          {isPlaceholder ? (
-                            <div className="flex items-center text-xs text-yellow-400/70">
-                              <Sparkles className="size-3.5 mr-1.5" />
-                              {t({ en: 'Content in development', es: 'Contenido en desarrollo' })}
-                            </div>
-                          ) : (
-                            <div className="flex items-center text-sm font-medium text-white group-hover/card:translate-x-1 transition-transform">
-                              {t({ en: 'Start Lesson', es: 'Empezar Lección' })}
-                              <ChevronRight className="size-4 ml-1" />
-                            </div>
-                          )}
+                          <div className="flex items-center text-sm font-medium text-white group-hover/card:translate-x-1 transition-transform">
+                            {t({ en: 'Start Lesson', es: 'Empezar Lección' })}
+                            <ChevronRight className="size-4 ml-1" />
+                          </div>
                         </CardContent>
                       </Card>
                     </motion.div>
