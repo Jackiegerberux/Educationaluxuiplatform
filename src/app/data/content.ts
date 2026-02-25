@@ -419,50 +419,80 @@ const _topicSource: Track[] = [
       {
         id: 'information-architecture',
         title: { en: 'Information Architecture', es: 'Arquitectura de Información' },
-        description: { en: 'Organizing content so users can find what they need without thinking.', es: 'Organizar el contenido para que los usuarios encuentren lo que necesitan sin pensar.' },
+        description: { en: 'Organizing and structuring content to help users find what they need.', es: 'Organizar y estructurar contenido para ayudar a los usuarios a encontrar lo que necesitan.' },
         status: 'beginner',
         timeEstimate: '1h 30m',
-        reference: { en: 'Don\'t Make Me Think - Steve Krug', es: 'No me hagas pensar - Steve Krug' },
-        referenceLink: 'https://www.nngroup.com/articles/ia-101/',
+        reference: { en: 'Don\'t Make Me Think - Steve Krug + Information Architecture Basics - NN/g', es: 'No me hagas pensar - Steve Krug + Básicos de Arquitectura de Información - NN/g' },
+        referenceLink: 'https://www.nngroup.com/articles/information-architecture-101/',
         content: {
           definition: {
-            en: 'Information Architecture (IA) is the structural design of shared information environments; the art and science of organizing and labeling websites, intranets, online communities and software to support usability and findability.',
-            es: 'La Arquitectura de Información (AI) es el diseño estructural de entornos de información compartidos; el arte y la ciencia de organizar y etiquetar sitios web, intranets, comunidades en línea y software para apoyar la usabilidad y la capacidad de búsqueda.'
+            en: 'Information Architecture (IA) is the practice of organizing, structuring, and labeling content in an effective and sustainable way. It helps users understand where they are, what they have found, what is around, and what to expect.',
+            es: 'La Arquitectura de Información (IA) es la práctica de organizar, estructurar y etiquetar contenido de manera efectiva y sostenible. Ayuda a los usuarios a entender dónde están, qué han encontrado, qué hay alrededor y qué esperar.'
           },
           why: {
-            en: 'Users scan screens rather than reading them. Good IA allows them to "muddle through" effectively.',
-            es: 'Los usuarios escanean pantallas en lugar de leerlas. Una buena AI les permite "arreglárselas" de manera efectiva.'
+            en: 'Good IA is invisible — users do not notice it until it is bad. Poor IA leads to users getting lost, frustrated, and abandoning your product. Solid IA creates a clear mental model, reduces cognitive load, and enables users to achieve their goals efficiently.',
+            es: 'Una buena IA es invisible — los usuarios no la notan hasta que es mala. Una IA pobre lleva a que los usuarios se pierdan, se frustren y abandonen tu producto. Una IA sólida crea un modelo mental claro, reduce la carga cognitiva y permite a los usuarios lograr sus objetivos eficientemente.'
           },
           keyPrinciples: {
-            en: ['Create a clear visual hierarchy.', 'Break pages up into clearly defined areas.', 'Make it obvious what\'s clickable.', 'Omit needless words.'],
-            es: ['Crea una jerarquía visual clara.', 'Divide las páginas en áreas claramente definidas.', 'Haz obvio qué se puede hacer clic.', 'Omite palabras innecesarias.']
+            en: [
+              'Organization: How content is grouped (by topic, task, audience, or format)',
+              'Labeling: What you call categories and navigation items (clear, familiar terms)',
+              'Navigation: How users browse and move through information (menus, breadcrumbs, search)',
+              'Search: How users look for specific content (filters, facets, auto-suggest)',
+              'Hierarchy: Parent-child relationships between pages and sections (3-4 levels max)',
+              'Mental models: Matching user expectations of where things should be'
+            ],
+            es: [
+              'Organización: Cómo se agrupa el contenido (por tema, tarea, audiencia o formato)',
+              'Etiquetado: Cómo llamas a las categorías y elementos de navegación (términos claros y familiares)',
+              'Navegación: Cómo los usuarios navegan y se mueven a través de la información (menús, breadcrumbs, búsqueda)',
+              'Búsqueda: Cómo los usuarios buscan contenido específico (filtros, facetas, auto-sugerencia)',
+              'Jerarquía: Relaciones padre-hijo entre páginas y secciones (3-4 niveles máximo)',
+              'Modelos mentales: Coincidir con las expectativas del usuario de dónde deberían estar las cosas'
+            ]
           },
           commonMistakes: {
-            en: ['Buring content deep in navigation layers.', 'Using clever but unclear labels.', 'Assuming users will read instructions.'],
-            es: ['Enterrar contenido en capas profundas de navegación.', 'Usar etiquetas ingeniosas pero poco claras.', 'Asumir que los usuarios leerán las instrucciones.']
+            en: [
+              'Organizing by internal company structure instead of user mental models',
+              'Using jargon or internal terminology in navigation labels',
+              'Too many levels of hierarchy (users get lost beyond 3-4 levels)',
+              'Inconsistent categorization (same item appearing in multiple unrelated categories)',
+              'No search function or poorly configured search results'
+            ],
+            es: [
+              'Organizar por estructura interna de la empresa en lugar de modelos mentales del usuario',
+              'Usar jerga o terminología interna en etiquetas de navegación',
+              'Demasiados niveles de jerarquía (los usuarios se pierden más allá de 3-4 niveles)',
+              'Categorización inconsistente (mismo elemento apareciendo en múltiples categorías no relacionadas)',
+              'Sin función de búsqueda o resultados de búsqueda mal configurados'
+            ]
           },
           howToApply: {
             steps: [
               {
                 name: { en: 'Content Inventory', es: 'Inventario de Contenido' },
-                description: { en: 'List all content items your site needs.', es: 'Lista todos los elementos de contenido que tu sitio necesita.' }
+                description: { en: 'List all existing content: pages, features, sections. Create a spreadsheet with columns: Page Title, URL, Description, Owner. This is your raw material.', es: 'Lista todo el contenido existente: páginas, características, secciones. Crea una hoja de cálculo con columnas: Título de Página, URL, Descripción, Propietario. Este es tu material bruto.' }
               },
               {
                 name: { en: 'Card Sorting', es: 'Card Sorting' },
-                description: { en: 'Group related items together logically.', es: 'Agrupa elementos relacionados lógicamente.' }
+                description: { en: 'Write each content item on a card. Ask users to group cards into categories that make sense to them and name each group. This reveals their mental model.', es: 'Escribe cada elemento de contenido en una tarjeta. Pide a los usuarios que agrupen tarjetas en categorías que tengan sentido para ellos y nombren cada grupo. Esto revela su modelo mental.' }
               },
               {
-                name: { en: 'Labeling', es: 'Etiquetado' },
-                description: { en: 'Give each group a clear, common-sense name.', es: 'Dale a cada grupo un nombre claro y de sentido común.' }
+                name: { en: 'Create Sitemap', es: 'Crear Mapa del Sitio' },
+                description: { en: 'Based on card sorting results, organize content into a hierarchical structure. Use boxes and lines to show parent-child relationships. Keep it 3-4 levels max.', es: 'Basado en resultados de card sorting, organiza contenido en una estructura jerárquica. Usa cajas y líneas para mostrar relaciones padre-hijo. Mantenlo en 3-4 niveles máximo.' }
               },
               {
-                name: { en: 'Navigation Testing', es: 'Prueba de Navegación' },
-                description: { en: 'Can a user find "X" in less than 3 clicks?', es: '¿Puede un usuario encontrar "X" en menos de 3 clics?' }
+                name: { en: 'Design Navigation', es: 'Diseñar Navegación' },
+                description: { en: 'Create primary navigation (top-level categories), secondary navigation (sub-categories), and utility navigation (login, help, settings). Add breadcrumbs for deep pages.', es: 'Crea navegación primaria (categorías de nivel superior), navegación secundaria (sub-categorías) y navegación de utilidad (login, ayuda, configuración). Agrega breadcrumbs para páginas profundas.' }
+              },
+              {
+                name: { en: 'Test with Tree Testing', es: 'Probar con Tree Testing' },
+                description: { en: 'Give users tasks like "Where would you find X?" Show them your IA structure (no visual design) and see if they can locate items. Identify where they get stuck.', es: 'Da a los usuarios tareas como "¿Dónde encontrarías X?" Muéstrales tu estructura IA (sin diseño visual) y ve si pueden localizar elementos. Identifica dónde se atascan.' }
               }
             ]
           },
           aiInPractice: {
-            description: { en: 'AI is excellent at categorization and suggesting simplified labels for complex hierarchies.', es: 'La IA es excelente para categorizar y sugerir etiquetas simplificadas para jerarquías complejas.' },
+            description: { en: 'AI is excellent at categorization, suggesting simplified labels, and simulating user navigation.', es: 'La IA es excelente para categorizar, sugerir etiquetas simplificadas y simular navegación de usuario.' },
             prompts: [
               {
                 tool: 'Claude',
@@ -483,34 +513,36 @@ const _topicSource: Track[] = [
           },
           howToValidate: {
             what: { 
-              en: 'Validate that users can find and navigate content intuitively using their mental models, not yours.',
-              es: 'Valida que los usuarios puedan encontrar y navegar el contenido intuitivamente usando sus modelos mentales, no los tuyos.'
+              en: 'Validate that users can find content efficiently and that your IA matches their mental models.',
+              es: 'Validar que los usuarios pueden encontrar contenido eficientemente y que tu IA coincide con sus modelos mentales.'
             },
             methods: { 
               en: [
-                'Card sorting (open/closed) to understand how users group content',
-                'Tree testing to validate navigation findability',
-                'First-click testing on key user tasks'
+                'Tree testing: Can users locate specific items in your IA structure?',
+                'First-click testing: Do users click the right category first?',
+                'Time to task: How long does it take users to find what they need?',
+                'Analytics: Are users using search more than navigation? (indicates poor IA)'
               ],
               es: [
-                'Card sorting (abierto/cerrado) para entender cómo los usuarios agrupan el contenido',
-                'Tree testing para validar la encontrabilidad de navegación',
-                'Pruebas de primer clic en tareas clave del usuario'
+                'Tree testing: ¿Pueden los usuarios localizar elementos específicos en tu estructura IA?',
+                'Prueba de primer clic: ¿Los usuarios hacen clic en la categoría correcta primero?',
+                'Tiempo a la tarea: ¿Cuánto tiempo les toma a los usuarios encontrar lo que necesitan?',
+                'Analytics: ¿Los usuarios usan búsqueda más que navegación? (indica IA pobre)'
               ]
             },
             tools: { 
-              en: ['Optimal Workshop', 'Maze', 'UserZoom', 'Miro (manual card sorting)'],
-              es: ['Optimal Workshop', 'Maze', 'UserZoom', 'Miro (card sorting manual)']
+              en: ['Optimal Workshop Treejack', 'Maze first-click tests', 'Google Analytics behavior flow'],
+              es: ['Optimal Workshop Treejack', 'Pruebas de primer clic de Maze', 'Flujo de comportamiento de Google Analytics']
             },
             evidenceExample: { 
-              en: 'Tree testing shows 80%+ success rate on "Find where to cancel subscription" task, with average time under 15 seconds.',
-              es: 'Tree testing muestra una tasa de éxito del 80%+ en la tarea "Encuentra dónde cancelar la suscripción", con tiempo promedio menor a 15 segundos.'
+              en: 'After restructuring your IA based on card sorting, tree testing shows 85% success rate (up from 60%) in users finding key content within 15 seconds.',
+              es: 'Después de reestructurar tu IA basada en card sorting, tree testing muestra una tasa de éxito del 85% (arriba del 60%) en usuarios encontrando contenido clave en 15 segundos.'
             }
           },
           deliverables: {
             description: { 
-              en: 'Concrete artifacts trainees must produce to demonstrate IA mastery.',
-              es: 'Artefactos concretos que los aprendices deben producir para demostrar dominio de AI.'
+              en: 'Concrete artifacts to demonstrate IA mastery.',
+              es: 'Artefactos concretos para demostrar dominio de IA.'
             },
             items: {
               en: [
@@ -790,7 +822,7 @@ const _topicSource: Track[] = [
         }
       },
       // === PHASE 4: BEGINNER - Visual Design Fundamentals ===
-      ...uiLessons.filter(lesson => lesson.id === 'wireframes'),
+      // Note: 'wireframes' merged into 'wireframing-prototyping' — no longer loaded separately
       ...uiLessons.filter(lesson => lesson.id === 'visual-hierarchy'),
       ...uiLessons.filter(lesson => lesson.id === 'typography-fundamentals' || lesson.id === 'color-theory'),
       // === PHASE 5: INTERMEDIATE - Analysis & Competitive Strategy ===
@@ -920,10 +952,83 @@ const _topicSource: Track[] = [
               es: ['G2', 'Capterra', 'TrustRadius', 'Reseñas App Store/Play Store', 'SimilarWeb', 'Product Hunt']
             },
             handoff: { 
-              en: [], 
-              es: [] 
+              en: ['Google Slides', 'Keynote', 'Pitch', 'Figma (for visuals)'], 
+              es: ['Google Slides', 'Keynote', 'Pitch', 'Figma (para visuales)'] 
             }
           },
+          deliverables: {
+            description: { en: 'Competitive analysis outputs and strategic artifacts.', es: 'Resultados de análisis competitivo y artefactos estratégicos.' },
+            items: {
+              en: [
+                'Feature comparison matrix: Spreadsheet showing features across competitors with quality ratings',
+                'UX evaluation report: Screenshots and notes from hands-on competitor product testing',
+                'SWOT analysis: Strengths, Weaknesses, Opportunities, Threats for each competitor',
+                'User sentiment analysis: Categorized praise and complaints from 20-50 reviews per competitor',
+                'Opportunity map: Visual showing where your product can differentiate',
+                'Presentation deck: Key findings and strategic recommendations for stakeholders'
+              ],
+              es: [
+                'Matriz de comparación de características: Hoja de cálculo mostrando características entre competidores con calificaciones de calidad',
+                'Informe de evaluación UX: Capturas de pantalla y notas de pruebas prácticas de productos competidores',
+                'Análisis SWOT: Fortalezas, Debilidades, Oportunidades, Amenazas para cada competidor',
+                'Análisis de sentimiento de usuario: Elogios y quejas categorizados de 20-50 reseñas por competidor',
+                'Mapa de oportunidades: Visual mostrando dónde tu producto puede diferenciarse',
+                'Deck de presentación: Hallazgos clave y recomendaciones estratégicas para stakeholders'
+              ]
+            }
+          },
+          quiz: [
+            {
+              question: { 
+                en: 'What is an indirect competitor?',
+                es: '¿Qué es un competidor indirecto?'
+              },
+              options: {
+                en: [
+                  'A competitor in a different geographic region',
+                  'A competitor that solves the same problem using a different solution',
+                  'A competitor with lower pricing',
+                  'A competitor with fewer features'
+                ],
+                es: [
+                  'Un competidor en una región geográfica diferente',
+                  'Un competidor que resuelve el mismo problema usando una solución diferente',
+                  'Un competidor con precios más bajos',
+                  'Un competidor con menos características'
+                ]
+              },
+              correctIndex: 1,
+              explanation: {
+                en: 'An indirect competitor solves the same user problem but with a different type of solution. For example, for a ride-sharing app, indirect competitors include public transportation, bike rentals, or personal cars.',
+                es: 'Un competidor indirecto resuelve el mismo problema del usuario pero con un tipo diferente de solución. Por ejemplo, para una app de viajes compartidos, los competidores indirectos incluyen transporte público, alquiler de bicicletas o autos personales.'
+              }
+            },
+            {
+              question: { 
+                en: 'What is the biggest risk of only doing feature-level competitive analysis?',
+                es: '¿Cuál es el mayor riesgo de solo hacer análisis competitivo a nivel de características?'
+              },
+              options: {
+                en: [
+                  'You might miss emerging competitors',
+                  'You end up building a "feature parity" product instead of a differentiated one',
+                  'It takes too long to complete',
+                  'Stakeholders won\'t understand the results'
+                ],
+                es: [
+                  'Podrías perder competidores emergentes',
+                  'Terminas construyendo un producto de "paridad de características" en lugar de uno diferenciado',
+                  'Toma demasiado tiempo completar',
+                  'Los stakeholders no entenderán los resultados'
+                ]
+              },
+              correctIndex: 1,
+              explanation: {
+                en: 'Feature-level analysis without understanding user sentiment and market gaps leads to copying competitors instead of differentiating. Always pair feature matrices with user review analysis and opportunity identification.',
+                es: 'El análisis a nivel de características sin entender el sentimiento del usuario y las brechas del mercado lleva a copiar competidores en lugar de diferenciarse. Siempre combina matrices de características con análisis de reseñas y identificación de oportunidades.'
+              }
+            }
+          ],
           realExample: {
             title: { 
               en: 'PM Tools Benchmark: Finding the Time Tracking Gap', 
@@ -1317,7 +1422,7 @@ const _topicSource: Track[] = [
       uxMetricsAdvancedLesson,
       // === PHASE 7: INTERMEDIATE - Testing & Validation ===
       ...uiLessons.filter(lesson => lesson.id === 'accessibility-wcag'),
-      ...prototypingLessons.filter(lesson => lesson.id !== 'usability-testing'),
+      ...prototypingLessons,
       ...advancedResearchLessons.filter(lesson => lesson.id === 'customer-journey-map')
     ]
   },
@@ -1531,42 +1636,76 @@ const _topicSource: Track[] = [
       },
        {
         id: 'accessibility',
-        title: { en: 'Accessibility (A11y) & WCAG', es: 'Accesibilidad (A11y) & WCAG' },
-        description: { en: 'Designing for everyone, regardless of ability.', es: 'Diseñando para todos, independientemente de su capacidad.' },
+        title: { en: 'Advanced Accessibility Auditing', es: 'Auditoría Avanzada de Accesibilidad' },
+        description: { en: 'Deep-dive into accessibility auditing: code patterns, screen readers, automated testing, and CI/CD integration.', es: 'Inmersión profunda en auditoría de accesibilidad: patrones de código, lectores de pantalla, pruebas automatizadas e integración CI/CD.' },
         status: 'advanced',
         timeEstimate: '3h',
         reference: { en: 'Accessibility for Everyone - Laura Kalbag', es: 'Accessibility for Everyone - Laura Kalbag' },
         referenceLink: 'https://www.w3.org/WAI/fundamentals/accessibility-intro/',
         content: {
           definition: {
-            en: 'Accessibility is the practice of making your websites usable by as many people as possible, including those with disabilities (visual, motor, auditory, cognitive).',
-            es: 'La accesibilidad es la práctica de hacer que tus sitios web sean utilizables por la mayor cantidad de personas posible, incluidas aquellas con discapacidades (visuales, motoras, auditivas, cognitivas).'
+            en: 'Advanced accessibility auditing goes beyond basic POUR compliance to cover semantic HTML patterns, ARIA roles and states, screen reader testing workflows, automated CI/CD accessibility checks, and building organizational accessibility culture.',
+            es: 'La auditoría avanzada de accesibilidad va más allá del cumplimiento básico POUR para cubrir patrones de HTML semántico, roles y estados ARIA, flujos de prueba con lectores de pantalla, verificaciones de accesibilidad automatizadas en CI/CD y la construcción de una cultura organizacional de accesibilidad.'
           },
           why: {
-            en: 'It is a human right, a legal requirement in many places, and it improves usability for everyone (universal design).',
-            es: 'Es un derecho humano, un requisito legal en muchos lugares y mejora la usabilidad para todos (diseño universal).'
+            en: 'Knowing POUR principles is not enough — you need to implement them correctly in code, test with real assistive technology, and build sustainable processes so accessibility does not regress over time.',
+            es: 'Conocer los principios POUR no es suficiente — necesitas implementarlos correctamente en código, probar con tecnología de asistencia real y construir procesos sostenibles para que la accesibilidad no retroceda con el tiempo.'
           },
           keyPrinciples: {
-            en: ['Perceivable (Contrast, Alt text).', 'Operable (Keyboard nav).', 'Understandable (Clear language).', 'Robust (Compatible code).'],
-            es: ['Perceptible (Contraste, Texto alternativo).', 'Operable (Nav. por teclado).', 'Comprensible (Lenguaje claro).', 'Robusto (Código compatible).']
+            en: [
+              'Semantic HTML first: Use native elements (<button>, <nav>, <main>) before ARIA roles',
+              'ARIA roles and states: aria-label, aria-describedby, aria-expanded, aria-live for dynamic content',
+              'Focus management: Programmatic focus control in modals, SPAs, and dynamic content',
+              'Screen reader testing: Test with NVDA, JAWS, VoiceOver — automated tools miss 50% of issues',
+              'Automated testing in CI/CD: axe-core, Pa11y, Lighthouse CI for regression prevention',
+              'Color is never the only indicator: Always pair color with icons, text, or patterns'
+            ],
+            es: [
+              'HTML semántico primero: Usa elementos nativos (<button>, <nav>, <main>) antes de roles ARIA',
+              'Roles y estados ARIA: aria-label, aria-describedby, aria-expanded, aria-live para contenido dinámico',
+              'Gestión de foco: Control programático del foco en modales, SPAs y contenido dinámico',
+              'Pruebas con lector de pantalla: Prueba con NVDA, JAWS, VoiceOver — herramientas automatizadas pierden 50% de problemas',
+              'Pruebas automatizadas en CI/CD: axe-core, Pa11y, Lighthouse CI para prevenir regresiones',
+              'El color nunca es el único indicador: Siempre combina color con íconos, texto o patrones'
+            ]
           },
           commonMistakes: {
-            en: ['Relying only on color to convey meaning.', 'Low contrast text.', 'Unlabeled form fields.', 'Trapping keyboard focus.'],
-            es: ['Depender solo del color para transmitir significado.', 'Texto de bajo contraste.', 'Campos de formulario sin etiquetas.', 'Atrapar el foco del teclado.']
+            en: [
+              'Using ARIA when native HTML would suffice (no-ARIA is better than bad ARIA)',
+              'Only testing with automated tools — they catch at most 30-50% of real issues',
+              'Not testing with actual screen readers (VoiceOver, NVDA, JAWS)',
+              'Trapping keyboard focus in modals or dropdowns without Esc escape',
+              'Assuming "we passed Lighthouse" means accessible — Lighthouse catches only ~30% of WCAG issues'
+            ],
+            es: [
+              'Usar ARIA cuando HTML nativo sería suficiente (sin ARIA es mejor que ARIA mal implementado)',
+              'Solo probar con herramientas automatizadas — capturan como máximo 30-50% de los problemas reales',
+              'No probar con lectores de pantalla reales (VoiceOver, NVDA, JAWS)',
+              'Atrapar el foco del teclado en modales o dropdowns sin escape con Esc',
+              'Asumir que "pasamos Lighthouse" significa accesible — Lighthouse captura solo ~30% de problemas WCAG'
+            ]
           },
           howToApply: {
             steps: [
               {
-                name: { en: 'Check Contrast', es: 'Verificar Contraste' },
-                description: { en: 'Ensure 4.5:1 ratio for normal text.', es: 'Asegura una relación de 4.5:1 para texto normal.' }
+                name: { en: 'Run Automated Audit', es: 'Ejecutar Auditoría Automatizada' },
+                description: { en: 'Use axe DevTools or Lighthouse to catch low-hanging fruit: missing alt text, contrast failures, missing labels. Fix these first.', es: 'Usa axe DevTools o Lighthouse para capturar lo fácil: texto alt faltante, fallos de contraste, etiquetas faltantes. Corrige estos primero.' }
               },
               {
-                name: { en: 'Keyboard Testing', es: 'Prueba de Teclado' },
-                description: { en: 'Unplug your mouse. Can you use your site with only Tab and Enter?', es: 'Desconecta tu ratón. ¿Puedes usar tu sitio solo con Tab y Enter?' }
+                name: { en: 'Keyboard-Only Navigation', es: 'Navegación Solo con Teclado' },
+                description: { en: 'Unplug your mouse. Tab through the entire interface. Check: Can you reach all interactive elements? Is focus visible? Can you escape modals with Esc?', es: 'Desconecta tu ratón. Navega con Tab por toda la interfaz. Verifica: ¿Puedes alcanzar todos los elementos interactivos? ¿El foco es visible? ¿Puedes escapar de modales con Esc?' }
               },
               {
-                name: { en: 'Semantic HTML', es: 'HTML Semántico' },
-                description: { en: 'Use <button> for actions, <a> for links. Do not use <div>.', es: 'Usa <button> para acciones, <a> para enlaces. No uses <div>.' }
+                name: { en: 'Screen Reader Testing', es: 'Pruebas con Lector de Pantalla' },
+                description: { en: 'Test with VoiceOver (Mac) or NVDA (Windows). Navigate key flows. Does every interactive element have a clear announcement? Are dynamic updates announced via aria-live?', es: 'Prueba con VoiceOver (Mac) o NVDA (Windows). Navega flujos clave. ¿Cada elemento interactivo tiene un anuncio claro? ¿Las actualizaciones dinámicas se anuncian vía aria-live?' }
+              },
+              {
+                name: { en: 'Review Code Patterns', es: 'Revisar Patrones de Código' },
+                description: { en: 'Audit semantic HTML usage. Replace <div onclick> with <button>. Add aria-label where visual context is missing. Ensure forms use <label> with for/id.', es: 'Audita el uso de HTML semántico. Reemplaza <div onclick> con <button>. Agrega aria-label donde falta contexto visual. Asegura que formularios usen <label> con for/id.' }
+              },
+              {
+                name: { en: 'Set Up CI/CD Checks', es: 'Configurar Verificaciones CI/CD' },
+                description: { en: 'Add axe-core or Pa11y to your CI pipeline. Fail builds on critical accessibility regressions. Monitor Lighthouse a11y score trends.', es: 'Agrega axe-core o Pa11y a tu pipeline CI. Falla builds en regresiones de accesibilidad críticas. Monitorea tendencias del score a11y de Lighthouse.' }
               }
             ]
           },
@@ -2675,7 +2814,6 @@ export const tracks: Track[] = [
       _t('stakeholder-mapping', 'Strategy'),
       // intermediate
       _t('problem-statements', 'Core UX'),
-      _t('competitive-analysis-basics', 'Product'),
       _t('competitive-analysis', 'Product'),
       _t('product-roadmapping', 'Strategy'),
       _t('release-planning-and-increment-strategy', 'Product'),
@@ -2711,7 +2849,6 @@ export const tracks: Track[] = [
     },
     topics: [
       _t('information-architecture', 'Core UX'),
-      _t('ia-fundamentals', 'Core UX'),
       _t('card-sorting', 'Core UX'),
       _t('user-flows', 'Core UX'),
     ]

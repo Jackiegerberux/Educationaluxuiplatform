@@ -26,7 +26,7 @@ export function Roadmap() {
   const [previewTopic, setPreviewTopic] = useState<Topic | null>(null);
   const [expandedPhases, setExpandedPhases] = useState<Record<string, boolean>>({});
 
-  // Phase colors for 8-phase structure
+  // Phase colors for 9-phase structure
   const phaseColors = [
     { bg: 'bg-purple-500/20', text: 'text-purple-400', border: 'border-purple-500', dot: 'border-purple-500 group-hover:bg-purple-500', expandBg: 'bg-purple-500/10 hover:bg-purple-500/20', expandBorder: 'border-purple-500/30', line: 'border-purple-500/40' },
     { bg: 'bg-blue-500/20', text: 'text-blue-400', border: 'border-blue-500', dot: 'border-blue-500 group-hover:bg-blue-500', expandBg: 'bg-blue-500/10 hover:bg-blue-500/20', expandBorder: 'border-blue-500/30', line: 'border-blue-500/40' },
@@ -36,6 +36,7 @@ export function Roadmap() {
     { bg: 'bg-pink-500/20', text: 'text-pink-400', border: 'border-pink-500', dot: 'border-pink-500 group-hover:bg-pink-500', expandBg: 'bg-pink-500/10 hover:bg-pink-500/20', expandBorder: 'border-pink-500/30', line: 'border-pink-500/40' },
     { bg: 'bg-red-500/20', text: 'text-red-400', border: 'border-red-500', dot: 'border-red-500 group-hover:bg-red-500', expandBg: 'bg-red-500/10 hover:bg-red-500/20', expandBorder: 'border-red-500/30', line: 'border-red-500/40' },
     { bg: 'bg-teal-500/20', text: 'text-teal-400', border: 'border-teal-500', dot: 'border-teal-500 group-hover:bg-teal-500', expandBg: 'bg-teal-500/10 hover:bg-teal-500/20', expandBorder: 'border-teal-500/30', line: 'border-teal-500/40' },
+    { bg: 'bg-indigo-500/20', text: 'text-indigo-400', border: 'border-indigo-500', dot: 'border-indigo-500 group-hover:bg-indigo-500', expandBg: 'bg-indigo-500/10 hover:bg-indigo-500/20', expandBorder: 'border-indigo-500/30', line: 'border-indigo-500/40' },
   ];
 
   const togglePhase = (trackId: string) => {
@@ -71,8 +72,8 @@ export function Roadmap() {
             </h2>
             <p className="text-zinc-400 max-w-2xl mb-8">
               {t({
-                en: '8 phases following a real UX project workflow — from foundations to frontend. 47 lessons ordered by complexity.',
-                es: '8 fases siguiendo un flujo real de proyecto UX — desde fundamentos hasta frontend. 47 lecciones ordenadas por complejidad.'
+                en: '9 phases following a real UX project workflow — from foundations to career growth. 47 lessons ordered by complexity.',
+                es: '9 fases siguiendo un flujo real de proyecto UX — desde fundamentos hasta crecimiento profesional. 47 lecciones ordenadas por complejidad.'
               })}
             </p>
             {/* Tag legend */}

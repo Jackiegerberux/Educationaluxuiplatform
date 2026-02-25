@@ -193,31 +193,7 @@ const _roadmapSource: RoadmapCluster[] = [
         order: 3,
         relatedLessons: [
           { title: { en: 'UX Research', es: 'Investigación UX' }, slug: 'ux-research' },
-          { title: { en: 'Competitive Analysis', es: 'Análisis Competitivo' }, slug: 'competitive-analysis-basics' }
-        ]
-      },
-      {
-        id: 'competitive-analysis-basics',
-        title: { en: 'Competitive Analysis Basics', es: 'Análisis Competitivo Básico' },
-        description: {
-          en: 'Structured approach to analyzing competitor products',
-          es: 'Enfoque estructurado para analizar productos competidores'
-        },
-        lessonSlug: 'competitive-analysis-basics',
-        status: 'not-started',
-        level: 'beginner',
-        tags: ['ux', 'research', 'strategy'],
-        skills: {
-          en: ['Market research', 'Feature benchmarking', 'Comparative analysis'],
-          es: ['Investigación de mercado', 'Benchmarking de features', 'Análisis comparativo']
-        },
-        prerequisites: { en: ['Surveys'], es: ['Encuestas'] },
-        nextSteps: { en: ['Competitive Analysis (Advanced)'], es: ['Análisis Competitivo (Avanzado)'] },
-        hasLesson: true,
-        order: 4,
-        relatedLessons: [
-          { title: { en: 'Competitive Analysis', es: 'Análisis Competitivo' }, slug: 'competitive-analysis' },
-          { title: { en: 'Surveys', es: 'Encuestas' }, slug: 'surveys-questionnaires' }
+          { title: { en: 'Competitive Analysis', es: 'Análisis Competitivo' }, slug: 'competitive-analysis' }
         ]
       },
       {
@@ -235,10 +211,10 @@ const _roadmapSource: RoadmapCluster[] = [
           en: ['Competitive benchmarking', 'SWOT analysis', 'Strategic positioning'],
           es: ['Benchmarking competitivo', 'Análisis FODA', 'Posicionamiento estratégico']
         },
-        prerequisites: { en: ['Competitive Analysis Basics'], es: ['Análisis Competitivo Básico'] },
+        prerequisites: { en: ['Surveys'], es: ['Encuestas'] },
         nextSteps: { en: ['Customer Journey Map'], es: ['Mapa de Viaje del Cliente'] },
         hasLesson: true,
-        order: 5,
+        order: 4,
         relatedLessons: [
           { title: { en: 'Customer Journey Map', es: 'Mapa de Viaje del Cliente' }, slug: 'customer-journey-map' },
           { title: { en: 'Problem Statements', es: 'Declaraciones de Problema' }, slug: 'problem-statements' }
@@ -296,36 +272,12 @@ const _roadmapSource: RoadmapCluster[] = [
           es: ['Creación de sitemap', 'Jerarquía de contenido', 'Diseño de navegación']
         },
         prerequisites: { en: ['Usability Basics'], es: ['Fundamentos de Usabilidad'] },
-        nextSteps: { en: ['IA Fundamentals', 'Card Sorting'], es: ['Fundamentos de AI', 'Card Sorting'] },
+        nextSteps: { en: ['Card Sorting'], es: ['Card Sorting'] },
         hasLesson: true,
         order: 1,
         relatedLessons: [
-          { title: { en: 'IA Fundamentals', es: 'Fundamentos de AI' }, slug: 'ia-fundamentals' },
-          { title: { en: 'Card Sorting', es: 'Card Sorting' }, slug: 'card-sorting' }
-        ]
-      },
-      {
-        id: 'ia-fundamentals',
-        title: { en: 'IA Fundamentals', es: 'Fundamentos de AI' },
-        description: {
-          en: 'Deep dive into information architecture patterns and mental models',
-          es: 'Inmersión profunda en patrones de arquitectura de información y modelos mentales'
-        },
-        lessonSlug: 'ia-fundamentals',
-        status: 'not-started',
-        level: 'beginner',
-        tags: ['ux'],
-        skills: {
-          en: ['IA patterns', 'Mental models', 'Taxonomy design'],
-          es: ['Patrones de AI', 'Modelos mentales', 'Diseño de taxonomía']
-        },
-        prerequisites: { en: ['Information Architecture'], es: ['Arquitectura de Información'] },
-        nextSteps: { en: ['Card Sorting'], es: ['Card Sorting'] },
-        hasLesson: true,
-        order: 2,
-        relatedLessons: [
-          { title: { en: 'Information Architecture', es: 'Arquitectura de Información' }, slug: 'information-architecture' },
-          { title: { en: 'Card Sorting', es: 'Card Sorting' }, slug: 'card-sorting' }
+          { title: { en: 'Card Sorting', es: 'Card Sorting' }, slug: 'card-sorting' },
+          { title: { en: 'User Flows', es: 'Flujos de Usuario' }, slug: 'user-flows' }
         ]
       },
       {
@@ -343,12 +295,12 @@ const _roadmapSource: RoadmapCluster[] = [
           en: ['Open card sorting', 'Closed card sorting', 'Tree testing'],
           es: ['Card sorting abierto', 'Card sorting cerrado', 'Tree testing']
         },
-        prerequisites: { en: ['IA Fundamentals'], es: ['Fundamentos de AI'] },
+        prerequisites: { en: ['Information Architecture'], es: ['Arquitectura de Información'] },
         nextSteps: { en: ['User Flows'], es: ['Flujos de Usuario'] },
         hasLesson: true,
-        order: 3,
+        order: 2,
         relatedLessons: [
-          { title: { en: 'IA Fundamentals', es: 'Fundamentos de AI' }, slug: 'ia-fundamentals' },
+          { title: { en: 'Information Architecture', es: 'Arquitectura de Información' }, slug: 'information-architecture' },
           { title: { en: 'User Flows', es: 'Flujos de Usuario' }, slug: 'user-flows' }
         ]
       },
@@ -370,7 +322,7 @@ const _roadmapSource: RoadmapCluster[] = [
         prerequisites: { en: ['Card Sorting'], es: ['Card Sorting'] },
         nextSteps: { en: ['Wireframes'], es: ['Wireframes'] },
         hasLesson: true,
-        order: 4,
+        order: 3,
         relatedLessons: [
           { title: { en: 'Wireframing & Prototyping', es: 'Wireframing y Prototipado' }, slug: 'wireframing-prototyping' },
           { title: { en: 'Information Architecture', es: 'Arquitectura de Información' }, slug: 'information-architecture' }
@@ -388,30 +340,7 @@ const _roadmapSource: RoadmapCluster[] = [
     color: 'green',
     order: 4,
     nodes: [
-      {
-        id: 'wireframes',
-        title: { en: 'Wireframes', es: 'Wireframes' },
-        description: {
-          en: 'Creating low to mid-fidelity layouts to validate structure',
-          es: 'Crear layouts de baja a media fidelidad para validar estructura'
-        },
-        lessonSlug: 'wireframes',
-        status: 'not-started',
-        level: 'beginner',
-        tags: ['ux', 'ui'],
-        skills: {
-          en: ['Lo-fi wireframes', 'Layout structure', 'Content hierarchy'],
-          es: ['Wireframes baja fidelidad', 'Estructura de layout', 'Jerarquía de contenido']
-        },
-        prerequisites: { en: ['User Flows'], es: ['Flujos de Usuario'] },
-        nextSteps: { en: ['Wireframing & Prototyping'], es: ['Wireframing y Prototipado'] },
-        hasLesson: true,
-        order: 1,
-        relatedLessons: [
-          { title: { en: 'Wireframing & Prototyping', es: 'Wireframing y Prototipado' }, slug: 'wireframing-prototyping' },
-          { title: { en: 'Visual Hierarchy', es: 'Jerarquía Visual' }, slug: 'visual-hierarchy' }
-        ]
-      },
+      // Note: 'wireframes' merged into 'wireframing-prototyping'
       {
         id: 'wireframing-prototyping',
         title: { en: 'Wireframing & Prototyping', es: 'Wireframing y Prototipado' },
@@ -1353,7 +1282,7 @@ export const roadmapData: RoadmapCluster[] = [
         order: 1,
         relatedLessons: [
           { title: { en: 'Problem Statements', es: 'Declaraciones de Problema' }, slug: 'problem-statements' },
-          { title: { en: 'Competitive Analysis', es: 'Análisis Competitivo' }, slug: 'competitive-analysis-basics' }
+          { title: { en: 'Competitive Analysis', es: 'Análisis Competitivo' }, slug: 'competitive-analysis' }
         ]
       },
       {
@@ -1384,10 +1313,9 @@ export const roadmapData: RoadmapCluster[] = [
         ]
       },
       { ..._n('problem-statements'), order: 3 },
-      { ..._n('competitive-analysis-basics'), order: 4 },
-      { ..._n('competitive-analysis'), order: 5 },
-      { ..._n('product-roadmapping'), order: 6 },
-      { ..._n('release-planning-and-increment-strategy'), order: 7 },
+      { ..._n('competitive-analysis'), order: 4 },
+      { ..._n('product-roadmapping'), order: 5 },
+      { ..._n('release-planning-and-increment-strategy'), order: 6 },
     ]
   },
   {
@@ -1411,9 +1339,8 @@ export const roadmapData: RoadmapCluster[] = [
     order: 4,
     nodes: [
       { ..._n('ia-main'), order: 1 },
-      { ..._n('ia-fundamentals'), order: 2 },
-      { ..._n('card-sorting'), order: 3 },
-      { ..._n('user-flows'), order: 4 },
+      { ..._n('card-sorting'), order: 2 },
+      { ..._n('user-flows'), order: 3 },
     ]
   },
   {

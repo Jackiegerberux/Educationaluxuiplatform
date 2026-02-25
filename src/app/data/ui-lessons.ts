@@ -2,123 +2,6 @@ import type { Topic } from './content';
 
 export const uiLessons: Topic[] = [
   {
-    id: 'wireframes',
-    title: { en: 'Wireframes', es: 'Wireframes' },
-    description: { 
-      en: 'Low-fidelity sketches focusing on structure, layout, and content hierarchy.',
-      es: 'Bocetos de baja fidelidad enfocados en estructura, diseño y jerarquía de contenido.'
-    },
-    status: 'beginner',
-    timeEstimate: '1h',
-    reference: { en: 'Wireframing - NN/g', es: 'Wireframing - NN/g' },
-    referenceLink: 'https://www.nngroup.com/articles/wireflows/',
-    content: {
-      definition: {
-        en: 'Wireframes are low-fidelity representations of a design, showing layout, structure, and content placement without visual styling. They focus on functionality and user flow rather than aesthetics.',
-        es: 'Los wireframes son representaciones de baja fidelidad de un diseño, mostrando diseño, estructura y colocación de contenido sin estilo visual. Se enfocan en funcionalidad y flujo de usuario en lugar de estética.'
-      },
-      why: {
-        en: 'Wireframes let you iterate quickly on structure without getting distracted by colors, fonts, or imagery. They facilitate discussion about functionality and layout before investing time in high-fidelity designs.',
-        es: 'Los wireframes te permiten iterar rápidamente sobre estructura sin distraerte con colores, fuentes o imágenes. Facilitan la discusión sobre funcionalidad y diseño antes de invertir tiempo en diseños de alta fidelidad.'
-      },
-      keyPrinciples: {
-        en: [
-          'Focus on structure: Layout, spacing, content placement',
-          'No colors: Use grayscale (black, white, grays)',
-          'Simple shapes: Boxes for images, lines for text, basic icons',
-          'Annotations: Add notes explaining interactions and logic',
-          'Multiple fidelity levels: Sketch → Low-fi digital → Mid-fi interactive'
-        ],
-        es: [
-          'Enfoque en estructura: Diseño, espaciado, colocación de contenido',
-          'Sin colores: Usa escala de grises (negro, blanco, grises)',
-          'Formas simples: Cajas para imágenes, líneas para texto, iconos básicos',
-          'Anotaciones: Agrega notas explicando interacciones y lógica',
-          'Múltiples niveles de fidelidad: Boceto → Digital baja fidelidad → Interactivo media fidelidad'
-        ]
-      },
-      commonMistakes: {
-        en: [
-          'Adding too much detail (colors, fonts, real images) too early',
-          'Skipping wireframes and going straight to high-fidelity mockups',
-          'Not showing interactions or states (hover, error, loading)',
-          'Making wireframes too polished (defeats the purpose of quick iteration)'
-        ],
-        es: [
-          'Agregar demasiado detalle (colores, fuentes, imágenes reales) demasiado pronto',
-          'Saltarse wireframes e ir directo a mockups de alta fidelidad',
-          'No mostrar interacciones o estados (hover, error, carga)',
-          'Hacer wireframes demasiado pulidos (derrota el propósito de iteración rápida)'
-        ]
-      },
-      howToApply: {
-        steps: [
-          {
-            name: { en: 'Start with Sketches', es: 'Comenzar con Bocetos' },
-            description: { 
-              en: 'Use paper and pencil to quickly explore layout options. Don\'t worry about perfection - quantity over quality at this stage.',
-              es: 'Usa papel y lápiz para explorar rápidamente opciones de diseño. No te preocupes por la perfección - cantidad sobre calidad en esta etapa.'
-            }
-          },
-          {
-            name: { en: 'Define Key Screens', es: 'Definir Pantallas Clave' },
-            description: { 
-              en: 'Identify the most important screens: homepage, key user flow screens, empty states, error states.',
-              es: 'Identifica las pantallas más importantes: página de inicio, pantallas de flujo clave del usuario, estados vacíos, estados de error.'
-            }
-          },
-          {
-            name: { en: 'Create Digital Wireframes', es: 'Crear Wireframes Digitales' },
-            description: { 
-              en: 'Use Figma or similar tools. Keep it simple: boxes, lines, placeholder text (Lorem ipsum), simple icons.',
-              es: 'Usa Figma o herramientas similares. Mantenlo simple: cajas, líneas, texto placeholder (Lorem ipsum), iconos simples.'
-            }
-          },
-          {
-            name: { en: 'Add Annotations', es: 'Agregar Anotaciones' },
-            description: { 
-              en: 'Explain interactions: "Clicking this button shows...", "This dropdown contains...", "Error state appears when..."',
-              es: 'Explica interacciones: "Hacer clic en este botón muestra...", "Este dropdown contiene...", "El estado de error aparece cuando..."'
-            }
-          }
-        ]
-      },
-      deliverables: {
-        description: { en: 'Wireframe outputs.', es: 'Resultados de wireframe.' },
-        items: {
-          en: [
-            'Low-fidelity wireframes: Key screens with basic layout',
-            'User flow wireframes: Connected screens showing navigation',
-            'Annotations: Notes explaining functionality',
-            'Interactive prototype: Clickable wireframes (optional)'
-          ],
-          es: [
-            'Wireframes de baja fidelidad: Pantallas clave con diseño básico',
-            'Wireframes de flujo de usuario: Pantallas conectadas mostrando navegación',
-            'Anotaciones: Notas explicando funcionalidad',
-            'Prototipo interactivo: Wireframes clicables (opcional)'
-          ]
-        }
-      },
-      practicalTools: {
-        design: { 
-          en: ['Figma', 'Balsamiq', 'Sketch', 'Whimsical', 'Pen & Paper'], 
-          es: ['Figma', 'Balsamiq', 'Sketch', 'Whimsical', 'Lápiz y Papel'] 
-        },
-        research: { en: ['Maze', 'UserTesting'], es: ['Maze', 'UserTesting'] },
-        handoff: { en: ['Figma (with annotations)', 'Notion'], es: ['Figma (con anotaciones)', 'Notion'] }
-      },
-      realExample: {
-        title: { en: 'Instagram Early Wireframes', es: 'Wireframes Tempranos de Instagram' },
-        description: {
-          en: 'Instagram\'s founders started with paper sketches of the core feed concept before building anything. These rough wireframes helped them validate the "photo-first" approach with early testers.',
-          es: 'Los fundadores de Instagram comenzaron con bocetos en papel del concepto central del feed antes de construir nada. Estos wireframes burdos les ayudaron a validar el enfoque "foto-primero" con probadores tempranos.'
-        },
-        company: 'Instagram'
-      }
-    }
-  },
-  {
     id: 'visual-hierarchy',
     title: { en: 'Visual Hierarchy', es: 'Jerarquía Visual' },
     description: { 
@@ -763,10 +646,10 @@ export const uiLessons: Topic[] = [
   },
   {
     id: 'accessibility-wcag',
-    title: { en: 'Accessibility WCAG', es: 'Accesibilidad WCAG' },
+    title: { en: 'Accessibility Foundations', es: 'Fundamentos de Accesibilidad' },
     description: { 
-      en: 'Designing inclusive experiences that work for users of all abilities.',
-      es: 'Diseñar experiencias inclusivas que funcionen para usuarios de todas las capacidades.'
+      en: 'WCAG principles, contrast requirements, keyboard navigation, and designing for users of all abilities.',
+      es: 'Principios WCAG, requisitos de contraste, navegación por teclado y diseño para usuarios de todas las capacidades.'
     },
     status: 'intermediate',
     timeEstimate: '1h 30min',

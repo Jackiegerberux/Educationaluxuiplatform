@@ -43,7 +43,6 @@ import { Button } from '../ui/button';
 import { UserPersonaCard } from './examples/UserPersonaCard';
 import { EmpathyMapExample } from './examples/EmpathyMapExample';
 import { RoleComparisonInteractive } from './examples/RoleComparisonInteractive';
-import { RetroModernComparison } from './examples/RetroModernComparison';
 import { ModalEvolutionComparison } from './examples/ModalEvolutionComparison';
 import { MentalModelExample } from './examples/MentalModelExample';
 import { SitemapExample } from './examples/SitemapExample';
@@ -750,7 +749,6 @@ export function LessonPage() {
             {topic.id === 'visual-hierarchy' && <VisualHierarchyExamples />}
             {topic.id === 'ux-psychology' && <MentalModelExample />}
             {topic.id === 'information-architecture' && <SitemapExample />}
-            {topic.id === 'ia-fundamentals' && <SitemapExample />}
             {topic.id === 'methodologies-overview' && <MethodologiesDeepDive />}
             {topic.id === 'customer-journey-map' && <InteractiveJourneyMap />}
             {topic.id === 'service-blueprint' && <BlueprintSimulator />}
@@ -758,7 +756,7 @@ export function LessonPage() {
             {topic.id === 'user-flows' && <UserFlowInteractive />}
             {topic.id === 'wireframing-prototyping' && <WireframeFidelityComparison />}
             {topic.id === 'ux-research' && <UXResearchDataExample />}
-            {(topic.id === 'competitive-analysis' || topic.id === 'competitive-analysis-basics') && <CompetitiveBenchmarkExample />}
+            {topic.id === 'competitive-analysis' && <CompetitiveBenchmarkExample />}
             {topic.id === 'ux-process' && <UXDeliverablesCaseStudy />}
             {topic.id === 'methodologies-overview' && <MethodologyPicker />}
             {topic.id === 'design-thinking' && <HMWWorkshop />}
