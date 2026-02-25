@@ -29,7 +29,7 @@ export type { Language, Topic, Track, LessonTag } from './types';
 import type { LessonTag } from './types';
 
 // Internal data source — all topic content organized for extraction
-// The exported `tracks` array below reorganizes these into 8 learning phases
+// The exported `tracks` array below reorganizes these into 9 learning phases
 const _topicSource: Track[] = [
   {
     id: 'foundations',
@@ -2768,7 +2768,7 @@ const _t = (id: string, tag: LessonTag = 'Core UX'): Topic => {
 };
 
 // ============================================================
-// EXPORTED TRACKS — 8 Phases following real UX project workflow
+// EXPORTED TRACKS — 9 Phases following real UX project workflow
 // Ordered: basic → intermediate → advanced within each phase
 // Tags: Core UX | Product | UI | Tech | Strategy | Metrics
 //

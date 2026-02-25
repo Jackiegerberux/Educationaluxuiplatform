@@ -29,7 +29,7 @@ export interface RoadmapCluster {
 }
 
 // Internal data source — all node content organized by original clusters
-// The exported `roadmapData` array below reorganizes these into 8 learning phases
+// The exported `roadmapData` array below reorganizes these into 9 learning phases
 const _roadmapSource: RoadmapCluster[] = [
   // ═══════════════════════════════════════════════════════════
   // CLUSTER 1: FOUNDATIONS
@@ -1230,7 +1230,7 @@ const _n = (id: string): RoadmapNode => {
 };
 
 // ============================================================
-// EXPORTED ROADMAP DATA — 8 Phases following real project workflow
+// EXPORTED ROADMAP DATA — 9 Phases following real project workflow
 // Mirrors content.ts track organization exactly
 // Ordered: basic → intermediate → advanced within each phase
 // ============================================================

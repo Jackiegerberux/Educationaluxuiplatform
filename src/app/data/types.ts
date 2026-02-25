@@ -63,6 +63,33 @@ export interface Topic {
       imageUrl?: string;
       company?: string;
     };
+    // Accessibility-specific extended content
+    visualExamples?: {
+      description: { en: string; es: string };
+      examples: {
+        title: { en: string; es: string };
+        image?: string;
+        description: { en: string; es: string };
+      }[];
+    };
+    codeExamples?: {
+      description: { en: string; es: string };
+      examples: {
+        title: { en: string; es: string };
+        bad: string;
+        good: string;
+        explanation: { en: string; es: string };
+      }[];
+    };
+    tools?: {
+      description: { en: string; es: string };
+      items: {
+        name: string;
+        url: string;
+        description: { en: string; es: string };
+        type: { en: string; es: string };
+      }[];
+    };
   };
 }
 

@@ -763,21 +763,8 @@ export function LessonPage() {
             {topic.id === 'design-sprint' && <SprintPlanner />}
             {topic.id === 'scrum-for-designers' && <TicketBuilder />}
             {topic.id === 'user-stories-and-requirements' && <RequirementClassifier />}
-            {topic.id === 'product-roadmapping' && <RoadmapBuilder />}
-            {topic.id === 'release-planning-and-increment-strategy' && <ReleasePlanner />}
-            {topic.id === 'portfolio-case-study-writing' && (
-              <>
-                <StorytellingBanner />
-                <CaseStudyBuilder />
-              </>
-            )}
-            {topic.id === 'lean-ux' && <LeanUXHypothesisBuilder />}
-            {topic.id === 'mvp-scope' && <MVPScopeSlider />}
-            {topic.id === 'lean-ux' && (
-              <div className="mt-12">
-                <MVPScopeSlider />
-              </div>
-            )}
+            {/* Note: RoadmapBuilder, ReleasePlanner, CaseStudyBuilder, LeanUXHypothesisBuilder, MVPScopeSlider
+                are rendered in their dedicated sections above (outside realExample) to avoid duplication */}
             {topic.id === 'type-scale' && (
               <div className="mt-12">
                 <TypeScaleComparison />

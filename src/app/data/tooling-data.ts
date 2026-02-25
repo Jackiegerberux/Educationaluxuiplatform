@@ -632,6 +632,127 @@ export const toolingData: ToolItem[] = [
     proTip: { en: 'Use it to quickly prototype functional MVPs for user testing before building properly.', es: 'Usalo para prototipar rapidamente MVPs funcionales para testing de usuario antes de construir apropiadamente.' },
     tags: ['Full-Stack', 'AI Builder', 'Prototyping'],
   },
+  {
+    id: 'tldraw-make-real',
+    name: 'tldraw Make Real',
+    category: 'ai',
+    pricing: 'free',
+    level: 'beginner',
+    url: 'https://makereal.tldraw.com',
+    description: {
+      en: 'Draw a UI sketch on a whiteboard and AI converts it into working HTML/CSS/JS instantly. Magical sketch-to-code tool.',
+      es: 'Dibuja un boceto de UI en una pizarra y la IA lo convierte en HTML/CSS/JS funcional al instante. Herramienta magica de boceto a codigo.'
+    },
+    bestFor: { en: 'Sketch to Code, Rapid Ideation, Lo-Fi to Hi-Fi Prototyping', es: 'Boceto a Codigo, Ideacion Rapida, Prototipado Lo-Fi a Hi-Fi' },
+    proTip: { en: 'Draw rough wireframes with annotations - the more context you add, the better the output.', es: 'Dibuja wireframes rough con anotaciones - mientras mas contexto agregues, mejor el resultado.' },
+    tags: ['Sketch to Code', 'Whiteboard', 'AI', 'Free'],
+  },
+  {
+    id: 'pencil-tldraw',
+    name: 'Pencil by tldraw',
+    category: 'ai',
+    pricing: 'free',
+    level: 'beginner',
+    url: 'https://pencil.tldraw.com',
+    description: {
+      en: 'AI-powered infinite canvas for brainstorming and visual thinking. Draw freely and let AI help organize, expand, and refine your ideas into structured designs.',
+      es: 'Lienzo infinito impulsado por IA para brainstorming y pensamiento visual. Dibuja libremente y deja que la IA ayude a organizar, expandir y refinar tus ideas en disenos estructurados.'
+    },
+    bestFor: { en: 'Brainstorming, Visual Thinking, Early Ideation, Concept Exploration', es: 'Brainstorming, Pensamiento Visual, Ideacion Temprana, Exploracion de Conceptos' },
+    proTip: { en: 'Use it in the earliest discovery phase to visually brainstorm before switching to structured tools like Figma.', es: 'Usalo en la fase de descubrimiento mas temprana para brainstorming visual antes de cambiar a herramientas estructuradas como Figma.' },
+    tags: ['Brainstorming', 'Visual Thinking', 'AI', 'Free'],
+  },
+  {
+    id: 'musho-ai',
+    name: 'Musho AI',
+    category: 'ai',
+    pricing: 'freemium',
+    level: 'beginner',
+    url: 'https://musho.ai',
+    description: {
+      en: 'AI website generator that creates beautiful, production-ready landing pages from simple text prompts. Exports clean code and Figma files.',
+      es: 'Generador de sitios web por IA que crea landing pages hermosas y listas para produccion desde prompts de texto simples. Exporta codigo limpio y archivos Figma.'
+    },
+    bestFor: { en: 'Landing Page Generation, Quick Mockups, Client Presentations, Design Exploration', es: 'Generacion de Landing Pages, Mockups Rapidos, Presentaciones a Clientes, Exploracion de Diseno' },
+    proTip: { en: 'Generate 3-5 landing page variants in minutes for A/B testing discussions with stakeholders.', es: 'Genera 3-5 variantes de landing page en minutos para discusiones de A/B testing con stakeholders.' },
+    tags: ['Landing Pages', 'Web Generation', 'AI', 'Figma Export'],
+  },
+  {
+    id: 'gemini',
+    name: 'Google Gemini',
+    category: 'ai',
+    pricing: 'freemium',
+    level: 'beginner',
+    url: 'https://gemini.google.com',
+    description: {
+      en: 'Google\'s multimodal AI. Excels at image analysis, code generation, and integrates natively with Google Workspace.',
+      es: 'IA multimodal de Google. Excelente en analisis de imagenes, generacion de codigo e integracion nativa con Google Workspace.'
+    },
+    bestFor: { en: 'Image Analysis, Google Workspace Integration, Research, Multimodal Tasks', es: 'Analisis de Imagenes, Integracion Google Workspace, Investigacion, Tareas Multimodales' },
+    proTip: { en: 'Use Gemini in Google Docs to generate UX documentation drafts and research summaries.', es: 'Usa Gemini en Google Docs para generar borradores de documentacion UX y resumenes de investigacion.' },
+    tags: ['LLM', 'Multimodal', 'Google', 'Research'],
+  },
+  {
+    id: 'lovable',
+    name: 'Lovable',
+    category: 'ai',
+    pricing: 'freemium',
+    level: 'intermediate',
+    url: 'https://lovable.dev',
+    description: {
+      en: 'AI app builder focused on beautiful UI. Generates full-stack apps with great default styling and Supabase integration.',
+      es: 'Constructor de apps IA enfocado en UI hermosa. Genera apps full-stack con estilos por defecto excelentes e integracion con Supabase.'
+    },
+    bestFor: { en: 'Beautiful MVP Prototypes, Full-Stack Apps, Client Demos', es: 'Prototipos MVP Hermosos, Apps Full-Stack, Demos para Clientes' },
+    proTip: { en: 'Great for building interactive prototypes that look production-ready for stakeholder demos.', es: 'Ideal para construir prototipos interactivos que se ven listos para produccion en demos con stakeholders.' },
+    tags: ['AI Builder', 'Full-Stack', 'Beautiful UI'],
+  },
+  {
+    id: 'figma-ai',
+    name: 'Figma AI',
+    category: 'ai',
+    pricing: 'freemium',
+    level: 'beginner',
+    url: 'https://www.figma.com/ai',
+    description: {
+      en: 'Built-in AI features in Figma: auto-generate designs from text, rename layers, remove backgrounds, and translate copy.',
+      es: 'Funciones IA integradas en Figma: auto-genera disenos desde texto, renombra capas, remueve fondos y traduce copy.'
+    },
+    bestFor: { en: 'In-Design AI, Layer Naming, Auto-Layout Generation, Copy Translation', es: 'IA en Diseno, Nombrado de Capas, Generacion de Auto-Layout, Traduccion de Copy' },
+    proTip: { en: 'Use "Make a design" to quickly explore layout variants, then refine manually.', es: 'Usa "Make a design" para explorar variantes de layout rapidamente, luego refina manualmente.' },
+    tags: ['Figma', 'Built-in AI', 'Design Generation'],
+    essential: true
+  },
+  {
+    id: 'perplexity',
+    name: 'Perplexity',
+    category: 'ai',
+    pricing: 'freemium',
+    level: 'beginner',
+    url: 'https://perplexity.ai',
+    description: {
+      en: 'AI-powered search engine with cited sources. Perfect for competitive research, trend analysis, and fact-checked UX insights.',
+      es: 'Motor de busqueda impulsado por IA con fuentes citadas. Perfecto para investigacion competitiva, analisis de tendencias e insights UX verificados.'
+    },
+    bestFor: { en: 'Competitive Research, Trend Analysis, Cited Sources, Fact-Checking', es: 'Investigacion Competitiva, Analisis de Tendencias, Fuentes Citadas, Verificacion de Hechos' },
+    proTip: { en: 'Use it for competitive analysis - ask about industry benchmarks and it will cite real sources.', es: 'Usalo para analisis competitivo - pregunta sobre benchmarks de industria y citara fuentes reales.' },
+    tags: ['Search', 'Research', 'Citations', 'AI'],
+  },
+  {
+    id: 'cursor-ai',
+    name: 'Windsurf',
+    category: 'ai',
+    pricing: 'freemium',
+    level: 'intermediate',
+    url: 'https://codeium.com/windsurf',
+    description: {
+      en: 'AI-powered IDE by Codeium with agentic coding capabilities. Understands project context for multi-file edits and refactors.',
+      es: 'IDE impulsado por IA de Codeium con capacidades de coding agentico. Entiende contexto del proyecto para ediciones y refactors multi-archivo.'
+    },
+    bestFor: { en: 'Agentic Coding, Multi-File Edits, Codebase Understanding', es: 'Codigo Agentico, Ediciones Multi-Archivo, Comprension de Codebase' },
+    proTip: { en: 'Use Cascade flows to let the AI handle complex multi-step refactoring tasks autonomously.', es: 'Usa flujos Cascade para dejar que la IA maneje tareas de refactoring complejas de multiples pasos autonomamente.' },
+    tags: ['IDE', 'AI', 'Agentic', 'Multi-File'],
+  },
 
   // ─── RESEARCH & TESTING ────────────────────────────
   {
@@ -1158,5 +1279,35 @@ export const toolingData: ToolItem[] = [
     bestFor: { en: 'Developer Handoff, Code Snippets, Design Inspection, Jira Integration', es: 'Handoff a Developer, Fragmentos de Codigo, Inspeccion de Diseno, Integracion Jira' },
     proTip: { en: 'Use annotations to explain interaction patterns that developers can\'t infer from static screens.', es: 'Usa anotaciones para explicar patrones de interaccion que los developers no pueden inferir de pantallas estaticas.' },
     tags: ['Handoff', 'Figma', 'Code'],
+  },
+  {
+    id: 'jam',
+    name: 'Jam',
+    category: 'collaboration',
+    pricing: 'freemium',
+    level: 'beginner',
+    url: 'https://jam.dev',
+    description: {
+      en: 'Instant bug reporting tool. Capture screenshots, console logs, network requests, and device info in one click — no more back-and-forth with developers.',
+      es: 'Herramienta de reporte de bugs instantaneo. Captura capturas de pantalla, logs de consola, peticiones de red e info del dispositivo en un clic — sin mas ida y vuelta con developers.'
+    },
+    bestFor: { en: 'Bug Reporting, QA Collaboration, Design-Dev Communication, Issue Reproduction', es: 'Reporte de Bugs, Colaboracion QA, Comunicacion Diseno-Dev, Reproduccion de Issues' },
+    proTip: { en: 'Install the browser extension and use it during design QA to file pixel-perfect bug reports with full context automatically.', es: 'Instala la extension del navegador y usala durante QA de diseno para reportar bugs pixel-perfect con contexto completo automaticamente.' },
+    tags: ['Bug Reporting', 'QA', 'Browser Extension', 'Collaboration'],
+  },
+  {
+    id: 'pencil',
+    name: 'Pencil',
+    category: 'ai',
+    pricing: 'freemium',
+    level: 'beginner',
+    url: 'https://www.pencil.dev',
+    description: {
+      en: 'AI-powered creative generation platform for ads, social content, and marketing visuals. Generate on-brand variations at scale with predictive performance scoring.',
+      es: 'Plataforma de generacion creativa impulsada por IA para anuncios, contenido social y visuales de marketing. Genera variaciones on-brand a escala con scoring predictivo de rendimiento.'
+    },
+    bestFor: { en: 'Ad Creative Generation, Social Media Content, A/B Visual Testing, Brand-Consistent Assets', es: 'Generacion de Creativos Publicitarios, Contenido para Redes Sociales, Testing Visual A/B, Assets Consistentes con la Marca' },
+    proTip: { en: 'Use the predictive scoring to pre-test ad creative variations before spending budget on live campaigns.', es: 'Usa el scoring predictivo para pre-testear variaciones de creativos publicitarios antes de gastar presupuesto en campanas en vivo.' },
+    tags: ['AI', 'Ad Creative', 'Marketing', 'Content Generation'],
   },
 ];
