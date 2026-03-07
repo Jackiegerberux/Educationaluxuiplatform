@@ -5,7 +5,8 @@ import { motion, AnimatePresence } from 'motion/react';
 import {
   Search, RefreshCw, Eye, Globe, RotateCcw, Copy, AlertTriangle, Zap, Sparkles,
   LifeBuoy, BookOpen, Target, List, Ear, ScanEye, CheckCircle2, XCircle,
-  ArrowRight, Building2, GraduationCap, Lightbulb
+  ArrowRight, Building2, GraduationCap, Lightbulb,
+  Users, Grid3X3, Star, Award, Clock, Hand, MessageCircle, Code2
 } from 'lucide-react';
 import { Input } from '../ui/input';
 import { Button } from '../ui/button';
@@ -16,7 +17,9 @@ import { heuristicIllustrations } from './HeuristicIllustrations';
 const iconMap: Record<string, React.ElementType> = {
   h1: Eye, h2: Globe, h3: RotateCcw, h4: Copy, h5: AlertTriangle,
   h6: ScanEye, h7: Zap, h8: Sparkles, h9: LifeBuoy, h10: BookOpen,
-  law1: List, law2: Target, a11y1: Ear,
+  law1: List, law2: Target, law3: Users, law4: Grid3X3, law5: Star,
+  law6: Award, law7: Clock, law8: Sparkles,
+  a11y1: Ear, a11y2: Hand, a11y3: MessageCircle, a11y4: Code2,
 };
 
 // ─── Color Palette per Category ──────────────────────────────
@@ -269,6 +272,114 @@ const enrichedMap: Record<string, EnrichedData> = {
       es: 'Más grande + más cerca = más rápido. Haz acciones principales grandes y fáciles de alcanzar; aleja las destructivas.',
     },
   },
+  law3: {
+    doExample: {
+      en: 'Place the logo top-left linking to home, use a hamburger menu on mobile, put search in the header, and keep the cart icon top-right — exactly where users expect them.',
+      es: 'Colocar el logo arriba a la izquierda enlazando al inicio, usar menú hamburguesa en móvil, poner búsqueda en el header y mantener el icono del carrito arriba a la derecha — exactamente donde los usuarios los esperan.',
+    },
+    dontExample: {
+      en: 'Reinvent navigation: hide the menu behind a gesture, put the logo bottom-center, or use a non-standard icon for search. Innovation ≠ ignoring conventions.',
+      es: 'Reinventar la navegación: esconder el menú detrás de un gesto, poner el logo abajo al centro, o usar un icono no estándar para búsqueda. Innovación ≠ ignorar convenciones.',
+    },
+    realProduct: {
+      en: 'Shopify stores follow e-commerce conventions (header with logo/cart/search, product grid, filter sidebar) — users can shop immediately without learning a new UI.',
+      es: 'Las tiendas Shopify siguen convenciones de e-commerce (header con logo/carrito/búsqueda, grilla de productos, sidebar de filtros) — los usuarios pueden comprar inmediatamente sin aprender una nueva UI.',
+    },
+    keyTakeaway: {
+      en: 'Users bring expectations from every other product they use. Leverage familiar patterns; innovate on value, not on how to navigate.',
+      es: 'Los usuarios traen expectativas de cada otro producto que usan. Aprovecha los patrones familiares; innova en valor, no en cómo navegar.',
+    },
+  },
+  law4: {
+    doExample: {
+      en: 'Chunk a credit card number into groups of 4 digits (1234 5678 9012 3456), organize nav into 5-7 top-level categories, and break long articles into scannable sections.',
+      es: 'Dividir un número de tarjeta de crédito en grupos de 4 dígitos (1234 5678 9012 3456), organizar la nav en 5-7 categorías principales, y dividir artículos largos en secciones escaneables.',
+    },
+    dontExample: {
+      en: 'A dashboard showing 15 unrelated metrics in a single view with no grouping — users can\'t process or remember any of them.',
+      es: 'Un dashboard mostrando 15 métricas no relacionadas en una sola vista sin agrupación — los usuarios no pueden procesar ni recordar ninguna.',
+    },
+    realProduct: {
+      en: 'Slack organizes conversations into Channels, DMs, and Threads — chunking thousands of messages into digestible, scannable groups.',
+      es: 'Slack organiza conversaciones en Canales, DMs e Hilos — agrupando miles de mensajes en grupos digeribles y escaneables.',
+    },
+    keyTakeaway: {
+      en: 'Don\'t overwhelm working memory. Chunk content into groups of 5-9 items and use progressive disclosure for the rest.',
+      es: 'No sobrecargues la memoria de trabajo. Agrupa el contenido en grupos de 5-9 elementos y usa revelación progresiva para el resto.',
+    },
+  },
+  law5: {
+    doExample: {
+      en: 'Highlight the recommended pricing plan with a contrasting color, a "Most Popular" badge, and a slightly larger card to make it visually distinct from other options.',
+      es: 'Resaltar el plan de precios recomendado con un color contrastante, una insignia "Más Popular" y una tarjeta ligeramente más grande para distinguirlo visualmente de las otras opciones.',
+    },
+    dontExample: {
+      en: 'Three identical-looking pricing cards with no visual hierarchy — users can\'t quickly identify the best option and experience decision fatigue.',
+      es: 'Tres tarjetas de precios de aspecto idéntico sin jerarquía visual — los usuarios no pueden identificar rápidamente la mejor opción y experimentan fatiga de decisión.',
+    },
+    realProduct: {
+      en: 'Spotify\'s pricing page highlights the Premium plan with a contrasting green accent and "Recommended" label, making it stand out from Free and Family tiers.',
+      es: 'La página de precios de Spotify resalta el plan Premium con un acento verde contrastante y etiqueta "Recomendado", haciéndolo destacar de los tiers Free y Family.',
+    },
+    keyTakeaway: {
+      en: 'Make the important thing look different. Visual distinction drives attention and memory — use it strategically on CTAs, key features, and recommended options.',
+      es: 'Haz que lo importante se vea diferente. La distinción visual impulsa la atención y la memoria — úsala estratégicamente en CTAs, funciones clave y opciones recomendadas.',
+    },
+  },
+  law6: {
+    doExample: {
+      en: 'End a checkout flow with a satisfying confirmation animation, order summary, and a small surprise ("10% off your next order!"). The last moment shapes the overall memory.',
+      es: 'Terminar un flujo de checkout con una animación de confirmación satisfactoria, resumen del pedido, y una pequeña sorpresa ("¡10% de descuento en tu próximo pedido!"). El último momento moldea la memoria general.',
+    },
+    dontExample: {
+      en: 'A frustrating checkout (slow loading, confusing forms) that ends with a plain "Order placed" text — the bad peak and weak ending ruin the whole experience.',
+      es: 'Un checkout frustrante (carga lenta, formularios confusos) que termina con un texto plano "Pedido realizado" — el mal pico y el final débil arruinan toda la experiencia.',
+    },
+    realProduct: {
+      en: 'Disney parks end each ride with a photo opportunity and gift shop — the "peak" is the ride itself, and the "end" is a positive souvenir moment that colors the entire memory.',
+      es: 'Los parques Disney terminan cada atracción con una oportunidad de foto y tienda de regalos — el "pico" es la atracción, y el "final" es un momento positivo de recuerdo que colorea toda la memoria.',
+    },
+    keyTakeaway: {
+      en: 'Invest in peak moments and endings. Users don\'t average their experience — they remember the best/worst moment and the last one.',
+      es: 'Invierte en momentos pico y finales. Los usuarios no promedian su experiencia — recuerdan el mejor/peor momento y el último.',
+    },
+  },
+  law7: {
+    doExample: {
+      en: 'Show a progress bar at "70% complete" on a user profile page. Display "3 of 5 steps done" in an onboarding wizard. The incomplete status creates productive tension.',
+      es: 'Mostrar una barra de progreso al "70% completo" en una página de perfil. Mostrar "3 de 5 pasos hechos" en un wizard de onboarding. El estado incompleto crea tensión productiva.',
+    },
+    dontExample: {
+      en: 'Remove all progress indicators — users abandon tasks because they don\'t feel the pull to complete them. No visible progress = no motivation.',
+      es: 'Eliminar todos los indicadores de progreso — los usuarios abandonan tareas porque no sienten la motivación de completarlas. Sin progreso visible = sin motivación.',
+    },
+    realProduct: {
+      en: 'LinkedIn\'s profile strength meter ("Intermediate — add 2 more sections to reach All-Star") leverages the Zeigarnik Effect to drive profile completion from 40% to 90%+.',
+      es: 'El medidor de fortaleza de perfil de LinkedIn ("Intermedio — agrega 2 secciones más para llegar a All-Star") aprovecha el Efecto Zeigarnik para impulsar la completitud del perfil del 40% al 90%+.',
+    },
+    keyTakeaway: {
+      en: 'Unfinished tasks haunt the mind. Use progress indicators, checklists, and streaks to harness this cognitive bias for user engagement.',
+      es: 'Las tareas sin terminar persiguen la mente. Usa indicadores de progreso, checklists y rachas para aprovechar este sesgo cognitivo para el engagement.',
+    },
+  },
+  law8: {
+    doExample: {
+      en: 'Invest in visual polish: smooth animations, consistent spacing, refined typography, and a cohesive color palette. First impressions set tolerance thresholds.',
+      es: 'Invertir en pulido visual: animaciones suaves, espaciado consistente, tipografía refinada y una paleta de colores cohesiva. Las primeras impresiones establecen umbrales de tolerancia.',
+    },
+    dontExample: {
+      en: 'A functional but visually ugly interface with misaligned elements, inconsistent fonts, and harsh colors — users perceive it as harder to use even if it works perfectly.',
+      es: 'Una interfaz funcional pero fea con elementos desalineados, fuentes inconsistentes y colores agresivos — los usuarios la perciben como más difícil de usar aunque funcione perfectamente.',
+    },
+    realProduct: {
+      en: 'Apple products feel intuitive partly because of their obsessive visual polish — rounded corners, smooth transitions, and refined typography create trust before the user even interacts.',
+      es: 'Los productos de Apple se sienten intuitivos por su pulido visual obsesivo — esquinas redondeadas, transiciones suaves y tipografía refinada crean confianza antes de que el usuario interactúe.',
+    },
+    keyTakeaway: {
+      en: 'Beauty is not just decoration — it builds trust. But never let aesthetics mask real usability problems. Polish AND usability must coexist.',
+      es: 'La belleza no es solo decoración — construye confianza. Pero nunca dejes que la estética esconda problemas reales de usabilidad. Pulido Y usabilidad deben coexistir.',
+    },
+  },
   a11y1: {
     doExample: {
       en: 'All images have descriptive alt text, videos have captions, and color is never the only way to convey information.',
@@ -285,6 +396,60 @@ const enrichedMap: Record<string, EnrichedData> = {
     keyTakeaway: {
       en: 'Accessibility is not optional. 15% of the world has a disability. Design for everyone.',
       es: 'La accesibilidad no es opcional. El 15% del mundo tiene una discapacidad. Diseña para todos.',
+    },
+  },
+  a11y2: {
+    doExample: {
+      en: 'Every interactive element (buttons, links, form controls, modals) is reachable and operable via keyboard alone. Focus indicators are visible and follow a logical tab order.',
+      es: 'Cada elemento interactivo (botones, enlaces, controles de formulario, modales) es alcanzable y operable solo con teclado. Los indicadores de foco son visibles y siguen un orden de tabulación lógico.',
+    },
+    dontExample: {
+      en: 'A dropdown menu that only opens on hover, a carousel that can\'t be navigated with arrow keys, or a modal with no keyboard trap — all unusable for keyboard-only users.',
+      es: 'Un menú desplegable que solo se abre al pasar el mouse, un carrusel que no se puede navegar con teclas de flecha, o un modal sin trampa de teclado — todos inutilizables para usuarios de solo teclado.',
+    },
+    realProduct: {
+      en: 'GitHub\'s entire interface is keyboard-navigable: press "." to open the web editor, "/" for search, "g n" for notifications. Full operability without a mouse.',
+      es: 'Toda la interfaz de GitHub es navegable por teclado: presiona "." para abrir el editor web, "/" para buscar, "g n" para notificaciones. Operabilidad completa sin mouse.',
+    },
+    keyTakeaway: {
+      en: 'If it can\'t be done with a keyboard, it can\'t be done by many users. Test your entire flow using only Tab, Enter, Space, and Arrow keys.',
+      es: 'Si no se puede hacer con el teclado, no pueden hacerlo muchos usuarios. Prueba todo tu flujo usando solo Tab, Enter, Espacio y teclas de flecha.',
+    },
+  },
+  a11y3: {
+    doExample: {
+      en: 'Form fields have visible labels (not just placeholders), error messages explain what went wrong AND how to fix it, and the interface behaves predictably with no unexpected context changes.',
+      es: 'Los campos de formulario tienen etiquetas visibles (no solo placeholders), los mensajes de error explican qué salió mal Y cómo arreglarlo, y la interfaz se comporta de forma predecible sin cambios de contexto inesperados.',
+    },
+    dontExample: {
+      en: 'Auto-submitting a form when the user selects a dropdown value, showing errors only after pressing submit with no inline validation, or using placeholder-only labels that disappear.',
+      es: 'Auto-enviar un formulario cuando el usuario selecciona un valor del dropdown, mostrar errores solo después de presionar enviar sin validación inline, o usar etiquetas solo de placeholder que desaparecen.',
+    },
+    realProduct: {
+      en: 'Stripe\'s payment forms show inline validation, clear error states with suggestions ("Your card was declined — try another card"), and consistent predictable behavior across all inputs.',
+      es: 'Los formularios de pago de Stripe muestran validación inline, estados de error claros con sugerencias ("Tu tarjeta fue rechazada — intenta con otra"), y comportamiento predecible consistente en todos los inputs.',
+    },
+    keyTakeaway: {
+      en: 'Users must understand your content AND your controls. Clear labels, helpful errors, and predictable behavior are not extras — they\'re requirements.',
+      es: 'Los usuarios deben entender tu contenido Y tus controles. Etiquetas claras, errores útiles y comportamiento predecible no son extras — son requisitos.',
+    },
+  },
+  a11y4: {
+    doExample: {
+      en: 'Use semantic HTML (<button>, <nav>, <main>, <form>), proper ARIA roles/labels where needed, and validate with aXe, WAVE, and multiple screen readers (NVDA, VoiceOver).',
+      es: 'Usar HTML semántico (<button>, <nav>, <main>, <form>), roles/etiquetas ARIA apropiados donde sea necesario, y validar con aXe, WAVE y múltiples lectores de pantalla (NVDA, VoiceOver).',
+    },
+    dontExample: {
+      en: 'Building everything with div and span, using onClick on non-interactive elements, or relying on custom widgets without ARIA — screen readers can\'t interpret the interface.',
+      es: 'Construir todo con div y span, usar onClick en elementos no interactivos, o depender de widgets personalizados sin ARIA — los lectores de pantalla no pueden interpretar la interfaz.',
+    },
+    realProduct: {
+      en: 'MDN Web Docs uses flawless semantic HTML: landmarks (header, main, aside), heading hierarchy (h1 to h2 to h3), and ARIA labels — works perfectly with every assistive technology.',
+      es: 'MDN Web Docs usa HTML semántico impecable: landmarks (header, main, aside), jerarquía de headings (h1 a h2 a h3), y etiquetas ARIA — funciona perfectamente con cada tecnología de asistencia.',
+    },
+    keyTakeaway: {
+      en: 'Robust code = accessible code. Semantic HTML is 80% of the work. The remaining 20% is proper ARIA and testing with real assistive technologies.',
+      es: 'Código robusto = código accesible. HTML semántico es el 80% del trabajo. El 20% restante es ARIA apropiado y testing con tecnologías de asistencia reales.',
     },
   },
 };

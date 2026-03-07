@@ -313,7 +313,7 @@ export function LessonPage() {
   };
 
   return (
-    <div className="min-h-screen bg-black overflow-x-hidden">
+    <div className="min-h-screen bg-black overflow-x-clip">
       {/* Header */}
       <div className="sticky top-16 z-40 bg-black/80 backdrop-blur-xl border-b border-white/5">
         <div className="max-w-[1480px] mx-auto px-4 md:px-6 py-4 flex items-center justify-between">
@@ -488,10 +488,10 @@ export function LessonPage() {
         {topic.id === 'release-planning-and-increment-strategy' && <ReleasePlanner />}
         {/* Portfolio Case Study Writing - Case Study Builder */}
         {topic.id === 'portfolio-case-study-writing' && (
-          <>
+          <div className="space-y-6">
             <StorytellingBanner />
             <CaseStudyBuilder />
-          </>
+          </div>
         )}
         {/* Lean UX - Hypothesis Builder */}
         {topic.id === 'lean-ux' && <LeanUXHypothesisBuilder />}
@@ -739,10 +739,10 @@ export function LessonPage() {
 
             {/* Special Examples */}
             {topic.id === 'user-personas' && (
-              <>
+              <div className="space-y-6">
                 <UserPersonaCard />
                 <EmpathyMapExample />
-              </>
+              </div>
             )}
             {topic.id === 'ux-ui-product-design-intro' && <RoleComparisonInteractive />}
             {topic.id === 'usability-basics' && <ModalEvolutionComparison />}

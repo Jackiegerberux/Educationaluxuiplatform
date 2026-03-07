@@ -3187,7 +3187,91 @@ export const heuristics: Heuristic[] = [
       es: 'Hacer que un botón de "Enviar" sea grande y fácil de hacer clic.'
     }
   },
-  // Accessibility
+  {
+    id: 'law3',
+    number: 'L3',
+    category: 'psychology',
+    title: { en: 'Jakob\'s Law', es: 'Ley de Jakob' },
+    description: {
+      en: 'Users spend most of their time on other sites. This means they prefer your site to work the same way as all the other sites they already know.',
+      es: 'Los usuarios pasan la mayor parte de su tiempo en otros sitios. Esto significa que prefieren que tu sitio funcione de la misma manera que todos los otros sitios que ya conocen.'
+    },
+    example: {
+      en: 'Placing the logo top-left linked to the homepage, search bar top-right, and shopping cart icon in the header — matching universal conventions.',
+      es: 'Colocar el logo arriba a la izquierda enlazado al inicio, barra de búsqueda arriba a la derecha, e icono del carrito en el header — siguiendo convenciones universales.'
+    }
+  },
+  {
+    id: 'law4',
+    number: 'L4',
+    category: 'psychology',
+    title: { en: 'Miller\'s Law', es: 'Ley de Miller' },
+    description: {
+      en: 'The average person can only keep 7 (±2) items in their working memory at a time. Chunking information into smaller groups helps users process and remember it.',
+      es: 'La persona promedio solo puede mantener 7 (±2) elementos en su memoria de trabajo a la vez. Agrupar información en conjuntos más pequeños ayuda a los usuarios a procesarla y recordarla.'
+    },
+    example: {
+      en: 'Formatting a phone number as (555) 123-4567 instead of 5551234567.',
+      es: 'Formatear un número de teléfono como (555) 123-4567 en lugar de 5551234567.'
+    }
+  },
+  {
+    id: 'law5',
+    number: 'L5',
+    category: 'psychology',
+    title: { en: 'Von Restorff Effect', es: 'Efecto Von Restorff' },
+    description: {
+      en: 'Also known as the Isolation Effect, it predicts that when multiple similar objects are present, the one that differs from the rest is most likely to be remembered.',
+      es: 'También conocido como Efecto de Aislamiento, predice que cuando hay múltiples objetos similares presentes, el que difiere del resto tiene más probabilidades de ser recordado.'
+    },
+    example: {
+      en: 'Highlighting the recommended pricing plan with a different color and a "Most Popular" badge to make it stand out from other options.',
+      es: 'Resaltar el plan de precios recomendado con un color diferente y una insignia de "Más Popular" para que destaque de las otras opciones.'
+    }
+  },
+  {
+    id: 'law6',
+    number: 'L6',
+    category: 'psychology',
+    title: { en: 'Peak-End Rule', es: 'Regla del Pico-Final' },
+    description: {
+      en: 'People judge an experience largely based on how they felt at its most intense point (the peak) and at its end, rather than the sum or average of every moment.',
+      es: 'Las personas juzgan una experiencia en gran medida según cómo se sintieron en su punto más intenso (el pico) y al final, en lugar de la suma o promedio de cada momento.'
+    },
+    example: {
+      en: 'An e-commerce checkout that ends with a delightful confirmation animation and a surprise discount code for the next purchase.',
+      es: 'Un checkout de e-commerce que termina con una animación agradable de confirmación y un código de descuento sorpresa para la próxima compra.'
+    }
+  },
+  {
+    id: 'law7',
+    number: 'L7',
+    category: 'psychology',
+    title: { en: 'Zeigarnik Effect', es: 'Efecto Zeigarnik' },
+    description: {
+      en: 'People remember uncompleted or interrupted tasks better than completed ones. This creates an internal tension that motivates users to finish what they started.',
+      es: 'Las personas recuerdan mejor las tareas incompletas o interrumpidas que las completadas. Esto crea una tensión interna que motiva a los usuarios a terminar lo que empezaron.'
+    },
+    example: {
+      en: 'LinkedIn\'s profile completeness progress bar ("Your profile is 70% complete") motivates users to fill in the remaining fields.',
+      es: 'La barra de progreso de completitud de perfil de LinkedIn ("Tu perfil está 70% completo") motiva a los usuarios a rellenar los campos restantes.'
+    }
+  },
+  {
+    id: 'law8',
+    number: 'L8',
+    category: 'psychology',
+    title: { en: 'Aesthetic-Usability Effect', es: 'Efecto Estético-Usabilidad' },
+    description: {
+      en: 'Users often perceive aesthetically pleasing designs as more usable. Beautiful interfaces create a positive emotional response that makes users more tolerant of minor usability issues.',
+      es: 'Los usuarios a menudo perciben los diseños estéticamente agradables como más usables. Las interfaces bellas crean una respuesta emocional positiva que hace a los usuarios más tolerantes a problemas menores de usabilidad.'
+    },
+    example: {
+      en: 'Apple products are perceived as easier to use partly because of their polished, elegant visual design.',
+      es: 'Los productos de Apple se perciben como más fáciles de usar en parte por su diseño visual pulido y elegante.'
+    }
+  },
+  // Accessibility (WCAG 2.1 POUR Principles)
    {
     id: 'a11y1',
     number: 'A1',
@@ -3200,6 +3284,48 @@ export const heuristics: Heuristic[] = [
     example: {
       en: 'Adding alt text to images for screen readers.',
       es: 'Agregar texto alternativo a las imágenes para lectores de pantalla.'
+    }
+  },
+  {
+    id: 'a11y2',
+    number: 'A2',
+    category: 'accessibility',
+    title: { en: 'Operable', es: 'Operable' },
+    description: {
+      en: 'User interface components and navigation must be operable. Users must be able to operate the interface using various input methods — it cannot require interaction that a user cannot perform.',
+      es: 'Los componentes de la interfaz de usuario y la navegación deben ser operables. Los usuarios deben poder operar la interfaz usando varios métodos de entrada — no puede requerir una interacción que un usuario no pueda realizar.'
+    },
+    example: {
+      en: 'All interactive elements are reachable and usable via keyboard alone (Tab, Enter, Space, Arrow keys).',
+      es: 'Todos los elementos interactivos son alcanzables y usables solo con teclado (Tab, Enter, Espacio, teclas de flecha).'
+    }
+  },
+  {
+    id: 'a11y3',
+    number: 'A3',
+    category: 'accessibility',
+    title: { en: 'Understandable', es: 'Comprensible' },
+    description: {
+      en: 'Information and the operation of the user interface must be understandable. Users must be able to understand the information as well as the operation of the interface.',
+      es: 'La información y el funcionamiento de la interfaz de usuario deben ser comprensibles. Los usuarios deben poder entender la información así como el funcionamiento de la interfaz.'
+    },
+    example: {
+      en: 'Form fields with clear labels, helpful error messages, and predictable behavior when interacting with controls.',
+      es: 'Campos de formulario con etiquetas claras, mensajes de error útiles y comportamiento predecible al interactuar con controles.'
+    }
+  },
+  {
+    id: 'a11y4',
+    number: 'A4',
+    category: 'accessibility',
+    title: { en: 'Robust', es: 'Robusto' },
+    description: {
+      en: 'Content must be robust enough that it can be interpreted reliably by a wide variety of user agents, including assistive technologies. As technologies evolve, the content should remain accessible.',
+      es: 'El contenido debe ser lo suficientemente robusto para que pueda ser interpretado de forma fiable por una amplia variedad de agentes de usuario, incluyendo tecnologías de asistencia. A medida que las tecnologías evolucionan, el contenido debe permanecer accesible.'
+    },
+    example: {
+      en: 'Using semantic HTML (button, nav, main, form) with proper ARIA attributes so screen readers can correctly announce interface elements.',
+      es: 'Usar HTML semántico (button, nav, main, form) con atributos ARIA apropiados para que los lectores de pantalla puedan anunciar correctamente los elementos de la interfaz.'
     }
   }
 ];

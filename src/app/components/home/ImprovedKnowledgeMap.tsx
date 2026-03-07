@@ -9,7 +9,6 @@ import {
   ArrowRight,
   BookOpen,
   Search,
-  Users,
   Target,
   Layers,
   PenTool,
@@ -20,7 +19,9 @@ import {
   ZoomIn,
   ZoomOut,
   Maximize2,
-  RotateCcw
+  RotateCcw,
+  Briefcase,
+  Monitor
 } from 'lucide-react';
 import { tracks } from '../../data/content';
 
@@ -45,243 +46,252 @@ interface Cluster {
   mainLessonSlug?: string;
 }
 
-// Map real lessons from content.ts to clusters
+// Map ALL lessons from content.ts tracks — slugs match topic.id exactly
 const clusters: Cluster[] = [
+  // ── PHASE 1: Foundations ─────────────────────────────────
   {
     id: 'foundations',
-    title: { en: 'UX/UI Foundations', es: 'Fundamentos UX/UI' },
+    title: { en: 'Foundations', es: 'Fundamentos' },
     icon: BookOpen,
-    color: 'bg-blue-500/20 text-blue-400',
-    borderColor: 'border-blue-500/50',
-    position: { x: 20, y: 20 },
+    color: 'bg-purple-500/20 text-purple-400',
+    borderColor: 'border-purple-500/50',
+    position: { x: 15, y: 15 },
     definition: { 
-      en: 'Core principles of user experience and interface design. The building blocks of digital product design.',
-      es: 'Principios fundamentales de experiencia de usuario y diseño de interfaces. Los bloques de construcción del diseño de productos digitales.'
+      en: 'Core UX/UI principles, design thinking, agile methodologies, and the product design mindset.',
+      es: 'Principios fundamentales de UX/UI, design thinking, metodologías ágiles y mentalidad de diseño de producto.'
     },
     skills: {
-      en: ['User-centered design principles', 'Design thinking process', 'UX vs UI differences', 'Basic terminology'],
-      es: ['Principios de diseño centrado en usuario', 'Proceso de design thinking', 'Diferencias UX vs UI', 'Terminología básica']
+      en: ['UX vs UI clarity', 'Design thinking', 'Usability heuristics', 'Agile & Scrum', 'Lean UX', 'User stories'],
+      es: ['Claridad UX vs UI', 'Design thinking', 'Heurísticas de usabilidad', 'Agile y Scrum', 'Lean UX', 'User stories']
     },
     lessons: [
       { title: { en: 'UX vs UI vs Product Design', es: 'UX vs UI vs Diseño de Producto' }, slug: 'ux-ui-product-design-intro', status: 'not-started' },
-      { title: { en: 'Design Thinking Process', es: 'Proceso de Design Thinking' }, slug: 'design-thinking-intro', status: 'not-started' },
-      { title: { en: 'User-Centered Design', es: 'Diseño Centrado en Usuario' }, slug: 'user-centered-design', status: 'not-started' }
+      { title: { en: 'Usability Basics', es: 'Conceptos Básicos de Usabilidad' }, slug: 'usability-basics', status: 'not-started' },
+      { title: { en: 'Design Thinking', es: 'Design Thinking' }, slug: 'design-thinking', status: 'not-started' },
+      { title: { en: 'UX Process & Deliverables', es: 'Proceso UX y Entregables' }, slug: 'ux-process', status: 'not-started' },
+      { title: { en: 'Methodologies Overview', es: 'Visión General de Metodologías' }, slug: 'methodologies-overview', status: 'not-started' },
+      { title: { en: 'Lean UX', es: 'Lean UX' }, slug: 'lean-ux', status: 'not-started' },
+      { title: { en: 'Design Sprint', es: 'Design Sprint' }, slug: 'design-sprint', status: 'not-started' },
+      { title: { en: 'Scrum for Designers', es: 'Scrum para Diseñadores' }, slug: 'scrum-for-designers', status: 'not-started' },
+      { title: { en: 'User Stories & Requirements', es: 'User Stories y Requisitos' }, slug: 'user-stories-and-requirements', status: 'not-started' },
     ],
-    prerequisites: {
-      en: ['None - Start here!'],
-      es: ['Ninguno - ¡Empieza aquí!']
-    },
-    nextSteps: {
-      en: ['UX Research', 'Problem Definition'],
-      es: ['Investigación UX', 'Definición de Problema']
-    },
+    prerequisites: { en: ['None — Start here!'], es: ['Ninguno — ¡Empieza aquí!'] },
+    nextSteps: { en: ['Problem Framing & Discovery', 'Research'], es: ['Definición del Problema', 'Investigación'] },
     mainLessonSlug: 'ux-ui-product-design-intro'
   },
+  // ── PHASE 2: Discovery ──────────────────────────────────
   {
-    id: 'research',
-    title: { en: 'UX Research', es: 'Investigación UX' },
-    icon: Search,
-    color: 'bg-purple-500/20 text-purple-400',
-    borderColor: 'border-purple-500/50',
+    id: 'discovery',
+    title: { en: 'Problem Framing & Discovery', es: 'Definición y Descubrimiento' },
+    icon: Target,
+    color: 'bg-blue-500/20 text-blue-400',
+    borderColor: 'border-blue-500/50',
     position: { x: 50, y: 10 },
     definition: { 
-      en: 'Methods to understand users, their needs, behaviors, and pain points through qualitative and quantitative research.',
-      es: 'Métodos para entender usuarios, sus necesidades, comportamientos y puntos de dolor a través de investigación cualitativa y cuantitativa.'
+      en: 'Business goals, stakeholder alignment, competitive landscape, and strategic planning.',
+      es: 'Objetivos de negocio, alineación con stakeholders, panorama competitivo y planificación estratégica.'
     },
     skills: {
-      en: ['User interviews', 'Surveys & questionnaires', 'Competitive analysis', 'Personas creation', 'Journey mapping'],
-      es: ['Entrevistas de usuario', 'Encuestas y cuestionarios', 'Análisis competitivo', 'Creación de personas', 'Mapeo de viaje']
+      en: ['KPI definition', 'Stakeholder mapping', 'Problem statements', 'Competitive analysis', 'Roadmapping', 'Release planning'],
+      es: ['Definición de KPIs', 'Mapeo de stakeholders', 'Declaraciones de problema', 'Análisis competitivo', 'Roadmapping', 'Planificación de releases']
     },
     lessons: [
-      { title: { en: 'Empathy & User Interviews', es: 'Empatía y Entrevistas' }, slug: 'empathy-interviewing', status: 'not-started' },
-      { title: { en: 'Affinity Diagrams', es: 'Diagramas de Afinidad' }, slug: 'affinity-diagrams', status: 'not-started' },
-      { title: { en: 'Personas & Scenarios', es: 'Personas y Escenarios' }, slug: 'personas-scenarios', status: 'not-started' }
+      { title: { en: 'Business Goals & KPIs', es: 'Objetivos de Negocio y KPIs' }, slug: 'business-goals-kpis', status: 'not-started' },
+      { title: { en: 'Stakeholder Mapping', es: 'Mapeo de Stakeholders' }, slug: 'stakeholder-mapping', status: 'not-started' },
+      { title: { en: 'Problem Statements', es: 'Declaraciones de Problema' }, slug: 'problem-statements', status: 'not-started' },
+      { title: { en: 'Competitive Analysis', es: 'Análisis Competitivo' }, slug: 'competitive-analysis', status: 'not-started' },
+      { title: { en: 'Product Roadmapping', es: 'Roadmapping de Producto' }, slug: 'product-roadmapping', status: 'not-started' },
+      { title: { en: 'Release Planning', es: 'Planificación de Releases' }, slug: 'release-planning-and-increment-strategy', status: 'not-started' },
     ],
-    prerequisites: {
-      en: ['UX/UI Foundations'],
-      es: ['Fundamentos UX/UI']
-    },
-    nextSteps: {
-      en: ['Problem Definition', 'Information Architecture'],
-      es: ['Definición de Problema', 'Arquitectura de Información']
-    },
-    mainLessonSlug: 'empathy-interviewing'
+    prerequisites: { en: ['Foundations'], es: ['Fundamentos'] },
+    nextSteps: { en: ['Research & User Understanding'], es: ['Investigación y Comprensión del Usuario'] },
+    mainLessonSlug: 'business-goals-kpis'
   },
+  // ── PHASE 3: Research ───────────────────────────────────
   {
-    id: 'problem-definition',
-    title: { en: 'Problem Definition', es: 'Definición de Problema' },
-    icon: Target,
-    color: 'bg-orange-500/20 text-orange-400',
-    borderColor: 'border-orange-500/50',
-    position: { x: 80, y: 20 },
+    id: 'research',
+    title: { en: 'Research & User Understanding', es: 'Investigación y Usuario' },
+    icon: Search,
+    color: 'bg-green-500/20 text-green-400',
+    borderColor: 'border-green-500/50',
+    position: { x: 85, y: 15 },
     definition: { 
-      en: 'Defining the right problem to solve through POV statements, problem framing, and MVP scoping.',
-      es: 'Definir el problema correcto a resolver a través de declaraciones POV, encuadre de problema y alcance MVP.'
+      en: 'User behavior research through surveys, personas, journey maps, and cognitive psychology.',
+      es: 'Investigación del comportamiento del usuario a través de encuestas, personas, mapas de viaje y psicología cognitiva.'
     },
     skills: {
-      en: ['POV statements', 'Problem framing', 'MVP definition', 'Value proposition', 'Hypothesis validation'],
-      es: ['Declaraciones POV', 'Encuadre de problema', 'Definición MVP', 'Propuesta de valor', 'Validación de hipótesis']
+      en: ['Surveys', 'User interviews', 'Personas', 'Journey mapping', 'UX psychology', 'Laws of UX'],
+      es: ['Encuestas', 'Entrevistas', 'Personas', 'Mapeo de viaje', 'Psicología UX', 'Leyes de UX']
     },
     lessons: [
-      { title: { en: 'Jobs-to-be-Done', es: 'Trabajos por Hacer' }, slug: 'jobs-to-be-done', status: 'not-started' },
-      { title: { en: 'Problem Statements', es: 'Declaraciones de Problema' }, slug: 'problem-statements', status: 'not-started' }
+      { title: { en: 'Surveys & Questionnaires', es: 'Encuestas y Cuestionarios' }, slug: 'surveys-questionnaires', status: 'not-started' },
+      { title: { en: 'UX Research', es: 'Investigación UX' }, slug: 'ux-research', status: 'not-started' },
+      { title: { en: 'User Personas', es: 'Personas de Usuario' }, slug: 'user-personas', status: 'not-started' },
+      { title: { en: 'Customer Journey Map', es: 'Mapa de Viaje del Cliente' }, slug: 'customer-journey-map', status: 'not-started' },
+      { title: { en: 'UX Psychology', es: 'Psicología UX' }, slug: 'ux-psychology', status: 'not-started' },
+      { title: { en: 'Laws of UX', es: 'Leyes de UX' }, slug: 'laws-of-ux', status: 'not-started' },
     ],
-    prerequisites: {
-      en: ['UX Research'],
-      es: ['Investigación UX']
-    },
-    nextSteps: {
-      en: ['Information Architecture', 'User Flows'],
-      es: ['Arquitectura de Información', 'Flujos de Usuario']
-    },
-    mainLessonSlug: 'jobs-to-be-done'
+    prerequisites: { en: ['Foundations'], es: ['Fundamentos'] },
+    nextSteps: { en: ['Information Architecture'], es: ['Arquitectura de Información'] },
+    mainLessonSlug: 'surveys-questionnaires'
   },
+  // ── PHASE 4: Architecture ───────────────────────────────
   {
-    id: 'information-architecture',
+    id: 'architecture',
     title: { en: 'Information Architecture', es: 'Arquitectura de Información' },
     icon: Layers,
     color: 'bg-cyan-500/20 text-cyan-400',
     borderColor: 'border-cyan-500/50',
-    position: { x: 20, y: 50 },
+    position: { x: 15, y: 50 },
     definition: { 
-      en: 'Organizing and structuring content in a way that users can navigate and understand efficiently.',
-      es: 'Organizar y estructurar contenido de manera que los usuarios puedan navegar y entender eficientemente.'
+      en: 'Organizing content, navigation design, card sorting, and user flow mapping.',
+      es: 'Organización de contenido, diseño de navegación, card sorting y mapeo de flujos de usuario.'
     },
     skills: {
-      en: ['Card sorting', 'Site mapping', 'Navigation design', 'Content hierarchy', 'Taxonomy creation'],
-      es: ['Card sorting', 'Mapeo de sitio', 'Diseño de navegación', 'Jerarquía de contenido', 'Creación de taxonomía']
+      en: ['Information architecture', 'Card sorting', 'Site mapping', 'User flows', 'Navigation design'],
+      es: ['Arquitectura de información', 'Card sorting', 'Mapeo de sitio', 'Flujos de usuario', 'Diseño de navegación']
     },
     lessons: [
-      { title: { en: 'Information Architecture Basics', es: 'Básicos de IA' }, slug: 'information-architecture-basics', status: 'not-started' },
-      { title: { en: 'Card Sorting Methods', es: 'Métodos de Card Sorting' }, slug: 'card-sorting', status: 'not-started' }
+      { title: { en: 'Information Architecture', es: 'Arquitectura de Información' }, slug: 'information-architecture', status: 'not-started' },
+      { title: { en: 'Card Sorting', es: 'Card Sorting' }, slug: 'card-sorting', status: 'not-started' },
+      { title: { en: 'User Flows & Journeys', es: 'Flujos de Usuario y Viajes' }, slug: 'user-flows', status: 'not-started' },
     ],
-    prerequisites: {
-      en: ['UX Research', 'Problem Definition'],
-      es: ['Investigación UX', 'Definición de Problema']
-    },
-    nextSteps: {
-      en: ['User Flows', 'Wireframes'],
-      es: ['Flujos de Usuario', 'Wireframes']
-    },
-    mainLessonSlug: 'information-architecture-basics'
+    prerequisites: { en: ['Research & User Understanding'], es: ['Investigación y Comprensión del Usuario'] },
+    nextSteps: { en: ['Interaction & Interface Design'], es: ['Diseño de Interacción e Interfaz'] },
+    mainLessonSlug: 'information-architecture'
   },
+  // ── PHASE 5: Design ─────────────────────────────────────
   {
-    id: 'user-flows',
-    title: { en: 'User Flows & Wireframes', es: 'Flujos y Wireframes' },
-    icon: Users,
-    color: 'bg-green-500/20 text-green-400',
-    borderColor: 'border-green-500/50',
-    position: { x: 50, y: 65 },
-    definition: { 
-      en: 'Mapping user journeys and creating low-fidelity layouts to validate structure before visual design.',
-      es: 'Mapear viajes de usuario y crear layouts de baja fidelidad para validar estructura antes del diseño visual.'
-    },
-    skills: {
-      en: ['Flow diagrams', 'Task flows', 'Lo-fi wireframes', 'Mid-fi wireframes', 'Interactive prototypes'],
-      es: ['Diagramas de flujo', 'Flujos de tareas', 'Wireframes baja fidelidad', 'Wireframes media fidelidad', 'Prototipos interactivos']
-    },
-    lessons: [
-      { title: { en: 'User Flow Diagrams', es: 'Diagramas de Flujo' }, slug: 'user-flow-diagrams', status: 'not-started' },
-      { title: { en: 'Wireframing Principles', es: 'Principios de Wireframing' }, slug: 'wireframing-principles', status: 'not-started' }
-    ],
-    prerequisites: {
-      en: ['Information Architecture'],
-      es: ['Arquitectura de Información']
-    },
-    nextSteps: {
-      en: ['UI Foundations', 'Prototyping'],
-      es: ['Fundamentos UI', 'Prototipado']
-    },
-    mainLessonSlug: 'user-flow-diagrams'
-  },
-  {
-    id: 'ui-foundations',
-    title: { en: 'UI Foundations', es: 'Fundamentos UI' },
+    id: 'design',
+    title: { en: 'Interaction & Interface Design', es: 'Diseño de Interacción e Interfaz' },
     icon: PenTool,
+    color: 'bg-orange-500/20 text-orange-400',
+    borderColor: 'border-orange-500/50',
+    position: { x: 50, y: 45 },
+    definition: { 
+      en: 'Wireframes, visual hierarchy, typography, color theory, accessibility, and microinteractions.',
+      es: 'Wireframes, jerarquía visual, tipografía, teoría del color, accesibilidad y microinteracciones.'
+    },
+    skills: {
+      en: ['Wireframing', 'Visual hierarchy', 'Typography', 'Color theory', 'Accessibility', 'Microinteractions', 'Heuristic analysis'],
+      es: ['Wireframing', 'Jerarquía visual', 'Tipografía', 'Teoría del color', 'Accesibilidad', 'Microinteracciones', 'Análisis heurístico']
+    },
+    lessons: [
+      { title: { en: 'Wireframing & Prototyping', es: 'Wireframing y Prototipado' }, slug: 'wireframing-prototyping', status: 'not-started' },
+      { title: { en: 'Visual Hierarchy', es: 'Jerarquía Visual' }, slug: 'visual-hierarchy', status: 'not-started' },
+      { title: { en: 'Typography Fundamentals', es: 'Fundamentos de Tipografía' }, slug: 'typography-fundamentals', status: 'not-started' },
+      { title: { en: 'Color Theory', es: 'Teoría del Color' }, slug: 'color-theory', status: 'not-started' },
+      { title: { en: 'Accessibility Foundations', es: 'Fundamentos de Accesibilidad' }, slug: 'accessibility-wcag', status: 'not-started' },
+      { title: { en: 'Microinteractions', es: 'Microinteracciones' }, slug: 'microinteractions', status: 'not-started' },
+      { title: { en: 'Heuristic Analysis', es: 'Análisis Heurístico' }, slug: 'heuristic-analysis', status: 'not-started' },
+      { title: { en: 'Edge & System States', es: 'Estados Edge y de Sistema' }, slug: 'edge-and-system-states', status: 'not-started' },
+    ],
+    prerequisites: { en: ['Information Architecture'], es: ['Arquitectura de Información'] },
+    nextSteps: { en: ['Validation & Optimization'], es: ['Validación y Optimización'] },
+    mainLessonSlug: 'wireframing-prototyping'
+  },
+  // ── PHASE 6: Validation ─────────────────────────────────
+  {
+    id: 'validation',
+    title: { en: 'Validation & Optimization', es: 'Validación y Optimización' },
+    icon: TestTube,
     color: 'bg-pink-500/20 text-pink-400',
     borderColor: 'border-pink-500/50',
-    position: { x: 80, y: 50 },
+    position: { x: 85, y: 50 },
     definition: { 
-      en: 'Visual hierarchy, typography, color theory, and layout principles to create beautiful interfaces.',
-      es: 'Jerarquía visual, tipografía, teoría del color y principios de layout para crear interfaces hermosas.'
+      en: 'Usability testing, prototyping methods, advanced accessibility audits, and UX metrics.',
+      es: 'Pruebas de usabilidad, métodos de prototipado, auditorías avanzadas de accesibilidad y métricas UX.'
     },
     skills: {
-      en: ['Visual hierarchy', 'Typography rules', 'Color theory', 'Layout grids', 'Spacing systems', 'Responsive design'],
-      es: ['Jerarquía visual', 'Reglas tipográficas', 'Teoría del color', 'Grillas de layout', 'Sistemas de espaciado', 'Diseño responsive']
+      en: ['Usability testing', 'Prototyping', 'Accessibility auditing', 'UX metrics', 'A/B testing'],
+      es: ['Testing de usabilidad', 'Prototipado', 'Auditoría de accesibilidad', 'Métricas UX', 'Testing A/B']
     },
     lessons: [
-      { title: { en: 'Visual Hierarchy', es: 'Jerarquía Visual' }, slug: 'visual-hierarchy-fundamentals', status: 'not-started' },
-      { title: { en: 'Typography Fundamentals', es: 'Fundamentos Tipográficos' }, slug: 'typography-fundamentals', status: 'not-started' },
-      { title: { en: 'Color Theory', es: 'Teoría del Color' }, slug: 'color-theory-ui', status: 'not-started' }
-    ],
-    prerequisites: {
-      en: ['User Flows & Wireframes'],
-      es: ['Flujos y Wireframes']
-    },
-    nextSteps: {
-      en: ['Prototyping', 'Design Systems'],
-      es: ['Prototipado', 'Sistemas de Diseño']
-    },
-    mainLessonSlug: 'visual-hierarchy-fundamentals'
-  },
-  {
-    id: 'prototyping',
-    title: { en: 'Prototyping & Testing', es: 'Prototipado y Testing' },
-    icon: TestTube,
-    color: 'bg-yellow-500/20 text-yellow-400',
-    borderColor: 'border-yellow-500/50',
-    position: { x: 35, y: 85 },
-    definition: { 
-      en: 'Creating interactive prototypes and conducting usability tests to validate design decisions.',
-      es: 'Crear prototipos interactivos y conducir tests de usabilidad para validar decisiones de diseño.'
-    },
-    skills: {
-      en: ['Interactive prototyping', 'Usability testing', 'A/B testing', 'Heuristic evaluation', 'Analytics interpretation'],
-      es: ['Prototipado interactivo', 'Testing de usabilidad', 'Testing A/B', 'Evaluación heurística', 'Interpretación de analytics']
-    },
-    lessons: [
+      { title: { en: 'Usability Testing', es: 'Pruebas de Usabilidad' }, slug: 'usability-testing', status: 'not-started' },
       { title: { en: 'Prototyping Methods', es: 'Métodos de Prototipado' }, slug: 'prototyping-methods', status: 'not-started' },
-      { title: { en: 'Usability Testing', es: 'Testing de Usabilidad' }, slug: 'usability-testing-basics', status: 'not-started' }
+      { title: { en: 'Advanced Accessibility Auditing', es: 'Auditoría Avanzada de Accesibilidad' }, slug: 'accessibility', status: 'not-started' },
+      { title: { en: 'Advanced UX Metrics', es: 'Métricas UX Avanzadas' }, slug: 'ux-metrics-advanced', status: 'not-started' },
     ],
-    prerequisites: {
-      en: ['UI Foundations'],
-      es: ['Fundamentos UI']
-    },
-    nextSteps: {
-      en: ['Design Systems', 'Iteration based on feedback'],
-      es: ['Sistemas de Diseño', 'Iteración basada en feedback']
-    },
-    mainLessonSlug: 'prototyping-methods'
+    prerequisites: { en: ['Interaction & Interface Design'], es: ['Diseño de Interacción e Interfaz'] },
+    nextSteps: { en: ['Systems & Scale'], es: ['Sistemas y Escala'] },
+    mainLessonSlug: 'usability-testing'
   },
+  // ── PHASE 7: Systems ────────────────────────────────────
   {
-    id: 'design-systems',
-    title: { en: 'Design Systems & A11y', es: 'Design Systems y A11y' },
+    id: 'systems',
+    title: { en: 'Systems & Scale', es: 'Sistemas y Escala' },
     icon: Code2,
+    color: 'bg-red-500/20 text-red-400',
+    borderColor: 'border-red-500/50',
+    position: { x: 15, y: 85 },
+    definition: { 
+      en: 'Atomic design, Figma mastery, design system governance, ethics, and documentation.',
+      es: 'Diseño atómico, dominio de Figma, gobernanza de design systems, ética y documentación.'
+    },
+    skills: {
+      en: ['Atomic design', 'Figma advanced', 'System governance', 'Design ethics', 'Documentation'],
+      es: ['Diseño atómico', 'Figma avanzado', 'Gobernanza de sistemas', 'Ética de diseño', 'Documentación']
+    },
+    lessons: [
+      { title: { en: 'Atomic Design', es: 'Diseño Atómico' }, slug: 'atomic-design', status: 'not-started' },
+      { title: { en: 'Figma Mastery', es: 'Dominio de Figma' }, slug: 'figma-mastery', status: 'not-started' },
+      { title: { en: 'System Governance', es: 'Gobernanza del Sistema' }, slug: 'design-systems-governance', status: 'not-started' },
+      { title: { en: 'Design Ethics & Dark Patterns', es: 'Ética y Patrones Oscuros' }, slug: 'design-ethics', status: 'not-started' },
+      { title: { en: 'UX Documentation Pro', es: 'Documentación UX Pro' }, slug: 'ux-documentation-pro', status: 'not-started' },
+    ],
+    prerequisites: { en: ['Validation & Optimization'], es: ['Validación y Optimización'] },
+    nextSteps: { en: ['Frontend for Designers'], es: ['Frontend para Diseñadores'] },
+    mainLessonSlug: 'atomic-design'
+  },
+  // ── PHASE 8: Frontend ───────────────────────────────────
+  {
+    id: 'frontend',
+    title: { en: 'Frontend for Designers', es: 'Frontend para Diseñadores' },
+    icon: Monitor,
+    color: 'bg-teal-500/20 text-teal-400',
+    borderColor: 'border-teal-500/50',
+    position: { x: 50, y: 85 },
+    definition: { 
+      en: 'HTML, CSS, JavaScript fundamentals, and front-end foundations for UX/UI designers.',
+      es: 'Fundamentos de HTML, CSS, JavaScript y bases de front-end para diseñadores UX/UI.'
+    },
+    skills: {
+      en: ['HTML semantics', 'CSS layout & styling', 'JavaScript basics', 'Responsive design', 'Dev handoff'],
+      es: ['Semántica HTML', 'CSS layout y estilos', 'JavaScript básico', 'Diseño responsive', 'Handoff a dev']
+    },
+    lessons: [
+      { title: { en: 'HTML Fundamentals', es: 'Fundamentos de HTML' }, slug: 'html-fundamentals', status: 'not-started' },
+      { title: { en: 'CSS Fundamentals', es: 'Fundamentos de CSS' }, slug: 'css-fundamentals', status: 'not-started' },
+      { title: { en: 'Intro to JavaScript', es: 'Introducción a JavaScript' }, slug: 'intro-javascript', status: 'not-started' },
+      { title: { en: 'Front-End Foundations', es: 'Fundamentos Front-End' }, slug: 'frontend-foundations', status: 'not-started' },
+    ],
+    prerequisites: { en: ['Systems & Scale'], es: ['Sistemas y Escala'] },
+    nextSteps: { en: ['Career & Professional Growth'], es: ['Carrera y Crecimiento Profesional'] },
+    mainLessonSlug: 'html-fundamentals'
+  },
+  // ── PHASE 9: Career ─────────────────────────────────────
+  {
+    id: 'career',
+    title: { en: 'Career & Growth', es: 'Carrera y Crecimiento' },
+    icon: Briefcase,
     color: 'bg-indigo-500/20 text-indigo-400',
     borderColor: 'border-indigo-500/50',
-    position: { x: 65, y: 85 },
+    position: { x: 85, y: 85 },
     definition: { 
-      en: 'Building scalable design systems and ensuring accessibility for all users.',
-      es: 'Construir sistemas de diseño escalables y asegurar accesibilidad para todos los usuarios.'
+      en: 'Portfolio storytelling, case study writing, and professional brand building.',
+      es: 'Storytelling de portafolio, redacción de casos de estudio y construcción de marca profesional.'
     },
     skills: {
-      en: ['Component libraries', 'Design tokens', 'WCAG guidelines', 'Inclusive design', 'Documentation', 'Handoff to dev'],
-      es: ['Librerías de componentes', 'Tokens de diseño', 'Guías WCAG', 'Diseño inclusivo', 'Documentación', 'Handoff a dev']
+      en: ['Case study writing', 'Portfolio design', 'Interview prep', 'Professional storytelling'],
+      es: ['Redacción de casos', 'Diseño de portafolio', 'Preparación entrevistas', 'Storytelling profesional']
     },
     lessons: [
-      { title: { en: 'Design System Basics', es: 'Básicos de Design System' }, slug: 'design-systems-intro', status: 'not-started' },
-      { title: { en: 'Accessibility WCAG', es: 'Accesibilidad WCAG' }, slug: 'accessibility-wcag-fundamentals', status: 'not-started' }
+      { title: { en: 'Portfolio Case Study Writing', es: 'Redacción de Casos de Estudio' }, slug: 'portfolio-case-study-writing', status: 'not-started' },
     ],
-    prerequisites: {
-      en: ['Prototyping & Testing'],
-      es: ['Prototipado y Testing']
-    },
-    nextSteps: {
-      en: ['Advanced topics', 'Specialized roles'],
-      es: ['Temas avanzados', 'Roles especializados']
-    },
-    mainLessonSlug: 'design-systems-intro'
-  }
+    prerequisites: { en: ['All previous phases recommended'], es: ['Todas las fases previas recomendadas'] },
+    nextSteps: { en: ['Keep building your portfolio!'], es: ['¡Sigue construyendo tu portafolio!'] },
+    mainLessonSlug: 'portfolio-case-study-writing'
+  },
 ];
 
 interface MissingTopic {
@@ -301,27 +311,17 @@ const missingTopics: MissingTopic[] = [
     },
     suggestedLesson: { en: 'Common UI Patterns Library', es: 'Biblioteca de Patrones UI Comunes' },
     difficulty: 'intermediate',
-    cluster: 'UI Foundations'
+    cluster: 'Interaction & Interface Design'
   },
   {
-    name: { en: 'Micro-interactions & Animation', es: 'Micro-interacciones y Animación' },
-    why: { 
-      en: 'Animations guide users and provide feedback, essential for modern UX',
-      es: 'Animaciones guían usuarios y proveen feedback, esencial para UX moderno'
-    },
-    suggestedLesson: { en: 'Animation Principles for UX', es: 'Principios de Animación para UX' },
-    difficulty: 'intermediate',
-    cluster: 'UI Foundations'
-  },
-  {
-    name: { en: 'Content Strategy', es: 'Estrategia de Contenido' },
+    name: { en: 'Content Strategy & UX Writing', es: 'Estrategia de Contenido y UX Writing' },
     why: { 
       en: 'UX writing and content hierarchy are critical for clear communication',
       es: 'UX writing y jerarquía de contenido son críticos para comunicación clara'
     },
     suggestedLesson: { en: 'UX Writing Fundamentals', es: 'Fundamentos de UX Writing' },
     difficulty: 'beginner',
-    cluster: 'UX/UI Foundations'
+    cluster: 'Foundations'
   },
   {
     name: { en: 'Mobile-First Design', es: 'Diseño Mobile-First' },
@@ -331,7 +331,7 @@ const missingTopics: MissingTopic[] = [
     },
     suggestedLesson: { en: 'Mobile-First Strategy', es: 'Estrategia Mobile-First' },
     difficulty: 'beginner',
-    cluster: 'UI Foundations'
+    cluster: 'Interaction & Interface Design'
   },
   {
     name: { en: 'Service Design', es: 'Diseño de Servicios' },
@@ -341,18 +341,8 @@ const missingTopics: MissingTopic[] = [
     },
     suggestedLesson: { en: 'Service Design Blueprints', es: 'Blueprints de Diseño de Servicios' },
     difficulty: 'advanced',
-    cluster: 'UX Research'
+    cluster: 'Systems & Scale'
   },
-  {
-    name: { en: 'Design Ethics & Privacy', es: 'Ética de Diseño y Privacidad' },
-    why: { 
-      en: 'Designers have ethical responsibility to protect users and their data',
-      es: 'Diseñadores tienen responsabilidad ética de proteger usuarios y sus datos'
-    },
-    suggestedLesson: { en: 'Ethical Design Principles', es: 'Principios de Diseño Ético' },
-    difficulty: 'intermediate',
-    cluster: 'UX/UI Foundations'
-  }
 ];
 
 interface KnowledgeMapProps {
@@ -755,6 +745,9 @@ export function ImprovedKnowledgeMap({ onNavigate }: KnowledgeMapProps) {
                                cluster.borderColor.includes('cyan') ? '#22d3ee' :
                                cluster.borderColor.includes('green') ? '#4ade80' :
                                cluster.borderColor.includes('pink') ? '#f472b6' :
+                               cluster.borderColor.includes('red') ? '#f87171' :
+                               cluster.borderColor.includes('teal') ? '#2dd4bf' :
+                               cluster.borderColor.includes('indigo') ? '#818cf8' :
                                cluster.borderColor.includes('yellow') ? '#facc15' : '#818cf8'}
                         strokeWidth="3"
                         strokeDasharray={`${progress * 2.8} 280`}

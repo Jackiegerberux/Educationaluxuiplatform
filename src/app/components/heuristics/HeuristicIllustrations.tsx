@@ -805,6 +805,382 @@ function A11y1Illustration() {
   );
 }
 
+// ─── Law3: Jakob's Law — Familiar Patterns ───────────────────
+function Law3Illustration() {
+  return (
+    <Wrapper bg="bg-gradient-to-br from-purple-950 via-slate-950 to-fuchsia-950">
+      <div className="w-full max-w-xs space-y-4">
+        <span className="text-[9px] text-purple-400 uppercase tracking-widest font-semibold">Users expect familiar patterns</span>
+        {/* Two app headers comparison */}
+        <div className="grid grid-cols-2 gap-3">
+          {/* Familiar */}
+          <div className="bg-zinc-800/60 rounded-xl border border-emerald-500/30 p-3">
+            <span className="text-[8px] text-emerald-400 uppercase tracking-wider font-bold block mb-2">Familiar</span>
+            <div className="flex items-center justify-between mb-3">
+              <div className="size-5 bg-purple-500/30 rounded" />
+              <div className="flex gap-1.5">
+                <div className="size-4 bg-zinc-700/60 rounded" />
+                <div className="size-4 bg-zinc-700/60 rounded" />
+                <div className="size-4 bg-purple-500/40 rounded" />
+              </div>
+            </div>
+            <div className="h-3 bg-zinc-700/40 rounded-full mb-2 w-full" />
+            <div className="grid grid-cols-2 gap-1.5">
+              <div className="h-10 bg-zinc-700/30 rounded" />
+              <div className="h-10 bg-zinc-700/30 rounded" />
+            </div>
+          </div>
+          {/* Unconventional */}
+          <div className="bg-zinc-800/60 rounded-xl border border-red-500/30 p-3">
+            <span className="text-[8px] text-red-400 uppercase tracking-wider font-bold block mb-2">Unusual</span>
+            <div className="flex items-center justify-center mb-3">
+              <div className="size-5 bg-zinc-700/60 rounded" />
+            </div>
+            <div className="h-3 bg-zinc-700/40 rounded-full mb-2 w-2/3 mx-auto" />
+            <div className="flex justify-end">
+              <div className="h-6 w-6 bg-zinc-700/30 rounded-full" />
+            </div>
+            <div className="text-[7px] text-red-400/60 text-center mt-1">Where's the menu?</div>
+          </div>
+        </div>
+        <div className="text-center">
+          <span className="text-[10px] text-purple-300 font-medium">Match mental models from familiar products</span>
+        </div>
+      </div>
+    </Wrapper>
+  );
+}
+
+// ─── Law4: Miller's Law — Chunking ───────────────────────────
+function Law4Illustration() {
+  return (
+    <Wrapper bg="bg-gradient-to-br from-orange-950 via-slate-950 to-amber-950">
+      <div className="w-full max-w-xs space-y-5">
+        <span className="text-[9px] text-orange-400 uppercase tracking-widest font-semibold">7 ± 2 items in working memory</span>
+        {/* Unchunked vs chunked */}
+        <div className="space-y-3">
+          <div className="bg-zinc-800/60 rounded-xl border border-red-500/30 p-3">
+            <span className="text-[8px] text-red-400 uppercase tracking-wider font-bold block mb-2">Raw number</span>
+            <div className="text-sm font-mono text-zinc-300 tracking-[0.15em]">4158675309</div>
+          </div>
+          <div className="bg-zinc-800/60 rounded-xl border border-emerald-500/30 p-3">
+            <span className="text-[8px] text-emerald-400 uppercase tracking-wider font-bold block mb-2">Chunked</span>
+            <div className="text-sm font-mono text-white tracking-wider">(415) 867-5309</div>
+          </div>
+        </div>
+        {/* Nav chunking */}
+        <div className="bg-zinc-800/60 rounded-xl border border-orange-500/30 p-3">
+          <span className="text-[8px] text-orange-400 uppercase tracking-wider font-bold block mb-2">Nav Groups</span>
+          <div className="flex flex-wrap gap-1.5">
+            {['Home', 'Products', 'About', 'Blog', 'Contact'].map(item => (
+              <div key={item} className="px-2 py-1 bg-orange-500/15 border border-orange-500/25 rounded text-[9px] text-orange-300 font-medium">{item}</div>
+            ))}
+          </div>
+          <div className="text-[8px] text-emerald-400 mt-2 font-medium">5 items — within 7±2 limit</div>
+        </div>
+      </div>
+    </Wrapper>
+  );
+}
+
+// ─── Law5: Von Restorff Effect — Isolation ───────────────────
+function Law5Illustration() {
+  return (
+    <Wrapper bg="bg-gradient-to-br from-pink-950 via-slate-950 to-rose-950">
+      <div className="w-full max-w-xs space-y-4">
+        <span className="text-[9px] text-pink-400 uppercase tracking-widest font-semibold">The different one stands out</span>
+        {/* Pricing cards */}
+        <div className="flex gap-2">
+          <div className="flex-1 bg-zinc-800/60 rounded-xl border border-zinc-700/50 p-3 text-center">
+            <span className="text-[9px] text-zinc-500 uppercase font-bold block mb-1">Basic</span>
+            <span className="text-sm font-bold text-zinc-400">$9</span>
+            <div className="mt-2 space-y-1">
+              <div className="h-1.5 bg-zinc-700/40 rounded-full" />
+              <div className="h-1.5 bg-zinc-700/40 rounded-full w-3/4 mx-auto" />
+            </div>
+          </div>
+          <div className="flex-1 bg-gradient-to-b from-pink-500/20 to-purple-500/20 rounded-xl border-2 border-pink-500/50 p-3 text-center relative scale-105">
+            <div className="absolute -top-2.5 left-1/2 -translate-x-1/2 px-2 py-0.5 bg-pink-500 rounded-full">
+              <span className="text-[7px] text-white font-bold uppercase">Popular</span>
+            </div>
+            <span className="text-[9px] text-pink-300 uppercase font-bold block mb-1">Pro</span>
+            <span className="text-sm font-bold text-white">$19</span>
+            <div className="mt-2 space-y-1">
+              <div className="h-1.5 bg-pink-500/30 rounded-full" />
+              <div className="h-1.5 bg-pink-500/30 rounded-full" />
+            </div>
+          </div>
+          <div className="flex-1 bg-zinc-800/60 rounded-xl border border-zinc-700/50 p-3 text-center">
+            <span className="text-[9px] text-zinc-500 uppercase font-bold block mb-1">Team</span>
+            <span className="text-sm font-bold text-zinc-400">$49</span>
+            <div className="mt-2 space-y-1">
+              <div className="h-1.5 bg-zinc-700/40 rounded-full" />
+              <div className="h-1.5 bg-zinc-700/40 rounded-full w-3/4 mx-auto" />
+            </div>
+          </div>
+        </div>
+        <div className="text-center">
+          <span className="text-[10px] text-pink-300 font-medium">The visually distinct option is remembered</span>
+        </div>
+      </div>
+    </Wrapper>
+  );
+}
+
+// ─── Law6: Peak-End Rule — Memorable Moments ─────────────────
+function Law6Illustration() {
+  return (
+    <Wrapper bg="bg-gradient-to-br from-amber-950 via-slate-950 to-yellow-950">
+      <div className="w-full max-w-xs space-y-4">
+        <span className="text-[9px] text-amber-400 uppercase tracking-widest font-semibold">Peak + End = Memory</span>
+        {/* Experience timeline */}
+        <div className="bg-zinc-800/60 rounded-xl border border-amber-500/30 p-4">
+          <div className="flex items-end gap-1 h-24">
+            {[3, 4, 5, 7, 9, 6, 4, 5, 8].map((h, i) => (
+              <motion.div
+                key={i}
+                className={`flex-1 rounded-t transition-colors ${
+                  i === 4 ? 'bg-amber-500' : i === 8 ? 'bg-emerald-500' : 'bg-zinc-600/60'
+                }`}
+                style={{ height: `${h * 10}%` }}
+                initial={{ scaleY: 0 }}
+                animate={{ scaleY: 1 }}
+                transition={{ delay: i * 0.05, duration: 0.3 }}
+              />
+            ))}
+          </div>
+          <div className="flex items-center justify-between mt-2">
+            <span className="text-[8px] text-zinc-500">Start</span>
+            <div className="flex items-center gap-1">
+              <div className="size-2 bg-amber-500 rounded-full" />
+              <span className="text-[8px] text-amber-400 font-bold">Peak</span>
+            </div>
+            <div className="flex items-center gap-1">
+              <div className="size-2 bg-emerald-500 rounded-full" />
+              <span className="text-[8px] text-emerald-400 font-bold">End</span>
+            </div>
+          </div>
+        </div>
+        <div className="text-center">
+          <span className="text-[10px] text-amber-300 font-medium">Users remember the peak and the ending most</span>
+        </div>
+      </div>
+    </Wrapper>
+  );
+}
+
+// ─── Law7: Zeigarnik Effect — Incomplete Tasks ──────────────
+function Law7Illustration() {
+  return (
+    <Wrapper bg="bg-gradient-to-br from-cyan-950 via-slate-950 to-teal-950">
+      <div className="w-full max-w-xs space-y-4">
+        <span className="text-[9px] text-cyan-400 uppercase tracking-widest font-semibold">Incomplete tasks stick in memory</span>
+        {/* Profile completion */}
+        <div className="bg-zinc-800/60 rounded-xl border border-cyan-500/30 p-4">
+          <div className="flex items-center gap-3 mb-3">
+            <div className="size-10 bg-cyan-500/20 rounded-full border border-cyan-500/30 flex items-center justify-center">
+              <span className="text-sm font-bold text-cyan-400">JD</span>
+            </div>
+            <div className="flex-1">
+              <span className="text-xs text-white font-semibold block">John Doe</span>
+              <span className="text-[9px] text-cyan-400 font-medium">70% complete</span>
+            </div>
+          </div>
+          <div className="h-2.5 bg-zinc-700/50 rounded-full overflow-hidden mb-2">
+            <motion.div
+              className="h-full bg-gradient-to-r from-cyan-500 to-teal-400 rounded-full"
+              initial={{ width: 0 }}
+              animate={{ width: '70%' }}
+              transition={{ duration: 1, ease: 'easeOut' }}
+            />
+          </div>
+          <div className="space-y-1.5">
+            {[
+              { label: 'Add photo', done: true },
+              { label: 'Add bio', done: true },
+              { label: 'Add portfolio', done: false },
+              { label: 'Add skills', done: false },
+            ].map(item => (
+              <div key={item.label} className="flex items-center gap-2">
+                <div className={`size-3.5 rounded-full flex items-center justify-center ${item.done ? 'bg-emerald-500/20 border border-emerald-500/40' : 'bg-zinc-700/40 border border-zinc-600'}`}>
+                  {item.done && <svg width="7" height="7" viewBox="0 0 24 24" fill="none" stroke="#4ade80" strokeWidth="4" strokeLinecap="round"><path d="M4 12l5 5L20 6"/></svg>}
+                </div>
+                <span className={`text-[10px] ${item.done ? 'text-zinc-500 line-through' : 'text-cyan-300 font-medium'}`}>{item.label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </Wrapper>
+  );
+}
+
+// ─── Law8: Aesthetic-Usability Effect ────────────────────────
+function Law8Illustration() {
+  return (
+    <Wrapper bg="bg-gradient-to-br from-fuchsia-950 via-slate-950 to-pink-950">
+      <div className="w-full max-w-xs space-y-4">
+        <span className="text-[9px] text-fuchsia-400 uppercase tracking-widest font-semibold">Beautiful = Perceived as more usable</span>
+        <div className="grid grid-cols-2 gap-3">
+          {/* Ugly */}
+          <div className="bg-zinc-800/80 rounded-lg border border-red-500/30 p-3">
+            <span className="text-[8px] text-red-400 uppercase font-bold block mb-2">Before</span>
+            <div className="space-y-1.5">
+              <div className="h-5 bg-zinc-600 rounded-sm border border-zinc-500" />
+              <div className="h-5 bg-zinc-600 rounded-sm border border-zinc-500" />
+              <div className="h-6 bg-blue-800 rounded-sm flex items-center justify-center">
+                <span className="text-[7px] text-white font-bold">SUBMIT</span>
+              </div>
+            </div>
+            <div className="text-[7px] text-red-400/70 mt-1.5">Feels clunky</div>
+          </div>
+          {/* Beautiful */}
+          <div className="bg-zinc-800/80 rounded-xl border border-emerald-500/30 p-3">
+            <span className="text-[8px] text-emerald-400 uppercase font-bold block mb-2">After</span>
+            <div className="space-y-2">
+              <div className="h-5 bg-zinc-700/50 rounded-lg border border-zinc-600/50" />
+              <div className="h-5 bg-zinc-700/50 rounded-lg border border-zinc-600/50" />
+              <div className="h-6 bg-gradient-to-r from-fuchsia-500 to-pink-500 rounded-lg flex items-center justify-center shadow-lg shadow-fuchsia-500/20">
+                <span className="text-[7px] text-white font-bold">Continue</span>
+              </div>
+            </div>
+            <div className="text-[7px] text-emerald-400/70 mt-1.5">Feels intuitive</div>
+          </div>
+        </div>
+        <div className="text-center">
+          <span className="text-[10px] text-fuchsia-300 font-medium">Same function — different perception</span>
+        </div>
+      </div>
+    </Wrapper>
+  );
+}
+
+// ─── A11y2: Operable — Keyboard Accessibility ───────────────
+function A11y2Illustration() {
+  return (
+    <Wrapper bg="bg-gradient-to-br from-emerald-950 via-slate-950 to-green-950">
+      <div className="w-full max-w-xs space-y-4">
+        <span className="text-[9px] text-emerald-400 uppercase tracking-widest font-semibold">Operable by keyboard</span>
+        {/* Keyboard keys */}
+        <div className="bg-zinc-800/60 rounded-xl border border-emerald-500/30 p-4">
+          <div className="flex justify-center gap-2 mb-3">
+            {['Tab', 'Enter', 'Space', '←→'].map(key => (
+              <div key={key} className="px-2.5 py-1.5 bg-zinc-700/60 border border-zinc-600 rounded-lg shadow-sm">
+                <span className="text-[9px] text-zinc-200 font-mono font-bold">{key}</span>
+              </div>
+            ))}
+          </div>
+          {/* Focus indicator demo */}
+          <div className="space-y-2">
+            <div className="h-7 bg-zinc-700/40 rounded-lg border-2 border-transparent flex items-center px-2.5">
+              <span className="text-[9px] text-zinc-400">Input field</span>
+            </div>
+            <div className="h-7 bg-zinc-700/40 rounded-lg border-2 border-emerald-500 ring-2 ring-emerald-500/30 flex items-center px-2.5">
+              <span className="text-[9px] text-emerald-300 font-medium">Focused element</span>
+            </div>
+            <div className="h-7 bg-zinc-700/40 rounded-lg border-2 border-transparent flex items-center px-2.5">
+              <span className="text-[9px] text-zinc-400">Button</span>
+            </div>
+          </div>
+        </div>
+        <div className="text-center">
+          <span className="text-[10px] text-emerald-300 font-medium">Every control must be keyboard-reachable</span>
+        </div>
+      </div>
+    </Wrapper>
+  );
+}
+
+// ─── A11y3: Understandable — Clear Labels & Errors ──────────
+function A11y3Illustration() {
+  return (
+    <Wrapper bg="bg-gradient-to-br from-emerald-950 via-slate-950 to-teal-950">
+      <div className="w-full max-w-xs space-y-4">
+        <span className="text-[9px] text-emerald-400 uppercase tracking-widest font-semibold">Understandable forms</span>
+        <div className="grid grid-cols-2 gap-3">
+          {/* Bad */}
+          <div className="bg-zinc-800/60 rounded-xl border border-red-500/30 p-3">
+            <span className="text-[8px] text-red-400 uppercase font-bold block mb-2">Unclear</span>
+            <div className="space-y-2">
+              <div className="h-5 bg-zinc-700/50 rounded border border-zinc-600 flex items-center px-2">
+                <span className="text-[8px] text-zinc-500 italic">Email...</span>
+              </div>
+              <div className="h-5 bg-zinc-700/50 rounded border border-red-500/50 flex items-center px-2">
+                <span className="text-[8px] text-zinc-500 italic">Password...</span>
+              </div>
+              <span className="text-[7px] text-red-400">Error</span>
+            </div>
+          </div>
+          {/* Good */}
+          <div className="bg-zinc-800/60 rounded-xl border border-emerald-500/30 p-3">
+            <span className="text-[8px] text-emerald-400 uppercase font-bold block mb-2">Clear</span>
+            <div className="space-y-2">
+              <div>
+                <span className="text-[7px] text-zinc-300 font-medium block mb-0.5">Email</span>
+                <div className="h-5 bg-zinc-700/50 rounded-lg border border-zinc-600 flex items-center px-2">
+                  <span className="text-[8px] text-zinc-300">john@mail.com</span>
+                </div>
+              </div>
+              <div>
+                <span className="text-[7px] text-zinc-300 font-medium block mb-0.5">Password</span>
+                <div className="h-5 bg-zinc-700/50 rounded-lg border border-red-500/50 flex items-center px-2">
+                  <span className="text-[8px] text-zinc-400">••••</span>
+                </div>
+                <span className="text-[7px] text-red-400">Min 8 chars needed</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Wrapper>
+  );
+}
+
+// ─── A11y4: Robust — Semantic HTML ──────────────────────────
+function A11y4Illustration() {
+  return (
+    <Wrapper bg="bg-gradient-to-br from-emerald-950 via-slate-950 to-green-950">
+      <div className="w-full max-w-xs space-y-4">
+        <span className="text-[9px] text-emerald-400 uppercase tracking-widest font-semibold">Robust semantic code</span>
+        <div className="grid grid-cols-2 gap-3">
+          {/* Bad */}
+          <div className="bg-zinc-800/60 rounded-xl border border-red-500/30 p-3">
+            <span className="text-[8px] text-red-400 uppercase font-bold block mb-2">div soup</span>
+            <div className="font-mono text-[8px] text-zinc-400 space-y-0.5 leading-relaxed">
+              <div>&lt;div class="nav"&gt;</div>
+              <div className="pl-2">&lt;div onclick&gt;</div>
+              <div className="pl-4">&lt;div&gt;Link&lt;/div&gt;</div>
+              <div className="pl-2">&lt;/div&gt;</div>
+              <div>&lt;/div&gt;</div>
+            </div>
+          </div>
+          {/* Good */}
+          <div className="bg-zinc-800/60 rounded-xl border border-emerald-500/30 p-3">
+            <span className="text-[8px] text-emerald-400 uppercase font-bold block mb-2">Semantic</span>
+            <div className="font-mono text-[8px] text-emerald-300 space-y-0.5 leading-relaxed">
+              <div>&lt;<span className="text-amber-300">nav</span> role&gt;</div>
+              <div className="pl-2">&lt;<span className="text-amber-300">ul</span>&gt;</div>
+              <div className="pl-4">&lt;<span className="text-amber-300">a</span> href&gt;Link&lt;/a&gt;</div>
+              <div className="pl-2">&lt;/ul&gt;</div>
+              <div>&lt;/nav&gt;</div>
+            </div>
+          </div>
+        </div>
+        {/* Screen reader output */}
+        <div className="bg-zinc-800/60 rounded-xl border border-emerald-500/30 p-3">
+          <div className="flex items-center gap-2 mb-1.5">
+            <div className="size-4 bg-emerald-500/20 rounded flex items-center justify-center">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#4ade80" strokeWidth="2.5" strokeLinecap="round"><path d="M12 6v12M6 12h12"/></svg>
+            </div>
+            <span className="text-[8px] text-emerald-400 font-bold uppercase">Screen Reader</span>
+          </div>
+          <span className="text-[9px] text-zinc-300 italic">"Navigation landmark, list with 4 items"</span>
+        </div>
+      </div>
+    </Wrapper>
+  );
+}
+
 // ═══════════════════════════════════════════════════════════════
 // EXPORT MAP
 // ═══════════════════════════════════════════════════════════════
@@ -822,5 +1198,14 @@ export const heuristicIllustrations: Record<string, React.FC> = {
   h10: H10Illustration,
   law1: Law1Illustration,
   law2: Law2Illustration,
+  law3: Law3Illustration,
+  law4: Law4Illustration,
+  law5: Law5Illustration,
+  law6: Law6Illustration,
+  law7: Law7Illustration,
+  law8: Law8Illustration,
   a11y1: A11y1Illustration,
+  a11y2: A11y2Illustration,
+  a11y3: A11y3Illustration,
+  a11y4: A11y4Illustration,
 };

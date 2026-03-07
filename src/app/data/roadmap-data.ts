@@ -789,30 +789,6 @@ const _roadmapSource: RoadmapCluster[] = [
         ]
       },
       {
-        id: 'service-blueprint',
-        title: { en: 'Service Blueprint', es: 'Service Blueprint' },
-        description: {
-          en: 'Mapping backend processes that support customer experience',
-          es: 'Mapear procesos backend que apoyan experiencia del cliente'
-        },
-        lessonSlug: 'service-blueprint',
-        status: 'not-started',
-        level: 'advanced',
-        tags: ['product', 'strategy'],
-        skills: {
-          en: ['Service blueprints', 'Touchpoint mapping', 'Systems thinking'],
-          es: ['Service blueprints', 'Mapeo de touchpoints', 'Pensamiento sistémico']
-        },
-        prerequisites: { en: ['Customer Journey Map'], es: ['Mapa de Viaje del Cliente'] },
-        nextSteps: { en: ['Atomic Design'], es: ['Diseño Atómico'] },
-        hasLesson: true,
-        order: 2,
-        relatedLessons: [
-          { title: { en: 'Customer Journey Map', es: 'Mapa de Viaje del Cliente' }, slug: 'customer-journey-map' },
-          { title: { en: 'Problem Statements', es: 'Declaraciones de Problema' }, slug: 'problem-statements' }
-        ]
-      },
-      {
         id: 'product-roadmapping',
         title: { en: 'Product Roadmapping', es: 'Roadmapping de Producto' },
         description: {
@@ -1381,8 +1357,7 @@ export const roadmapData: RoadmapCluster[] = [
       { ..._n('figma-mastery'), order: 2 },
       { ..._n('design-systems-governance'), order: 3 },
       { ..._n('design-ethics'), order: 4 },
-      { ..._n('service-blueprint'), order: 5 },
-      { ..._n('ux-documentation-pro'), order: 6 },
+      { ..._n('ux-documentation-pro'), order: 5 },
     ]
   },
   {
