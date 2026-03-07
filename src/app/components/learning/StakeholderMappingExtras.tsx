@@ -261,7 +261,7 @@ function PowerInterestMatrix() {
       </p>
 
       {/* Visual Matrix */}
-      <div className="relative bg-zinc-900/50 border border-zinc-800 rounded-2xl p-6 md:p-8">
+      <div className="relative bg-zinc-900/50 border border-zinc-800 rounded-2xl p-4 sm:p-6 md:p-8">
         {/* Axis labels */}
         <div className="flex items-center justify-center mb-2">
           <span className="text-xs font-bold uppercase tracking-widest text-zinc-500">
@@ -278,7 +278,7 @@ function PowerInterestMatrix() {
           </div>
 
           {/* Grid */}
-          <div className="flex-1 grid grid-cols-2 gap-3">
+          <div className="flex-1 grid grid-cols-2 gap-2 sm:gap-3">
             {/* Top-left: High Power, Low Interest */}
             {quadrants.slice(0, 2).map((q, i) => {
               const Icon = q.icon;
@@ -289,24 +289,24 @@ function PowerInterestMatrix() {
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1 }}
-                  className={`rounded-xl border ${q.color} p-4 md:p-5 flex flex-col gap-3 min-h-[180px]`}
+                  className={`rounded-xl border ${q.color} p-3 sm:p-4 md:p-5 flex flex-col gap-2 sm:gap-3 min-h-[140px] sm:min-h-[180px]`}
                 >
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <Icon className={`size-5 ${q.textColor}`} />
-                      <h4 className={`text-sm font-bold ${q.textColor}`}>{t(q.label)}</h4>
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1.5 sm:gap-2">
+                    <div className="flex items-center gap-1.5 sm:gap-2 min-w-0">
+                      <Icon className={`size-4 sm:size-5 shrink-0 ${q.textColor}`} />
+                      <h4 className={`text-xs sm:text-sm font-bold ${q.textColor} truncate`}>{t(q.label)}</h4>
                     </div>
-                    <div className="flex gap-1.5">
-                      <span className="text-[10px] font-mono bg-zinc-800 px-1.5 py-0.5 rounded text-zinc-400">
+                    <div className="flex gap-1 sm:gap-1.5 shrink-0">
+                      <span className="text-[9px] sm:text-[10px] font-mono bg-zinc-800 px-1 sm:px-1.5 py-0.5 rounded text-zinc-400">
                         P:{q.power}
                       </span>
-                      <span className="text-[10px] font-mono bg-zinc-800 px-1.5 py-0.5 rounded text-zinc-400">
+                      <span className="text-[9px] sm:text-[10px] font-mono bg-zinc-800 px-1 sm:px-1.5 py-0.5 rounded text-zinc-400">
                         I:{q.interest}
                       </span>
                     </div>
                   </div>
-                  <p className="text-xs text-zinc-300 leading-relaxed flex-1">{t(q.strategy)}</p>
-                  <div className="text-[11px] text-zinc-500 font-medium italic">
+                  <p className="text-[11px] sm:text-xs text-zinc-300 leading-relaxed flex-1">{t(q.strategy)}</p>
+                  <div className="text-[10px] sm:text-[11px] text-zinc-500 font-medium italic">
                     {t({ en: 'e.g.', es: 'ej.' })} {t(q.examples)}
                   </div>
                 </motion.div>
@@ -323,24 +323,24 @@ function PowerInterestMatrix() {
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ delay: (i + 2) * 0.1 }}
-                  className={`rounded-xl border ${q.color} p-4 md:p-5 flex flex-col gap-3 min-h-[180px]`}
+                  className={`rounded-xl border ${q.color} p-3 sm:p-4 md:p-5 flex flex-col gap-2 sm:gap-3 min-h-[140px] sm:min-h-[180px]`}
                 >
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <Icon className={`size-5 ${q.textColor}`} />
-                      <h4 className={`text-sm font-bold ${q.textColor}`}>{t(q.label)}</h4>
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1.5 sm:gap-2">
+                    <div className="flex items-center gap-1.5 sm:gap-2 min-w-0">
+                      <Icon className={`size-4 sm:size-5 shrink-0 ${q.textColor}`} />
+                      <h4 className={`text-xs sm:text-sm font-bold ${q.textColor} truncate`}>{t(q.label)}</h4>
                     </div>
-                    <div className="flex gap-1.5">
-                      <span className="text-[10px] font-mono bg-zinc-800 px-1.5 py-0.5 rounded text-zinc-400">
+                    <div className="flex gap-1 sm:gap-1.5 shrink-0">
+                      <span className="text-[9px] sm:text-[10px] font-mono bg-zinc-800 px-1 sm:px-1.5 py-0.5 rounded text-zinc-400">
                         P:{q.power}
                       </span>
-                      <span className="text-[10px] font-mono bg-zinc-800 px-1.5 py-0.5 rounded text-zinc-400">
+                      <span className="text-[9px] sm:text-[10px] font-mono bg-zinc-800 px-1 sm:px-1.5 py-0.5 rounded text-zinc-400">
                         I:{q.interest}
                       </span>
                     </div>
                   </div>
-                  <p className="text-xs text-zinc-300 leading-relaxed flex-1">{t(q.strategy)}</p>
-                  <div className="text-[11px] text-zinc-500 font-medium italic">
+                  <p className="text-[11px] sm:text-xs text-zinc-300 leading-relaxed flex-1">{t(q.strategy)}</p>
+                  <div className="text-[10px] sm:text-[11px] text-zinc-500 font-medium italic">
                     {t({ en: 'e.g.', es: 'ej.' })} {t(q.examples)}
                   </div>
                 </motion.div>
@@ -644,10 +644,12 @@ function CommunicationStrategy() {
             transition={{ delay: i * 0.08 }}
             className={`rounded-xl border ${s.border} ${s.bg} p-5`}
           >
-            <div className="flex items-center gap-2 mb-4">
-              <CircleDot className={`size-4 ${s.color}`} />
-              <h4 className={`text-sm font-bold ${s.color}`}>{t(s.quadrant)}</h4>
-              <div className="flex gap-1.5 ml-auto">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-2 mb-4">
+              <div className="flex items-center gap-2">
+                <CircleDot className={`size-4 ${s.color}`} />
+                <h4 className={`text-sm font-bold ${s.color}`}>{t(s.quadrant)}</h4>
+              </div>
+              <div className="flex gap-1.5 sm:ml-auto">
                 <span className="text-[10px] font-mono bg-zinc-800 px-1.5 py-0.5 rounded text-zinc-500">
                   P:{s.power}
                 </span>
@@ -658,8 +660,8 @@ function CommunicationStrategy() {
             </div>
             <div className="space-y-2.5">
               {s.items.map((item, j) => (
-                <div key={j} className="flex gap-2">
-                  <span className="text-xs font-semibold text-zinc-500 w-20 shrink-0">{t(item.label)}</span>
+                <div key={j} className="flex flex-col sm:flex-row gap-0.5 sm:gap-2">
+                  <span className="text-xs font-semibold text-zinc-500 sm:w-20 shrink-0">{t(item.label)}</span>
                   <span className="text-xs text-zinc-300">{t(item.value)}</span>
                 </div>
               ))}

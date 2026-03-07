@@ -212,24 +212,24 @@ export function AtomicVisualGuideSection() {
               className="overflow-hidden hover:border-zinc-700 transition-all"
             >
               {/* Step Header */}
-              <div className="p-6 border-b border-zinc-800 bg-zinc-900/50">
-                <div className="flex items-start gap-4">
+              <div className="p-4 md:p-6 border-b border-zinc-800 bg-zinc-900/50">
+                <div className="flex items-start gap-3 md:gap-4">
                   {/* Level Badge */}
-                  <div className={`flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br ${getLevelColor(step.level)} flex items-center justify-center font-bold text-white text-lg`}>
+                  <div className={`flex-shrink-0 size-10 md:size-12 rounded-xl bg-gradient-to-br ${getLevelColor(step.level)} flex items-center justify-center font-bold text-white text-base md:text-lg`}>
                     {step.level}
                   </div>
 
                   {/* Title & Description */}
                   <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-3 mb-2">
-                      <h4 className="text-lg font-semibold text-white">
+                    <div className="flex flex-wrap items-center gap-2 md:gap-3 mb-1 md:mb-2">
+                      <h4 className="text-base md:text-lg font-semibold text-white">
                         {t(step.title)}
                       </h4>
-                      <Badge variant="default" size="sm">
+                      <Badge variant="default" size="sm" className="hidden md:inline-flex">
                         {t({ en: 'Level', es: 'Nivel' })} {step.level}
                       </Badge>
                     </div>
-                    <p className="text-sm text-zinc-400">
+                    <p className="text-xs md:text-sm text-zinc-400 line-clamp-2 md:line-clamp-none">
                       {t(step.description)}
                     </p>
                   </div>
@@ -239,17 +239,17 @@ export function AtomicVisualGuideSection() {
                     variant="ghost"
                     size="sm"
                     onClick={() => toggleExpand(step.id)}
-                    className="flex-shrink-0"
+                    className="flex-shrink-0 !px-2 md:!px-3"
                   >
                     {isExpanded ? (
                       <>
                         <ChevronUp className="size-4" />
-                        {t({ en: 'Collapse', es: 'Colapsar' })}
+                        <span className="hidden md:inline">{t({ en: 'Collapse', es: 'Colapsar' })}</span>
                       </>
                     ) : (
                       <>
                         <ChevronDown className="size-4" />
-                        {t({ en: 'Expand Details', es: 'Expandir Detalles' })}
+                        <span className="hidden md:inline">{t({ en: 'Expand Details', es: 'Expandir Detalles' })}</span>
                       </>
                     )}
                   </Button>

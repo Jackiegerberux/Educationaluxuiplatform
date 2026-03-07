@@ -5,8 +5,38 @@ import {
   Target, TrendingUp, ArrowRightLeft, BarChart3, Timer,
   ArrowDownRight, Percent, Star, ThumbsUp, Activity,
   Compass, Eye, EyeOff, Lightbulb, PenLine, ChevronRight,
-  CheckCircle2, XCircle, Sparkles
+  CheckCircle2, XCircle, Sparkles, MoveHorizontal
 } from 'lucide-react';
+
+// ─── Mobile Scroll Wrapper ────────────────────────────────────
+function MobileScrollWrapper({ children, className = '' }: { children: React.ReactNode; className?: string }) {
+  const { t } = useLanguage();
+  return (
+    <div className={className}>
+      {/* Swipe hint - visible only on small screens */}
+      <div className="flex items-center justify-end gap-1.5 mb-2 md:hidden">
+        <MoveHorizontal className="size-3.5 text-zinc-500" />
+        <span className="text-[11px] text-zinc-500 font-medium">
+          {t({ en: 'Swipe to explore', es: 'Desliza para explorar' })}
+        </span>
+      </div>
+      {/* Scroll container with hidden native scrollbar */}
+      <div className="relative">
+        <div
+          className="overflow-x-auto"
+          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' } as React.CSSProperties}
+        >
+          <style>{`.mobile-scroll-hide::-webkit-scrollbar { display: none; }`}</style>
+          <div className="mobile-scroll-hide" style={{ overflow: 'inherit' }}>
+            {children}
+          </div>
+        </div>
+        {/* Fade hint on right edge - mobile only */}
+        <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-zinc-950/80 to-transparent pointer-events-none md:hidden" />
+      </div>
+    </div>
+  );
+}
 
 // ─── Business Goals vs UX Goals Comparison Table ──────────────
 function GoalsComparisonTable() {
@@ -48,7 +78,7 @@ function GoalsComparisonTable() {
         })}
       </p>
 
-      <div className="overflow-x-auto">
+      <MobileScrollWrapper>
         <div className="min-w-[640px]">
           {/* Header */}
           <div className="grid grid-cols-3 gap-px bg-zinc-800 rounded-t-xl overflow-hidden">
@@ -96,7 +126,7 @@ function GoalsComparisonTable() {
             </div>
           ))}
         </div>
-      </div>
+      </MobileScrollWrapper>
     </section>
   );
 }
@@ -349,7 +379,7 @@ function VanityVsRealSection() {
         })}
       </p>
 
-      <div className="overflow-x-auto">
+      <MobileScrollWrapper>
         <div className="min-w-[480px]">
           {/* Header */}
           <div className="grid grid-cols-2 gap-px bg-zinc-800 rounded-t-xl overflow-hidden">
@@ -384,7 +414,7 @@ function VanityVsRealSection() {
             </div>
           ))}
         </div>
-      </div>
+      </MobileScrollWrapper>
     </section>
   );
 }
