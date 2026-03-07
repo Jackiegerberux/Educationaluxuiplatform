@@ -11,7 +11,8 @@ import {
   Code2,
   Layers,
   Frame,
-  Variable
+  Variable,
+  Figma
 } from 'lucide-react';
 import { DesignSystemOverview } from './sections/DesignSystemOverview';
 import { DesignSystemWireframeKit } from './sections/DesignSystemWireframeKit';
@@ -23,8 +24,9 @@ import { DesignSystemTokens } from './sections/DesignSystemTokens';
 import { DesignSystemArchitecture } from './sections/DesignSystemArchitecture';
 import { DesignSystemIndex } from './sections/DesignSystemIndex';
 import { DesignSystemGuidelines } from './sections/DesignSystemGuidelines';
+import { DesignSystemFigmaLauncher } from './sections/DesignSystemFigmaLauncher';
 
-type Section = 'overview' | 'guidelines' | 'index' | 'wireframe-kit' | 'tokens' | 'architecture' | 'foundations' | 'components' | 'patterns' | 'accessibility';
+type Section = 'overview' | 'guidelines' | 'index' | 'wireframe-kit' | 'tokens' | 'architecture' | 'foundations' | 'components' | 'patterns' | 'accessibility' | 'figma-ds';
 
 export function DesignSystem() {
   const { t } = useLanguage();
@@ -104,6 +106,12 @@ export function DesignSystem() {
       label: { en: 'Accessibility', es: 'Accesibilidad' },
       icon: Eye,
       description: { en: 'WCAG Guidelines', es: 'Guías WCAG' }
+    },
+    {
+      id: 'figma-ds' as Section,
+      label: { en: 'Figma DS', es: 'Figma DS' },
+      icon: Figma,
+      description: { en: 'Figma Design System Launcher', es: 'Lanzador Figma DS' }
     }
   ];
 
@@ -129,6 +137,8 @@ export function DesignSystem() {
         return <DesignSystemPatterns />;
       case 'accessibility':
         return <DesignSystemAccessibility />;
+      case 'figma-ds':
+        return <DesignSystemFigmaLauncher />;
       default:
         return <DesignSystemOverview />;
     }
@@ -158,7 +168,7 @@ export function DesignSystem() {
       </section>
 
       {/* Navigation Tabs */}
-      <section className="sticky top-0 z-40 border-b border-white/5 bg-black/80 backdrop-blur-xl">
+      <section className="sticky top-16 z-40 border-b border-white/5 bg-black/80 backdrop-blur-xl">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <nav className="flex overflow-x-auto hide-scrollbar">
             {sections.map((section) => {

@@ -1436,8 +1436,6 @@ const _topicSource: Track[] = [
     topics: [
       // Start with problem definition (Intermediate bridge)
       ...productStrategyLessons.filter(lesson => lesson.id === 'problem-statements'),
-      // Advanced research: Service Blueprint
-      ...advancedResearchLessons.filter(lesson => lesson.id === 'service-blueprint'),
       // Advanced: Design Systems
       {
         id: 'atomic-design',
@@ -2897,15 +2895,14 @@ export const tracks: Track[] = [
     id: 'phase-7-systems',
     title: { en: 'Systems & Scale', es: 'Sistemas y Escala' },
     description: {
-      en: 'Think in enterprise products — atomic design, governance, ethics, and service blueprints.',
-      es: 'Piensa en productos enterprise — diseño atómico, gobernanza, ética y service blueprints.'
+      en: 'Think in enterprise products — atomic design, governance, ethics, and documentation.',
+      es: 'Piensa en productos enterprise — diseño atómico, gobernanza, ética y documentación.'
     },
     topics: [
       _t('atomic-design', 'UI'),
       _t('figma-mastery', 'UI'),
       _t('design-systems-governance', 'Strategy'),
       _t('design-ethics', 'Strategy'),
-      _t('service-blueprint', 'Strategy'),
       _t('ux-documentation-pro', 'Strategy'),
     ]
   },

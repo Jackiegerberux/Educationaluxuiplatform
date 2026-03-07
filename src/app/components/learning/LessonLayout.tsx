@@ -1,6 +1,4 @@
 import React, { ReactNode } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
-import { X, Menu } from 'lucide-react';
 import { EnhancedTOC } from '../shared/EnhancedTOC';
 
 interface LessonLayoutProps {
@@ -27,7 +25,7 @@ export function LessonLayout({
   sections,
 }: LessonLayoutProps) {
   return (
-    <div className="max-w-[1480px] mx-auto px-6 py-12">
+    <div className="max-w-[1480px] mx-auto px-4 md:px-6 py-12">
       <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-12">
         {/* Sidebar - Desktop sticky, Mobile drawer with EnhancedTOC */}
         <EnhancedTOC sections={sections} />

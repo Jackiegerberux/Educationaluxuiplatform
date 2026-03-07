@@ -122,7 +122,7 @@ function QuizSection({ quiz, language }: { quiz: any[], language: any }) {
   };
 
   return (
-    <section id="knowledge-check" className="bg-gradient-to-br from-orange-950/30 to-red-950/30 border border-orange-500/20 rounded-2xl p-6 md:p-8 scroll-mt-24">
+    <section id="knowledge-check" className="bg-gradient-to-br from-orange-950/30 to-red-950/30 border border-orange-500/20 rounded-2xl p-6 md:p-8 scroll-mt-36">
        <h3 className="text-xl font-semibold text-white mb-6 flex items-center gap-2">
           <HelpCircle className="size-5 text-orange-400" />
           {language({ en: 'Knowledge Check', es: 'Verificación de Conocimiento' })}
@@ -315,14 +315,14 @@ export function LessonPage() {
   return (
     <div className="min-h-screen bg-black overflow-x-hidden">
       {/* Header */}
-      <div className="sticky top-0 z-50 bg-black/80 backdrop-blur-xl border-b border-white/5">
-        <div className="max-w-[1480px] mx-auto px-6 py-4 flex items-center justify-between">
+      <div className="sticky top-16 z-40 bg-black/80 backdrop-blur-xl border-b border-white/5">
+        <div className="max-w-[1480px] mx-auto px-4 md:px-6 py-4 flex items-center justify-between">
           <button
             onClick={() => navigate('/')}
-            className="flex items-center gap-2 text-zinc-400 hover:text-white transition-colors"
+            className="flex items-center gap-2 text-zinc-400 hover:text-white transition-colors min-w-0"
           >
-            <ArrowLeft className="size-4" />
-            <span className="text-sm">{t({ en: 'Back to Learning Paths', es: 'Volver a Rutas de Aprendizaje' })}</span>
+            <ArrowLeft className="size-4 shrink-0" />
+            <span className="text-sm truncate">{t({ en: 'Back to Learning Paths', es: 'Volver a Rutas' })}</span>
           </button>
           <div className="flex items-center gap-4">
             <div className="text-sm text-zinc-500">
@@ -360,7 +360,7 @@ export function LessonPage() {
         </motion.div>
 
         {/* Overview/Definition */}
-        <section id="overview" className="mb-12 scroll-mt-24">
+        <section id="overview" className="mb-12 scroll-mt-36">
           <h2 className="text-2xl font-semibold text-white mb-4 flex items-center gap-2">
             <BookOpen className="size-6 text-indigo-400" />
             {t({ en: 'What is this?', es: '¿Qué es esto?' })}
@@ -392,7 +392,7 @@ export function LessonPage() {
         </section>
 
         {/* Why it matters */}
-        <section id="why-it-matters" className="mb-12 scroll-mt-24">
+        <section id="why-it-matters" className="mb-12 scroll-mt-36">
           <h2 className="text-2xl font-semibold text-white mb-4 flex items-center gap-2">
             <Lightbulb className="size-6 text-yellow-400" />
             {t({ en: 'Why it matters', es: 'Por qué importa' })}
@@ -425,7 +425,7 @@ export function LessonPage() {
         </section>
 
         {/* Key Principles */}
-        <section id="key-principles" className="mb-12 scroll-mt-24">
+        <section id="key-principles" className="mb-12 scroll-mt-36">
           <h2 className="text-2xl font-semibold text-white mb-4 flex items-center gap-2">
             <ListChecks className="size-6 text-blue-400" />
             {t({ en: 'Key Principles', es: 'Principios Clave' })}
@@ -500,7 +500,7 @@ export function LessonPage() {
 
         {/* How to Apply */}
         {topic.content.howToApply && (
-          <section id="how-to-apply" className="mb-12 scroll-mt-24">
+          <section id="how-to-apply" className="mb-12 scroll-mt-36">
             <h2 className="text-2xl font-semibold text-white mb-4 flex items-center gap-2">
               <ArrowRight className="size-6 text-green-400" />
               {t({ en: 'How to Apply', es: 'Cómo Aplicar' })}
@@ -527,7 +527,7 @@ export function LessonPage() {
 
         {/* Interactive Accessibility Examples (only for accessibility lesson) */}
         {topic.id === 'accessibility' && topic.content.visualExamples && (
-          <section id="visual-examples" className="mb-12 scroll-mt-24">
+          <section id="visual-examples" className="mb-12 scroll-mt-36">
             <AccessibilityInteractiveExamples />
           </section>
         )}
@@ -545,7 +545,7 @@ export function LessonPage() {
 
         {/* Common Mistakes */}
         {topic.content.commonMistakes && (
-          <section id="common-mistakes" className="mb-12 scroll-mt-24">
+          <section id="common-mistakes" className="mb-12 scroll-mt-36">
             <h2 className="text-2xl font-semibold text-white mb-4 flex items-center gap-2">
               <AlertTriangle className="size-6 text-red-400" />
               {t({ en: 'Common Mistakes', es: 'Errores Comunes' })}
@@ -567,7 +567,7 @@ export function LessonPage() {
 
         {/* Deliverables */}
         {topic.content.deliverables && (
-          <section id="deliverables" className="mb-12 scroll-mt-24">
+          <section id="deliverables" className="mb-12 scroll-mt-36">
             <h2 className="text-2xl font-semibold text-white mb-4 flex items-center gap-2">
               <FileCheck className="size-6 text-purple-400" />
               {t({ en: 'Deliverables', es: 'Entregables' })}
@@ -602,7 +602,7 @@ export function LessonPage() {
           ].filter(c => c.data);
 
           return (
-            <section id="tools" className="mb-12 scroll-mt-24">
+            <section id="tools" className="mb-12 scroll-mt-36">
               <h2 className="text-2xl font-semibold text-white mb-4 flex items-center gap-2">
                 <Wrench className="size-6 text-cyan-400" />
                 {t({ en: 'Recommended Tools', es: 'Herramientas Recomendadas' })}
@@ -634,7 +634,7 @@ export function LessonPage() {
 
         {/* AI in Practice */}
         {topic.content.aiInPractice && (
-          <section id="ai-practice" className="mb-12 scroll-mt-24">
+          <section id="ai-practice" className="mb-12 scroll-mt-36">
             <h2 className="text-2xl font-semibold text-white mb-4 flex items-center gap-2">
               <Sparkles className="size-6 text-pink-400" />
               {t({ en: 'AI in Practice', es: 'IA en Práctica' })}
@@ -664,7 +664,7 @@ export function LessonPage() {
 
         {/* Validation */}
         {topic.content.howToValidate && (
-          <section id="validation" className="mb-12 scroll-mt-24">
+          <section id="validation" className="mb-12 scroll-mt-36">
             <h2 className="text-2xl font-semibold text-white mb-4 flex items-center gap-2">
               <CheckCircle2 className="size-6 text-green-400" />
               {t({ en: 'How to Validate', es: 'Cómo Validar' })}
@@ -722,7 +722,7 @@ export function LessonPage() {
 
         {/* Real Example */}
         {topic.content.realExample && (
-          <section id="real-example" className="mb-12 mt-16 scroll-mt-24">
+          <section id="real-example" className="mb-12 mt-16 scroll-mt-36">
             {/* Portfolio Case Study Writing - Weak vs Strong Impact before Real Example */}
             {topic.id === 'portfolio-case-study-writing' && <WeakVsStrongImpact />}
             <h2 className="text-2xl font-semibold text-white mb-6 flex items-center gap-2">
@@ -844,7 +844,7 @@ export function LessonPage() {
         )}
 
         {/* References */}
-        <section id="references" className="mb-12 scroll-mt-24">
+        <section id="references" className="mb-12 scroll-mt-36">
           <h2 className="text-2xl font-semibold text-white mb-4 flex items-center gap-2">
             <BookOpen className="size-6 text-indigo-400" />
             {t({ en: 'References & Resources', es: 'Referencias y Recursos' })}

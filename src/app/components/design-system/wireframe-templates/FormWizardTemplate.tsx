@@ -12,7 +12,7 @@ export function FormWizardTemplate({ onBack, onUpgrade }: TemplateProps) {
 
   return (
     <div className="min-h-screen bg-black">
-      <div className="border-b border-zinc-800 bg-zinc-950 sticky top-0 z-10">
+      <div className="border-b border-zinc-800 bg-zinc-950 sticky top-16 z-10">
         <div className="max-w-7xl mx-auto px-6 py-4">
           <button onClick={onBack} className="flex items-center gap-2 text-zinc-400 hover:text-white">
             <ArrowLeft className="size-4" />

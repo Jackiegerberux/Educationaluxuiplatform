@@ -118,8 +118,8 @@ export function RoadmapCanvas() {
   return (
     <div className="min-h-screen bg-black">
       {/* Header */}
-      <div className="border-b border-zinc-800 bg-black/95 backdrop-blur-sm sticky top-0 z-30">
-        <div className="mx-auto max-w-7xl px-6 py-6">
+      <div className="border-b border-zinc-800 bg-black/95 backdrop-blur-sm sticky top-16 z-30">
+        <div className="mx-auto max-w-7xl px-4 md:px-6 py-6">
           <div className="mb-6">
             <h1 className="text-4xl font-bold text-white mb-2">
               {t({ en: 'UX/UI Roadmap', es: 'Roadmap UX/UI' })}

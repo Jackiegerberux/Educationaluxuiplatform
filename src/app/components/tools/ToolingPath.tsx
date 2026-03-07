@@ -274,7 +274,7 @@ export function ToolingPath() {
       </div>
 
       {/* Search & Filters */}
-      <div className="sticky top-0 z-30 bg-zinc-950/80 backdrop-blur-xl border-b border-zinc-800/50">
+      <div className="sticky top-16 z-30 bg-zinc-950/80 backdrop-blur-xl border-b border-zinc-800/50">
         <div className="mx-auto max-w-7xl px-4 md:px-6 py-4 space-y-3">
           {/* Search bar */}
           <div className="flex items-center gap-3">

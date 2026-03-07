@@ -92,8 +92,8 @@ export function EnhancedTOC({ sections, className = '' }: EnhancedTOCProps) {
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
-      // Smooth scroll with offset for sticky header (96px = 6rem = top-24)
-      const headerOffset = 96;
+      // Smooth scroll with offset for sticky header (128px = main header 64px + sub-header ~64px)
+      const headerOffset = 128;
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.scrollY - headerOffset;
 
@@ -207,7 +207,7 @@ export function EnhancedTOC({ sections, className = '' }: EnhancedTOCProps) {
       {/* Desktop Sticky Sidebar */}
       <nav 
         ref={sidebarRef}
-        className={`hidden lg:block sticky top-24 max-h-[calc(100vh-96px)] overflow-y-auto space-y-1 pr-2 ${className}`}
+        className={`hidden lg:block sticky top-36 max-h-[calc(100vh-160px)] overflow-y-auto space-y-1 pr-2 ${className}`}
         style={{
           scrollbarWidth: 'thin',
           scrollbarColor: '#3f3f46 transparent'
