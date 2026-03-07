@@ -2,7 +2,8 @@ import React from 'react';
 import { useLanguage } from '../layout/LanguageContext';
 import { Button } from '../ui/button';
 import { motion } from 'motion/react';
-import { ArrowRight, BookOpen, Layers } from 'lucide-react';
+import { ArrowRight, BookOpen, Map } from 'lucide-react';
+import { useNavigate } from 'react-router';
 
 interface HeroProps {
   onStart: () => void;
@@ -10,6 +11,7 @@ interface HeroProps {
 
 export function Hero({ onStart }: HeroProps) {
   const { t } = useLanguage();
+  const navigate = useNavigate();
 
   return (
     <div className="relative overflow-hidden bg-black text-white py-20 lg:py-32">
@@ -56,19 +58,19 @@ export function Hero({ onStart }: HeroProps) {
             <Button 
               size="lg" 
               className="bg-white text-black hover:bg-zinc-200 text-base h-12 px-8"
-              onClick={onStart}
+              onClick={() => navigate('/paths')}
             >
               <BookOpen className="mr-2 size-5" />
-              {t({ en: 'Explore Platform', es: 'Explorar Plataforma' })}
+              {t({ en: 'Learning Paths', es: 'Rutas de Aprendizaje' })}
             </Button>
             <Button 
               size="lg" 
               variant="outline" 
               className="border-zinc-600 bg-zinc-900/50 hover:bg-zinc-800 hover:border-zinc-500 text-white hover:text-white text-base h-12 px-8"
-              onClick={() => document.getElementById('preview')?.scrollIntoView({ behavior: 'smooth' })}
+              onClick={() => navigate('/synthesis')}
             >
-              <Layers className="mr-2 size-5" />
-              {t({ en: 'Join Community', es: 'Unirse a la Comunidad' })}
+              <Map className="mr-2 size-5" />
+              {t({ en: 'Knowledge Map', es: 'Mapa de Conocimiento' })}
             </Button>
           </motion.div>
         </div>
