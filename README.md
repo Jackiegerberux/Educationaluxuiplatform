@@ -1,7 +1,7 @@
 
   # Educational UX/UI Platform
 
-  This is a code bundle for Educational UX/UI Platform. The original project is available at https://www.figma.com/design/0UShLJeQaxGv7XkZaHNkM5/Educational-UX-UI-Platform.
+  This is a code bundle for Educational UX/UI Platform. The original project is available at https://uxfusion.figma.site/.
 
   ## Running the code
 
